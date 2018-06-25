@@ -8,10 +8,7 @@
   <component name="ChangeListManager">
     <list id="ee28341a-327d-4538-a815-be093713fd85" name="Rejected commit: Default" comment="餐次" />
     <list default="true" id="db8330dd-9023-491a-8e6e-e95a315da6fc" name="Default" comment="‘’">
-      <change beforePath="$PROJECT_DIR$/toprank-pad-web/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/toprank-pad-web/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toprank-pad-web/src/main/resources/generatorConfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/toprank-pad-web/src/main/resources/generatorConfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toprank-pad-web/src/test/java/cc/toprank/byd/generator/Build.java" beforeDir="false" afterPath="$PROJECT_DIR$/toprank-pad-web/src/test/java/cc/toprank/byd/generator/Build.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toprank-pad-web/src/test/resources/templates/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/toprank-pad-web/src/test/resources/templates/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/toprank-pad-common/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,8 +48,8 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+            <state relative-caret-position="585">
+              <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -178,6 +175,7 @@
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -611,7 +609,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="ReadonlyStatusHandler">
     <option name="SHOW_DIALOG" value="false" />
@@ -1196,7 +1194,7 @@
       <workItem from="1528908035440" duration="376000" />
       <workItem from="1529929156239" duration="17000" />
       <workItem from="1529929767911" duration="549000" />
-      <workItem from="1529930373000" duration="22000" />
+      <workItem from="1529930373000" duration="292000" />
     </task>
     <task id="LOCAL-00304" summary="生成实体">
       <created>1497351680798</created>
@@ -1545,7 +1543,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1109920000" />
+    <option name="totallyTimeSpent" value="1110190000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1558,7 +1556,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50747865" side_tool="true" weight="0.4723727" />
@@ -1646,9 +1643,6 @@
   <component name="VcsManagerConfiguration">
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="true" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
     <MESSAGE value="下单" />
     <MESSAGE value="菜品列表" />
     <MESSAGE value="下单多情况测试" />
@@ -2052,8 +2046,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="585">
+          <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
         </state>
       </provider>
     </entry>
