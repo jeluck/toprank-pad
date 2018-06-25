@@ -7,9 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list id="ee28341a-327d-4538-a815-be093713fd85" name="Rejected commit: Default" comment="餐次" />
-    <list default="true" id="db8330dd-9023-491a-8e6e-e95a315da6fc" name="Default" comment="‘’">
-      <change beforePath="$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java" afterDir="false" />
-    </list>
+    <list default="true" id="db8330dd-9023-491a-8e6e-e95a315da6fc" name="Default" comment="‘’" />
     <ignored path="$PROJECT_DIR$/toprank-pad-common/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/toprank-pad-web/target/" />
@@ -48,8 +46,8 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+            <state relative-caret-position="277">
+              <caret line="54" column="13" lean-forward="true" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -1194,7 +1192,7 @@
       <workItem from="1528908035440" duration="376000" />
       <workItem from="1529929156239" duration="17000" />
       <workItem from="1529929767911" duration="549000" />
-      <workItem from="1529930373000" duration="292000" />
+      <workItem from="1529930373000" duration="962000" />
     </task>
     <task id="LOCAL-00304" summary="生成实体">
       <created>1497351680798</created>
@@ -1543,7 +1541,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1110190000" />
+    <option name="totallyTimeSpent" value="1110860000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1555,7 +1553,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50747865" side_tool="true" weight="0.4723727" />
@@ -1574,7 +1573,7 @@
       <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="8" weight="0.32936078" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" weight="0.32827735" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32827735" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.48593074" />
       <window_info anchor="bottom" id="Spring" order="10" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49519232" weight="0.32936078" />
@@ -2046,8 +2045,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/toprank-pad-web/src/main/java/cc/toprank/byd/web/controller/login/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+        <state relative-caret-position="277">
+          <caret line="54" column="13" lean-forward="true" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
         </state>
       </provider>
     </entry>
