@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cc.toprank.byd.dao.DailyTaskDao">
+
+    <!-- 日结时将桌台使用信息清理，设置结束时间 LinYN 2017-5-27 -->
+    <update id="resetTableUseInfo">
+        update B_DinningTableUseInfo  set EndTime = UTC_TIMESTAMP()
+        where EndTime is NULL and tableID in (
+            select tableID from B_DinningTableInfo
+                where TableStatus in (827, 609)
+            )
+    </update>
+
+    <!-- 日结时将桌台信息清理，状态设置为空台，消除关联属性 LinYN 2017-5-27 -->
+    <update id="resetTableInfo">
+        update B_DinningTableInfo  set TableStatus = 607, CombineName = null , CombineNumber = 0, ShareNumber = 0
+        where TableStatus in (827, 609)
+    </update>
+
+    <!-- 日结时将子订单改成己完成 LinYN 2017-5-27 -->
+    <update id="resetSubOrderInfo">
+        update O_SubOrderInfo  set OrderStatus = 68 where OrderStatus in (875, 701, 876)
+    </update>
+
+    <!-- 日结时将主订单改成己完成 LinYN 2017-5-27 -->
+    <update id="resetOrderInfo">
+        update O_OrderInfo  set OrderStatus = 68 where OrderStatus in (875, 701, 876)
+    </update>
+
+    <!-- 日结时重置餐次桌台信息 LinYN 2017-5-27 -->
+    <update id="resetMealTableMapping">
+        update B_MealTableMapping  set TableStatus = 607, IsBooking = 0, IsSharing = 0, IsCombine = 0, CombineNumber = 0, ShareNumber = 0
+        where TableStatus in (827, 609, 777)
+    </update>
+  </mapper>

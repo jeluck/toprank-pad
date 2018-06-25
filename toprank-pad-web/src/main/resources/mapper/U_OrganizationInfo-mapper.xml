@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.U_OrganizationInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.U_OrganizationInfoEntity">
+    <id column="OrgID" jdbcType="BIGINT" property="orgID" />
+    <result column="ParentID" jdbcType="BIGINT" property="parentID" />
+    <result column="CountryID" jdbcType="BIGINT" property="countryID" />
+    <result column="OrgName" jdbcType="VARCHAR" property="orgName" />
+    <result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter" />
+    <result column="OrgCode" jdbcType="VARCHAR" property="orgCode" />
+    <result column="OrgDesc" jdbcType="VARCHAR" property="orgDesc" />
+    <result column="OrgStatus" jdbcType="BIGINT" property="orgStatus" />
+    <result column="OrgType" jdbcType="BIGINT" property="orgType" />
+    <result column="Industry" jdbcType="BIGINT" property="industry" />
+    <result column="ProvinceID" jdbcType="BIGINT" property="provinceID" />
+    <result column="ProvinceName" jdbcType="VARCHAR" property="provinceName" />
+    <result column="CityID" jdbcType="BIGINT" property="cityID" />
+    <result column="CityName" jdbcType="VARCHAR" property="cityName" />
+    <result column="DistrictID" jdbcType="BIGINT" property="districtID" />
+    <result column="DistrictName" jdbcType="VARCHAR" property="districtName" />
+    <result column="StreetID" jdbcType="BIGINT" property="streetID" />
+    <result column="Street" jdbcType="VARCHAR" property="street" />
+    <result column="Longitude" jdbcType="DECIMAL" property="longitude" />
+    <result column="Latitude" jdbcType="DECIMAL" property="latitude" />
+    <result column="HashKey" jdbcType="VARCHAR" property="hashKey" />
+    <result column="PostCode" jdbcType="VARCHAR" property="postCode" />
+    <result column="PostalAddress" jdbcType="VARCHAR" property="postalAddress" />
+    <result column="Phone" jdbcType="VARCHAR" property="phone" />
+    <result column="Fax" jdbcType="VARCHAR" property="fax" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="WebUrl" jdbcType="VARCHAR" property="webUrl" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="TreeID" jdbcType="VARCHAR" property="treeID" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OrgID, ParentID, CountryID, OrgName, FirstLetter, OrgCode, OrgDesc, OrgStatus, OrgType, 
+    Industry, ProvinceID, ProvinceName, CityID, CityName, DistrictID, DistrictName, StreetID, 
+    Street, Longitude, Latitude, HashKey, PostCode, PostalAddress, Phone, Fax, Email, 
+    WebUrl, SortNo, TreeID, CreatorID, CreateTime, Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from U_OrganizationInfo
+    where OrgID = #{orgID,jdbcType=BIGINT}
+  </select>
+  <select id="getCurrentOrganizationInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from U_OrganizationInfo
+    where OrgID = ( SELECT OrgID from B_MerchantInfo m limit 0,1)
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from U_OrganizationInfo
+    where OrgID = #{orgID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.U_OrganizationInfoEntity">
+    insert into U_OrganizationInfo (OrgID, ParentID, CountryID, 
+      OrgName, FirstLetter, OrgCode, 
+      OrgDesc, OrgStatus, OrgType, 
+      Industry, ProvinceID, ProvinceName, 
+      CityID, CityName, DistrictID, 
+      DistrictName, StreetID, Street, 
+      Longitude, Latitude, HashKey, 
+      PostCode, PostalAddress, Phone, 
+      Fax, Email, WebUrl, 
+      SortNo, TreeID, CreatorID, 
+      CreateTime, Memo)
+    values (#{orgID,jdbcType=BIGINT}, #{parentID,jdbcType=BIGINT}, #{countryID,jdbcType=BIGINT}, 
+      #{orgName,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, 
+      #{orgDesc,jdbcType=VARCHAR}, #{orgStatus,jdbcType=BIGINT}, #{orgType,jdbcType=BIGINT}, 
+      #{industry,jdbcType=BIGINT}, #{provinceID,jdbcType=BIGINT}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityID,jdbcType=BIGINT}, #{cityName,jdbcType=VARCHAR}, #{districtID,jdbcType=BIGINT}, 
+      #{districtName,jdbcType=VARCHAR}, #{streetID,jdbcType=BIGINT}, #{street,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, #{hashKey,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{postalAddress,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{webUrl,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=INTEGER}, #{treeID,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.U_OrganizationInfoEntity">
+    insert into U_OrganizationInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgID != null">
+        OrgID,
+      </if>
+      <if test="parentID != null">
+        ParentID,
+      </if>
+      <if test="countryID != null">
+        CountryID,
+      </if>
+      <if test="orgName != null">
+        OrgName,
+      </if>
+      <if test="firstLetter != null">
+        FirstLetter,
+      </if>
+      <if test="orgCode != null">
+        OrgCode,
+      </if>
+      <if test="orgDesc != null">
+        OrgDesc,
+      </if>
+      <if test="orgStatus != null">
+        OrgStatus,
+      </if>
+      <if test="orgType != null">
+        OrgType,
+      </if>
+      <if test="industry != null">
+        Industry,
+      </if>
+      <if test="provinceID != null">
+        ProvinceID,
+      </if>
+      <if test="provinceName != null">
+        ProvinceName,
+      </if>
+      <if test="cityID != null">
+        CityID,
+      </if>
+      <if test="cityName != null">
+        CityName,
+      </if>
+      <if test="districtID != null">
+        DistrictID,
+      </if>
+      <if test="districtName != null">
+        DistrictName,
+      </if>
+      <if test="streetID != null">
+        StreetID,
+      </if>
+      <if test="street != null">
+        Street,
+      </if>
+      <if test="longitude != null">
+        Longitude,
+      </if>
+      <if test="latitude != null">
+        Latitude,
+      </if>
+      <if test="hashKey != null">
+        HashKey,
+      </if>
+      <if test="postCode != null">
+        PostCode,
+      </if>
+      <if test="postalAddress != null">
+        PostalAddress,
+      </if>
+      <if test="phone != null">
+        Phone,
+      </if>
+      <if test="fax != null">
+        Fax,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="webUrl != null">
+        WebUrl,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="treeID != null">
+        TreeID,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgID != null">
+        #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="parentID != null">
+        #{parentID,jdbcType=BIGINT},
+      </if>
+      <if test="countryID != null">
+        #{countryID,jdbcType=BIGINT},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null">
+        #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgDesc != null">
+        #{orgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null">
+        #{orgStatus,jdbcType=BIGINT},
+      </if>
+      <if test="orgType != null">
+        #{orgType,jdbcType=BIGINT},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=BIGINT},
+      </if>
+      <if test="provinceID != null">
+        #{provinceID,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityID != null">
+        #{cityID,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtID != null">
+        #{districtID,jdbcType=BIGINT},
+      </if>
+      <if test="districtName != null">
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetID != null">
+        #{streetID,jdbcType=BIGINT},
+      </if>
+      <if test="street != null">
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="hashKey != null">
+        #{hashKey,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postalAddress != null">
+        #{postalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="webUrl != null">
+        #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="treeID != null">
+        #{treeID,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.U_OrganizationInfoEntity">
+    update U_OrganizationInfo
+    <set>
+      <if test="parentID != null">
+        ParentID = #{parentID,jdbcType=BIGINT},
+      </if>
+      <if test="countryID != null">
+        CountryID = #{countryID,jdbcType=BIGINT},
+      </if>
+      <if test="orgName != null">
+        OrgName = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null">
+        FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        OrgCode = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgDesc != null">
+        OrgDesc = #{orgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null">
+        OrgStatus = #{orgStatus,jdbcType=BIGINT},
+      </if>
+      <if test="orgType != null">
+        OrgType = #{orgType,jdbcType=BIGINT},
+      </if>
+      <if test="industry != null">
+        Industry = #{industry,jdbcType=BIGINT},
+      </if>
+      <if test="provinceID != null">
+        ProvinceID = #{provinceID,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null">
+        ProvinceName = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityID != null">
+        CityID = #{cityID,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null">
+        CityName = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtID != null">
+        DistrictID = #{districtID,jdbcType=BIGINT},
+      </if>
+      <if test="districtName != null">
+        DistrictName = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetID != null">
+        StreetID = #{streetID,jdbcType=BIGINT},
+      </if>
+      <if test="street != null">
+        Street = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        Longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        Latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="hashKey != null">
+        HashKey = #{hashKey,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        PostCode = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postalAddress != null">
+        PostalAddress = #{postalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        Fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="webUrl != null">
+        WebUrl = #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="treeID != null">
+        TreeID = #{treeID,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OrgID = #{orgID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.U_OrganizationInfoEntity">
+    update U_OrganizationInfo
+    set ParentID = #{parentID,jdbcType=BIGINT},
+      CountryID = #{countryID,jdbcType=BIGINT},
+      OrgName = #{orgName,jdbcType=VARCHAR},
+      FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+      OrgCode = #{orgCode,jdbcType=VARCHAR},
+      OrgDesc = #{orgDesc,jdbcType=VARCHAR},
+      OrgStatus = #{orgStatus,jdbcType=BIGINT},
+      OrgType = #{orgType,jdbcType=BIGINT},
+      Industry = #{industry,jdbcType=BIGINT},
+      ProvinceID = #{provinceID,jdbcType=BIGINT},
+      ProvinceName = #{provinceName,jdbcType=VARCHAR},
+      CityID = #{cityID,jdbcType=BIGINT},
+      CityName = #{cityName,jdbcType=VARCHAR},
+      DistrictID = #{districtID,jdbcType=BIGINT},
+      DistrictName = #{districtName,jdbcType=VARCHAR},
+      StreetID = #{streetID,jdbcType=BIGINT},
+      Street = #{street,jdbcType=VARCHAR},
+      Longitude = #{longitude,jdbcType=DECIMAL},
+      Latitude = #{latitude,jdbcType=DECIMAL},
+      HashKey = #{hashKey,jdbcType=VARCHAR},
+      PostCode = #{postCode,jdbcType=VARCHAR},
+      PostalAddress = #{postalAddress,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Fax = #{fax,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      WebUrl = #{webUrl,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      TreeID = #{treeID,jdbcType=VARCHAR},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where OrgID = #{orgID,jdbcType=BIGINT}
+  </update>
+</mapper>

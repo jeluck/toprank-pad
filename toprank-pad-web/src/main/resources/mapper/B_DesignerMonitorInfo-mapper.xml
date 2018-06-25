@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.B_DesignerMonitorInfoDao">
+    <sql id="Base_Column_List">
+		ProduceID, ArchiveID, MonitorID, DesignerID, DesignerName, OrderID, SubOrderID, TableID,
+		TableName, TableCode, DetailID, RecordID, MenuID, CategoryID, CategoryName, ProductID,
+		VariantID, ProductName, IsCombo, Quantity, FloatQuantity, Price, UnitID, UnitName,
+		OptionID, OptionName, ValueIDs, AttributeValues, ProduceMinute, ProduceStatus, DetailDesc,
+		ClerkID, ClerkName, CreatorType, CreatorID, CreateTime, AuditorID, AuditTime, SortNo,
+		IsSync, Memo
+	</sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from B_DesignerMonitorInfo
+        where ProduceID = #{produceID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_DesignerMonitorInfo
+		where ProduceID = #{produceID,jdbcType=BIGINT}
+	</delete>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+        insert into B_DesignerMonitorInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="produceID != null">
+                ProduceID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="monitorID != null">
+                MonitorID,
+            </if>
+            <if test="designerID != null">
+                DesignerID,
+            </if>
+            <if test="designerName != null">
+                DesignerName,
+            </if>
+            <if test="orderID != null">
+                OrderID,
+            </if>
+            <if test="subOrderID != null">
+                SubOrderID,
+            </if>
+            <if test="tableID != null">
+                TableID,
+            </if>
+            <if test="tableName != null">
+                TableName,
+            </if>
+            <if test="tableCode != null">
+                TableCode,
+            </if>
+            <if test="detailID != null">
+                DetailID,
+            </if>
+            <if test="recordID != null">
+                RecordID,
+            </if>
+            <if test="menuID != null">
+                MenuID,
+            </if>
+            <if test="categoryID != null">
+                CategoryID,
+            </if>
+            <if test="categoryName != null">
+                CategoryName,
+            </if>
+            <if test="productID != null">
+                ProductID,
+            </if>
+            <if test="variantID != null">
+                VariantID,
+            </if>
+            <if test="productName != null">
+                ProductName,
+            </if>
+            <if test="isCombo != null">
+                IsCombo,
+            </if>
+            <if test="quantity != null">
+                Quantity,
+            </if>
+            <if test="floatQuantity != null">
+                FloatQuantity,
+            </if>
+            <if test="price != null">
+                Price,
+            </if>
+            <if test="unitID != null">
+                UnitID,
+            </if>
+            <if test="unitName != null">
+                UnitName,
+            </if>
+            <if test="optionID != null">
+                OptionID,
+            </if>
+            <if test="optionName != null">
+                OptionName,
+            </if>
+            <if test="valueIDs != null">
+                ValueIDs,
+            </if>
+            <if test="attributeValues != null">
+                AttributeValues,
+            </if>
+            <if test="produceMinute != null">
+                ProduceMinute,
+            </if>
+            <if test="produceStatus != null">
+                ProduceStatus,
+            </if>
+            <if test="detailDesc != null">
+                DetailDesc,
+            </if>
+            <if test="clerkID != null">
+                ClerkID,
+            </if>
+            <if test="clerkName != null">
+                ClerkName,
+            </if>
+            <if test="creatorType != null">
+                CreatorType,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="auditorID != null">
+                AuditorID,
+            </if>
+            <if test="auditTime != null">
+                AuditTime,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="produceID != null">
+                #{produceID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="monitorID != null">
+                #{monitorID,jdbcType=BIGINT},
+            </if>
+            <if test="designerID != null">
+                #{designerID,jdbcType=BIGINT},
+            </if>
+            <if test="designerName != null">
+                #{designerName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderID != null">
+                #{orderID,jdbcType=BIGINT},
+            </if>
+            <if test="subOrderID != null">
+                #{subOrderID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableName != null">
+                #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="detailID != null">
+                #{detailID,jdbcType=BIGINT},
+            </if>
+            <if test="recordID != null">
+                #{recordID,jdbcType=BIGINT},
+            </if>
+            <if test="menuID != null">
+                #{menuID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryID != null">
+                #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryName != null">
+                #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="productID != null">
+                #{productID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="isCombo != null">
+                #{isCombo,jdbcType=BIT},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="floatQuantity != null">
+                #{floatQuantity,jdbcType=REAL},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="unitID != null">
+                #{unitID,jdbcType=BIGINT},
+            </if>
+            <if test="unitName != null">
+                #{unitName,jdbcType=VARCHAR},
+            </if>
+            <if test="optionID != null">
+                #{optionID,jdbcType=BIGINT},
+            </if>
+            <if test="optionName != null">
+                #{optionName,jdbcType=VARCHAR},
+            </if>
+            <if test="valueIDs != null">
+                #{valueIDs,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeValues != null">
+                #{attributeValues,jdbcType=VARCHAR},
+            </if>
+            <if test="produceMinute != null">
+                #{produceMinute,jdbcType=INTEGER},
+            </if>
+            <if test="produceStatus != null">
+                #{produceStatus,jdbcType=BIGINT},
+            </if>
+            <if test="detailDesc != null">
+                #{detailDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="clerkID != null">
+                #{clerkID,jdbcType=BIGINT},
+            </if>
+            <if test="clerkName != null">
+                #{clerkName,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorType != null">
+                #{creatorType,jdbcType=BIGINT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditorID != null">
+                #{auditorID,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertBatch" parameterType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+        insert into B_DesignerMonitorInfo (ProduceID, ArchiveID, MonitorID,
+        DesignerID, DesignerName, OrderID,
+        SubOrderID, TableID, TableName,
+        TableCode, DetailID, RecordID,
+        MenuID, CategoryID, CategoryName,
+        ProductID, VariantID, ProductName,
+        IsCombo, Quantity, FloatQuantity,
+        Price, UnitID, UnitName,
+        OptionID, OptionName, ValueIDs,
+        AttributeValues, ProduceMinute, ProduceStatus,
+        DetailDesc, ClerkID, ClerkName,
+        CreatorType, CreatorID, CreateTime,
+        AuditorID, AuditTime, SortNo,
+        IsSync, Memo)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.produceID}, #{item.archiveID}, #{item.monitorID},
+            #{item.designerID}, #{item.designerName}, #{item.orderID},
+            #{item.subOrderID}, #{item.tableID}, #{item.tableName},
+            #{item.tableCode}, #{item.detailID}, #{item.recordID},
+            #{item.menuID}, #{item.categoryID}, #{item.categoryName},
+            #{item.productID}, #{item.variantID}, #{item.productName},
+            #{item.isCombo}, #{item.quantity}, #{item.floatQuantity},
+            #{item.price}, #{item.unitID}, #{item.unitName},
+            #{item.optionID}, #{item.optionName}, #{item.valueIDs},
+            #{item.attributeValues}, #{item.produceMinute}, #{item.produceStatus},
+            #{item.detailDesc}, #{item.clerkID}, #{item.clerkName},
+            #{item.creatorType}, #{item.creatorID}, #{item.createTime},
+            #{item.auditorID}, #{item.auditTime}, #{item.sortNo},
+            #{item.isSync}, #{item.memo})
+        </foreach>
+    </insert>
+
+    <insert id="updateBatch" parameterType="map">
+        update B_DesignerMonitorInfo
+        <set>
+            <if test="produceStatus != null">
+                ProduceStatus = #{produceStatus},
+            </if>
+        </set>
+        where
+          ProduceID in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+              #{item}
+        </foreach>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+        update B_DesignerMonitorInfo
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="monitorID != null">
+                MonitorID = #{monitorID,jdbcType=BIGINT},
+            </if>
+            <if test="designerID != null">
+                DesignerID = #{designerID,jdbcType=BIGINT},
+            </if>
+            <if test="designerName != null">
+                DesignerName = #{designerName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderID != null">
+                OrderID = #{orderID,jdbcType=BIGINT},
+            </if>
+            <if test="subOrderID != null">
+                SubOrderID = #{subOrderID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                TableID = #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableName != null">
+                TableName = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                TableCode = #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="detailID != null">
+                DetailID = #{detailID,jdbcType=BIGINT},
+            </if>
+            <if test="recordID != null">
+                RecordID = #{recordID,jdbcType=BIGINT},
+            </if>
+            <if test="menuID != null">
+                MenuID = #{menuID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryID != null">
+                CategoryID = #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryName != null">
+                CategoryName = #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="productID != null">
+                ProductID = #{productID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                VariantID = #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                ProductName = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="isCombo != null">
+                IsCombo = #{isCombo,jdbcType=BIT},
+            </if>
+            <if test="quantity != null">
+                Quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="floatQuantity != null">
+                FloatQuantity = #{floatQuantity,jdbcType=REAL},
+            </if>
+            <if test="price != null">
+                Price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="unitID != null">
+                UnitID = #{unitID,jdbcType=BIGINT},
+            </if>
+            <if test="unitName != null">
+                UnitName = #{unitName,jdbcType=VARCHAR},
+            </if>
+            <if test="optionID != null">
+                OptionID = #{optionID,jdbcType=BIGINT},
+            </if>
+            <if test="optionName != null">
+                OptionName = #{optionName,jdbcType=VARCHAR},
+            </if>
+            <if test="valueIDs != null">
+                ValueIDs = #{valueIDs,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeValues != null">
+                AttributeValues = #{attributeValues,jdbcType=VARCHAR},
+            </if>
+            <if test="produceMinute != null">
+                ProduceMinute = #{produceMinute,jdbcType=INTEGER},
+            </if>
+            <if test="produceStatus != null">
+                ProduceStatus = #{produceStatus,jdbcType=BIGINT},
+            </if>
+            <if test="detailDesc != null">
+                DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="clerkID != null">
+                ClerkID = #{clerkID,jdbcType=BIGINT},
+            </if>
+            <if test="clerkName != null">
+                ClerkName = #{clerkName,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorType != null">
+                CreatorType = #{creatorType,jdbcType=BIGINT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditorID != null">
+                AuditorID = #{auditorID,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                AuditTime = #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ProduceID = #{produceID,jdbcType=BIGINT}
+    </update>
+
+    <!-- 根据订单明细ID更新制作状态 hcy -->
+    <update id="updateDesignerMonitorInfoByDetailID" parameterType="map">
+		UPDATE
+			B_DesignerMonitorInfo
+	  	SET
+	  		ProduceStatus = #{produceStatus}
+            <if test="floatQuantity != null">
+                , Quantity = #{quantity,jdbcType=INTEGER}
+            </if>
+            <if test="floatQuantity != null">
+                , FloatQuantity = #{floatQuantity,jdbcType=REAL}
+            </if>
+            <if test="price != null">
+                , Price = #{price,jdbcType=DECIMAL}
+            </if>
+            <if test="memo != null">
+                , Memo = #{memo,jdbcType=VARCHAR}
+            </if>
+	  	WHERE
+	  		DetailID = #{detailID}
+	</update>
+
+    <!-- 根据订单明细ID查询厨师看板信息 hcy -->
+    <select id="getDesignerMonitorInfoByDetailID" parameterType="B_DesignerMonitorInfoEntity" resultType="B_DesignerMonitorInfoEntity">
+		Select
+			ArchiveID, AttributeValues, AuditorID, AuditTime, CategoryID, CategoryName, ClerkID,
+			ClerkName, CreateTime, CreatorID, CreatorType, DesignerID, DesignerName, DetailDesc,
+			DetailID, FloatQuantity, IsCombo, IsSync, Memo, MenuID, MonitorID,
+			OptionID, OptionName, OrderID, Price, ProduceID, ProduceMinute, ProduceStatus,
+			ProductID, ProductName, Quantity, RecordID, SortNo, SubOrderID, TableCode,
+			TableID, TableName, UnitID, UnitName, ValueIDs, VariantID
+    	from
+    	  	B_DesignerMonitorInfo
+    	where
+        	DetailID = #{detailID}
+        <if test="null != produceStatus">
+            AND
+            ProduceStatus = #{produceStatus}
+        </if>
+        ORDER By 
+          CreateTime DESC
+	</select>
+
+
+    <!-- 根据套餐明细ID查询厨师看板信息 lzy -->
+    <select id="getDesignerMonitorInfoByRecordID" parameterType="B_DesignerMonitorInfoEntity" resultType="B_DesignerMonitorInfoEntity">
+        Select
+        ArchiveID, AttributeValues, AuditorID, AuditTime, CategoryID, CategoryName, ClerkID,
+        ClerkName, CreateTime, CreatorID, CreatorType, DesignerID, DesignerName, DetailDesc,
+        DetailID, FloatQuantity, IsCombo, IsSync, Memo, MenuID, MonitorID,
+        OptionID, OptionName, OrderID, Price, ProduceID, ProduceMinute, ProduceStatus,
+        ProductID, ProductName, Quantity, RecordID, SortNo, SubOrderID, TableCode,
+        TableID, TableName, UnitID, UnitName, ValueIDs, VariantID
+        from
+        B_DesignerMonitorInfo
+        where
+        RecordID = #{recordID}
+        <if test="null != produceStatus">
+            AND
+            ProduceStatus = #{produceStatus}
+        </if>
+        ORDER By
+        CreateTime DESC
+    </select>
+
+    <select id="getDesignerByProductID" resultType="long">
+      SELECT productID FROM P_ProductDesignerMapping WHERE ProductID=#{productID}
+      <if test="variantID != null">
+          variantID=#{variantID}
+      </if>
+    </select>
+
+    <select id="getDesignerByCategoryID" resultType="long">
+        SELECT productID FROM P_ProductDesignerMapping WHERE CategoryID=#{categoryID}
+    </select>
+
+    <select id="getDesignerIDByMonitorMapping" resultType="long">
+      SELECT dmm.designerID FROM B_DesignerMonitorMapping dmm
+        LEFT JOIN P_DesignerInfo d ON dmm.designerID=d.designerID
+        LEFT JOIN B_MonitorInfo m ON m.MonitorID=dmm.MonitorID
+        WHERE d.archiveID=#{archiveID} AND dmm.MappingStatus=9 AND m.MonitorStatus=9;
+    </select>
+
+    <select id="getDesignerProduceMinuteByDesignerID" resultType="long">
+        SELECT dm.designerID FROM B_DesignerMonitorInfo dm WHERE 1=1
+        AND dm.DesignerID IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            ${item}
+        </foreach>
+        AND dm.ProduceStatus NOT IN (699,828) GROUP BY dm.DesignerID
+        ORDER BY sum(dm.produceMinute),RAND() ASC LIMIT 1
+    </select>
+
+    <select id="getDesignerNameNameByID" resultType="long">
+        SELECT DesignerName FROM P_DesignerInfo WHERE DesignerID=#{designerID}
+    </select>
+
+    <select id="getOrderDetailByDetailIDs" resultType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+        SELECT od.detailID,od.produceStatus,od.totalAmount price,od.quantity,od.optionID,od.valueIDs,od.ValueNames attributeValues,od.memo,od.designerID,
+        ifnull(od.produceTime,UTC_TIMESTAMP()) auditTime,
+        so.orderID,so.subOrderID,dt.tableCode,dt.shareNumber,so.creatorID,so.creatorType,
+        ifnull(od.tableID,so.tableID) tableID,ifnull(od.tableName,so.tableName) tableName,
+        mm.menuID,mm.archiveID,mm.variantID,mm.productID,mm.productName,p.categoryID,mm.isCombo,mm.unitID,IFNULL(pv.produceMinute,0) produceMinute,
+        (SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=mm.UnitID) unitName,
+        (SELECT CategoryName FROM P_ProductCategoryInfo WHERE CategoryID = p.CategoryID) categoryName,
+        (SELECT OptionName from P_SpecificationAttributeOptionInfo WHERE OptionID = od.OptionID) optionName,
+        (SELECT NickName FROM U_LoginInfo WHERE LoginID=so.creatorID AND so.creatorType=44) clerkName
+        FROM O_OrderDetailInfo od
+        LEFT JOIN O_SubOrderInfo so ON so.SubOrderID=od.SubOrderID
+        LEFT JOIN B_MerchantMenuInfo mm ON mm.MenuID=od.MenuID
+        LEFT JOIN P_ProductInfo p ON p.ProductID=mm.productID
+        LEFT JOIN P_ProductVariantInfo pv ON pv.VariantID=mm.VariantID
+        LEFT JOIN B_DinningTableInfo dt ON dt.TableID=so.TableID
+        WHERE od.isCombo=0 AND od.detailID IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            ${item}
+        </foreach>
+    </select>
+
+    <select id="getComboDetailByDetailIDs" resultType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+        SELECT cd.recordID,cd.detailID,cd.produceStatus,cd.price,cd.quantity,cd.valueIDs,cd.ValueNames attributeValues,cd.produceTime auditTime,
+        od.memo,od.designerID,so.orderID,so.subOrderID,dt.tableCode,dt.shareNumber,so.creatorID,so.creatorType,
+        ifnull(od.tableID,so.tableID) tableID,ifnull(od.tableName,so.tableName) tableName,
+        mm.archiveID,mm.variantID,mm.productID,cd.productName,p.categoryID,mm.isCombo,mm.unitID,IFNULL(pv.produceMinute,0) produceMinute,
+        (SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=mm.UnitID) unitName,
+        (SELECT CategoryName FROM P_ProductCategoryInfo WHERE CategoryID = p.CategoryID) categoryName,
+        (SELECT NickName FROM U_LoginInfo WHERE LoginID=so.creatorID AND so.creatorType=44) clerkName
+        FROM O_ComboDetailInfo cd
+        LEFT JOIN O_OrderDetailInfo od ON od.DetailID=cd.DetailID
+        LEFT JOIN O_SubOrderInfo so ON so.SubOrderID=od.SubOrderID
+        LEFT JOIN B_MerchantMenuInfo mm ON mm.MenuID=od.MenuID
+        LEFT JOIN P_ProductInfo p ON p.ProductID=mm.productID
+        LEFT JOIN P_ProductVariantInfo pv ON pv.VariantID=cd.VariantID
+        LEFT JOIN B_DinningTableInfo dt ON dt.TableID=so.TableID
+        WHERE od.detailID IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            ${item}
+        </foreach>
+    </select>
+
+    <select id="getDesignerMonitorByMonitorID" resultType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+      SELECT tableID,tableName,tableName,subOrderID,archiveid,categoryID,designerID,designerName,memo,productName,quantity,createTime,produceMinute,
+        isCombo,floatQuantity,price,auditTime,createTime,produceMinute,produceStatus,optionName,unitName,clerkName,attributeValues attributeName
+        FROM B_DesignerMonitorInfo
+        WHERE produceStatus NOT IN (699,828,981,982) AND (monitorID=#{monitorID} OR
+        <if test="showType == 814">
+            categoryID in (SELECT CategoryID FROM P_ProductCategoryInfo WHERE CategoryID IN (${showContentID}) OR ParentID IN (${showContentID}))
+        </if>
+        <if test="showType == 815">
+            designerID in (${showContentID})
+        </if>
+        )
+    </select>
+
+    <update id="batchStatusByDetailIDs">
+        UPDATE B_DesignerMonitorInfo SET produceStatus=#{produceStatus}
+         <if test="now != null">
+             ,AuditTime = #{now}
+         </if>
+         WHERE detailID IN
+        (${detailIDs})
+        AND produceStatus NOT IN (699,868,870)
+    </update>
+
+    <!-- 根据记录ID修改制作状态 hcy -->
+    <update id="updateDesignerByRecordID" parameterType="cc.toprank.byd.entity.B_DesignerMonitorInfoEntity">
+        update B_DesignerMonitorInfo
+        <set>
+            <if test="produceStatus != null">
+                ProduceStatus = #{produceStatus}
+            </if>
+        </set>
+        where
+          RecordID = #{recordID}
+    </update>
+
+    <delete id="deleteByDetailID" parameterType="java.lang.Long">
+        delete from B_DesignerMonitorInfo
+        where DetailID = #{detailID,jdbcType=BIGINT}
+    </delete>
+
+    <select id="getProduceByPortID" resultType="cc.toprank.byd.producePort.pojo.ProduceDTO">
+        SELECT dm.ProduceID,dm.DetailID,dm.recordID,dm.isCombo,dm.ProductName,dm.Quantity,dm.TableID,dm.TableName,dm.UnitName,
+        dm.OptionName,dm.DesignerName,dm.AttributeValues,dm.auditTime,dm.Memo
+        FROM B_DesignerMonitorInfo dm
+        LEFT JOIN B_MerchantMenuInfo mm ON mm.MenuID=dm.MenuID
+        LEFT JOIN B_MonitorProducePortMapping mppm ON mppm.MonitorID=dm.MonitorID
+        WHERE 1=1
+        <choose>
+            <when test="type == 0">
+                AND dm.ProduceStatus in (981,982)
+            </when>
+            <otherwise>
+                AND dm.ProduceStatus in (693,698,830)
+            </otherwise>
+        </choose>
+        <if test="keywords != null">
+            AND (dm.TableCode LIKE #{keywords} OR dm.TableName LIKE #{keywords} OR dm.ProductName LIKE #{keywords} OR mm.ProductCode LIKE #{keywords} OR mm.FirstLetter LIKE #{keywords})
+        </if>
+    </select>
+</mapper>

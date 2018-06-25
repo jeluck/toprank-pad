@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_SpecificationAttributeOptionInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_SpecificationAttributeOptionInfoEntity">
+		<id column="OptionID" jdbcType="BIGINT" property="optionID" />
+		<result column="OptionCode" jdbcType="VARCHAR" property="optionCode" />
+		<result column="SpecificationID" jdbcType="BIGINT" property="specificationID" />
+		<result column="OptionName" jdbcType="VARCHAR" property="optionName" />
+		<result column="AddedPrice" jdbcType="DECIMAL" property="addedPrice" />
+		<result column="ExchangeRate" jdbcType="REAL" property="exchangeRate" />
+		<result column="OptionStatus" jdbcType="BIGINT" property="optionStatus" />
+		<result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		OptionID, OptionCode, SpecificationID, OptionName, AddedPrice, ExchangeRate, OptionStatus,
+		MappingDesc, SortNo, CreatorID, CreateTime, Memo
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from P_SpecificationAttributeOptionInfo
+		where OptionID = #{optionID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from P_SpecificationAttributeOptionInfo
+		where OptionID = #{optionID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.P_SpecificationAttributeOptionInfoEntity">
+		insert into P_SpecificationAttributeOptionInfo (OptionID, OptionCode, SpecificationID,
+		OptionName, AddedPrice, ExchangeRate,
+		OptionStatus, MappingDesc, SortNo,
+		CreatorID, CreateTime, Memo
+		)
+		values (#{optionID,jdbcType=BIGINT}, #{optionCode,jdbcType=VARCHAR}, #{specificationID,jdbcType=BIGINT},
+		#{optionName,jdbcType=VARCHAR}, #{addedPrice,jdbcType=DECIMAL}, #{exchangeRate,jdbcType=REAL},
+		#{optionStatus,jdbcType=BIGINT}, #{mappingDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER},
+		#{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_SpecificationAttributeOptionInfoEntity">
+		insert into P_SpecificationAttributeOptionInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="optionID != null">
+				OptionID,
+			</if>
+			<if test="optionCode != null">
+				OptionCode,
+			</if>
+			<if test="specificationID != null">
+				SpecificationID,
+			</if>
+			<if test="optionName != null">
+				OptionName,
+			</if>
+			<if test="addedPrice != null">
+				AddedPrice,
+			</if>
+			<if test="exchangeRate != null">
+				ExchangeRate,
+			</if>
+			<if test="optionStatus != null">
+				OptionStatus,
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="optionID != null">
+				#{optionID,jdbcType=BIGINT},
+			</if>
+			<if test="optionCode != null">
+				#{optionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="specificationID != null">
+				#{specificationID,jdbcType=BIGINT},
+			</if>
+			<if test="optionName != null">
+				#{optionName,jdbcType=VARCHAR},
+			</if>
+			<if test="addedPrice != null">
+				#{addedPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="exchangeRate != null">
+				#{exchangeRate,jdbcType=REAL},
+			</if>
+			<if test="optionStatus != null">
+				#{optionStatus,jdbcType=BIGINT},
+			</if>
+			<if test="mappingDesc != null">
+				#{mappingDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_SpecificationAttributeOptionInfoEntity">
+		update P_SpecificationAttributeOptionInfo
+		<set>
+			<if test="optionCode != null">
+				OptionCode = #{optionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="specificationID != null">
+				SpecificationID = #{specificationID,jdbcType=BIGINT},
+			</if>
+			<if test="optionName != null">
+				OptionName = #{optionName,jdbcType=VARCHAR},
+			</if>
+			<if test="addedPrice != null">
+				AddedPrice = #{addedPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="exchangeRate != null">
+				ExchangeRate = #{exchangeRate,jdbcType=REAL},
+			</if>
+			<if test="optionStatus != null">
+				OptionStatus = #{optionStatus,jdbcType=BIGINT},
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where OptionID = #{optionID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_SpecificationAttributeOptionInfoEntity">
+		update P_SpecificationAttributeOptionInfo
+		set OptionCode = #{optionCode,jdbcType=VARCHAR},
+		SpecificationID = #{specificationID,jdbcType=BIGINT},
+		OptionName = #{optionName,jdbcType=VARCHAR},
+		AddedPrice = #{addedPrice,jdbcType=DECIMAL},
+		ExchangeRate = #{exchangeRate,jdbcType=REAL},
+		OptionStatus = #{optionStatus,jdbcType=BIGINT},
+		MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where OptionID = #{optionID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="P_SpecificationAttributeOptionInfoEntity" resultType="P_SpecificationAttributeOptionInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_SpecificationAttributeOptionInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_SpecificationAttributeOptionInfoEntity" resultType="P_SpecificationAttributeOptionInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_SpecificationAttributeOptionInfoEntity(#{optionID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_SpecificationAttributeOptionInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_SpecificationAttributeOptionInfoEntity(#{optionID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="OptionID" parameterType="P_SpecificationAttributeOptionInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_SpecificationAttributeOptionInfoEntity(#{addedPrice},#{createTime},#{creatorID},#{exchangeRate},#{mappingDesc},#{memo},#{optionCode},#{optionID,jdbcType=INTEGER,mode=OUT},#{optionName},#{optionStatus},#{sortNo},#{specificationID})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_SpecificationAttributeOptionInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_SpecificationAttributeOptionInfoEntity(#{addedPrice},#{createTime},#{creatorID},#{exchangeRate},#{mappingDesc},#{memo},#{optionCode},#{optionID},#{optionName},#{optionStatus},#{sortNo},#{specificationID})} 
+		]]>  
+  	</update>
+
+	<!-- 查询单个菜品规格信息 -->
+	<select id="getVariantSpecification" parameterType="long" resultType="cc.toprank.byd.web.vo.product.ProductSpecificationVo">
+		SELECT vsm.VariantID,s.SpecificationID,s.SpecificationName,sao.OptionID,sao.OptionName, vsm.Fare as addedPrice FROM P_SpecificationAttributeOptionInfo sao
+		LEFT JOIN P_SpecificationInfo s ON s.SpecificationID=sao.SpecificationID
+		LEFT JOIN P_VariantSpecificationMapping vsm ON vsm.OptionID=sao.OptionID AND vsm.MappingStatus=9
+		WHERE vsm.VariantID=#{variantID} ORDER BY vsm.SortNo ASC
+	</select>
+
+	<!-- 查询套餐规格信息 -->
+	<select id="getCombosSpecification" parameterType="long" resultType="cc.toprank.byd.web.vo.product.ProductSpecificationVo">
+		SELECT psm.ProductID,s.SpecificationID,s.SpecificationName,sao.OptionID,sao.OptionName,psm.Fare as addedPrice FROM P_SpecificationAttributeOptionInfo sao
+		LEFT JOIN P_SpecificationInfo s ON s.SpecificationID=sao.SpecificationID
+		LEFT JOIN P_ProductSpecificationMapping psm ON psm.OptionID=sao.OptionID AND psm.MappingStatus=9
+		WHERE psm.ProductID=#{productID} ORDER BY psm.SortNo ASC;
+	</select>
+  </mapper>

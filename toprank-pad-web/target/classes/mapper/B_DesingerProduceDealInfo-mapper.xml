@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.B_DesingerProduceDealInfoDao">
+  	<select id="getAll" parameterType="B_DesingerProduceDealInfoEntity" resultType="B_DesingerProduceDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_DesingerProduceDealInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="B_DesingerProduceDealInfoEntity" resultType="B_DesingerProduceDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_DesingerProduceDealInfoEntity(#{dealID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="B_DesingerProduceDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteB_DesingerProduceDealInfoEntity(#{dealID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DealID" parameterType="B_DesingerProduceDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertB_DesingerProduceDealInfoEntity(#{afterStatus},#{beforeStatus},#{cerateTime},#{changeDetail},#{creatorID},#{dealDesc},#{dealID,jdbcType=INTEGER,mode=OUT},#{dealType},#{designerID},#{hisID},#{isSync},#{memo},#{produceID},#{sortNo})}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="B_DesingerProduceDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateB_DesingerProduceDealInfoEntity(#{afterStatus},#{beforeStatus},#{cerateTime},#{changeDetail},#{creatorID},#{dealDesc},#{dealID},#{dealType},#{designerID},#{hisID},#{isSync},#{memo},#{produceID},#{sortNo})} 
+		]]>  
+  	</update>
+
+	<!-- 新增厨师制作变动信息 hcy -->
+	<insert id="saveDesingerProduceDealInfo" useGeneratedKeys="true" keyProperty="DealID" parameterType="B_DesingerProduceDealInfoEntity" statementType="CALLABLE">
+		Insert into 
+			B_DesingerProduceDealInfo(AfterStatus, BeforeStatus, CerateTime, ChangeDetail, CreatorID, DealDesc, DealID,
+			DealType, DesignerID, IsSync, Memo, ProduceID, SortNo)
+		values
+			(#{afterStatus}, #{beforeStatus}, #{cerateTime}, #{changeDetail}, #{creatorID}, #{dealDesc}, #{dealID},
+			#{dealType}, #{designerID}, #{isSync}, #{memo}, #{produceID}, #{sortNo})
+	</insert>
+  </mapper>

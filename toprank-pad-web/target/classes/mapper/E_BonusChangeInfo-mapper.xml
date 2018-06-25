@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.E_BonusChangeInfoDao">
+    <select id="getAll" parameterType="E_BonusChangeInfoEntity" resultType="E_BonusChangeInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetE_BonusChangeInfoCollection()}
+		]]>
+    </select>
+    <select id="get" parameterType="E_BonusChangeInfoEntity" resultType="E_BonusChangeInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetE_BonusChangeInfoEntity(#{changeID})}
+		]]>
+    </select>
+    <delete id="delete" parameterType="E_BonusChangeInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call DeleteE_BonusChangeInfoEntity(#{changeID})}
+		]]>
+    </delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="ChangeID" parameterType="E_BonusChangeInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call InsertE_BonusChangeInfoEntity(#{afterAmount},#{beforeAmount},#{bonusID},#{bonusRate},#{businessID},#{businessType},#{changeAmount},#{changeCode},#{changeID,jdbcType=INTEGER,mode=OUT},#{changeReason},#{changeType},#{createTime},#{creatorID},#{customerID},#{memo},'amdin')}
+		]]>
+    </insert>
+
+    <update id="update" parameterType="E_BonusChangeInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call UpdateE_BonusChangeInfoEntity(#{afterAmount},#{beforeAmount},#{bonusID},#{bonusRate},#{businessID},#{businessType},#{changeAmount},#{changeCode},#{changeID},#{changeReason},#{changeType},#{createTime},#{creatorID},#{customerID},#{memo})}
+		]]>
+    </update>
+    <!--<select id="list" parameterType="E_BonusChangeInfo" resultType="E_BonusChangeInfo" statementType="CALLABLE">
+        <![CDATA[
+          {call GetE_BonusChangeInfo_query_by_condition(#{afterAmount},#{beforeAmount},#{bonusID},#{bonusRate},#{businessID},#{businessType},#{changeAmount},#{changeCode},#{changeReason},#{changeType},#{createTime},#{creatorID},#{customerID},#{memo})}
+      ]]>
+    </select>
+    -->
+    <select id="getBonusChangeInfoByBusinessID" parameterType="Long" resultType="E_BonusChangeInfoEntity">
+        select * from E_BonusChangeInfo  where BusinessID = #{_parameter}
+    </select>
+</mapper>

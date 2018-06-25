@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_AttachmentInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_AttachmentInfoEntity">
+        <id column="AttachmentID" jdbcType="BIGINT" property="attachmentID" />
+        <result column="AttachmentName" jdbcType="VARCHAR" property="attachmentName" />
+        <result column="AttachmentCode" jdbcType="VARCHAR" property="attachmentCode" />
+        <result column="IsText" jdbcType="BIT" property="isText" />
+        <result column="TextDetail" jdbcType="VARCHAR" property="textDetail" />
+        <result column="FileCategoryID" jdbcType="BIGINT" property="fileCategoryID" />
+        <result column="AttachmentDesc" jdbcType="VARCHAR" property="attachmentDesc" />
+        <result column="FileName" jdbcType="VARCHAR" property="fileName" />
+        <result column="ExtName" jdbcType="VARCHAR" property="extName" />
+        <result column="FileSize" jdbcType="INTEGER" property="fileSize" />
+        <result column="UISize" jdbcType="VARCHAR" property="UISize" />
+        <result column="Duration" jdbcType="INTEGER" property="duration" />
+        <result column="FilePath" jdbcType="VARCHAR" property="filePath" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        AttachmentID, AttachmentName, AttachmentCode, IsText, TextDetail, FileCategoryID,
+        AttachmentDesc, FileName, ExtName, FileSize, UISize, Duration, FilePath, CreatorID,
+        CreateTime, Memo, IsSync
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_AttachmentInfoEntity
+        where AttachmentID = #{attachmentID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_AttachmentInfoEntity
+        where AttachmentID = #{attachmentID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_AttachmentInfoEntity">
+        insert into B_AttachmentInfoEntity (AttachmentID, AttachmentName, AttachmentCode,
+        IsText, TextDetail, FileCategoryID,
+        AttachmentDesc, FileName, ExtName,
+        FileSize, UISize, Duration,
+        FilePath, CreatorID, CreateTime,
+        Memo, IsSync)
+        values (#{attachmentID,jdbcType=BIGINT}, #{attachmentName,jdbcType=VARCHAR}, #{attachmentCode,jdbcType=VARCHAR},
+        #{isText,jdbcType=BIT}, #{textDetail,jdbcType=VARCHAR}, #{fileCategoryID,jdbcType=BIGINT},
+        #{attachmentDesc,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{extName,jdbcType=VARCHAR},
+        #{fileSize,jdbcType=INTEGER}, #{UISize,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER},
+        #{filePath,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_AttachmentInfoEntity">
+        insert into B_AttachmentInfoEntity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="attachmentID != null">
+                AttachmentID,
+            </if>
+            <if test="attachmentName != null">
+                AttachmentName,
+            </if>
+            <if test="attachmentCode != null">
+                AttachmentCode,
+            </if>
+            <if test="isText != null">
+                IsText,
+            </if>
+            <if test="textDetail != null">
+                TextDetail,
+            </if>
+            <if test="fileCategoryID != null">
+                FileCategoryID,
+            </if>
+            <if test="attachmentDesc != null">
+                AttachmentDesc,
+            </if>
+            <if test="fileName != null">
+                FileName,
+            </if>
+            <if test="extName != null">
+                ExtName,
+            </if>
+            <if test="fileSize != null">
+                FileSize,
+            </if>
+            <if test="UISize != null">
+                UISize,
+            </if>
+            <if test="duration != null">
+                Duration,
+            </if>
+            <if test="filePath != null">
+                FilePath,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="attachmentID != null">
+                #{attachmentID,jdbcType=BIGINT},
+            </if>
+            <if test="attachmentName != null">
+                #{attachmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentCode != null">
+                #{attachmentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isText != null">
+                #{isText,jdbcType=BIT},
+            </if>
+            <if test="textDetail != null">
+                #{textDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="fileCategoryID != null">
+                #{fileCategoryID,jdbcType=BIGINT},
+            </if>
+            <if test="attachmentDesc != null">
+                #{attachmentDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="fileName != null">
+                #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="extName != null">
+                #{extName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize != null">
+                #{fileSize,jdbcType=INTEGER},
+            </if>
+            <if test="UISize != null">
+                #{UISize,jdbcType=VARCHAR},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="filePath != null">
+                #{filePath,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_AttachmentInfoEntity">
+        update B_AttachmentInfoEntity
+        <set>
+            <if test="attachmentName != null">
+                AttachmentName = #{attachmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentCode != null">
+                AttachmentCode = #{attachmentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isText != null">
+                IsText = #{isText,jdbcType=BIT},
+            </if>
+            <if test="textDetail != null">
+                TextDetail = #{textDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="fileCategoryID != null">
+                FileCategoryID = #{fileCategoryID,jdbcType=BIGINT},
+            </if>
+            <if test="attachmentDesc != null">
+                AttachmentDesc = #{attachmentDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="fileName != null">
+                FileName = #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="extName != null">
+                ExtName = #{extName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize != null">
+                FileSize = #{fileSize,jdbcType=INTEGER},
+            </if>
+            <if test="UISize != null">
+                UISize = #{UISize,jdbcType=VARCHAR},
+            </if>
+            <if test="duration != null">
+                Duration = #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="filePath != null">
+                FilePath = #{filePath,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+        </set>
+        where AttachmentID = #{attachmentID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_AttachmentInfoEntity">
+        update B_AttachmentInfoEntity
+        set AttachmentName = #{attachmentName,jdbcType=VARCHAR},
+        AttachmentCode = #{attachmentCode,jdbcType=VARCHAR},
+        IsText = #{isText,jdbcType=BIT},
+        TextDetail = #{textDetail,jdbcType=VARCHAR},
+        FileCategoryID = #{fileCategoryID,jdbcType=BIGINT},
+        AttachmentDesc = #{attachmentDesc,jdbcType=VARCHAR},
+        FileName = #{fileName,jdbcType=VARCHAR},
+        ExtName = #{extName,jdbcType=VARCHAR},
+        FileSize = #{fileSize,jdbcType=INTEGER},
+        UISize = #{UISize,jdbcType=VARCHAR},
+        Duration = #{duration,jdbcType=INTEGER},
+        FilePath = #{filePath,jdbcType=VARCHAR},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT}
+        where AttachmentID = #{attachmentID,jdbcType=BIGINT}
+    </update>
+</mapper>

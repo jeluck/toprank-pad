@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%
+    include("/inc/head.btl",{title:''}){}
+    %>
+    <link rel="stylesheet" href="${basePath}/static/styles/module/login/login.css">
+    <style>
+        .f-error{
+            padding-left:20px !important;
+        }
+    </style>
+</head>
+<body ms-controller="forgetPwd">
+<div class="log-header">
+    <div class="w"><a class="logo">
+        <h1></h1></a><span class="log-txt">{{@hdName}}</span>
+        <div class="hd-k-f-num">
+            <p>如果有问题，请拨打客服电话</p>
+            <h2 class="login-icon ico-k-f-num">400-188-3388</h2>
+        </div>
+    </div>
+</div>
+<div class="w2">
+    <div class="l-container">
+        <form ms-validate="@validate">
+            <div class="left-box">&nbsp;z</div>
+            <div class="main-box">
+                <div class="main-form1">
+                    <p class="tit">请输入您需要查找回登录密码的账号</p>
+                    <div class="form-row" ms-class="(@errMsg.uName? 'err':'')"><i class="login-icon ico-l-user"></i>
+                        <div class="log-input">
+                            <input class="inp-login fl" type="text" id="userName" ms-duplex="@form.username" ms-rules="{required: true}" placeholder="用户名/邮箱">
+                        </div>
+                    </div>
+                    <p class="f-error" ms-if="@validMsg.uName" ms-text="@errTxt.uName"></p>
+                    <div class="l-vcode-row">
+                        <div class="form-row" ms-class="(@errMsg.vCd? 'err':'')">
+                            <div class="v-c-input">
+                                <input class="inp-login fl" ms-duplex="@form.validcode" id="vCode" ms-rules="{required: true}" placeholder="请输入验证码">
+                            </div>
+                            <div class="v-code"><img ms-attr="{src: @vPath}" ms-click="@vCodeChange($event)"></div>
+                        </div>
+                        <p class="change-v-vode" ms-class="@validMsg.vCd ? 'err':''" ms-text="@validMsg.vCd ? @errTxt.vCd :'看不清？点击图片更换验证码'"></p>
+                    </div>
+                    <div class="bnt-row">
+                        <button class="btn-login" type="submit" ms-attr="{disabled:@subDisabled}">下一步</button>
+                    </div>
+                </div>
+            </div>
+            <div class="right-box"><a class="next-r-tep login-icon ico-l-next"></a><i class="login-icon ico-f-bg1"></i></div>
+        </form>
+    </div>
+</div>
+<%
+include("/inc/footer.btl"){}
+%>
+</body>
+</html>

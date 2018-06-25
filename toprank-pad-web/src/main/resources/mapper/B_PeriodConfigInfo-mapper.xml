@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.B_PeriodConfigInfoDao">
+  	<select id="getAll" parameterType="B_PeriodConfigInfoEntity" resultType="B_PeriodConfigInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_PeriodConfigInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="B_PeriodConfigInfoEntity" resultType="B_PeriodConfigInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_PeriodConfigInfoEntity(#{periodID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="B_PeriodConfigInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteB_PeriodConfigInfoEntity(#{periodID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="PeriodID" parameterType="B_PeriodConfigInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertB_PeriodConfigInfoEntity(#{archiveID},#{areaID},#{bookingType},#{createTime},#{creatorID},#{duration},#{mealsID},#{memo},#{periodDesc},#{periodID,jdbcType=INTEGER,mode=OUT},#{periodName},#{refundRate},#{timeUnit},'admin')} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="B_PeriodConfigInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateB_PeriodConfigInfoEntity(#{archiveID},#{areaID},#{bookingType},#{createTime},#{creatorID},#{duration},#{mealsID},#{memo},#{periodDesc},#{periodID},#{periodName},#{refundRate},#{timeUnit})} 
+		]]>  
+  	</update>
+
+	<!--
+  	根据 档案编号，区域编号，餐次编号，预定类型  获取唯一数据
+  	@author zlc
+  	 -->
+  	<select id="getPeriodConfigInfoByCondition" parameterType="Map" resultType="B_PeriodConfigInfoEntity" >
+		select * FROM B_PeriodConfigInfo p
+			where p.ArchiveID = #{archiveID}
+			 <if test="areaID != null">
+				 and p.AreaID = #{areaID}
+			 </if>
+			<if test="mealsID != null">
+				and p.MealsID = #{mealsID}
+			</if>
+			 and  p.BookingType =  #{bookingType} limit 1
+	</select>
+
+  </mapper>

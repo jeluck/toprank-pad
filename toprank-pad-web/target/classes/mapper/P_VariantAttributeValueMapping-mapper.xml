@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.P_VariantAttributeValueMappingDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_VariantAttributeValueMappingEntity">
+    <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+    <result column="ValueID" jdbcType="BIGINT" property="valueID" />
+    <result column="ProduceMinute" jdbcType="INTEGER" property="produceMinute" />
+    <result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+    <result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MappingID, VariantID, ValueID, ProduceMinute, MappingStatus, MappingDesc, SortNo, 
+    CreatorID, CreateTime, Memo, IsSync
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_VariantAttributeValueMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from P_VariantAttributeValueMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.P_VariantAttributeValueMappingEntity">
+    insert into P_VariantAttributeValueMapping (MappingID, VariantID, ValueID, 
+      ProduceMinute, MappingStatus, MappingDesc, 
+      SortNo, CreatorID, CreateTime, 
+      Memo, IsSync)
+    values (#{mappingID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT}, #{valueID,jdbcType=BIGINT}, 
+      #{produceMinute,jdbcType=INTEGER}, #{mappingStatus,jdbcType=BIGINT}, #{mappingDesc,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_VariantAttributeValueMappingEntity">
+    insert into P_VariantAttributeValueMapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="variantID != null">
+        VariantID,
+      </if>
+      <if test="valueID != null">
+        ValueID,
+      </if>
+      <if test="produceMinute != null">
+        ProduceMinute,
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus,
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="variantID != null">
+        #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="valueID != null">
+        #{valueID,jdbcType=BIGINT},
+      </if>
+      <if test="produceMinute != null">
+        #{produceMinute,jdbcType=INTEGER},
+      </if>
+      <if test="mappingStatus != null">
+        #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_VariantAttributeValueMappingEntity">
+    update P_VariantAttributeValueMapping
+    <set>
+      <if test="variantID != null">
+        VariantID = #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="valueID != null">
+        ValueID = #{valueID,jdbcType=BIGINT},
+      </if>
+      <if test="produceMinute != null">
+        ProduceMinute = #{produceMinute,jdbcType=INTEGER},
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+    </set>
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_VariantAttributeValueMappingEntity">
+    update P_VariantAttributeValueMapping
+    set VariantID = #{variantID,jdbcType=BIGINT},
+      ValueID = #{valueID,jdbcType=BIGINT},
+      ProduceMinute = #{produceMinute,jdbcType=INTEGER},
+      MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT}
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+</mapper>

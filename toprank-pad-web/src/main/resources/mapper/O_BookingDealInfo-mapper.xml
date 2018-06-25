@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.O_BookingDealInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_BookingDealInfoEntity">
+		<id column="DealID" jdbcType="BIGINT" property="dealID" />
+		<result column="BookingID" jdbcType="BIGINT" property="bookingID" />
+		<result column="DealCode" jdbcType="VARCHAR" property="dealCode" />
+		<result column="BeforeStatus" jdbcType="BIGINT" property="beforeStatus" />
+		<result column="AfterStatus" jdbcType="BIGINT" property="afterStatus" />
+		<result column="ChangeType" jdbcType="BIGINT" property="changeType" />
+		<result column="ChangeAmount" jdbcType="DECIMAL" property="changeAmount" />
+		<result column="BeforeAmount" jdbcType="DECIMAL" property="beforeAmount" />
+		<result column="AfterAmount" jdbcType="DECIMAL" property="afterAmount" />
+		<result column="ChangeReason" jdbcType="VARCHAR" property="changeReason" />
+		<result column="ChangeContent" jdbcType="VARCHAR" property="changeContent" />
+		<result column="DealDesc" jdbcType="VARCHAR" property="dealDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		DealID, BookingID, DealCode, BeforeStatus, AfterStatus, ChangeType, ChangeAmount,
+		BeforeAmount, AfterAmount, ChangeReason, ChangeContent, DealDesc, SortNo, CreatorID,
+		CreatorType, CreateTime, Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_BookingDealInfo
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_BookingDealInfo
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_BookingDealInfoEntity">
+		insert into O_BookingDealInfo (DealID, BookingID, DealCode,
+		BeforeStatus, AfterStatus, ChangeType,
+		ChangeAmount, BeforeAmount, AfterAmount,
+		ChangeReason, ChangeContent, DealDesc,
+		SortNo, CreatorID, CreatorType,
+		CreateTime, Memo, IsSync
+		)
+		values (#{dealID,jdbcType=BIGINT}, #{bookingID,jdbcType=BIGINT}, #{dealCode,jdbcType=VARCHAR},
+		#{beforeStatus,jdbcType=BIGINT}, #{afterStatus,jdbcType=BIGINT}, #{changeType,jdbcType=BIGINT},
+		#{changeAmount,jdbcType=DECIMAL}, #{beforeAmount,jdbcType=DECIMAL}, #{afterAmount,jdbcType=DECIMAL},
+		#{changeReason,jdbcType=VARCHAR}, #{changeContent,jdbcType=VARCHAR}, #{dealDesc,jdbcType=VARCHAR},
+		#{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT}, #{creatorType,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_BookingDealInfoEntity">
+		insert into O_BookingDealInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dealID != null">
+				DealID,
+			</if>
+			<if test="bookingID != null">
+				BookingID,
+			</if>
+			<if test="dealCode != null">
+				DealCode,
+			</if>
+			<if test="beforeStatus != null">
+				BeforeStatus,
+			</if>
+			<if test="afterStatus != null">
+				AfterStatus,
+			</if>
+			<if test="changeType != null">
+				ChangeType,
+			</if>
+			<if test="changeAmount != null">
+				ChangeAmount,
+			</if>
+			<if test="beforeAmount != null">
+				BeforeAmount,
+			</if>
+			<if test="afterAmount != null">
+				AfterAmount,
+			</if>
+			<if test="changeReason != null">
+				ChangeReason,
+			</if>
+			<if test="changeContent != null">
+				ChangeContent,
+			</if>
+			<if test="dealDesc != null">
+				DealDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="creatorType != null">
+				CreatorType,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="dealID != null">
+				#{dealID,jdbcType=BIGINT},
+			</if>
+			<if test="bookingID != null">
+				#{bookingID,jdbcType=BIGINT},
+			</if>
+			<if test="dealCode != null">
+				#{dealCode,jdbcType=VARCHAR},
+			</if>
+			<if test="beforeStatus != null">
+				#{beforeStatus,jdbcType=BIGINT},
+			</if>
+			<if test="afterStatus != null">
+				#{afterStatus,jdbcType=BIGINT},
+			</if>
+			<if test="changeType != null">
+				#{changeType,jdbcType=BIGINT},
+			</if>
+			<if test="changeAmount != null">
+				#{changeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="beforeAmount != null">
+				#{beforeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="afterAmount != null">
+				#{afterAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="changeReason != null">
+				#{changeReason,jdbcType=VARCHAR},
+			</if>
+			<if test="changeContent != null">
+				#{changeContent,jdbcType=VARCHAR},
+			</if>
+			<if test="dealDesc != null">
+				#{dealDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				#{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_BookingDealInfoEntity">
+		update O_BookingDealInfo
+		<set>
+			<if test="bookingID != null">
+				BookingID = #{bookingID,jdbcType=BIGINT},
+			</if>
+			<if test="dealCode != null">
+				DealCode = #{dealCode,jdbcType=VARCHAR},
+			</if>
+			<if test="beforeStatus != null">
+				BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+			</if>
+			<if test="afterStatus != null">
+				AfterStatus = #{afterStatus,jdbcType=BIGINT},
+			</if>
+			<if test="changeType != null">
+				ChangeType = #{changeType,jdbcType=BIGINT},
+			</if>
+			<if test="changeAmount != null">
+				ChangeAmount = #{changeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="beforeAmount != null">
+				BeforeAmount = #{beforeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="afterAmount != null">
+				AfterAmount = #{afterAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="changeReason != null">
+				ChangeReason = #{changeReason,jdbcType=VARCHAR},
+			</if>
+			<if test="changeContent != null">
+				ChangeContent = #{changeContent,jdbcType=VARCHAR},
+			</if>
+			<if test="dealDesc != null">
+				DealDesc = #{dealDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				CreatorType = #{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_BookingDealInfoEntity">
+		update O_BookingDealInfo
+		set BookingID = #{bookingID,jdbcType=BIGINT},
+		DealCode = #{dealCode,jdbcType=VARCHAR},
+		BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+		AfterStatus = #{afterStatus,jdbcType=BIGINT},
+		ChangeType = #{changeType,jdbcType=BIGINT},
+		ChangeAmount = #{changeAmount,jdbcType=DECIMAL},
+		BeforeAmount = #{beforeAmount,jdbcType=DECIMAL},
+		AfterAmount = #{afterAmount,jdbcType=DECIMAL},
+		ChangeReason = #{changeReason,jdbcType=VARCHAR},
+		ChangeContent = #{changeContent,jdbcType=VARCHAR},
+		DealDesc = #{dealDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreatorType = #{creatorType,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</update>
+
+  	<select id="getAll" parameterType="O_BookingDealInfoEntity" resultType="O_BookingDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_BookingDealInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="O_BookingDealInfoEntity" resultType="O_BookingDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_BookingDealInfoEntity(#{dealID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="O_BookingDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteO_BookingDealInfoEntity(#{dealID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DealID" parameterType="O_BookingDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertO_BookingDealInfoEntity(#{afterAmount},#{afterStatus},#{beforeAmount},#{beforeStatus},#{bookingID},#{changeAmount},#{changeContent},#{changeReason},#{changeType},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{dealID,jdbcType=INTEGER,mode=OUT},#{isSync},#{memo},#{sortNo},'admin')} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="O_BookingDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateO_BookingDealInfoEntity(#{afterAmount},#{afterStatus},#{beforeAmount},#{beforeStatus},#{bookingID},#{changeAmount},#{changeContent},#{changeReason},#{changeType},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{dealID},#{isSync},#{memo},#{sortNo})} 
+		]]>  
+  	</update>
+  </mapper>

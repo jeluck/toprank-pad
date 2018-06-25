@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.B_ReservationTimeInfoDao">
+  	<select id="getAll" parameterType="B_ReservationTimeInfoEntity" resultType="B_ReservationTimeInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_ReservationTimeInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="B_ReservationTimeInfoEntity" resultType="B_ReservationTimeInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_ReservationTimeInfoEntity(#{settingID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="B_ReservationTimeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteB_ReservationTimeInfoEntity(#{settingID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="SettingID" parameterType="B_ReservationTimeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertB_ReservationTimeInfoEntity(#{archiveID},#{areaID},#{bookingType},#{createTime},#{creatorID},#{extensionMinute},#{extensionNum},#{lateMinute},#{mealsID},#{memo},#{receiveDiscount},#{settingDesc},#{settingID,jdbcType=INTEGER,mode=OUT},#{sortNo},"admin")} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="B_ReservationTimeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateB_ReservationTimeInfoEntity(#{archiveID},#{areaID},#{bookingType},#{createTime},#{creatorID},#{extensionMinute},#{extensionNum},#{lateMinute},#{mealsID},#{memo},#{receiveDiscount},#{settingDesc},#{settingID},#{sortNo})} 
+		]]>  
+  	</update>
+  	<!--<select id="list" parameterType="B_ReservationTimeInfo" resultType="B_ReservationTimeInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetB_ReservationTimeInfo_query_by_condition(#{archiveID},#{areaID},#{bookingType},#{createTime},#{creatorID},#{extensionMinute},#{extensionNum},#{lateMinute},#{mealsID},#{memo},#{receiveDiscount},#{settingDesc},#{sortNo})} 
+		]]>  
+  	</select>
+  	-->
+  	
+  	
+  	
+  	<!-- 
+	  	根据   档案编号	   and   区域编号    and   餐次编号 
+	  	@author lwh
+  	 -->
+  	<select id="GetB_ReservationTimeInfoCollectionByCondition" parameterType="B_ReservationTimeInfoEntity" resultType="B_ReservationTimeInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_ReservationTimeInfoCollectionByCondition(#{archiveID},#{mealsID},#{bookingType})} 
+		]]>  
+	</select>
+
+	<select id="getReservationTimeInfoByWhere" parameterType="B_ReservationTimeInfoEntity" resultType="B_ReservationTimeInfoEntity">
+		select * from B_ReservationTimeInfo
+		<where>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID}
+			</if>
+			<if test="areaID != null">
+				and AreaID = #{areaID}
+			</if>
+			<if test="mealsID != null">
+				and MealsID = #{mealsID}
+			</if>
+			<if test="bookingType != null">
+				and BookingType = #{bookingType}
+			</if>
+			<if test="lateMinute != null">
+				and LateMinute = #{lateMinute}
+			</if>
+		</where>
+	</select>
+
+  </mapper>

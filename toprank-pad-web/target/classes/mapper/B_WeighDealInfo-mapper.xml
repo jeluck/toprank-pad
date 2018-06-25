@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_WeighDealInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_WeighDealInfoEntity">
+        <id column="DealID" jdbcType="BIGINT" property="dealID" />
+        <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+        <result column="DetailID" jdbcType="BIGINT" property="detailID" />
+        <result column="WeighID" jdbcType="BIGINT" property="weighID" />
+        <result column="HisID" jdbcType="BIGINT" property="hisID" />
+        <result column="DealType" jdbcType="BIGINT" property="dealType" />
+        <result column="ChangeNum" jdbcType="DECIMAL" property="changeNum" />
+        <result column="BeforeNum" jdbcType="DECIMAL" property="beforeNum" />
+        <result column="AfterNum" jdbcType="DECIMAL" property="afterNum" />
+        <result column="BeforeStatus" jdbcType="BIGINT" property="beforeStatus" />
+        <result column="AfterStatus" jdbcType="BIGINT" property="afterStatus" />
+        <result column="ChangeDetail" jdbcType="VARCHAR" property="changeDetail" />
+        <result column="DealDesc" jdbcType="VARCHAR" property="dealDesc" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CerateTime" jdbcType="TIMESTAMP" property="cerateTime" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        DealID, VariantID, DetailID, WeighID, HisID, DealType, ChangeNum, BeforeNum, AfterNum,
+        BeforeStatus, AfterStatus, ChangeDetail, DealDesc, CreatorID, CerateTime, SortNo,
+        IsSync, Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_WeighDealInfo
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_WeighDealInfo
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_WeighDealInfoEntity">
+        insert into B_WeighDealInfo (DealID, VariantID, DetailID,
+        WeighID, HisID, DealType,
+        ChangeNum, BeforeNum, AfterNum,
+        BeforeStatus, AfterStatus, ChangeDetail,
+        DealDesc, CreatorID, CerateTime,
+        SortNo, IsSync, Memo)
+        values (#{dealID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT}, #{detailID,jdbcType=BIGINT},
+        #{weighID,jdbcType=BIGINT}, #{hisID,jdbcType=BIGINT}, #{dealType,jdbcType=BIGINT},
+        #{changeNum,jdbcType=DECIMAL}, #{beforeNum,jdbcType=DECIMAL}, #{afterNum,jdbcType=DECIMAL},
+        #{beforeStatus,jdbcType=BIGINT}, #{afterStatus,jdbcType=BIGINT}, #{changeDetail,jdbcType=VARCHAR},
+        #{dealDesc,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, #{cerateTime,jdbcType=TIMESTAMP},
+        #{sortNo,jdbcType=INTEGER}, #{isSync,jdbcType=BIT}, #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_WeighDealInfoEntity">
+        insert into B_WeighDealInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dealID != null">
+                DealID,
+            </if>
+            <if test="variantID != null">
+                VariantID,
+            </if>
+            <if test="detailID != null">
+                DetailID,
+            </if>
+            <if test="weighID != null">
+                WeighID,
+            </if>
+            <if test="hisID != null">
+                HisID,
+            </if>
+            <if test="dealType != null">
+                DealType,
+            </if>
+            <if test="changeNum != null">
+                ChangeNum,
+            </if>
+            <if test="beforeNum != null">
+                BeforeNum,
+            </if>
+            <if test="afterNum != null">
+                AfterNum,
+            </if>
+            <if test="beforeStatus != null">
+                BeforeStatus,
+            </if>
+            <if test="afterStatus != null">
+                AfterStatus,
+            </if>
+            <if test="changeDetail != null">
+                ChangeDetail,
+            </if>
+            <if test="dealDesc != null">
+                DealDesc,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="cerateTime != null">
+                CerateTime,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dealID != null">
+                #{dealID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="detailID != null">
+                #{detailID,jdbcType=BIGINT},
+            </if>
+            <if test="weighID != null">
+                #{weighID,jdbcType=BIGINT},
+            </if>
+            <if test="hisID != null">
+                #{hisID,jdbcType=BIGINT},
+            </if>
+            <if test="dealType != null">
+                #{dealType,jdbcType=BIGINT},
+            </if>
+            <if test="changeNum != null">
+                #{changeNum,jdbcType=DECIMAL},
+            </if>
+            <if test="beforeNum != null">
+                #{beforeNum,jdbcType=DECIMAL},
+            </if>
+            <if test="afterNum != null">
+                #{afterNum,jdbcType=DECIMAL},
+            </if>
+            <if test="beforeStatus != null">
+                #{beforeStatus,jdbcType=BIGINT},
+            </if>
+            <if test="afterStatus != null">
+                #{afterStatus,jdbcType=BIGINT},
+            </if>
+            <if test="changeDetail != null">
+                #{changeDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="dealDesc != null">
+                #{dealDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="cerateTime != null">
+                #{cerateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_WeighDealInfoEntity">
+        update B_WeighDealInfo
+        <set>
+            <if test="variantID != null">
+                VariantID = #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="detailID != null">
+                DetailID = #{detailID,jdbcType=BIGINT},
+            </if>
+            <if test="weighID != null">
+                WeighID = #{weighID,jdbcType=BIGINT},
+            </if>
+            <if test="hisID != null">
+                HisID = #{hisID,jdbcType=BIGINT},
+            </if>
+            <if test="dealType != null">
+                DealType = #{dealType,jdbcType=BIGINT},
+            </if>
+            <if test="changeNum != null">
+                ChangeNum = #{changeNum,jdbcType=DECIMAL},
+            </if>
+            <if test="beforeNum != null">
+                BeforeNum = #{beforeNum,jdbcType=DECIMAL},
+            </if>
+            <if test="afterNum != null">
+                AfterNum = #{afterNum,jdbcType=DECIMAL},
+            </if>
+            <if test="beforeStatus != null">
+                BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+            </if>
+            <if test="afterStatus != null">
+                AfterStatus = #{afterStatus,jdbcType=BIGINT},
+            </if>
+            <if test="changeDetail != null">
+                ChangeDetail = #{changeDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="dealDesc != null">
+                DealDesc = #{dealDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="cerateTime != null">
+                CerateTime = #{cerateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_WeighDealInfoEntity">
+        update B_WeighDealInfo
+        set VariantID = #{variantID,jdbcType=BIGINT},
+        DetailID = #{detailID,jdbcType=BIGINT},
+        WeighID = #{weighID,jdbcType=BIGINT},
+        HisID = #{hisID,jdbcType=BIGINT},
+        DealType = #{dealType,jdbcType=BIGINT},
+        ChangeNum = #{changeNum,jdbcType=DECIMAL},
+        BeforeNum = #{beforeNum,jdbcType=DECIMAL},
+        AfterNum = #{afterNum,jdbcType=DECIMAL},
+        BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+        AfterStatus = #{afterStatus,jdbcType=BIGINT},
+        ChangeDetail = #{changeDetail,jdbcType=VARCHAR},
+        DealDesc = #{dealDesc,jdbcType=VARCHAR},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CerateTime = #{cerateTime,jdbcType=TIMESTAMP},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        IsSync = #{isSync,jdbcType=BIT},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </update>
+</mapper>

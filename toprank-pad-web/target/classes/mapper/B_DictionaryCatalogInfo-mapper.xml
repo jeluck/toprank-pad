@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cc.toprank.byd.dao.B_DictionaryCatalogInfoDao">
+
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_DictionaryCatalogInfoEntity" >
+				<id column="CatalogID" property="catalogID" jdbcType="BIGINT" />
+				<result column="ArchiveID" property="archiveID" jdbcType="BIGINT"/>
+				<result column="CatalogCode" property="catalogCode" jdbcType="VARCHAR"/>
+				<result column="CatalogDesc" property="catalogDesc" jdbcType="VARCHAR"/>
+				<result column="CatalogName" property="catalogName" jdbcType="VARCHAR"/>
+				<result column="CatalogStatus" property="catalogStatus" jdbcType="BIGINT"/>
+				<result column="CreateTime" property="createTime" jdbcType="TIMESTAMP"/>
+				<result column="CreatorID" property="creatorID" jdbcType="BIGINT"/>
+				<result column="IsSync" property="isSync" jdbcType="BIT"/>
+				<result column="Memo" property="memo" jdbcType="VARCHAR"/>
+				<result column="ParentID" property="parentID" jdbcType="BIGINT"/>
+				<result column="RelationInfo" property="relationInfo" jdbcType="VARCHAR"/>
+				<result column="ShortName" property="shortName" jdbcType="VARCHAR"/>
+				<result column="TreeID" property="treeID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+  	<!--公用所有字段的sql-->
+  	<sql id="Base_Column_List">
+  			CatalogID,
+  			ArchiveID,
+  			CatalogCode,
+  			CatalogDesc,
+  			CatalogName,
+  			CatalogStatus,
+  			CreateTime,
+  			CreatorID,
+  			IsSync,
+  			Memo,
+  			ParentID,
+  			RelationInfo,
+  			ShortName,
+  			TreeID
+  	</sql>
+
+  	<select id="getAll" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/> from B_DictionaryCatalogInfo
+  	</select>
+  	
+  	<select id="get" parameterType="B_DictionaryCatalogInfoEntity" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/>
+		from
+  		B_DictionaryCatalogInfo
+  				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			     CatalogID = #{catalogID}
+  			    </trim>
+  	</select>
+  	<delete id="delete" parameterType="B_DictionaryCatalogInfoEntity">
+  		delete from B_DictionaryCatalogInfo 
+  				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			     CatalogID = #{catalogID}
+  			    </trim>
+  	</delete>
+  	<insert id="save" useGeneratedKeys="true" keyProperty="CatalogID" parameterType="B_DictionaryCatalogInfoEntity">
+  		insert into B_DictionaryCatalogInfo 
+  		(
+        	<include refid="Base_Column_List"/>
+  		)
+  		values
+  		(
+  				#{archiveID},
+  				#{catalogCode},
+  				#{catalogDesc},
+  				#{catalogID},
+  				#{catalogName},
+  				#{catalogStatus},
+  				#{createTime},
+  				#{creatorID},
+  				#{isSync},
+  				#{memo},
+  				#{parentID},
+  				#{relationInfo},
+  				#{shortName},
+  				#{treeID}
+  		)
+  	</insert>
+  	<update id="update" parameterType="B_DictionaryCatalogInfoEntity">
+  		update B_DictionaryCatalogInfo 
+  		<set>
+  					<if test="archiveID != null and archiveID != ''">
+  					ArchiveID=#{archiveID},
+  					</if>
+  					<if test="catalogCode != null and catalogCode != ''">
+  					CatalogCode=#{catalogCode},
+  					</if>
+  					<if test="catalogDesc != null and catalogDesc != ''">
+  					CatalogDesc=#{catalogDesc},
+  					</if>
+  					<if test="catalogName != null and catalogName != ''">
+  					CatalogName=#{catalogName},
+  					</if>
+  					<if test="catalogStatus != null and catalogStatus != ''">
+  					CatalogStatus=#{catalogStatus},
+  					</if>
+  					<if test="createTime != null and createTime != ''">
+  					CreateTime=#{createTime},
+  					</if>
+  					<if test="creatorID != null and creatorID != ''">
+  					CreatorID=#{creatorID},
+  					</if>
+  					<if test="isSync != null and isSync != ''">
+  					IsSync=#{isSync},
+  					</if>
+  					<if test="memo != null and memo != ''">
+  					Memo=#{memo},
+  					</if>
+  					<if test="parentID != null and parentID != ''">
+  					ParentID=#{parentID},
+  					</if>
+  					<if test="relationInfo != null and relationInfo != ''">
+  					RelationInfo=#{relationInfo},
+  					</if>
+  					<if test="shortName != null and shortName != ''">
+  					ShortName=#{shortName},
+  					</if>
+  					<if test="treeID != null and treeID != ''">
+  					TreeID=#{treeID}
+  					</if>
+  		</set>
+  		where
+			CatalogID=#{catalogID}
+  	</update>
+  	<select id="list" parameterType="B_DictionaryCatalogInfoEntity" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/>
+  		 from
+  		B_DictionaryCatalogInfo
+  		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			<if test="archiveID != null and archiveID != ''">
+	  			ArchiveID = #{archiveID}
+	  		</if>
+  			<if test="catalogCode != null and catalogCode != ''">
+	  			 and CatalogCode like concat('%',#{catalogCode},'%')
+	  		</if>
+  			<if test="catalogDesc != null and catalogDesc != ''">
+	  			 and CatalogDesc like concat('%',#{catalogDesc},'%')
+	  		</if>
+  			<if test="catalogID != null and catalogID != ''">
+	  			 and CatalogID = #{catalogID}
+	  		</if>
+  			<if test="catalogName != null and catalogName != ''">
+	  			 and CatalogName like concat('%',#{catalogName},'%')
+	  		</if>
+  			<if test="catalogStatus != null and catalogStatus != ''">
+	  			 and CatalogStatus = #{catalogStatus}
+	  		</if>
+  			<if test="createTime != null and createTime != ''">
+	  			 and CreateTime = #{createTime}
+	  		</if>
+  			<if test="creatorID != null and creatorID != ''">
+	  			 and CreatorID = #{creatorID}
+	  		</if>
+  			<if test="isSync != null and isSync != ''">
+	  			 and IsSync = #{isSync}
+	  		</if>
+  			<if test="memo != null and memo != ''">
+	  			 and Memo like concat('%',#{memo},'%')
+	  		</if>
+  			<if test="parentID != null and parentID != ''">
+	  			 and ParentID = #{parentID}
+	  		</if>
+  			<if test="relationInfo != null and relationInfo != ''">
+	  			 and RelationInfo like concat('%',#{relationInfo},'%')
+	  		</if>
+  			<if test="shortName != null and shortName != ''">
+	  			 and ShortName like concat('%',#{shortName},'%')
+	  		</if>
+  			<if test="treeID != null and treeID != ''">
+	  			 and TreeID like concat('%',#{treeID},'%')
+	  		</if>
+  		</trim>
+  	</select>
+  </mapper>

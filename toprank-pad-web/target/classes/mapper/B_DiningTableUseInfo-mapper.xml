@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.B_DinningTableUseInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_DinningTableUseInfoEntity">
+		<id column="HisID" jdbcType="BIGINT" property="hisID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="TableID" jdbcType="BIGINT" property="tableID" />
+		<result column="WaiterLoginID" jdbcType="BIGINT" property="waiterLoginID" />
+		<result column="CashierLoginID" jdbcType="BIGINT" property="cashierLoginID" />
+		<result column="MealsID" jdbcType="BIGINT" property="mealsID" />
+		<result column="PaymentMethodID" jdbcType="BIGINT" property="paymentMethodID" />
+		<result column="UseMethod" jdbcType="BIGINT" property="useMethod" />
+		<result column="StartTime" jdbcType="TIMESTAMP" property="startTime" />
+		<result column="EndTime" jdbcType="TIMESTAMP" property="endTime" />
+		<result column="UseTime" jdbcType="INTEGER" property="useTime" />
+		<result column="RecommendBookingTime" jdbcType="TIMESTAMP" property="recommendBookingTime" />
+		<result column="IsBooking" jdbcType="BIT" property="isBooking" />
+		<result column="IsSharing" jdbcType="BIT" property="isSharing" />
+		<result column="ShareNumber" jdbcType="INTEGER" property="shareNumber" />
+		<result column="IsCombine" jdbcType="BIT" property="isCombine" />
+		<result column="CombineNumber" jdbcType="INTEGER" property="combineNumber" />
+		<result column="CombineName" jdbcType="VARCHAR" property="combineName" />
+		<result column="IsSplit" jdbcType="BIT" property="isSplit" />
+		<result column="SplitNumber" jdbcType="INTEGER" property="splitNumber" />
+		<result column="RelationTable" jdbcType="VARCHAR" property="relationTable" />
+		<result column="CustomerNumber" jdbcType="INTEGER" property="customerNumber" />
+		<result column="TotalAmount" jdbcType="DECIMAL" property="totalAmount" />
+		<result column="DiscountAmount" jdbcType="DECIMAL" property="discountAmount" />
+		<result column="ActualAmount" jdbcType="DECIMAL" property="actualAmount" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		HisID, ArchiveID, TableID, WaiterLoginID, CashierLoginID, MealsID, PaymentMethodID,
+		UseMethod, StartTime, EndTime, UseTime, RecommendBookingTime, IsBooking, IsSharing,
+		ShareNumber, IsCombine, CombineNumber, CombineName, IsSplit, SplitNumber, RelationTable,
+		CustomerNumber, TotalAmount, DiscountAmount, ActualAmount, CreateTime, Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from B_DinningTableUseInfo
+		where HisID = #{hisID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_DinningTableUseInfo
+		where HisID = #{hisID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.B_DinningTableUseInfoEntity">
+		insert into B_DinningTableUseInfo (HisID, ArchiveID, TableID,
+		WaiterLoginID, CashierLoginID, MealsID,
+		PaymentMethodID, UseMethod, StartTime,
+		EndTime, UseTime, RecommendBookingTime,
+		IsBooking, IsSharing, ShareNumber,
+		IsCombine, CombineNumber, CombineName,
+		IsSplit, SplitNumber, RelationTable,
+		CustomerNumber, TotalAmount, DiscountAmount,
+		ActualAmount, CreateTime, Memo,
+		IsSync)
+		values (#{hisID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{tableID,jdbcType=BIGINT},
+		#{waiterLoginID,jdbcType=BIGINT}, #{cashierLoginID,jdbcType=BIGINT}, #{mealsID,jdbcType=BIGINT},
+		#{paymentMethodID,jdbcType=BIGINT}, #{useMethod,jdbcType=BIGINT}, #{startTime,jdbcType=TIMESTAMP},
+		#{endTime,jdbcType=TIMESTAMP}, #{useTime,jdbcType=INTEGER}, #{recommendBookingTime,jdbcType=TIMESTAMP},
+		#{isBooking,jdbcType=BIT}, #{isSharing,jdbcType=BIT}, #{shareNumber,jdbcType=INTEGER},
+		#{isCombine,jdbcType=BIT}, #{combineNumber,jdbcType=INTEGER}, #{combineName,jdbcType=VARCHAR},
+		#{isSplit,jdbcType=BIT}, #{splitNumber,jdbcType=INTEGER}, #{relationTable,jdbcType=VARCHAR},
+		#{customerNumber,jdbcType=INTEGER}, #{totalAmount,jdbcType=DECIMAL}, #{discountAmount,jdbcType=DECIMAL},
+		#{actualAmount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR},
+		#{isSync,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_DinningTableUseInfoEntity">
+		insert into B_DinningTableUseInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="hisID != null">
+				HisID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="tableID != null">
+				TableID,
+			</if>
+			<if test="waiterLoginID != null">
+				WaiterLoginID,
+			</if>
+			<if test="cashierLoginID != null">
+				CashierLoginID,
+			</if>
+			<if test="mealsID != null">
+				MealsID,
+			</if>
+			<if test="paymentMethodID != null">
+				PaymentMethodID,
+			</if>
+			<if test="useMethod != null">
+				UseMethod,
+			</if>
+			<if test="startTime != null">
+				StartTime,
+			</if>
+			<if test="endTime != null">
+				EndTime,
+			</if>
+			<if test="useTime != null">
+				UseTime,
+			</if>
+			<if test="recommendBookingTime != null">
+				RecommendBookingTime,
+			</if>
+			<if test="isBooking != null">
+				IsBooking,
+			</if>
+			<if test="isSharing != null">
+				IsSharing,
+			</if>
+			<if test="shareNumber != null">
+				ShareNumber,
+			</if>
+			<if test="isCombine != null">
+				IsCombine,
+			</if>
+			<if test="combineNumber != null">
+				CombineNumber,
+			</if>
+			<if test="combineName != null">
+				CombineName,
+			</if>
+			<if test="isSplit != null">
+				IsSplit,
+			</if>
+			<if test="splitNumber != null">
+				SplitNumber,
+			</if>
+			<if test="relationTable != null">
+				RelationTable,
+			</if>
+			<if test="customerNumber != null">
+				CustomerNumber,
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount,
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount,
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="hisID != null">
+				#{hisID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="tableID != null">
+				#{tableID,jdbcType=BIGINT},
+			</if>
+			<if test="waiterLoginID != null">
+				#{waiterLoginID,jdbcType=BIGINT},
+			</if>
+			<if test="cashierLoginID != null">
+				#{cashierLoginID,jdbcType=BIGINT},
+			</if>
+			<if test="mealsID != null">
+				#{mealsID,jdbcType=BIGINT},
+			</if>
+			<if test="paymentMethodID != null">
+				#{paymentMethodID,jdbcType=BIGINT},
+			</if>
+			<if test="useMethod != null">
+				#{useMethod,jdbcType=BIGINT},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="useTime != null">
+				#{useTime,jdbcType=INTEGER},
+			</if>
+			<if test="recommendBookingTime != null">
+				#{recommendBookingTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isBooking != null">
+				#{isBooking,jdbcType=BIT},
+			</if>
+			<if test="isSharing != null">
+				#{isSharing,jdbcType=BIT},
+			</if>
+			<if test="shareNumber != null">
+				#{shareNumber,jdbcType=INTEGER},
+			</if>
+			<if test="isCombine != null">
+				#{isCombine,jdbcType=BIT},
+			</if>
+			<if test="combineNumber != null">
+				#{combineNumber,jdbcType=INTEGER},
+			</if>
+			<if test="combineName != null">
+				#{combineName,jdbcType=VARCHAR},
+			</if>
+			<if test="isSplit != null">
+				#{isSplit,jdbcType=BIT},
+			</if>
+			<if test="splitNumber != null">
+				#{splitNumber,jdbcType=INTEGER},
+			</if>
+			<if test="relationTable != null">
+				#{relationTable,jdbcType=VARCHAR},
+			</if>
+			<if test="customerNumber != null">
+				#{customerNumber,jdbcType=INTEGER},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="discountAmount != null">
+				#{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actualAmount != null">
+				#{actualAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_DinningTableUseInfoEntity">
+		update B_DinningTableUseInfo
+		<set>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="tableID != null">
+				TableID = #{tableID,jdbcType=BIGINT},
+			</if>
+			<if test="waiterLoginID != null">
+				WaiterLoginID = #{waiterLoginID,jdbcType=BIGINT},
+			</if>
+			<if test="cashierLoginID != null">
+				CashierLoginID = #{cashierLoginID,jdbcType=BIGINT},
+			</if>
+			<if test="mealsID != null">
+				MealsID = #{mealsID,jdbcType=BIGINT},
+			</if>
+			<if test="paymentMethodID != null">
+				PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+			</if>
+			<if test="useMethod != null">
+				UseMethod = #{useMethod,jdbcType=BIGINT},
+			</if>
+			<if test="startTime != null">
+				StartTime = #{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				EndTime = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="useTime != null">
+				UseTime = #{useTime,jdbcType=INTEGER},
+			</if>
+			<if test="recommendBookingTime != null">
+				RecommendBookingTime = #{recommendBookingTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isBooking != null">
+				IsBooking = #{isBooking,jdbcType=BIT},
+			</if>
+			<if test="isSharing != null">
+				IsSharing = #{isSharing,jdbcType=BIT},
+			</if>
+			<if test="shareNumber != null">
+				ShareNumber = #{shareNumber,jdbcType=INTEGER},
+			</if>
+			<if test="isCombine != null">
+				IsCombine = #{isCombine,jdbcType=BIT},
+			</if>
+			<if test="combineNumber != null">
+				CombineNumber = #{combineNumber,jdbcType=INTEGER},
+			</if>
+			<if test="combineName != null">
+				CombineName = #{combineName,jdbcType=VARCHAR},
+			</if>
+			<if test="isSplit != null">
+				IsSplit = #{isSplit,jdbcType=BIT},
+			</if>
+			<if test="splitNumber != null">
+				SplitNumber = #{splitNumber,jdbcType=INTEGER},
+			</if>
+			<if test="relationTable != null">
+				RelationTable = #{relationTable,jdbcType=VARCHAR},
+			</if>
+			<if test="customerNumber != null">
+				CustomerNumber = #{customerNumber,jdbcType=INTEGER},
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount = #{actualAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where HisID = #{hisID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_DinningTableUseInfoEntity">
+		update B_DinningTableUseInfo
+		set ArchiveID = #{archiveID,jdbcType=BIGINT},
+		TableID = #{tableID,jdbcType=BIGINT},
+		WaiterLoginID = #{waiterLoginID,jdbcType=BIGINT},
+		CashierLoginID = #{cashierLoginID,jdbcType=BIGINT},
+		MealsID = #{mealsID,jdbcType=BIGINT},
+		PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+		UseMethod = #{useMethod,jdbcType=BIGINT},
+		StartTime = #{startTime,jdbcType=TIMESTAMP},
+		EndTime = #{endTime,jdbcType=TIMESTAMP},
+		UseTime = #{useTime,jdbcType=INTEGER},
+		RecommendBookingTime = #{recommendBookingTime,jdbcType=TIMESTAMP},
+		IsBooking = #{isBooking,jdbcType=BIT},
+		IsSharing = #{isSharing,jdbcType=BIT},
+		ShareNumber = #{shareNumber,jdbcType=INTEGER},
+		IsCombine = #{isCombine,jdbcType=BIT},
+		CombineNumber = #{combineNumber,jdbcType=INTEGER},
+		CombineName = #{combineName,jdbcType=VARCHAR},
+		IsSplit = #{isSplit,jdbcType=BIT},
+		SplitNumber = #{splitNumber,jdbcType=INTEGER},
+		RelationTable = #{relationTable,jdbcType=VARCHAR},
+		CustomerNumber = #{customerNumber,jdbcType=INTEGER},
+		TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+		DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+		ActualAmount = #{actualAmount,jdbcType=DECIMAL},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where HisID = #{hisID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="B_DinningTableUseInfoEntity" resultType="B_DinningTableUseInfoEntity">
+		<![CDATA[
+			Select ActualAmount, ArchiveID, CashierLoginID, CombineName, CombineNumber, CreateTime, CustomerNumber,
+				DiscountAmount, EndTime, HisID, IsBooking, IsCombine, IsSharing, IsSplit,
+				IsSync, MealsID, Memo, PaymentMethodID, RecommendBookingTime, RelationTable, ShareNumber,
+				SplitNumber, StartTime, TableID, TotalAmount, UseMethod, UseTime, WaiterLoginID
+			from B_DinningTableUseInfo;
+		]]>
+	</select>
+  	<select id="get" parameterType="B_DinningTableUseInfoEntity" resultType="B_DinningTableUseInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_DinningTableUseInfoEntity(#{hisID})
+		]]>
+	</select>
+  	<delete id="delete" parameterType="B_DinningTableUseInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteB_DinningTableUseInfoEntity(#{hisID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="HisID" parameterType="B_DinningTableUseInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertB_DinningTableUseInfoEntity(#{actualAmount},#{archiveID},#{cashierLoginID},#{combineName},#{combineNumber},#{createTime},#{customerNumber},#{discountAmount},#{endTime},#{hisID,jdbcType=INTEGER,mode=OUT},#{isBooking},#{isCombine},#{isSharing},#{isSplit},#{isSync},#{mealsID},#{memo},#{paymentMethodID},#{recommendBookingTime},#{relationTable},#{shareNumber},#{splitNumber},#{startTime},#{tableID},#{totalAmount},#{useMethod},#{useTime},#{waiterLoginID},"admin")}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="B_DinningTableUseInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateB_DinningTableUseInfoEntity(#{actualAmount},#{archiveID},#{cashierLoginID},#{combineName},#{combineNumber},#{createTime},#{customerNumber},#{discountAmount},#{endTime},#{hisID},#{isBooking},#{isCombine},#{isSharing},#{isSplit},#{isSync},#{mealsID},#{memo},#{paymentMethodID},#{recommendBookingTime},#{relationTable},#{shareNumber},#{splitNumber},#{startTime},#{tableID},#{totalAmount},#{useMethod},#{useTime},#{waiterLoginID})}
+		]]>
+  	</update>
+
+	<update id="updateBatch" parameterType="HashMap">
+		<![CDATA[
+			Update B_DinningTableUseInfo
+			Set
+				EndTime = #{endTime},
+						RelationTable = #{relationTable},
+						CustomerNumber = #{customerNumber}
+
+			where
+						HisID = #{hisID}
+		]]>
+	</update>
+
+
+  	<!-- 根据桌台编号更新桌台使用信息	 hcy -->
+  	<update id="updateByTableID" parameterType="B_DinningTableUseInfoEntity">
+  		<![CDATA[
+			Update B_DinningTableUseInfo
+			Set
+				ActualAmount = #{actualAmount},
+				DiscountAmount = #{discountAmount},
+				EndTime = #{endTime},
+				TotalAmount = #{totalAmount},
+						CashierLoginID = #{cashierLoginID}
+			where
+				TableID = #{tableID}
+		]]>
+  	</update>
+
+  	<!-- 根据桌台id查询当前桌台使用记录	 zhouwei -->
+  	<select id="getDinningTableUseInfoEntityByTableIDAndTableStatus" parameterType="hashmap" resultType="B_DinningTableUseInfoEntity">
+		<![CDATA[
+			SELECT DISTINCT BDTUI.HisID as HisID,BDTUI.ArchiveID as ArchiveID,BDTUI.TableID as TableID,BDTUI.MealsID as MealsID,
+				 BDTUI.PaymentMethodID as PaymentMethodID,BDTUI.UseMethod as UseMethod,BDTUI.StartTime as StartTime,BDTUI.EndTime as EndTime,
+				BDTUI.RecommendBookingTime as RecommendBookingTime,BDTUI.IsBooking as IsBooking,BDTUI.IsSharing as IsSharing,BDTUI.ShareNumber as ShareNumber,
+			   BDTUI.IsCombine as IsCombine,BDTUI.CombineNumber as CombineNumber,BDTUI.CombineName as CombineName,BDTUI.IsSplit as IsSplit,
+			   BDTUI.SplitNumber as SplitNumber,BDTUI.CustomerNumber as CustomerNumber,BDTUI.TotalAmount as TotalAmount,BDTUI.DiscountAmount as DiscountAmount,
+			   BDTUI.ActualAmount as ActualAmount,BDTUI.CreateTime as CreateTime,BDTUI.RelationTable as RelationTable FROM B_DinningTableUseInfo as BDTUI
+				WHERE  BDTUI.TableID = #{tableID} and BDTUI.ArchiveID = #{archiveID}
+				 AND BDTUI.EndTime IS NULL
+						order by BDTUI.CreateTime desc limit 1;
+		]]>
+	</select>
+
+	<!-- 根据桌台id查询当前桌台使用记录	 zhouwei -->
+	<select id="getDinningTableUseInfoEntityByTableIDs" parameterType="hashmap" resultType="B_DinningTableUseInfoEntity">
+		<![CDATA[
+			SELECT * FROM B_DinningTableUseInfo WHERE FIND_IN_SET(TableID,#{tableIDs}) and ArchiveID = #{archiveID} AND EndTime IS NULL
+			order by CreateTime desc;
+		]]>
+	</select>
+
+	<!-- 根据桌台id和状态查询当前桌台使用记录	 zhouwei -->
+	<select id="getDinningTableUseInfoEntityByTableIDAndStatus" parameterType="hashmap" resultType="B_DinningTableUseInfoEntity">
+		<![CDATA[
+
+			SELECT * FROM B_DinningTableUseInfo WHERE TableID = #{tableID}  and ArchiveID = #{archiveID} AND EndTime IS NULL
+    			order by CreateTime desc ;
+		]]>
+	</select>
+
+  	<!-- 根据根据餐次桌台id查询当前最新桌台使用信息第一条记录 zhoufy-->
+  	  	<select id="getDinningTableUseInfoByTableIDAndMealsID" parameterType="hashmap" resultType="B_DinningTableUseInfoEntity">
+		<![CDATA[
+			SELECT * FROM B_DinningTableUseInfo dinu
+			WHERE dinu.TableID = #{tableId}
+			AND dinu.MealsID = #{mealsId}
+			AND dinu.EndTime IS NULL
+			ORDER BY dinu.StartTime DESC
+			LIMIT 0,1
+		]]>
+	</select>
+
+	<!--
+	根据档案、桌台、餐次  获取桌台使用信息表
+	@author liuwh
+	@date 2017-1-5
+	 -->
+	<select id="Get_ReceptionB_DinningTableUseInfoEntityByTableID" parameterType="B_DinningTableUseInfoEntity" resultType="B_DinningTableUseInfoEntity">
+		<if test="mealsID == null">
+			Select
+				ActualAmount, ArchiveID, CashierLoginID, CombineName, CombineNumber, CreateTime, CustomerNumber,
+				DiscountAmount, EndTime, HisID, IsBooking, IsCombine, IsSharing, IsSplit,
+				IsSync, MealsID, Memo, PaymentMethodID, RecommendBookingTime, RelationTable, ShareNumber,
+				SplitNumber, StartTime, TableID, TotalAmount, UseMethod, UseTime, WaiterLoginID
+			from
+				B_DinningTableUseInfo
+			where
+				ArchiveID = #{archiveID}
+			and
+				TableID = #{tableID}
+			AND
+				EndTime is null
+			order by
+				StartTime DESC
+		</if>
+		<if test="mealsID != null">
+			Select ActualAmount, ArchiveID, CashierLoginID, CombineName, CombineNumber, CreateTime, CustomerNumber,
+			DiscountAmount, EndTime, HisID, IsBooking, IsCombine, IsSharing, IsSplit,
+			IsSync, MealsID, Memo, PaymentMethodID, RecommendBookingTime, RelationTable, ShareNumber,
+			SplitNumber, StartTime, TableID, TotalAmount, UseMethod, UseTime, WaiterLoginID
+			from B_DinningTableUseInfo
+			where
+				ArchiveID = #{archiveID}
+			AND
+				TableID = #{tableID}
+			AND
+				MealsID = #{mealsID}
+			AND
+				EndTime is null
+			order by
+				StartTime DESC
+		</if>
+	</select>
+
+	<!--保存编辑的订单数据-->
+	<update id="updateTableServerInfo" parameterType="hashmap" statementType="CALLABLE">
+		update B_DinningTableUseInfo  set  WaiterLoginID=#{waiterLoginID}  where TableID=#{tableID} and EndTime is NULL
+	</update>
+
+	<!-- 根据tableID 和 空结束时间 查桌台使用信息 LZY-->
+	<select id="getDinningTableUseInfoByTableIDAndEndTime" parameterType="B_DinningTableUseInfoEntity" resultType="B_DinningTableUseInfoEntity">
+		SELECT ActualAmount, ArchiveID, CashierLoginID, CombineName, CombineNumber, CreateTime, CustomerNumber,
+				DiscountAmount, EndTime, HisID, IsBooking, IsCombine, IsSharing, IsSplit,
+				IsSync, MealsID, Memo, PaymentMethodID, RecommendBookingTime, RelationTable, ShareNumber,
+				SplitNumber, StartTime, TableID, TotalAmount, UseMethod, UseTime, WaiterLoginID
+		FROM B_DinningTableUseInfo
+		WHERE
+			TableID = #{tableID}
+			AND EndTime IS NULL
+	</select>
+  </mapper>

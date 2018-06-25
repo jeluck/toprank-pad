@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.B_TableManagerChangeInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_TableManagerChangeInfoEntity">
+    <id column="ChangeID" jdbcType="BIGINT" property="changeID" />
+    <result column="ConfigID" jdbcType="BIGINT" property="configID" />
+    <result column="ChangeType" jdbcType="BIGINT" property="changeType" />
+    <result column="BeforeLoginID" jdbcType="BIGINT" property="beforeLoginID" />
+    <result column="AfterLoginID" jdbcType="BIGINT" property="afterLoginID" />
+    <result column="AfterManageType" jdbcType="VARCHAR" property="afterManageType" />
+    <result column="BeforeManageType" jdbcType="VARCHAR" property="beforeManageType" />
+    <result column="StartTime" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="EndTime" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="ChangeReason" jdbcType="BIGINT" property="changeReason" />
+    <result column="DealDesc" jdbcType="VARCHAR" property="dealDesc" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Approver" jdbcType="BIGINT" property="approver" />
+    <result column="ApproveTime" jdbcType="TIMESTAMP" property="approveTime" />
+    <result column="ApproveDesc" jdbcType="VARCHAR" property="approveDesc" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+    <result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ChangeID, ConfigID, ChangeType, BeforeLoginID, AfterLoginID, AfterManageType, BeforeManageType, 
+    StartTime, EndTime, ChangeReason, DealDesc, SortNo, CreatorID, CreateTime, Approver, 
+    ApproveTime, ApproveDesc, IsSync, Memo, SyncTime, SyncTimeResult
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from B_TableManagerChangeInfo
+    where ChangeID = #{changeID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from B_TableManagerChangeInfo
+    where ChangeID = #{changeID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.B_TableManagerChangeInfoEntity">
+    insert into B_TableManagerChangeInfo (ChangeID, ConfigID, ChangeType, 
+      BeforeLoginID, AfterLoginID, AfterManageType, 
+      BeforeManageType, StartTime, EndTime, 
+      ChangeReason, DealDesc, SortNo, 
+      CreatorID, CreateTime, Approver, 
+      ApproveTime, ApproveDesc, IsSync, 
+      Memo, SyncTime, SyncTimeResult
+      )
+    values (#{changeID,jdbcType=BIGINT}, #{configID,jdbcType=BIGINT}, #{changeType,jdbcType=BIGINT}, 
+      #{beforeLoginID,jdbcType=BIGINT}, #{afterLoginID,jdbcType=BIGINT}, #{afterManageType,jdbcType=VARCHAR}, 
+      #{beforeManageType,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{changeReason,jdbcType=BIGINT}, #{dealDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{approver,jdbcType=BIGINT}, 
+      #{approveTime,jdbcType=TIMESTAMP}, #{approveDesc,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}, 
+      #{memo,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, #{syncTimeResult,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_TableManagerChangeInfoEntity">
+    insert into B_TableManagerChangeInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="changeID != null">
+        ChangeID,
+      </if>
+      <if test="configID != null">
+        ConfigID,
+      </if>
+      <if test="changeType != null">
+        ChangeType,
+      </if>
+      <if test="beforeLoginID != null">
+        BeforeLoginID,
+      </if>
+      <if test="afterLoginID != null">
+        AfterLoginID,
+      </if>
+      <if test="afterManageType != null">
+        AfterManageType,
+      </if>
+      <if test="beforeManageType != null">
+        BeforeManageType,
+      </if>
+      <if test="startTime != null">
+        StartTime,
+      </if>
+      <if test="endTime != null">
+        EndTime,
+      </if>
+      <if test="changeReason != null">
+        ChangeReason,
+      </if>
+      <if test="dealDesc != null">
+        DealDesc,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="approver != null">
+        Approver,
+      </if>
+      <if test="approveTime != null">
+        ApproveTime,
+      </if>
+      <if test="approveDesc != null">
+        ApproveDesc,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="syncTime != null">
+        SyncTime,
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="changeID != null">
+        #{changeID,jdbcType=BIGINT},
+      </if>
+      <if test="configID != null">
+        #{configID,jdbcType=BIGINT},
+      </if>
+      <if test="changeType != null">
+        #{changeType,jdbcType=BIGINT},
+      </if>
+      <if test="beforeLoginID != null">
+        #{beforeLoginID,jdbcType=BIGINT},
+      </if>
+      <if test="afterLoginID != null">
+        #{afterLoginID,jdbcType=BIGINT},
+      </if>
+      <if test="afterManageType != null">
+        #{afterManageType,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeManageType != null">
+        #{beforeManageType,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeReason != null">
+        #{changeReason,jdbcType=BIGINT},
+      </if>
+      <if test="dealDesc != null">
+        #{dealDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approver != null">
+        #{approver,jdbcType=BIGINT},
+      </if>
+      <if test="approveTime != null">
+        #{approveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveDesc != null">
+        #{approveDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_TableManagerChangeInfoEntity">
+    update B_TableManagerChangeInfo
+    <set>
+      <if test="configID != null">
+        ConfigID = #{configID,jdbcType=BIGINT},
+      </if>
+      <if test="changeType != null">
+        ChangeType = #{changeType,jdbcType=BIGINT},
+      </if>
+      <if test="beforeLoginID != null">
+        BeforeLoginID = #{beforeLoginID,jdbcType=BIGINT},
+      </if>
+      <if test="afterLoginID != null">
+        AfterLoginID = #{afterLoginID,jdbcType=BIGINT},
+      </if>
+      <if test="afterManageType != null">
+        AfterManageType = #{afterManageType,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeManageType != null">
+        BeforeManageType = #{beforeManageType,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        StartTime = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        EndTime = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeReason != null">
+        ChangeReason = #{changeReason,jdbcType=BIGINT},
+      </if>
+      <if test="dealDesc != null">
+        DealDesc = #{dealDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approver != null">
+        Approver = #{approver,jdbcType=BIGINT},
+      </if>
+      <if test="approveTime != null">
+        ApproveTime = #{approveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveDesc != null">
+        ApproveDesc = #{approveDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ChangeID = #{changeID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_TableManagerChangeInfoEntity">
+    update B_TableManagerChangeInfo
+    set ConfigID = #{configID,jdbcType=BIGINT},
+      ChangeType = #{changeType,jdbcType=BIGINT},
+      BeforeLoginID = #{beforeLoginID,jdbcType=BIGINT},
+      AfterLoginID = #{afterLoginID,jdbcType=BIGINT},
+      AfterManageType = #{afterManageType,jdbcType=VARCHAR},
+      BeforeManageType = #{beforeManageType,jdbcType=VARCHAR},
+      StartTime = #{startTime,jdbcType=TIMESTAMP},
+      EndTime = #{endTime,jdbcType=TIMESTAMP},
+      ChangeReason = #{changeReason,jdbcType=BIGINT},
+      DealDesc = #{dealDesc,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Approver = #{approver,jdbcType=BIGINT},
+      ApproveTime = #{approveTime,jdbcType=TIMESTAMP},
+      ApproveDesc = #{approveDesc,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT},
+      Memo = #{memo,jdbcType=VARCHAR},
+      SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+    where ChangeID = #{changeID,jdbcType=BIGINT}
+  </update>
+
+  <select id="getTableManagerChangeInfo" parameterType="map" resultType="cc.toprank.byd.web.vo.tablevo.TableManagerChangeInfoVO">
+    SELECT
+    c.*
+    , t.TableID
+    , t.TableName
+    , t.ArchiveID
+    , d.DictionaryName AS changeTypeName
+    , bd.DictionaryName AS changeReasonName
+    FROM B_TableManagerChangeInfo c
+    INNER JOIN B_TableManagerInfo t ON c.ConfigID = t.ConfigID
+    LEFT JOIN C_DictionaryInfo d ON d.DictionaryID = c.ChangeType
+    LEFT JOIN B_DictionaryInfo bd ON bd.DictionaryID = c.ChangeReason
+    WHERE t.ArchiveID = #{archiveID}
+    AND t.TableID = #{tableID}
+    ORDER BY c.CreateTime ASC
+  </select>
+
+  <select id="getUserInfo" resultType="map">
+    SELECT lg.LoginID, u.UserName
+    FROM U_LoginInfo lg
+    INNER JOIN U_UserInfo u ON lg.UserID = u.UserID
+  </select>
+</mapper>

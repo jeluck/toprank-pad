@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- Appenders -->
+    <appender name="sysout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %d(%r) > [%t] %l: %m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="maxFileSize" value="10MB"/>
+        <param name="maxBackupIndex" value="10"/>
+        <param name="Append" value="true"/>
+        <param name="File" value="/usr/local/tomcat/logs/pad-web.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %d(%r) > [%t] %l: %m %x %n"/>
+        </layout>
+    </appender>
+
+    <root>
+        <level value="ERROR"/>
+        <appender-ref ref="sysout"/>
+        <appender-ref ref="fileAppender"/>
+    </root>
+</log4j:configuration>

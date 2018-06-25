@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.P_ComboSettingInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_ComboSettingInfoEntity">
+    <id column="SettingID" jdbcType="BIGINT" property="settingID" />
+    <result column="ProductID" jdbcType="BIGINT" property="productID" />
+    <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+    <result column="GroupID" jdbcType="BIGINT" property="groupID" />
+    <result column="OptionID" jdbcType="BIGINT" property="optionID" />
+    <result column="VariantName" jdbcType="VARCHAR" property="variantName" />
+    <result column="AliasName" jdbcType="VARCHAR" property="aliasName" />
+    <result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter" />
+    <result column="ShortName" jdbcType="VARCHAR" property="shortName" />
+    <result column="VariantDesc" jdbcType="VARCHAR" property="variantDesc" />
+    <result column="Gtin" jdbcType="VARCHAR" property="gtin" />
+    <result column="BarCode" jdbcType="VARCHAR" property="barCode" />
+    <result column="OriginalPrice" jdbcType="DECIMAL" property="originalPrice" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="ProduceMinute" jdbcType="INTEGER" property="produceMinute" />
+    <result column="ProductUnit" jdbcType="BIGINT" property="productUnit" />
+    <result column="Quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="FloatQuantity" jdbcType="REAL" property="floatQuantity" />
+    <result column="VariantStatus" jdbcType="BIGINT" property="variantStatus" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SettingID, ProductID, VariantID, GroupID, OptionID, VariantName, AliasName, FirstLetter, 
+    ShortName, VariantDesc, Gtin, BarCode, OriginalPrice, Price, ProduceMinute, ProductUnit, 
+    Quantity, FloatQuantity, VariantStatus, IsSync, SortNo, CreatorID, CreateTime, Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_ComboSettingInfo
+    where SettingID = #{settingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from P_ComboSettingInfo
+    where SettingID = #{settingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.P_ComboSettingInfoEntity">
+    insert into P_ComboSettingInfo (SettingID, ProductID, VariantID, 
+      GroupID, OptionID, VariantName, 
+      AliasName, FirstLetter, ShortName, 
+      VariantDesc, Gtin, BarCode, 
+      OriginalPrice, Price, ProduceMinute, 
+      ProductUnit, Quantity, FloatQuantity, 
+      VariantStatus, IsSync, SortNo, 
+      CreatorID, CreateTime, Memo
+      )
+    values (#{settingID,jdbcType=BIGINT}, #{productID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT}, 
+      #{groupID,jdbcType=BIGINT}, #{optionID,jdbcType=BIGINT}, #{variantName,jdbcType=VARCHAR}, 
+      #{aliasName,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, 
+      #{variantDesc,jdbcType=VARCHAR}, #{gtin,jdbcType=VARCHAR}, #{barCode,jdbcType=VARCHAR}, 
+      #{originalPrice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, #{produceMinute,jdbcType=INTEGER}, 
+      #{productUnit,jdbcType=BIGINT}, #{quantity,jdbcType=INTEGER}, #{floatQuantity,jdbcType=REAL}, 
+      #{variantStatus,jdbcType=BIGINT}, #{isSync,jdbcType=BIT}, #{sortNo,jdbcType=INTEGER}, 
+      #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_ComboSettingInfoEntity">
+    insert into P_ComboSettingInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="settingID != null">
+        SettingID,
+      </if>
+      <if test="productID != null">
+        ProductID,
+      </if>
+      <if test="variantID != null">
+        VariantID,
+      </if>
+      <if test="groupID != null">
+        GroupID,
+      </if>
+      <if test="optionID != null">
+        OptionID,
+      </if>
+      <if test="variantName != null">
+        VariantName,
+      </if>
+      <if test="aliasName != null">
+        AliasName,
+      </if>
+      <if test="firstLetter != null">
+        FirstLetter,
+      </if>
+      <if test="shortName != null">
+        ShortName,
+      </if>
+      <if test="variantDesc != null">
+        VariantDesc,
+      </if>
+      <if test="gtin != null">
+        Gtin,
+      </if>
+      <if test="barCode != null">
+        BarCode,
+      </if>
+      <if test="originalPrice != null">
+        OriginalPrice,
+      </if>
+      <if test="price != null">
+        Price,
+      </if>
+      <if test="produceMinute != null">
+        ProduceMinute,
+      </if>
+      <if test="productUnit != null">
+        ProductUnit,
+      </if>
+      <if test="quantity != null">
+        Quantity,
+      </if>
+      <if test="floatQuantity != null">
+        FloatQuantity,
+      </if>
+      <if test="variantStatus != null">
+        VariantStatus,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="settingID != null">
+        #{settingID,jdbcType=BIGINT},
+      </if>
+      <if test="productID != null">
+        #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="variantID != null">
+        #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="groupID != null">
+        #{groupID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="variantName != null">
+        #{variantName,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null">
+        #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null">
+        #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="variantDesc != null">
+        #{variantDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="gtin != null">
+        #{gtin,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalPrice != null">
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="produceMinute != null">
+        #{produceMinute,jdbcType=INTEGER},
+      </if>
+      <if test="productUnit != null">
+        #{productUnit,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="floatQuantity != null">
+        #{floatQuantity,jdbcType=REAL},
+      </if>
+      <if test="variantStatus != null">
+        #{variantStatus,jdbcType=BIGINT},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_ComboSettingInfoEntity">
+    update P_ComboSettingInfo
+    <set>
+      <if test="productID != null">
+        ProductID = #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="variantID != null">
+        VariantID = #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="groupID != null">
+        GroupID = #{groupID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        OptionID = #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="variantName != null">
+        VariantName = #{variantName,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null">
+        AliasName = #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null">
+        FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        ShortName = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="variantDesc != null">
+        VariantDesc = #{variantDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="gtin != null">
+        Gtin = #{gtin,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        BarCode = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalPrice != null">
+        OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        Price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="produceMinute != null">
+        ProduceMinute = #{produceMinute,jdbcType=INTEGER},
+      </if>
+      <if test="productUnit != null">
+        ProductUnit = #{productUnit,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        Quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="floatQuantity != null">
+        FloatQuantity = #{floatQuantity,jdbcType=REAL},
+      </if>
+      <if test="variantStatus != null">
+        VariantStatus = #{variantStatus,jdbcType=BIGINT},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SettingID = #{settingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_ComboSettingInfoEntity">
+    update P_ComboSettingInfo
+    set ProductID = #{productID,jdbcType=BIGINT},
+      VariantID = #{variantID,jdbcType=BIGINT},
+      GroupID = #{groupID,jdbcType=BIGINT},
+      OptionID = #{optionID,jdbcType=BIGINT},
+      VariantName = #{variantName,jdbcType=VARCHAR},
+      AliasName = #{aliasName,jdbcType=VARCHAR},
+      FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+      ShortName = #{shortName,jdbcType=VARCHAR},
+      VariantDesc = #{variantDesc,jdbcType=VARCHAR},
+      Gtin = #{gtin,jdbcType=VARCHAR},
+      BarCode = #{barCode,jdbcType=VARCHAR},
+      OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+      Price = #{price,jdbcType=DECIMAL},
+      ProduceMinute = #{produceMinute,jdbcType=INTEGER},
+      ProductUnit = #{productUnit,jdbcType=BIGINT},
+      Quantity = #{quantity,jdbcType=INTEGER},
+      FloatQuantity = #{floatQuantity,jdbcType=REAL},
+      VariantStatus = #{variantStatus,jdbcType=BIGINT},
+      IsSync = #{isSync,jdbcType=BIT},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where SettingID = #{settingID,jdbcType=BIGINT}
+  </update>
+
+  <!-- 通过商品ID查询套餐明细信息 -->
+  <select id="getByProductID" resultType="cc.toprank.byd.entity.P_ComboSettingInfoEntity">
+    SELECT c.SettingID,c.VariantID,c.VariantName,c.OriginalPrice,ifnull(c.Price,0.00) Price,ifnull(c.Quantity,0) Quantity,c.ProductUnit,ifnull(c.ProduceMinute,10) ProduceMinute, p.ProductName, am.FilePath,mm.NeedWeigh
+    FROM P_ComboSettingInfo c
+    LEFT JOIN P_ProductInfo p ON p.ProductID = c.ProductID
+    LEFT JOIN P_AttachmentMapping am ON am.TargetID=c.VariantID AND TargetType=623
+    LEFT JOIN B_MerchantMenuInfo mm ON c.variantID = mm.variantID
+    WHERE c.ProductID=#{productID} GROUP BY c.SettingID
+  </select>
+
+  <select id="getByComboSettingProductID" resultType="cc.toprank.byd.vo.ComboProductVO">
+    SELECT cs.productID,cs.variantID,cs.variantName,cs.originalPrice,cs.price,cs.quantity,cs.groupID,cg.groupName,cg.groupType,cg.allowQuantity,
+	IFNULL((SELECT DictionaryName FROM C_DictionaryInfo WHERE DictionaryID=cs.ProductUnit),'份') as productUnitName,
+	(SELECT sao.optionName FROM P_SpecificationAttributeOptionInfo sao WHERE sao.OptionID=cs.OptionID) optionName
+    FROM P_ComboSettingInfo cs
+    LEFT JOIN P_ComboGroupInfo cg ON cg.GroupID=cs.GroupID
+    WHERE cs.productID=#{productID}
+  </select>
+</mapper>

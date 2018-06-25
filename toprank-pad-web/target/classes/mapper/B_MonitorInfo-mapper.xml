@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="cc.toprank.byd.dao.B_MonitorInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MonitorInfoEntity">
+		<id column="MonitorID" jdbcType="BIGINT" property="monitorID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="MonitorCode" jdbcType="VARCHAR" property="monitorCode" />
+		<result column="MonitorName" jdbcType="VARCHAR" property="monitorName" />
+		<result column="ShowType" jdbcType="BIGINT" property="showType" />
+		<result column="ShowContentID" jdbcType="VARCHAR" property="showContentID" />
+		<result column="SwitchSecond" jdbcType="INTEGER" property="switchSecond" />
+		<result column="SkinType" jdbcType="BIGINT" property="skinType" />
+		<result column="NormalColor" jdbcType="VARCHAR" property="normalColor" />
+		<result column="SuspensionColor" jdbcType="VARCHAR" property="suspensionColor" />
+		<result column="DelayColor" jdbcType="VARCHAR" property="delayColor" />
+		<result column="UrgentColor" jdbcType="VARCHAR" property="urgentColor" />
+		<result column="RefreshSecond" jdbcType="INTEGER" property="refreshSecond" />
+		<result column="ShowTimer" jdbcType="BIT" property="showTimer" />
+		<result column="ColumnNum" jdbcType="INTEGER" property="columnNum" />
+		<result column="MonitorIP" jdbcType="VARCHAR" property="monitorIP" />
+		<result column="ServerIP" jdbcType="VARCHAR" property="serverIP" />
+		<result column="ServerPort" jdbcType="INTEGER" property="serverPort" />
+		<result column="MACAddress" jdbcType="VARCHAR" property="MACAddress" />
+		<result column="MonitorStatus" jdbcType="BIGINT" property="monitorStatus" />
+		<result column="MonitorDesc" jdbcType="VARCHAR" property="monitorDesc" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		MonitorID, ArchiveID, MonitorCode, MonitorName, ShowType, ShowContentID, SwitchSecond,
+		SkinType, NormalColor, SuspensionColor, DelayColor, UrgentColor, RefreshSecond, ShowTimer,
+		ColumnNum, MonitorIP, ServerIP, ServerPort, MACAddress, MonitorStatus, MonitorDesc,
+		IsSync, CreatorID, CreateTime, Memo
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from B_MonitorInfo
+		where MonitorID = #{monitorID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_MonitorInfo
+		where MonitorID = #{monitorID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.B_MonitorInfoEntity">
+		insert into B_MonitorInfo (MonitorID, ArchiveID, MonitorCode,
+		MonitorName, ShowType, ShowContentID,
+		SwitchSecond, SkinType, NormalColor,
+		SuspensionColor, DelayColor, UrgentColor,
+		RefreshSecond, ShowTimer, ColumnNum,
+		MonitorIP, ServerIP, ServerPort,
+		MACAddress, MonitorStatus, MonitorDesc,
+		IsSync, CreatorID, CreateTime,
+		Memo)
+		values (#{monitorID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{monitorCode,jdbcType=VARCHAR},
+		#{monitorName,jdbcType=VARCHAR}, #{showType,jdbcType=BIGINT}, #{showContentID,jdbcType=VARCHAR},
+		#{switchSecond,jdbcType=INTEGER}, #{skinType,jdbcType=BIGINT}, #{normalColor,jdbcType=VARCHAR},
+		#{suspensionColor,jdbcType=VARCHAR}, #{delayColor,jdbcType=VARCHAR}, #{urgentColor,jdbcType=VARCHAR},
+		#{refreshSecond,jdbcType=INTEGER}, #{showTimer,jdbcType=BIT}, #{columnNum,jdbcType=INTEGER},
+		#{monitorIP,jdbcType=VARCHAR}, #{serverIP,jdbcType=VARCHAR}, #{serverPort,jdbcType=INTEGER},
+		#{MACAddress,jdbcType=VARCHAR}, #{monitorStatus,jdbcType=BIGINT}, #{monitorDesc,jdbcType=VARCHAR},
+		#{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MonitorInfoEntity">
+		insert into B_MonitorInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="monitorID != null">
+				MonitorID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="monitorCode != null">
+				MonitorCode,
+			</if>
+			<if test="monitorName != null">
+				MonitorName,
+			</if>
+			<if test="showType != null">
+				ShowType,
+			</if>
+			<if test="showContentID != null">
+				ShowContentID,
+			</if>
+			<if test="switchSecond != null">
+				SwitchSecond,
+			</if>
+			<if test="skinType != null">
+				SkinType,
+			</if>
+			<if test="normalColor != null">
+				NormalColor,
+			</if>
+			<if test="suspensionColor != null">
+				SuspensionColor,
+			</if>
+			<if test="delayColor != null">
+				DelayColor,
+			</if>
+			<if test="urgentColor != null">
+				UrgentColor,
+			</if>
+			<if test="refreshSecond != null">
+				RefreshSecond,
+			</if>
+			<if test="showTimer != null">
+				ShowTimer,
+			</if>
+			<if test="columnNum != null">
+				ColumnNum,
+			</if>
+			<if test="monitorIP != null">
+				MonitorIP,
+			</if>
+			<if test="serverIP != null">
+				ServerIP,
+			</if>
+			<if test="serverPort != null">
+				ServerPort,
+			</if>
+			<if test="MACAddress != null">
+				MACAddress,
+			</if>
+			<if test="monitorStatus != null">
+				MonitorStatus,
+			</if>
+			<if test="monitorDesc != null">
+				MonitorDesc,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="monitorID != null">
+				#{monitorID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="monitorCode != null">
+				#{monitorCode,jdbcType=VARCHAR},
+			</if>
+			<if test="monitorName != null">
+				#{monitorName,jdbcType=VARCHAR},
+			</if>
+			<if test="showType != null">
+				#{showType,jdbcType=BIGINT},
+			</if>
+			<if test="showContentID != null">
+				#{showContentID,jdbcType=VARCHAR},
+			</if>
+			<if test="switchSecond != null">
+				#{switchSecond,jdbcType=INTEGER},
+			</if>
+			<if test="skinType != null">
+				#{skinType,jdbcType=BIGINT},
+			</if>
+			<if test="normalColor != null">
+				#{normalColor,jdbcType=VARCHAR},
+			</if>
+			<if test="suspensionColor != null">
+				#{suspensionColor,jdbcType=VARCHAR},
+			</if>
+			<if test="delayColor != null">
+				#{delayColor,jdbcType=VARCHAR},
+			</if>
+			<if test="urgentColor != null">
+				#{urgentColor,jdbcType=VARCHAR},
+			</if>
+			<if test="refreshSecond != null">
+				#{refreshSecond,jdbcType=INTEGER},
+			</if>
+			<if test="showTimer != null">
+				#{showTimer,jdbcType=BIT},
+			</if>
+			<if test="columnNum != null">
+				#{columnNum,jdbcType=INTEGER},
+			</if>
+			<if test="monitorIP != null">
+				#{monitorIP,jdbcType=VARCHAR},
+			</if>
+			<if test="serverIP != null">
+				#{serverIP,jdbcType=VARCHAR},
+			</if>
+			<if test="serverPort != null">
+				#{serverPort,jdbcType=INTEGER},
+			</if>
+			<if test="MACAddress != null">
+				#{MACAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="monitorStatus != null">
+				#{monitorStatus,jdbcType=BIGINT},
+			</if>
+			<if test="monitorDesc != null">
+				#{monitorDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MonitorInfoEntity">
+		update B_MonitorInfo
+		<set>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="monitorCode != null">
+				MonitorCode = #{monitorCode,jdbcType=VARCHAR},
+			</if>
+			<if test="monitorName != null">
+				MonitorName = #{monitorName,jdbcType=VARCHAR},
+			</if>
+			<if test="showType != null">
+				ShowType = #{showType,jdbcType=BIGINT},
+			</if>
+			<if test="showContentID != null">
+				ShowContentID = #{showContentID,jdbcType=VARCHAR},
+			</if>
+			<if test="switchSecond != null">
+				SwitchSecond = #{switchSecond,jdbcType=INTEGER},
+			</if>
+			<if test="skinType != null">
+				SkinType = #{skinType,jdbcType=BIGINT},
+			</if>
+			<if test="normalColor != null">
+				NormalColor = #{normalColor,jdbcType=VARCHAR},
+			</if>
+			<if test="suspensionColor != null">
+				SuspensionColor = #{suspensionColor,jdbcType=VARCHAR},
+			</if>
+			<if test="delayColor != null">
+				DelayColor = #{delayColor,jdbcType=VARCHAR},
+			</if>
+			<if test="urgentColor != null">
+				UrgentColor = #{urgentColor,jdbcType=VARCHAR},
+			</if>
+			<if test="refreshSecond != null">
+				RefreshSecond = #{refreshSecond,jdbcType=INTEGER},
+			</if>
+			<if test="showTimer != null">
+				ShowTimer = #{showTimer,jdbcType=BIT},
+			</if>
+			<if test="columnNum != null">
+				ColumnNum = #{columnNum,jdbcType=INTEGER},
+			</if>
+			<if test="monitorIP != null">
+				MonitorIP = #{monitorIP,jdbcType=VARCHAR},
+			</if>
+			<if test="serverIP != null">
+				ServerIP = #{serverIP,jdbcType=VARCHAR},
+			</if>
+			<if test="serverPort != null">
+				ServerPort = #{serverPort,jdbcType=INTEGER},
+			</if>
+			<if test="MACAddress != null">
+				MACAddress = #{MACAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="monitorStatus != null">
+				MonitorStatus = #{monitorStatus,jdbcType=BIGINT},
+			</if>
+			<if test="monitorDesc != null">
+				MonitorDesc = #{monitorDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where MonitorID = #{monitorID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MonitorInfoEntity">
+		update B_MonitorInfo
+		set ArchiveID = #{archiveID,jdbcType=BIGINT},
+		MonitorCode = #{monitorCode,jdbcType=VARCHAR},
+		MonitorName = #{monitorName,jdbcType=VARCHAR},
+		ShowType = #{showType,jdbcType=BIGINT},
+		ShowContentID = #{showContentID,jdbcType=VARCHAR},
+		SwitchSecond = #{switchSecond,jdbcType=INTEGER},
+		SkinType = #{skinType,jdbcType=BIGINT},
+		NormalColor = #{normalColor,jdbcType=VARCHAR},
+		SuspensionColor = #{suspensionColor,jdbcType=VARCHAR},
+		DelayColor = #{delayColor,jdbcType=VARCHAR},
+		UrgentColor = #{urgentColor,jdbcType=VARCHAR},
+		RefreshSecond = #{refreshSecond,jdbcType=INTEGER},
+		ShowTimer = #{showTimer,jdbcType=BIT},
+		ColumnNum = #{columnNum,jdbcType=INTEGER},
+		MonitorIP = #{monitorIP,jdbcType=VARCHAR},
+		ServerIP = #{serverIP,jdbcType=VARCHAR},
+		ServerPort = #{serverPort,jdbcType=INTEGER},
+		MACAddress = #{MACAddress,jdbcType=VARCHAR},
+		MonitorStatus = #{monitorStatus,jdbcType=BIGINT},
+		MonitorDesc = #{monitorDesc,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where MonitorID = #{monitorID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="B_MonitorInfoEntity" resultType="B_MonitorInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_MonitorInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="B_MonitorInfoEntity" resultType="B_MonitorInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_MonitorInfoEntity(#{monitorID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="B_MonitorInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteB_MonitorInfoEntity(#{monitorID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="MonitorID" parameterType="B_MonitorInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertB_MonitorInfoEntity(#{archiveID},#{columnNum},#{createTime},#{creatorID},#{delayColor},#{isSync},#{mACAddress},#{memo},#{monitorCode},#{monitorDesc},#{monitorID,jdbcType=INTEGER,mode=OUT},#{monitorIP},#{monitorName},#{monitorStatus},#{normalColor},#{refreshSecond},#{serverIP},#{serverPort},#{showContentID},#{showTimer},#{showType},#{skinType},#{suspensionColor},#{switchSecond},#{urgentColor})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="B_MonitorInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateB_MonitorInfoEntity(#{archiveID},#{columnNum},#{createTime},#{creatorID},#{delayColor},#{isSync},#{mACAddress},#{memo},#{monitorCode},#{monitorDesc},#{monitorID},#{monitorIP},#{monitorName},#{monitorStatus},#{normalColor},#{refreshSecond},#{serverIP},#{serverPort},#{showContentID},#{showTimer},#{showType},#{skinType},#{suspensionColor},#{switchSecond},#{urgentColor})} 
+		]]>  
+  	</update>
+
+	<!-- 根据档案ID查询看板配置 lzy-->
+	<select id="getMonitorInfoByArchiveID" parameterType="Long" resultType="B_MonitorInfoEntity" >
+		SELECT `ArchiveID`, `ColumnNum`, `CreateTime`, `CreatorID`, `DelayColor`, `IsSync`, `MACAddress`,
+			`Memo`, `MonitorCode`, `MonitorDesc`, `MonitorID`, `MonitorIP`, `MonitorName`, `MonitorStatus`,
+			`NormalColor`, `RefreshSecond`, `ServerIP`, `ServerPort`, `ShowContentID`, `ShowTimer`, `ShowType`,
+			`SkinType`, `SuspensionColor`, `SwitchSecond`, `UrgentColor`
+		FROM B_MonitorInfo
+			WHERE
+				ArchiveID = #{archiveID};
+	</select>
+
+	<!-- 查询看板基本设置信息 lzy -->
+	<select id="getBasicSetInfo" parameterType="map" resultType="cc.toprank.byd.web.vo.menu.MonitorVO" >
+		SELECT
+		(SELECT tableCode FROM B_DinningTableInfo WHERE TableID = #{tableID}) AS tableCode,
+		(SELECT NickName FROM U_LoginInfo WHERE LoginID = #{loginID}) AS creatorName,
+		(SELECT OrderCode FROM O_OrderInfo WHERE OrderID = #{orderID}) AS orderCode,
+		(SELECT CategoryName FROM P_ProductCategoryInfo WHERE CategoryID = #{categoryID}) AS categoryName,
+		(SELECT DesignerName FROM P_DesignerInfo WHERE DesignerID = #{designerID}) AS designerName,
+		(SELECT DictionaryName FROM C_DictionaryInfo WHERE DictionaryID = #{dictionaryID}) AS unitName,
+		( SELECT Gtin FROM P_ProductInfo WHERE ProductID = #{productID})AS gtin,
+		(SELECT OptionName from P_SpecificationAttributeOptionInfo WHERE OptionID = #{optionID}) AS optionName;
+	</select>
+
+	<select id="selectByArchiveID" parameterType="java.lang.Long" resultType="cc.toprank.byd.entity.B_MonitorInfoEntity">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		B_MonitorInfo b WHERE MonitorStatus=9 AND b.ArchiveID = #{archiveID,jdbcType=BIGINT}
+	</select>
+  </mapper>

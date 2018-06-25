@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cc.toprank.byd.dao.ProductInfoDao">
+	<!--
+	   	根据餐厅编号区域编号餐次编号分类编号查询所有菜品
+	    lanziyao
+    -->
+  	<select id="getProductListByCondition" parameterType="map" resultType="cc.toprank.byd.vo.ProductInfoVO"  >
+		SELECT  m.ProductID,
+            m.ProductName AS productName,
+            m.OriginalPrice AS originalPrice,
+            m.Price AS price,
+            m.ProductCode AS barCode,
+            (CASE WHEN m.IsCombo = 1 THEN 1 ELSE 2 END) AS productType,
+            m.ProduceCost AS produceCost,
+            m.AreaID AS areaID,
+            m.MealsID AS mealsID,
+            IFNULL(m.VariantID,0) AS variantID,
+            m.NeedWeigh AS needWeigh,
+            m.MenuID,
+            c.DictionaryName AS unit,
+            GROUP_CONCAT(pt.tagID) AS tagIDs
+		FROM B_MerchantMenuInfo m
+		LEFT JOIN B_MerchantInfo a ON a.ArchiveID = m.ArchiveID
+        LEFT JOIN C_DictionaryInfo c ON m.UnitID = c.DictionaryID
+        LEFT JOIN P_ProductTagMapping pt ON pt.TargetID = m.VariantID AND pt.TargetType = 355
+        LEFT JOIN (SELECT TypeID,ArchiveID,TypeStatus,datediff(ExpireTime,EffectiveTime) as dayNum
+                     FROM B_MerchantMenuTypeInfo
+                     WHERE datediff(ExpireTime,EffectiveTime) = (SELECT MIN(datediff(ExpireTime,EffectiveTime)) FROM B_MerchantMenuTypeInfo) LIMIT 1) f ON f.ArchiveID = m.ArchiveID
+		WHERE
+            a.ArchiveID=#{archiveID}
+            AND m.MenuStatus = 9
+            AND f.TypeID = m.TypeID
+            AND f.TypeStatus = 9
+            <if test="default == null">
+                AND m.AreaID = #{areaID}
+                AND m.MealsID = #{mealsID}
+            </if>
+            <if test="default != null">
+                AND m.AreaID IS NULL
+                AND m.MealsID IS NULL
+            </if>
+            <if test="categoryID != 0">
+                AND m.CategoryID = #{categoryID}
+            </if>
+            AND (m.ProductCode like CONCAT('%',#{searchCode},'%') OR m.FirstLetter like CONCAT(#{searchCode},'%')  OR m.ProductName like CONCAT('%',#{searchCode},'%')  )
+        GROUP BY m.menuID
+    </select>
+
+
+
+    <select id="getProductList" parameterType="map" resultType="cc.toprank.byd.vo.ProductInfoVO" statementType="CALLABLE">
+        <![CDATA[
+			{call GETB_MerchantMenuInfoByCondition(#{archiveID},#{areaID},#{mealsID},#{categoryID},#{searchCode})}
+		]]>
+    </select>
+
+
+    <!-- 查询桌台打印数据 -->
+    <select id="getPrintTableBasic" parameterType="Long" resultType="cc.toprank.byd.vo.print.TableInfoVO" >
+         SELECT
+                (SELECT NickName FROM U_LoginInfo WHERE LoginID = os.CreatorID) AS operator,
+                (SELECT NickName FROM U_LoginInfo WHERE LoginID = bu.WaiterLoginID) AS waiter,
+                (SELECT AreaName from B_ShopAreaInfo WHERE AreaID = bt.AreaID) AS area,
+                (SELECT MealName from B_MealsInfo WHERE MealsID = bu.MealsID) AS meals,
+                round((UNIX_TIMESTAMP(UTC_TIMESTAMP())-UNIX_TIMESTAMP(bu.StartTime))/60) as duration,
+                os.CreateTime as startTime,os.TableName as 'table',os.PeopleNum,o.OrderCode as orderNo,
+                UTC_TIMESTAMP() as operationTime,os.SubOrderDesc as remark,bt.ArchiveID,
+                os.CreatorID as operatorID,os.SubOrderID as businessID
+            FROM O_SubOrderInfo os
+            LEFT JOIN O_OrderInfo o ON o.OrderID = os.OrderID
+            LEFT JOIN B_DinningTableInfo bt ON os.TableID = bt.TableID
+            LEFT JOIN B_DinningTableUseInfo bu ON os.TableID = bu.TableID AND bu.EndTime IS NULL
+            WHERE
+                os.SubOrderID = #{subOrderID}  LIMIT 1;
+    </select>
+
+    <!-- 查询订单明细打印数据 -->
+    <select id="getPrintProductDetailBasic" resultType="cc.toprank.byd.vo.print.ProductDetailVO" >
+        SELECT o.DetailID,b.ProductID,o.VariantID,b.CategoryID,b.ProductName,
+			 o.Quantity as quantity,o.FloatQuantity as weight,
+			 cd.DictionaryName as unit,o.TotalAmount as amount,o.ValueNames as attributes,
+			 o.IsCombo,o.ComboName,
+			 (SELECT GROUP_CONCAT(p.TagName)
+					FROM B_MerchantTagMapping ptm
+					LEFT JOIN B_MerchantTagInfo p ON ptm.TagID = p.TagID
+					WHERE ptm.TargetType = 943 AND ptm.TargetID = o.DetailID
+					GROUP BY ptm.TargetID) as productTags,
+			 o.DesignerPrice as designerPrice,pd.DesignerName as designer,
+			 o.TableName as targetTable,o.ALaCarteMethod,o.DetailID as businessID
+        from O_OrderDetailInfo o
+        LEFT JOIN B_MerchantMenuInfo b ON o.MenuID = b.MenuID
+        LEFT JOIN C_DictionaryInfo cd ON o.ProductUnit = cd.DictionaryID
+        LEFT JOIN P_DesignerInfo pd ON pd.DesignerID = o.DesignerID
+        WHERE  o.DetailID in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            ${item}
+        </foreach>
+    </select>
+
+
+    <!-- 查询套餐明细打印数据 -->
+    <select id="getPrintComboProductDetailBasic" resultType="cc.toprank.byd.vo.print.ProductDetailVO" >
+        SELECT o.DetailID,b.ProductID,c.VariantID,b.CategoryID,c.ProductName,
+                c.Quantity as quantity,
+                cd.DictionaryName as unit,0 as amount,c.ValueNames as attributes,
+                o.IsCombo,c.ComboName,
+                (SELECT GROUP_CONCAT(p.TagName)
+                    FROM B_MerchantTagMapping ptm
+                    LEFT JOIN B_MerchantTagInfo p ON ptm.TagID = p.TagID
+                    WHERE ptm.TargetType = 944 AND ptm.TargetID = c.RecordID
+                    GROUP BY ptm.TargetID) as productTags,
+                o.DesignerPrice as designerPrice,pd.DesignerName as designer,
+                o.TableName as targetTable,o.ALaCarteMethod,c.RecordID as businessID
+        from O_ComboDetailInfo c
+        LEFT JOIN O_OrderDetailInfo o ON c.DetailID = o.DetailID
+        LEFT JOIN B_MerchantMenuInfo b ON o.MenuID = b.MenuID
+        LEFT JOIN C_DictionaryInfo cd ON c.ProductUnit = cd.DictionaryID
+        LEFT JOIN P_DesignerInfo pd ON pd.DesignerID = o.DesignerID
+        WHERE
+             o.DetailID IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            ${item}
+        </foreach>
+    </select>
+  </mapper>

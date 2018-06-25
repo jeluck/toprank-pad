@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="pad-web:war">
+    <output-path>$PROJECT_DIR$/toprank-pad-web/target</output-path>
+    <root id="archive" name="ROOT.war">
+      <element id="artifact" artifact-name="pad-web:war exploded" />
+    </root>
+  </artifact>
+</component>

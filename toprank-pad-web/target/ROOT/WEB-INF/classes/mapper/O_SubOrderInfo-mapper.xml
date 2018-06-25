@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.O_SubOrderInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_SubOrderInfoEntity">
+		<id column="SubOrderID" jdbcType="BIGINT" property="subOrderID" />
+		<result column="OrderID" jdbcType="BIGINT" property="orderID" />
+		<result column="MealsID" jdbcType="BIGINT" property="mealsID" />
+		<result column="TableID" jdbcType="BIGINT" property="tableID" />
+		<result column="TableName" jdbcType="VARCHAR" property="tableName" />
+		<result column="PeopleNum" jdbcType="INTEGER" property="peopleNum" />
+		<result column="Commission" jdbcType="DECIMAL" property="commission" />
+		<result column="CurrencyID" jdbcType="BIGINT" property="currencyID" />
+		<result column="TotalAmount" jdbcType="DECIMAL" property="totalAmount" />
+		<result column="DiscountAmount" jdbcType="DECIMAL" property="discountAmount" />
+		<result column="ActualAmount" jdbcType="DECIMAL" property="actualAmount" />
+		<result column="PendingAmount" jdbcType="DECIMAL" property="pendingAmount" />
+		<result column="OrderStatus" jdbcType="BIGINT" property="orderStatus" />
+		<result column="PaymentMethodID" jdbcType="BIGINT" property="paymentMethodID" />
+		<result column="PayStatus" jdbcType="BIGINT" property="payStatus" />
+		<result column="Quantity" jdbcType="INTEGER" property="quantity" />
+		<result column="PaidTime" jdbcType="TIMESTAMP" property="paidTime" />
+		<result column="SubOrderDesc" jdbcType="VARCHAR" property="subOrderDesc" />
+		<result column="NickName" jdbcType="VARCHAR" property="nickName" />
+		<result column="WeightID" jdbcType="BIGINT" property="weightID" />
+		<result column="OrderWeight" jdbcType="REAL" property="orderWeight" />
+		<result column="ShippingType" jdbcType="BIGINT" property="shippingType" />
+		<result column="ShippingCorpID" jdbcType="BIGINT" property="shippingCorpID" />
+		<result column="ShippingCode" jdbcType="VARCHAR" property="shippingCode" />
+		<result column="VendorID" jdbcType="BIGINT" property="vendorID" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SubOrderID, OrderID, MealsID, TableID, TableName, PeopleNum, Commission, CurrencyID,
+		TotalAmount, DiscountAmount, ActualAmount, PendingAmount, OrderStatus, PaymentMethodID,
+		PayStatus, Quantity, PaidTime, SubOrderDesc, NickName, WeightID, OrderWeight, ShippingType,
+		ShippingCorpID, ShippingCode, VendorID, IsSync, CreatorID, CreatorType, CreateTime,
+		Memo
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_SubOrderInfo
+		where SubOrderID = #{subOrderID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_SubOrderInfo
+		where SubOrderID = #{subOrderID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_SubOrderInfoEntity">
+		insert into O_SubOrderInfo (SubOrderID, OrderID, MealsID,
+		TableID, TableName, PeopleNum,
+		Commission, CurrencyID, TotalAmount,
+		DiscountAmount, ActualAmount, PendingAmount,
+		OrderStatus, PaymentMethodID, PayStatus,
+		Quantity, PaidTime, SubOrderDesc,
+		NickName, WeightID, OrderWeight,
+		ShippingType, ShippingCorpID, ShippingCode,
+		VendorID, IsSync, CreatorID,
+		CreatorType, CreateTime, Memo
+		)
+		values (#{subOrderID,jdbcType=BIGINT}, #{orderID,jdbcType=BIGINT}, #{mealsID,jdbcType=BIGINT},
+		#{tableID,jdbcType=BIGINT}, #{tableName,jdbcType=VARCHAR}, #{peopleNum,jdbcType=INTEGER},
+		#{commission,jdbcType=DECIMAL}, #{currencyID,jdbcType=BIGINT}, #{totalAmount,jdbcType=DECIMAL},
+		#{discountAmount,jdbcType=DECIMAL}, #{actualAmount,jdbcType=DECIMAL}, #{pendingAmount,jdbcType=DECIMAL},
+		#{orderStatus,jdbcType=BIGINT}, #{paymentMethodID,jdbcType=BIGINT}, #{payStatus,jdbcType=BIGINT},
+		#{quantity,jdbcType=INTEGER}, #{paidTime,jdbcType=TIMESTAMP}, #{subOrderDesc,jdbcType=VARCHAR},
+		#{nickName,jdbcType=VARCHAR}, #{weightID,jdbcType=BIGINT}, #{orderWeight,jdbcType=REAL},
+		#{shippingType,jdbcType=BIGINT}, #{shippingCorpID,jdbcType=BIGINT}, #{shippingCode,jdbcType=VARCHAR},
+		#{vendorID,jdbcType=BIGINT}, #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT},
+		#{creatorType,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_SubOrderInfoEntity">
+		insert into O_SubOrderInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="subOrderID != null">
+				SubOrderID,
+			</if>
+			<if test="orderID != null">
+				OrderID,
+			</if>
+			<if test="mealsID != null">
+				MealsID,
+			</if>
+			<if test="tableID != null">
+				TableID,
+			</if>
+			<if test="tableName != null">
+				TableName,
+			</if>
+			<if test="peopleNum != null">
+				PeopleNum,
+			</if>
+			<if test="commission != null">
+				Commission,
+			</if>
+			<if test="currencyID != null">
+				CurrencyID,
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount,
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount,
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount,
+			</if>
+			<if test="pendingAmount != null">
+				PendingAmount,
+			</if>
+			<if test="orderStatus != null">
+				OrderStatus,
+			</if>
+			<if test="paymentMethodID != null">
+				PaymentMethodID,
+			</if>
+			<if test="payStatus != null">
+				PayStatus,
+			</if>
+			<if test="quantity != null">
+				Quantity,
+			</if>
+			<if test="paidTime != null">
+				PaidTime,
+			</if>
+			<if test="subOrderDesc != null">
+				SubOrderDesc,
+			</if>
+			<if test="nickName != null">
+				NickName,
+			</if>
+			<if test="weightID != null">
+				WeightID,
+			</if>
+			<if test="orderWeight != null">
+				OrderWeight,
+			</if>
+			<if test="shippingType != null">
+				ShippingType,
+			</if>
+			<if test="shippingCorpID != null">
+				ShippingCorpID,
+			</if>
+			<if test="shippingCode != null">
+				ShippingCode,
+			</if>
+			<if test="vendorID != null">
+				VendorID,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="creatorType != null">
+				CreatorType,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="subOrderID != null">
+				#{subOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="orderID != null">
+				#{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="mealsID != null">
+				#{mealsID,jdbcType=BIGINT},
+			</if>
+			<if test="tableID != null">
+				#{tableID,jdbcType=BIGINT},
+			</if>
+			<if test="tableName != null">
+				#{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="peopleNum != null">
+				#{peopleNum,jdbcType=INTEGER},
+			</if>
+			<if test="commission != null">
+				#{commission,jdbcType=DECIMAL},
+			</if>
+			<if test="currencyID != null">
+				#{currencyID,jdbcType=BIGINT},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="discountAmount != null">
+				#{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actualAmount != null">
+				#{actualAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="pendingAmount != null">
+				#{pendingAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderStatus != null">
+				#{orderStatus,jdbcType=BIGINT},
+			</if>
+			<if test="paymentMethodID != null">
+				#{paymentMethodID,jdbcType=BIGINT},
+			</if>
+			<if test="payStatus != null">
+				#{payStatus,jdbcType=BIGINT},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="paidTime != null">
+				#{paidTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subOrderDesc != null">
+				#{subOrderDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="weightID != null">
+				#{weightID,jdbcType=BIGINT},
+			</if>
+			<if test="orderWeight != null">
+				#{orderWeight,jdbcType=REAL},
+			</if>
+			<if test="shippingType != null">
+				#{shippingType,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCorpID != null">
+				#{shippingCorpID,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCode != null">
+				#{shippingCode,jdbcType=VARCHAR},
+			</if>
+			<if test="vendorID != null">
+				#{vendorID,jdbcType=BIGINT},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				#{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_SubOrderInfoEntity">
+		update O_SubOrderInfo
+		<set>
+			<if test="orderID != null">
+				OrderID = #{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="mealsID != null">
+				MealsID = #{mealsID,jdbcType=BIGINT},
+			</if>
+			<if test="tableID != null">
+				TableID = #{tableID,jdbcType=BIGINT},
+			</if>
+			<if test="tableName != null">
+				TableName = #{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="peopleNum != null">
+				PeopleNum = #{peopleNum,jdbcType=INTEGER},
+			</if>
+			<if test="commission != null">
+				Commission = #{commission,jdbcType=DECIMAL},
+			</if>
+			<if test="currencyID != null">
+				CurrencyID = #{currencyID,jdbcType=BIGINT},
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount = #{actualAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="pendingAmount != null">
+				PendingAmount = #{pendingAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderStatus != null">
+				OrderStatus = #{orderStatus,jdbcType=BIGINT},
+			</if>
+			<if test="paymentMethodID != null">
+				PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+			</if>
+			<if test="payStatus != null">
+				PayStatus = #{payStatus,jdbcType=BIGINT},
+			</if>
+			<if test="quantity != null">
+				Quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="paidTime != null">
+				PaidTime = #{paidTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subOrderDesc != null">
+				SubOrderDesc = #{subOrderDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				NickName = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="weightID != null">
+				WeightID = #{weightID,jdbcType=BIGINT},
+			</if>
+			<if test="orderWeight != null">
+				OrderWeight = #{orderWeight,jdbcType=REAL},
+			</if>
+			<if test="shippingType != null">
+				ShippingType = #{shippingType,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCorpID != null">
+				ShippingCorpID = #{shippingCorpID,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCode != null">
+				ShippingCode = #{shippingCode,jdbcType=VARCHAR},
+			</if>
+			<if test="vendorID != null">
+				VendorID = #{vendorID,jdbcType=BIGINT},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				CreatorType = #{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SubOrderID = #{subOrderID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_SubOrderInfoEntity">
+		update O_SubOrderInfo
+		set OrderID = #{orderID,jdbcType=BIGINT},
+		MealsID = #{mealsID,jdbcType=BIGINT},
+		TableID = #{tableID,jdbcType=BIGINT},
+		TableName = #{tableName,jdbcType=VARCHAR},
+		PeopleNum = #{peopleNum,jdbcType=INTEGER},
+		Commission = #{commission,jdbcType=DECIMAL},
+		CurrencyID = #{currencyID,jdbcType=BIGINT},
+		TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+		DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+		ActualAmount = #{actualAmount,jdbcType=DECIMAL},
+		PendingAmount = #{pendingAmount,jdbcType=DECIMAL},
+		OrderStatus = #{orderStatus,jdbcType=BIGINT},
+		PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+		PayStatus = #{payStatus,jdbcType=BIGINT},
+		Quantity = #{quantity,jdbcType=INTEGER},
+		PaidTime = #{paidTime,jdbcType=TIMESTAMP},
+		SubOrderDesc = #{subOrderDesc,jdbcType=VARCHAR},
+		NickName = #{nickName,jdbcType=VARCHAR},
+		WeightID = #{weightID,jdbcType=BIGINT},
+		OrderWeight = #{orderWeight,jdbcType=REAL},
+		ShippingType = #{shippingType,jdbcType=BIGINT},
+		ShippingCorpID = #{shippingCorpID,jdbcType=BIGINT},
+		ShippingCode = #{shippingCode,jdbcType=VARCHAR},
+		VendorID = #{vendorID,jdbcType=BIGINT},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreatorType = #{creatorType,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where SubOrderID = #{subOrderID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="O_SubOrderInfoEntity" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_SubOrderInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="O_SubOrderInfoEntity" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_SubOrderInfoEntity(#{subOrderID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteO_SubOrderInfoEntity(#{subOrderID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="SubOrderID" parameterType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertO_SubOrderInfoEntity(#{actualAmount},#{commission},#{createTime},#{creatorID},#{creatorType},#{currencyID},#{discountAmount},#{isSync},#{mealsID},#{memo},#{nickName},#{orderID},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{subOrderDesc},#{subOrderID,jdbcType=INTEGER,mode=OUT},#{tableID},#{tableName},#{totalAmount},#{vendorID},#{weightID})}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateO_SubOrderInfoEntity(#{actualAmount},#{commission},#{createTime},#{creatorID},#{creatorType},#{currencyID},#{discountAmount},#{isSync},#{mealsID},#{memo},#{nickName},#{orderID},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{subOrderDesc},#{subOrderID},#{tableID},#{tableName},#{totalAmount},#{vendorID},#{weightID})} 
+		]]>  
+  	</update>
+
+	<update id="updateBatch" parameterType="Hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateO_SubOrderInfoEntityBatch(#{isSync},#{orderStatus},#{subOrderIDs})}
+		]]>
+	</update>
+  	<!--<select id="list" parameterType="O_SubOrderInfo" resultType="O_SubOrderInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetO_SubOrderInfo_query_by_condition(#{actualAmount},#{commission},#{createTime},#{creatorID},#{creatorType},#{currencyID},#{discountAmount},#{isSync},#{mealsID},#{memo},#{nickName},#{orderID},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{subOrderDesc},#{tableID},#{tableName},#{totalAmount},#{vendorID},#{weightID})} 
+		]]>  
+  	</select>
+  	-->
+  	  	
+	<!--   	
+		根据桌台ID查询进行状态或未下单状态
+	  	lanziyao 
+	-->
+	<select id="getSubOrderStatusInfoByTableID" parameterType="Long" resultType="O_SubOrderInfoEntity" >
+		SELECT
+			ActualAmount, Commission, CreateTime, CreatorID, CurrencyID, DiscountAmount, MealsID,
+			Memo, NickName, OrderID, OrderStatus, OrderWeight, PaidTime, PaymentMethodID,
+			PayStatus, PeopleNum, Quantity, ShippingCode, ShippingCorpID, ShippingType, SubOrderDesc,
+			SubOrderID, TableID, TableName, TotalAmount, VendorID, WeightID, IsSync
+			 FROM O_SubOrderInfo
+			 WHERE
+					TableID = #{tableID}
+					AND (OrderStatus = 875 OR OrderStatus = 654)
+					order by OrderID asc;
+	</select>
+
+
+	<!--
+		根据桌台ID查询进行状态或未下单、待支付、己支付（脏台）状态
+	  	LinYN
+	-->
+	<select id="getRelationSubOrderInfoByTableID" parameterType="Long" resultType="O_SubOrderInfoEntity" >
+		SELECT
+		ActualAmount, Commission, CreateTime, CreatorID, CurrencyID, DiscountAmount, MealsID,
+		Memo, NickName, OrderID, OrderStatus, OrderWeight, PaidTime, PaymentMethodID,
+		PayStatus, PeopleNum, Quantity, ShippingCode, ShippingCorpID, ShippingType, SubOrderDesc,
+		SubOrderID, TableID, TableName, TotalAmount, VendorID, WeightID, IsSync
+		FROM O_SubOrderInfo
+		WHERE TableID = #{tableID}
+			AND OrderStatus in (59,654,875,876)
+		order by OrderID asc;
+	</select>
+
+	<!--
+    根据桌台编号,订单状态查询子订单信息
+      lanziyao
+-->
+	<select id="getSubOrderInfoByTableIDAndOrderStatus" parameterType="O_SubOrderInfoEntity" resultType="O_SubOrderInfoEntity" >
+		SELECT
+		ActualAmount, Commission, CreateTime, CreatorID, CurrencyID, DiscountAmount, MealsID,
+		Memo, NickName, OrderID, OrderStatus, OrderWeight, PaidTime, PaymentMethodID,
+		PayStatus, PeopleNum, Quantity, ShippingCode, ShippingCorpID, ShippingType, SubOrderDesc,
+		SubOrderID, TableID, TableName, TotalAmount, VendorID, WeightID, IsSync
+		FROM O_SubOrderInfo
+		WHERE
+		TableID = #{tableID}
+		AND OrderStatus = #{orderStatus}
+		order by OrderID asc;
+	</select>
+
+	<!--
+		根据桌台编号（多选）查询订单状态为进行中的子订单信息
+	  	LinYN
+	-->
+	<select id="getUsingSubOrderInfoByTableIDs" parameterType="string" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_Get_UsingSubOrderInfoByTableIDs(#{tableIDs})}
+		]]>
+	</select>
+
+	<!--
+		根据桌台编号查询订单状态为进行中的子订单信息
+	  	LinYN
+	-->
+	<select id="getSubOrderInfoVOByTableIDAndOrderStatus" parameterType="long" resultType="cc.toprank.byd.web.dto.SubOrderInfoVo" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_Get_SubOrderDetailInfo(#{tableID})}
+		]]>
+	</select>
+
+	<!--
+    根据桌台编号查询订单状态为进行中的子订单信息
+      zhouwei
+-->
+	<select id="getSubOrderInfoVOByTableIDAndStatus" parameterType="long" resultType="cc.toprank.byd.web.dto.SubOrderInfoVo" >
+		<![CDATA[
+				SELECT ActualAmount, Commission, CreateTime, CreatorID, CurrencyID, DiscountAmount, MealsID,
+        Memo, NickName, OrderID, OrderStatus, OrderWeight, PaidTime, PaymentMethodID,
+        PayStatus, PeopleNum, Quantity, ShippingCode, ShippingCorpID, ShippingType, SubOrderDesc,
+        SubOrderID, TableID, TableName, TotalAmount, VendorID, WeightID, IsSync
+        , (select sum(odt.ServedNum) from O_OrderDetailInfo odt where odt.SubOrderID = so.SubOrderID) as servedNum
+				 FROM O_SubOrderInfo so
+				 WHERE TableID =  #{tableID}
+					 AND (OrderStatus = 875 OR OrderStatus = 654 OR OrderStatus = 876 OR OrderStatus = 626 OR OrderStatus = 59)
+				 order by OrderID asc;
+		]]>
+	</select>
+
+	<!--
+		根据主订单编号查询订单状态为进行中的子订单信息
+	  	LinYN
+	-->
+	<select id="getUsingSubOrderInfoByOrderID" parameterType="long" resultType="O_SubOrderInfoEntity">
+			select <include refid="Base_Column_List" />
+			from O_SubOrderInfo so
+			where so.OrderID = #{orderID} and (so.OrderStatus = 654 OR so.OrderStatus = 875);
+	</select>
+
+	<!--
+		根据子订单编号修改订单总额,实际金额,数量
+	  	lanziyao
+	-->
+	<update id="updateSubOrderInfoEntityBySubOrderID" parameterType="O_SubOrderInfoEntity" >
+		UPDATE O_SubOrderInfo
+		<set>
+			<if test="totalAmount != null">
+				TotalAmount = #{totalAmount},
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount = #{actualAmount},
+			</if>
+			<if test="pendingAmount != null">
+				PendingAmount = #{pendingAmount},
+			</if>
+			<if test="quantity != null">
+				Quantity =  #{quantity},
+			</if>
+		</set>
+		WHERE
+				SubOrderID = #{subOrderID};
+  	</update>
+
+	<update id="updateSubOrderInfoByTableIdANDMealsId" parameterType="hashmap" statementType="CALLABLE">
+  		<![CDATA[
+			{call Update_ReceptionO_SubOrderInfoByTableIdANDMealsId(#{OutMealsID},#{OutTableID},#{InMealsID},#{InTableID},#{memo})}
+		]]>
+  	</update>
+
+  	<!--
+  	  根据餐桌号查找子订单金额明细
+  	  zhangbo
+  	 -->
+  	 <select id="getSubOrderInfoByTableCode" parameterType="String" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  	     <![CDATA[
+			{call GetO_Reception_SubOrderInfoByTableCode(#{tableCode})}
+		 ]]>
+  	 </select>
+  	 <!--
+  	  根据餐桌号查找子订单明细
+  	  zhangbo
+  	 -->
+  	 <select id="getSubDetailByTableID" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  	     <![CDATA[
+			{call Get_ReceptionO_SubDetailInfoByTableCode(#{tableID},#{archiveID})}
+		 ]]>
+  	 </select>
+  	 <select id="getOrderIdByTableCode" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  	     <![CDATA[
+			{call Get_ReceptionO_OrderIdByTableCode(#{tableID},#{archiveID})}
+		 ]]>
+  	 </select>
+  	<!--
+		根据桌台编号,餐次编号,订单状态,创建时间查询子订单
+	  	lzy
+	-->
+	<select id="getSubOrderInfoByCondition" parameterType="O_SubOrderInfoEntity" resultType="O_SubOrderInfoEntity" >
+		SELECT
+			ActualAmount, Commission, CreateTime, CreatorID, CurrencyID, DiscountAmount, MealsID,
+			Memo, NickName, OrderID, OrderStatus, OrderWeight, PaidTime, PaymentMethodID,
+			PayStatus, PendingAmount, PeopleNum, Quantity, ShippingCode, ShippingCorpID, ShippingType,
+			SubOrderDesc, SubOrderID, TableID, TableName, TotalAmount, VendorID, WeightID
+		FROM O_SubOrderInfo
+		WHERE
+			TableID = #{tableID}
+			<if test="mealsID != null">
+			  AND MealsID = #{mealsID}
+			</if>
+			AND OrderStatus = #{orderStatus}
+			AND DATEDIFF(CreateTime,CURDATE())=0;
+	</select>
+
+	<!--
+		插入一条新的子订单
+	  	xuexin
+	-->
+	<insert id="saveSubOrderInfo" useGeneratedKeys="true" keyProperty="SubOrderID" parameterType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call Insert_ReceptionO_SubOrderInfoEntity(#{actualAmount},#{commission},#{createTime},#{creatorID},#{currencyID},#{discountAmount},#{mealsID},#{memo},#{nickName},#{orderID},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{subOrderDesc},#{subOrderID,jdbcType=INTEGER,mode=OUT},#{tableID},#{tableName},#{totalAmount},#{vendorID},#{weightID},"admin")}
+		]]>
+  	</insert>
+
+  	<!--
+		根据桌台编号,餐次编号,创建时间查询子订单
+	  	xuexin
+	-->
+	<select id="getSubOrderInfo" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionO_SubOrderInfoEntity(#{mealsID},#{tableID})}
+		]]>
+	</select>
+	<!--
+		修改子订单
+	  	xuexin
+	-->
+	<update id="updateSubOrderInfoEntity" parameterType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call Update_ReceptionO_SubOrderInfoEntity(#{actualAmount},#{commission},#{createTime},#{creatorID},#{currencyID},#{discountAmount},#{mealsID},#{memo},#{nickName},#{orderID},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{subOrderDesc},#{subOrderID},#{tableID},#{tableName},#{totalAmount},#{vendorID},#{weightID})}
+		]]>
+  	</update>
+	<!-- 根据订单编号查询子订单信息	hcy -->
+	<select id="queryByOrderID" parameterType="java.lang.Long" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		Select `ActualAmount`, `Commission`, `CreateTime`, `CreatorID`, `CurrencyID`, `DiscountAmount`, `MealsID`,
+        `Memo`, `NickName`, `OrderID`, `OrderStatus`, `OrderWeight`, `PaidTime`, `PaymentMethodID`,
+        `PayStatus`, `PeopleNum`, `Quantity`, `ShippingCode`, `ShippingCorpID`, `ShippingType`, `SubOrderDesc`,
+        `SubOrderID`, `TableID`, `TableName`, `TotalAmount`, `VendorID`, `WeightID`
+		from O_SubOrderInfo
+		where
+        `OrderID` = #{orderID} ORDER BY CreateTime ASC
+	</select>
+
+	<!-- 根据订子订单编号改变子订单状态	hcy -->
+	<update id="updateByID" parameterType="O_SubOrderInfoEntity">
+		Update O_SubOrderInfo
+		Set
+			OrderStatus = #{orderStatus},
+			PaidTime = #{paidTime},
+			PayStatus = #{payStatus},
+			PendingAmount = PendingAmount - #{pendingAmount}
+		where
+			SubOrderID = #{subOrderID};
+  	</update>
+
+  	<select id="getSubOrderCenterInfoList" parameterType="hashmap" resultType="hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call GET_ReceptionO_SubOrderCenterInfoList(#{orderId})}
+		]]>
+	</select>
+
+	<select id="getSubOrderCenterInfoDetail" parameterType="hashmap" resultType="hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call GET_ReceptionO_SubOrderCenterInfoDetail(#{subOrderId})}
+		]]>
+	</select>
+  	<!-- 根据子订单编号改变子订单折扣金额和实际金额	hcy -->
+  	<update id="updateAmountByID" parameterType="O_SubOrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call Update_ReceptionO_SubOrderInfoEntityBySubOrderID2(#{subOrderID},#{discountAmount},#{actualAmount})}
+		]]>
+  	</update>
+
+  	<select id="getSubOrderCenterPaymentInfo" parameterType="hashmap" resultType="hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call GET_Reception_OrderCenterPaymentInfo(#{subOrderId})}
+		]]>
+	</select>
+
+	<!--
+	根据 （订单编号  餐次编号  	桌台编号） 获取所有数据
+	@author lwh
+	 -->
+  	<select id="GetO_SubOrderInfoCollectionByCondition" parameterType="O_SubOrderInfoEntity" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_SubOrderInfoCollectionByCondition(#{orderID},#{mealsID},#{tableID})}
+		]]>
+	</select>
+
+
+	<!--
+	餐次编号、桌台编号、订单状态     获取子订单信息
+	@author lwh
+	 -->
+  	<select id="Get_ReceptionO_SubOrderInfoEntityByMealsIDAndTableID" parameterType="O_SubOrderInfoEntity" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionO_SubOrderInfoEntityByMealsIDAndTableID(#{mealsID},#{tableID},#{orderStatus})}
+		]]>
+	</select>
+
+
+	<!--
+	根据 订单编号、桌台、餐次  获取 子订单数量
+	@author lwh
+	 -->
+  	<select id="GetO_SubOrderInfoEntityByOrderIDForCount" parameterType="O_SubOrderInfoEntity" resultType="int" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_SubOrderInfoEntityByOrderIDForCount(#{orderID},#{tableID},#{mealsID},0)}
+		]]>
+	</select>
+
+	<!--
+	根据 桌台编号、桌台名称、订单状态  获取 子订单信息
+	@author XuJin
+	 -->
+	<select id="Get_ReceptionO_SubOrderInfoEntityByTableIDAndTableName" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionO_SubOrderInfoEntityByTableIDAndTableName(#{tableID},#{orderStatus},#{subOrderIDs})}
+		]]>
+	</select>
+	<!--
+根据 桌台编号、桌台名称、订单状态  获取 子订单信息
+@author zhouwei
+ -->
+	<select id="Get_ReceptionO_SubOrderInfoEntityByTableIDsAndTableName" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_Get_ReceptionO_SubOrderInfoEntityByTableIDsAndTableName(#{tableIDs},#{orderStatus})}
+		]]>
+	</select>
+
+	<!--
+		将当前桌台的子订单转到目标桌台
+	  	@author LinYN
+	-->
+	<update id="transferSubOrder2TargetTable" parameterType="hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_transferSubOrder2TargetTable(#{srcTableID},#{targetTableID})}
+		]]>
+	</update>
+
+	<!--
+		将当前桌台的子订单合到新的主订单
+	  	@author LinYN
+	-->
+	<update id="combineSubOrder2NewOrder" parameterType="hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_CombineSubOrder2NewOrder(#{tableIDs},#{newOrderID})}
+		]]>
+	</update>
+	<!--
+		查询订单信息
+		@author zhouwei
+	-->
+	<select id="getSubOrderInfoByTableIdAndMealsId" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_Get_SubOrderinfo(#{mealsID},#{tableID})}
+		]]>
+	</select>
+
+	<!-- 根据主键查找子订单信息  hcy -->
+	<select id="querySubOrderInfoBySubOrderID" parameterType="long" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_SubOrderInfoEntity(#{subOrderID})}
+		]]>
+	</select>
+
+	<!--根据子订单ID, 取订单的编辑信息 -->
+	<select id="getEditSubOrder" parameterType="long" resultType="cc.toprank.byd.web.vo.order.OrderEditVO" >
+           select DISTINCT a.subOrderID,a.orderID,a.tableID,a.tableName,a.peopleNum,a.SubOrderDesc as memo,
+                   a.CreateTime as newCreateTime,
+                   b.waiterLoginID,
+                   c.LoginName as waiterName,
+                   d.orderCode
+           from O_SubOrderInfo a INNER JOIN B_DinningTableUseInfo b on a.TableID=b.TableID and b.EndTime is NULL
+                               LEFT JOIN  U_LoginInfo c  on b.WaiterLoginID=c.LoginID
+                               LEFT JOIN  O_OrderInfo d  on a.OrderID=d.orderID
+           where a.SubOrderID=#{subOrderID}
+           ORDER BY b.StartTime DESC
+           LIMIT 0,1
+	</select>
+
+	<!--保存编辑的订单数据-->
+	<update id="updateEditOrderInfo" parameterType="hashmap" statementType="CALLABLE">
+         update O_SubOrderInfo set PeopleNum=#{peopleNum}, SubOrderDesc=#{memo}  where SubOrderID=#{subOrderID}
+	</update>
+	<!-- 根据桌台ID ,取子订单信息列表 -->
+	<select id="getSubOrderList" parameterType="long" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		select * from O_SubOrderInfo where OrderStatus<![CDATA[<>]]> 68 and  TableID=#{subOrderID}
+	</select>
+
+	<!--
+根据 桌台编号  修改 子订单信息
+@author zhouwei
+-->
+	<update id="update_ReceptionO_SubOrderInfoEntityByTableIDs"  parameterType="hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_Update_ReceptionO_SubOrderInfoEntityByTableIDs(#{tableIDs})}
+		]]>
+	</update>
+
+	<select id="getO_SubOrderInfoEntityByTableIDs"  parameterType="hashmap" resultType="O_SubOrderInfoEntity">
+		<![CDATA[
+			      SELECT * from O_SubOrderInfo
+			WHERE FIND_IN_SET(TableID,#{tableID}) and  (OrderStatus = 876) ORDER BY CreateTime;
+		]]>
+	</select>
+
+	<!-- 根据档案ID ,桌态,区或ID, 取子订单信息列表 -->
+	<select id="getTableListByTableStatusAreaID" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+         select DISTINCT a.ArchiveID,a.AreaID,a.DefaultPerson,a.MaxPerson,a.MinPerson,a.TableStatus,a.TableID as BTableID,a.TableName as BTableName,a.CombineName,
+                 c.AreaName,c.AreaType,d.DictionaryName as AreaTypeName,
+                b.*,TIMESTAMPDIFF(MINUTE,b.createTime,UTC_TIMESTAMP())-480 as times
+                from B_DinningTableInfo a INNER JOIN O_SubOrderInfo b on a.TableID=b.TableID and b.OrderStatus in (851,654,875,876,651)
+                                              LEFT JOIN B_ShopAreaInfo c on a.AreaID=c.AreaID
+                                              LEFT JOIN C_DictionaryInfo d on c.AreaType=d.DictionaryID
+         where a.TableStatus not in (780,605) and a.ArchiveID=#{archiveID}
+		<if test="areaID != null">
+			AND a.AreaID=#{areaID}
+		</if>
+		<if test="status != null">
+			and a.TableStatus =#{status}
+		</if>
+		<if test="tableName != null">
+			and (a.TableCode like CONCAT("%",#{tableName},"%")  or a.TableName like CONCAT("%",#{tableName},"%") )
+		</if>
+         ORDER BY a.TableID
+	</select>
+
+	<!-- 根据档案ID ,桌态,区或ID, 取子订单信息列表 -->
+	<select id="getAllTableListByTableStatusAreaID" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		select DISTINCT a.ArchiveID,a.AreaID,a.DefaultPerson,a.MaxPerson,a.MinPerson,a.TableStatus,a.TableID as BTableID,a.TableName as BTableName,a.CombineName,
+		c.AreaName,c.AreaType,d.DictionaryName as AreaTypeName,
+		b.*,TIMESTAMPDIFF(MINUTE,b.createTime,UTC_TIMESTAMP()) as times
+		from B_DinningTableInfo a LEFT JOIN O_SubOrderInfo b on a.TableID=b.TableID and b.OrderStatus in (851,654,875,876,651)
+		LEFT JOIN B_ShopAreaInfo c on a.AreaID=c.AreaID
+		LEFT JOIN C_DictionaryInfo d on c.AreaType=d.DictionaryID
+		where a.TableStatus not in (780,605) and  a.ArchiveID=#{archiveID}
+		<if test="areaID != null">
+			AND a.AreaID=#{areaID}
+		</if>
+		<if test="status != null">
+			and a.TableStatus =#{status}
+		</if>
+		<if test="orderStatus != null">
+			and b.OrderStatus =#{orderStatus}
+		</if>
+		<if test="tableName != null">
+			and (a.TableName like CONCAT("%",#{tableName},"%")  or b.TableName like CONCAT("%",#{tableName},"%") )
+		</if>
+		ORDER BY a.TableID
+	</select>
+	<!-- 根据档案ID ,桌态 取桌态总数 -->
+	<select id="getTableCountByStatusAndArchiveID" parameterType="hashmap" resultType="int" >
+        select DISTINCT COUNT(*)
+        from B_DinningTableInfo a INNER JOIN O_SubOrderInfo b on a.TableID=b.TableID and b.OrderStatus in (851,654,875,876,651)
+        where a.TableStatus not in (780,605) and  a.ArchiveID=#{archiveID}
+
+        <if test="status != null">
+            and b.OrderStatus =#{status}
+        </if>
+		<if test="areaID != null">
+			AND a.AreaID=#{areaID}
+		</if>
+	</select>
+
+	<!--  堂食订单信息的查询  -->
+	<select id="quOrderInfo" parameterType="hashmap" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+        select DISTINCT a.*,b.OrderCode,c.DictionaryName as OrderChannelName,d.MealName,
+               e.LoginName as creatorName,g.LoginName  as serverName
+        from O_SubOrderInfo a INNER JOIN O_OrderInfo b on a.OrderID=b.OrderID and a.peopleNum is not null
+           LEFT JOIN C_DictionaryInfo c on b.OrderChannel=c.DictionaryID
+           LEFT JOIN B_MealsInfo d on a.MealsID=d.MealsID
+           LEFT JOIN U_LoginInfo e on a.CreatorID=e.LoginID
+		   INNER JOIN B_DinningTableUseInfo f on a.TableID=f.TableID
+		   INNER JOIN U_LoginInfo g on f.WaiterLoginID=g.LoginID
+		where 1=1
+        <if test="orderStatus!=null and '70'!=orderStatus and '875'!=orderStatus">
+            AND a.OrderStatus=#{orderStatus}
+        </if>
+        <if test="orderStatus=='70'">
+            AND a.OrderStatus in (69,70,71)
+        </if>
+		<if test="orderStatus=='875'">
+			AND a.OrderStatus in (875,68)
+		</if>
+
+		<if test="orderCode!=null">
+			AND  b.OrderCode LIKE  CONCAT("%",#{orderCode},"%")
+		</if>
+		<if test="mealName!=null">
+			AND  d.MealName LIKE  CONCAT("%",#{mealName},"%")
+		</if>
+		<if test="tableName!=null">
+			AND  a.tableName LIKE  CONCAT("%",#{tableName},"%")
+		</if>
+		  <!--   1 当前班次  2今天   3  昨天       4  历史日期  -->
+		<if test="dateSign==1">
+			AND f.EndTime is NULL
+			AND  TIMESTAMPDIFF(DAY,a.createTime,UTC_TIMESTAMP())=0
+		</if>
+		<if test="dateSign==2">
+			AND TIMESTAMPDIFF(DAY,f.startTime,a.CreateTime)=0
+			AND  TIMESTAMPDIFF(DAY,a.createTime,UTC_TIMESTAMP())=0
+		</if>
+		<if test="dateSign==3">
+			AND TIMESTAMPDIFF(DAY,f.startTime,a.CreateTime)=0
+			AND  TIMESTAMPDIFF(DAY,a.createTime,UTC_TIMESTAMP())=1
+		</if>
+		<if test="dateSign==4">
+			AND TIMESTAMPDIFF(DAY,f.EndTime,a.CreateTime)=0
+			<![CDATA[ AND  a.createTime >= #{startDate}  and  a.createTime <=#{endDate} ]]>
+		</if>
+	</select>
+
+	<!-- 根据订单ID,取所有子订单的信息 -->
+	<select id="getSubOrderInfoByOrderID" parameterType="long" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		select DISTINCT a.OrderID,a.OrderCode,a.Memo as MMemo,b.*,c.LoginName as creatorName,g.LoginName as serverName
+		from O_OrderInfo a INNER JOIN O_SubOrderInfo b on a.OrderID=b.OrderID
+		      LEFT JOIN  U_LoginInfo c on b.CreatorID=c.LoginID
+		      LEFT JOIN B_DinningTableUseInfo f on b.TableID=f.TableID
+		      LEFT JOIN U_LoginInfo g on f.WaiterLoginID=g.LoginID
+		where a.OrderID=#{_parameter}
+		ORDER BY b.SubOrderID
+	</select>
+	<!-- 根据订单ID，取收款记录明细-->
+	<select id="getMakeCollectionsRecode" parameterType="long" resultType="map">
+		select h.orderID,h.subOrderID,a.BusinessID,a.BusinessType,a.ChangeAmount,
+		b.PaymentMethodID,c.PaymentName,b.ChangeAmount as ChangeAmountDetail
+		from  O_SubOrderInfo h INNER JOIN F_FundChangeInfo a on h.SubOrderID=a.BusinessID
+		INNER JOIN F_FundChangeDetailInfo b on a.ChangeID=b.ChangeID
+		LEFT JOIN C_PaymentMethodInfo c on b.PaymentMethodID=c.PaymentMethodID
+		where h.orderID=#{orderID}
+	</select>
+
+	<!--  根据订单ID，取拆扣信息明细 -->
+	<select id="getOrderDiscountInfo" parameterType="long" resultType="map">
+        select a.OrderID,a.DiscountType,b.DictionaryName as DiscountTypeName,sum(a.DiscountAmount) as DiscountAmount
+        from O_OrderDiscountMapping a LEFT JOIN C_DictionaryInfo b on a.DiscountType=b.DictionaryID
+        where a.OrderID=#{orderID}
+        GROUP BY a.OrderID,a.DiscountType
+	</select>
+	<!--  根据订单ID，取拆扣信息明细 -->
+	<select id="getSubOrderTableByStatus" parameterType="hashmap" resultType="O_SubOrderInfoEntity">
+        select DISTINCT a.ArchiveID,a.AreaID,a.DefaultPerson,a.MaxPerson,a.MinPerson,a.TableStatus,a.TableID as BTableID,a.TableName as BTableName,a.CombineName,
+                 c.AreaName,c.AreaType,d.DictionaryName as AreaTypeName,
+                b.*,TIMESTAMPDIFF(MINUTE,b.createTime,UTC_TIMESTAMP()) as times
+                from B_DinningTableInfo a INNER JOIN O_SubOrderInfo b on a.TableID=b.TableID
+                                              LEFT JOIN B_ShopAreaInfo c on a.AreaID=c.AreaID
+                                              LEFT JOIN C_DictionaryInfo d on c.AreaType=d.DictionaryID
+         where a.ArchiveID=#{archiveID}
+		<if test="orderStatus!=null">
+			and b.OrderStatus=#{orderStatus}
+		</if>
+		<if test="areaID!=null">
+			AND and a.AreaID=#{areaID}
+		</if>
+         ORDER BY a.TableID
+
+	</select>
+
+	<!-- 根据子订单ID更新状态 hcy -->
+	<update id="updateStatusBySubOrderID" parameterType="O_SubOrderInfoEntity">
+		Update
+			O_SubOrderInfo
+    	Set
+			OrderStatus = #{orderStatus},
+			PayStatus = #{payStatus}
+    	where
+        	SubOrderID = #{subOrderID}
+	</update>
+
+	<!-- 更新子订单ID -->
+	<update id="changeOrderDetailSubOrderID" parameterType="map">
+		Update
+		O_OrderDetailInfo
+		Set
+		SubOrderID = #{newSubOrderID}
+		where
+		SubOrderID = #{subOrderID}
+	</update>
+
+	<!--  查询预定子订单 -->
+	<select id="getBookingSubOrderInfo"  resultType="O_SubOrderInfoEntity" >
+		SELECT <include refid="Base_Column_List" /> FROM O_SubOrderInfo WHERE OrderID = #{orderID} AND TableID = #{tableID} AND OrderStatus = 626
+	</select>
+
+
+	<!--  查询预定子订单 -->
+	<select id="getBookingSubOrderListByOrderID" parameterType="Long"  resultType="O_SubOrderInfoEntity" >
+		SELECT <include refid="Base_Column_List" /> FROM O_SubOrderInfo WHERE
+		  OrderID = #{orderID}
+		AND OrderStatus = 626
+	</select>
+
+    <!-- 根据子订单ID集合查询子订单信息 hcy -->
+    <select id="querySubOrderInfoByIDs" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        O_SubOrderInfo
+        WHERE
+        SubOrderID IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+  </mapper>

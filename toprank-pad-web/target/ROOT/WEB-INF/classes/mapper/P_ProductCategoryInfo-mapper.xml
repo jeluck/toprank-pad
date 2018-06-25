@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="cc.toprank.byd.dao.P_ProductCategoryInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_ProductCategoryInfoEntity">
+		<id column="CategoryID" jdbcType="BIGINT" property="categoryID" />
+		<result column="ParentID" jdbcType="BIGINT" property="parentID" />
+		<result column="OrgID" jdbcType="BIGINT" property="orgID" />
+		<result column="CategoryCode" jdbcType="VARCHAR" property="categoryCode" />
+		<result column="CategoryName" jdbcType="VARCHAR" property="categoryName" />
+		<result column="CategoryStatus" jdbcType="BIGINT" property="categoryStatus" />
+		<result column="CategoryDesc" jdbcType="VARCHAR" property="categoryDesc" />
+		<result column="PictureID" jdbcType="BIGINT" property="pictureID" />
+		<result column="LowestPrice" jdbcType="DECIMAL" property="lowestPrice" />
+		<result column="HighestPrice" jdbcType="DECIMAL" property="highestPrice" />
+		<result column="IsMain" jdbcType="BIT" property="isMain" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="TreeID" jdbcType="VARCHAR" property="treeID" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CategoryID, ParentID, OrgID, CategoryCode, CategoryName, CategoryStatus, CategoryDesc,
+		PictureID, LowestPrice, HighestPrice, IsMain, SortNo, TreeID, CreatorID, CreateTime,
+		Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from P_ProductCategoryInfo
+		where CategoryID = #{categoryID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from P_ProductCategoryInfo
+		where CategoryID = #{categoryID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.P_ProductCategoryInfoEntity">
+		insert into P_ProductCategoryInfo (CategoryID, ParentID, OrgID,
+		CategoryCode, CategoryName, CategoryStatus,
+		CategoryDesc, PictureID, LowestPrice,
+		HighestPrice, IsMain, SortNo,
+		TreeID, CreatorID, CreateTime,
+		Memo, IsSync)
+		values (#{categoryID,jdbcType=BIGINT}, #{parentID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT},
+		#{categoryCode,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, #{categoryStatus,jdbcType=BIGINT},
+		#{categoryDesc,jdbcType=VARCHAR}, #{pictureID,jdbcType=BIGINT}, #{lowestPrice,jdbcType=DECIMAL},
+		#{highestPrice,jdbcType=DECIMAL}, #{isMain,jdbcType=BIT}, #{sortNo,jdbcType=INTEGER},
+		#{treeID,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_ProductCategoryInfoEntity">
+		insert into P_ProductCategoryInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="categoryID != null">
+				CategoryID,
+			</if>
+			<if test="parentID != null">
+				ParentID,
+			</if>
+			<if test="orgID != null">
+				OrgID,
+			</if>
+			<if test="categoryCode != null">
+				CategoryCode,
+			</if>
+			<if test="categoryName != null">
+				CategoryName,
+			</if>
+			<if test="categoryStatus != null">
+				CategoryStatus,
+			</if>
+			<if test="categoryDesc != null">
+				CategoryDesc,
+			</if>
+			<if test="pictureID != null">
+				PictureID,
+			</if>
+			<if test="lowestPrice != null">
+				LowestPrice,
+			</if>
+			<if test="highestPrice != null">
+				HighestPrice,
+			</if>
+			<if test="isMain != null">
+				IsMain,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="treeID != null">
+				TreeID,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="categoryID != null">
+				#{categoryID,jdbcType=BIGINT},
+			</if>
+			<if test="parentID != null">
+				#{parentID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				#{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="categoryCode != null">
+				#{categoryCode,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryName != null">
+				#{categoryName,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryStatus != null">
+				#{categoryStatus,jdbcType=BIGINT},
+			</if>
+			<if test="categoryDesc != null">
+				#{categoryDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureID != null">
+				#{pictureID,jdbcType=BIGINT},
+			</if>
+			<if test="lowestPrice != null">
+				#{lowestPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="highestPrice != null">
+				#{highestPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="isMain != null">
+				#{isMain,jdbcType=BIT},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="treeID != null">
+				#{treeID,jdbcType=VARCHAR},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_ProductCategoryInfoEntity">
+		update P_ProductCategoryInfo
+		<set>
+			<if test="parentID != null">
+				ParentID = #{parentID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				OrgID = #{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="categoryCode != null">
+				CategoryCode = #{categoryCode,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryName != null">
+				CategoryName = #{categoryName,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryStatus != null">
+				CategoryStatus = #{categoryStatus,jdbcType=BIGINT},
+			</if>
+			<if test="categoryDesc != null">
+				CategoryDesc = #{categoryDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureID != null">
+				PictureID = #{pictureID,jdbcType=BIGINT},
+			</if>
+			<if test="lowestPrice != null">
+				LowestPrice = #{lowestPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="highestPrice != null">
+				HighestPrice = #{highestPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="isMain != null">
+				IsMain = #{isMain,jdbcType=BIT},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="treeID != null">
+				TreeID = #{treeID,jdbcType=VARCHAR},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where CategoryID = #{categoryID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_ProductCategoryInfoEntity">
+		update P_ProductCategoryInfo
+		set ParentID = #{parentID,jdbcType=BIGINT},
+		OrgID = #{orgID,jdbcType=BIGINT},
+		CategoryCode = #{categoryCode,jdbcType=VARCHAR},
+		CategoryName = #{categoryName,jdbcType=VARCHAR},
+		CategoryStatus = #{categoryStatus,jdbcType=BIGINT},
+		CategoryDesc = #{categoryDesc,jdbcType=VARCHAR},
+		PictureID = #{pictureID,jdbcType=BIGINT},
+		LowestPrice = #{lowestPrice,jdbcType=DECIMAL},
+		HighestPrice = #{highestPrice,jdbcType=DECIMAL},
+		IsMain = #{isMain,jdbcType=BIT},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		TreeID = #{treeID,jdbcType=VARCHAR},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where CategoryID = #{categoryID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="P_ProductCategoryInfoEntity" resultType="P_ProductCategoryInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ProductCategoryInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_ProductCategoryInfoEntity" resultType="P_ProductCategoryInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ProductCategoryInfoEntity(#{categoryID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_ProductCategoryInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_ProductCategoryInfoEntity(#{categoryID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="CategoryID" parameterType="P_ProductCategoryInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_ProductCategoryInfoEntity(#{categoryCode},#{categoryDesc},#{categoryID,jdbcType=INTEGER,mode=OUT},#{categoryName},#{categoryStatus},#{createTime},#{creatorID},#{highestPrice},#{lowestPrice},#{memo},#{orgID},#{parentID},#{pictureID},#{sortNo},#{treeID})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_ProductCategoryInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_ProductCategoryInfoEntity(#{categoryCode},#{categoryDesc},#{categoryID},#{categoryName},#{categoryStatus},#{createTime},#{creatorID},#{highestPrice},#{lowestPrice},#{memo},#{orgID},#{parentID},#{pictureID},#{sortNo},#{treeID})} 
+		]]>  
+  	</update>
+
+	<!-- 根据变体ID查询分类信息-->
+	<select id="getCategoryByVariantID" parameterType="java.lang.Long" resultType="P_ProductCategoryInfoEntity" >
+		SELECT pc.`CategoryCode`, pc.`CategoryDesc`, pc.`CategoryID`, pc.`CategoryName`, pc.`CategoryStatus`, pc.`CreateTime`, pc.`CreatorID`,
+        pc.`HighestPrice`, pc.`IsMain`, pc.`IsSync`, pc.`LowestPrice`, pc.`Memo`, pc.`OrgID`, pc.`ParentID`,
+        pc.`PictureID`, pc.`SortNo`, pc.`TreeID`
+		FROM P_ProductCategoryInfo pc
+		LEFT JOIN P_ProductInfo p ON pc.CategoryID = p.CategoryID
+		LEFT JOIN P_ProductVariantInfo pv ON pv.ProductID = p.ProductID
+		WHERE
+			pv.VariantID = #{variantID}
+	</select>
+  	
+  	<!--   
+		按机构编号查询分类信息 
+		lanziyao	
+	-->
+  	<select id="getProductCategoryListByArchiveID" parameterType="java.lang.Long" resultType="P_ProductCategoryInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ProductCategoryInfoCollectionByArchiveIDAndParentID(#{orgID})} 
+		]]>  
+	</select>
+
+	<!--根据archiveID获取该餐厅所有的分类 (isMain =0 自定义菜单分类 )(isMain = 1 默认菜单分类)-->
+	<select id="getCategorysByArchiveID" parameterType="long" resultType="map">
+		select p.categoryID,p.parentID,p.orgID,p.categoryName,p.categoryStatus
+		from P_OrgProductCategoryMapping m
+		left join P_ProductCategoryInfo p on m.categoryID = p.categoryID
+		where
+		m.orgID=(select orgID from B_MerchantInfo where archiveid=#{archiveID})
+		and m.isMain=0
+		and m.mappingStatus = 9 and p.categoryStatus = 9
+	</select>
+
+	<!--获取该餐厅所有的分类-->
+	<select id="getCategorysByCategoryID" parameterType="long" resultType="map">
+		select categoryID,parentID,orgID,categoryName,categoryStatus
+		from P_ProductCategoryInfo
+		where orgID = (select OrgID from B_MerchantInfo  where ArchiveID = #{archiveID})
+		<choose>
+			<when test="level == 1">
+				and (parentID = 0 or  parentID is null)
+			</when>
+			<otherwise>
+				<choose>
+					<when test="categoryID != null">
+						and parentID = #{categoryID}
+					</when>
+					<otherwise>
+						and parentID > 0
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</select>
+
+
+
+	<!-- 根据变体ID查询分类信息-->
+	<select id="getCategoryInfoListByCategoryIDs"  resultType="map" >
+		SELECT
+			categoryID,parentID,orgID,categoryName,categoryStatus
+		from P_ProductCategoryInfo
+		where categoryStatus=9 AND CategoryID IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			${item}
+		</foreach>
+	</select>
+  </mapper>

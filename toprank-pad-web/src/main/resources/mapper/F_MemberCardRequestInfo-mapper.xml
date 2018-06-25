@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.F_MemberCardRequestInfoDao">
+	<select id="getAll" parameterType="F_MemberCardRequestInfoEntity" resultType="F_MemberCardRequestInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_MemberCardRequestInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="F_MemberCardRequestInfoEntity" resultType="F_MemberCardRequestInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_MemberCardRequestInfoEntity(#{requestID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="F_MemberCardRequestInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteF_MemberCardRequestInfoEntity(#{requestID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="RequestID" parameterType="F_MemberCardRequestInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertF_MemberCardRequestInfoEntity(#{approveDesc},#{approver},#{approveTime},#{archiveID},#{branchName},#{cardID},#{cardNo},#{counterman},#{countermanID},#{createTime},#{isSync},#{loginID},#{memberMobile},#{memberName},#{memo},#{requestCode},#{requestDesc},#{requestID,jdbcType=INTEGER,mode=OUT},#{requestStatus},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="F_MemberCardRequestInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateF_MemberCardRequestInfoEntity(#{approveDesc},#{approver},#{approveTime},#{archiveID},#{branchName},#{cardID},#{cardNo},#{counterman},#{countermanID},#{createTime},#{isSync},#{loginID},#{memberMobile},#{memberName},#{memo},#{requestCode},#{requestDesc},#{requestID},#{requestStatus})}
+		]]>
+	</update>
+  	<!--<select id="list" parameterType="F_MemberCardRequestInfo" resultType="F_MemberCardRequestInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetF_MemberCardRequestInfo_query_by_condition(#{approveDesc},#{approver},#{approveTime},#{branchName},#{cardID},#{cardNo},#{createTime},#{loginID},#{memo},#{requestCode},#{requestDesc},#{requestStatus})} 
+		]]>  
+  	</select>
+  	-->
+  </mapper>

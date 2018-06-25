@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.ReceptionTableDao">
+  	<!-- 
+  		@Author xujin 
+  		获取所有的餐桌列表  根据区域id  机构id
+  	 -->
+  	<select id="getTableCollectionByArchiveIDAndAreaID" parameterType="hashmap" resultType="ReceptionTableEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_Reception_DinnerTableInfoCollectionByArchiveIDAndAreaID(#{archiveID},#{areaID})} 
+		]]>  
+	</select>
+	<!-- 
+  		@Author xujin 
+  		获取所有的餐桌列表  根据区域id  机构id
+  	 -->
+  	<select id="getTableCollectionForBooking" parameterType="hashmap" resultType="ReceptionTableEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_Reception_DinnerTableCollectionForBooking(#{archiveID},#{areaID})} 
+		]]>  
+	</select>
+	<!-- 
+  		@Author xujin 
+  		获取餐桌信息   根据机构id,搜索的餐桌名
+  	 -->
+  	<select id="getTableInfoByArchiveIDAndtableName" parameterType="hashmap" resultType="ReceptionTableEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_Reception_DinnerTableInfoByArchiveIDAndTableName(#{archiveID},#{tableName})} 
+		]]>  
+	</select>
+	
+    <!-- 
+  		@Author xujin 
+  		获取餐桌数量   根据机构id,桌台状态
+  	 -->
+  	<select id="getTableCountByStatusAndArchiveID" parameterType="hashmap" resultType="int" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_Reception_DinnerTableInfoCountByArchiveIDAndStatus(#{archiveID},#{status},#{areaID})}
+		]]>
+	</select>
+	
+	<!-- 
+  		@Author xujin 
+  		获取餐桌列表   根据机构id,桌台状态,桌台名字
+  	 -->
+  	<select id="getTableCollectionByArchiveIDAndStatus" parameterType="hashmap" resultType="ReceptionTableEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_Reception_DinnerTableInfoCollectionByArchiveIDAndStatus(#{archiveID},#{status},#{tableName},#{areaID})}
+		]]>  
+	</select>
+	
+	<!-- 
+  		@Author xujin 
+  		获取餐桌列表   根据餐桌id
+  	 -->
+  	<select id="getTableInfoCollectionByTableId" parameterType="hashmap" resultType="ReceptionTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_Reception_DinnerTableInfoCollectionByTableID(#{tableID},#{archiveID})} 
+		]]>  
+	</select>
+	
+	<!-- 
+  		@Author xuexin 
+  		根据机构id，桌台名称，桌台状态来查询桌台列表
+  	 -->
+  	<select id="getTableListByStatus" parameterType="hashmap" resultType="ReceptionTableEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_Reception_DinnerTableListByStatus(#{orgId},#{tableStatus},#{tableName})} 
+		]]>  
+	</select>
+
+
+  </mapper>

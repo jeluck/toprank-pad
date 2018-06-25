@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.O_ShoppingCartInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_ShoppingCartInfoEntity">
+    <id column="CartID" jdbcType="BIGINT" property="cartID" />
+    <result column="LoginID" jdbcType="BIGINT" property="loginID" />
+    <result column="BookingID" jdbcType="BIGINT" property="bookingID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="Quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="TotalAmount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CartID, LoginID, BookingID, ArchiveID, Quantity, TotalAmount, CreateTime, Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from O_ShoppingCartInfo
+    where CartID = #{cartID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from O_ShoppingCartInfo
+    where CartID = #{cartID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.O_ShoppingCartInfoEntity">
+    insert into O_ShoppingCartInfo (CartID, LoginID, BookingID, 
+      ArchiveID, Quantity, TotalAmount, 
+      CreateTime, Memo)
+    values (#{cartID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT}, #{bookingID,jdbcType=BIGINT}, 
+      #{archiveID,jdbcType=BIGINT}, #{quantity,jdbcType=INTEGER}, #{totalAmount,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_ShoppingCartInfoEntity">
+    insert into O_ShoppingCartInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cartID != null">
+        CartID,
+      </if>
+      <if test="loginID != null">
+        LoginID,
+      </if>
+      <if test="bookingID != null">
+        BookingID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="quantity != null">
+        Quantity,
+      </if>
+      <if test="totalAmount != null">
+        TotalAmount,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cartID != null">
+        #{cartID,jdbcType=BIGINT},
+      </if>
+      <if test="loginID != null">
+        #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="bookingID != null">
+        #{bookingID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_ShoppingCartInfoEntity">
+    update O_ShoppingCartInfo
+    <set>
+      <if test="loginID != null">
+        LoginID = #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="bookingID != null">
+        BookingID = #{bookingID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        Quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null">
+        TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CartID = #{cartID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_ShoppingCartInfoEntity">
+    update O_ShoppingCartInfo
+    set LoginID = #{loginID,jdbcType=BIGINT},
+      BookingID = #{bookingID,jdbcType=BIGINT},
+      ArchiveID = #{archiveID,jdbcType=BIGINT},
+      Quantity = #{quantity,jdbcType=INTEGER},
+      TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where CartID = #{cartID,jdbcType=BIGINT}
+  </update>
+
+  <select id="getByTableID" resultType="map">
+    SELECT scd.cartID,sc.totalAmount,ifnull(sc.quantity,0) as totalQuantity,sc.memo as cartMemo FROM O_ShoppingCartDetailInfo scd
+    LEFT JOIN O_ShoppingCartInfo sc ON scd.cartID = sc.cartID
+    WHERE scd.TableID=#{tableID}
+    GROUP BY CartID limit 1
+  </select>
+</mapper>

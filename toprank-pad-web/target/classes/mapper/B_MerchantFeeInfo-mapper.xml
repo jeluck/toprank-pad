@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_MerchantFeeInfoDao">
+  	<select id="getAll" parameterType="B_MerchantFeeInfoEntity" resultType="B_MerchantFeeInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MerchantFeeInfoCollection()}
+		]]>
+	</select>
+  	<select id="get" parameterType="B_MerchantFeeInfoEntity" resultType="B_MerchantFeeInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MerchantFeeInfoEntity(#{itemID})}
+		]]>
+	</select>
+  	<delete id="delete" parameterType="B_MerchantFeeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteB_MerchantFeeInfoEntity(#{itemID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="ItemID" parameterType="B_MerchantFeeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertB_MerchantFeeInfoEntity(#{archiveID},#{areaID},#{createTime},#{creatorID},#{feeAmount},#{feeMode},#{feeType},#{isSync},#{itemCode},#{itemID,jdbcType=INTEGER,mode=OUT},#{itemName},#{mealsID},#{memo},#{proportion})}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="B_MerchantFeeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateB_MerchantFeeInfoEntity(#{archiveID},#{areaID},#{createTime},#{creatorID},#{feeAmount},#{feeMode},#{feeType},#{isSync},#{itemCode},#{itemID},#{itemName},#{mealsID},#{memo},#{proportion})}
+		]]>
+  	</update>
+  	<!--<select id="list" parameterType="B_MerchantFeeInfo" resultType="B_MerchantFeeInfo" statementType="CALLABLE">
+  		<![CDATA[
+			{call GetB_MerchantFeeInfo_query_by_condition(#{archiveID},#{areaID},#{createTime},#{creatorID},#{feeAmount},#{feeMode},#{feeType},#{isSync},#{itemCode},#{itemName},#{mealsID},#{memo},#{proportion})}
+		]]>
+  	</select>
+  	-->
+
+	<!-- 根据档案编号,区域ID,餐次ID获取商服务收费信息 hcy -->
+	<select id="getMerchantFeeInfoByCondition" parameterType="B_MerchantFeeInfoEntity" resultType="B_MerchantFeeInfoEntity">
+			SELECT
+			 	ArchiveID, MealsID , AreaID, CreateTime, CreatorID, FeeAmount, FeeMode, FeeType,
+        		IsSync, ItemCode, ItemID, ItemName, MealsID, Memo, Proportion
+    		FROM
+    			B_MerchantFeeInfo
+    		WHERE
+        		ArchiveID = #{archiveID}
+        		<if test="null != mealsID">
+					and MealsID = #{mealsID}
+				</if>
+				<if test="null != areaID">
+					and AreaID = #{areaID}
+				</if>
+	</select>
+
+</mapper>

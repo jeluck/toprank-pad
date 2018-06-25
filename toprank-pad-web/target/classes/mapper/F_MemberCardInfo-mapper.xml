@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.F_MemberCardInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.F_MemberCardInfoEntity">
+		<id column="CardID" jdbcType="BIGINT" property="cardID" />
+		<result column="ActivationCodeID" jdbcType="BIGINT" property="activationCodeID" />
+		<result column="OrgID" jdbcType="BIGINT" property="orgID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="CardCode" jdbcType="VARCHAR" property="cardCode" />
+		<result column="CardSerialNo" jdbcType="VARCHAR" property="cardSerialNo" />
+		<result column="ActivationCode" jdbcType="VARCHAR" property="activationCode" />
+		<result column="BatchNo" jdbcType="VARCHAR" property="batchNo" />
+		<result column="CardType" jdbcType="BIGINT" property="cardType" />
+		<result column="MemberName" jdbcType="VARCHAR" property="memberName" />
+		<result column="MemberMobile" jdbcType="VARCHAR" property="memberMobile" />
+		<result column="CardStatus" jdbcType="BIGINT" property="cardStatus" />
+		<result column="QueryPassword" jdbcType="VARCHAR" property="queryPassword" />
+		<result column="PayPassword" jdbcType="VARCHAR" property="payPassword" />
+		<result column="ExpirationDate" jdbcType="TIMESTAMP" property="expirationDate" />
+		<result column="FunctionCategory" jdbcType="BIGINT" property="functionCategory" />
+		<result column="Cobranded" jdbcType="BIGINT" property="cobranded" />
+		<result column="DesignVersion" jdbcType="BIGINT" property="designVersion" />
+		<result column="ReleaseYear" jdbcType="BIGINT" property="releaseYear" />
+		<result column="CardDesc" jdbcType="VARCHAR" property="cardDesc" />
+		<result column="SerialNo" jdbcType="INTEGER" property="serialNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+		<result column="IssuerID" jdbcType="BIGINT" property="issuerID" />
+		<result column="IssueTime" jdbcType="TIMESTAMP" property="issueTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="RoleID" jdbcType="BIGINT" property="roleID" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CardID, ActivationCodeID, OrgID, ArchiveID, CardCode, CardSerialNo, ActivationCode,
+		BatchNo, CardType, MemberName, MemberMobile, CardStatus, QueryPassword, PayPassword,
+		ExpirationDate, FunctionCategory, Cobranded, DesignVersion, ReleaseYear, CardDesc,
+		SerialNo, CreatorID, CreateTime, CreatorType, IssuerID, IssueTime, Memo, IsSync,
+		RoleID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from F_MemberCardInfo
+		where CardID = #{cardID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from F_MemberCardInfo
+		where CardID = #{cardID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.F_MemberCardInfoEntity">
+		insert into F_MemberCardInfo (CardID, ActivationCodeID, OrgID,
+		ArchiveID, CardCode, CardSerialNo,
+		ActivationCode, BatchNo, CardType,
+		MemberName, MemberMobile, CardStatus,
+		QueryPassword, PayPassword, ExpirationDate,
+		FunctionCategory, Cobranded, DesignVersion,
+		ReleaseYear, CardDesc, SerialNo,
+		CreatorID, CreateTime, CreatorType,
+		IssuerID, IssueTime, Memo,
+		IsSync, RoleID)
+		values (#{cardID,jdbcType=BIGINT}, #{activationCodeID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT},
+		#{archiveID,jdbcType=BIGINT}, #{cardCode,jdbcType=VARCHAR}, #{cardSerialNo,jdbcType=VARCHAR},
+		#{activationCode,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, #{cardType,jdbcType=BIGINT},
+		#{memberName,jdbcType=VARCHAR}, #{memberMobile,jdbcType=VARCHAR}, #{cardStatus,jdbcType=BIGINT},
+		#{queryPassword,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{expirationDate,jdbcType=TIMESTAMP},
+		#{functionCategory,jdbcType=BIGINT}, #{cobranded,jdbcType=BIGINT}, #{designVersion,jdbcType=BIGINT},
+		#{releaseYear,jdbcType=BIGINT}, #{cardDesc,jdbcType=VARCHAR}, #{serialNo,jdbcType=INTEGER},
+		#{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{creatorType,jdbcType=BIGINT},
+		#{issuerID,jdbcType=BIGINT}, #{issueTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR},
+		#{isSync,jdbcType=BIT}, #{roleID,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.F_MemberCardInfoEntity">
+		insert into F_MemberCardInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cardID != null">
+				CardID,
+			</if>
+			<if test="activationCodeID != null">
+				ActivationCodeID,
+			</if>
+			<if test="orgID != null">
+				OrgID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="cardCode != null">
+				CardCode,
+			</if>
+			<if test="cardSerialNo != null">
+				CardSerialNo,
+			</if>
+			<if test="activationCode != null">
+				ActivationCode,
+			</if>
+			<if test="batchNo != null">
+				BatchNo,
+			</if>
+			<if test="cardType != null">
+				CardType,
+			</if>
+			<if test="memberName != null">
+				MemberName,
+			</if>
+			<if test="memberMobile != null">
+				MemberMobile,
+			</if>
+			<if test="cardStatus != null">
+				CardStatus,
+			</if>
+			<if test="queryPassword != null">
+				QueryPassword,
+			</if>
+			<if test="payPassword != null">
+				PayPassword,
+			</if>
+			<if test="expirationDate != null">
+				ExpirationDate,
+			</if>
+			<if test="functionCategory != null">
+				FunctionCategory,
+			</if>
+			<if test="cobranded != null">
+				Cobranded,
+			</if>
+			<if test="designVersion != null">
+				DesignVersion,
+			</if>
+			<if test="releaseYear != null">
+				ReleaseYear,
+			</if>
+			<if test="cardDesc != null">
+				CardDesc,
+			</if>
+			<if test="serialNo != null">
+				SerialNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="creatorType != null">
+				CreatorType,
+			</if>
+			<if test="issuerID != null">
+				IssuerID,
+			</if>
+			<if test="issueTime != null">
+				IssueTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="roleID != null">
+				RoleID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cardID != null">
+				#{cardID,jdbcType=BIGINT},
+			</if>
+			<if test="activationCodeID != null">
+				#{activationCodeID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				#{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="cardCode != null">
+				#{cardCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cardSerialNo != null">
+				#{cardSerialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="activationCode != null">
+				#{activationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="batchNo != null">
+				#{batchNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				#{cardType,jdbcType=BIGINT},
+			</if>
+			<if test="memberName != null">
+				#{memberName,jdbcType=VARCHAR},
+			</if>
+			<if test="memberMobile != null">
+				#{memberMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="cardStatus != null">
+				#{cardStatus,jdbcType=BIGINT},
+			</if>
+			<if test="queryPassword != null">
+				#{queryPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="payPassword != null">
+				#{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="expirationDate != null">
+				#{expirationDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="functionCategory != null">
+				#{functionCategory,jdbcType=BIGINT},
+			</if>
+			<if test="cobranded != null">
+				#{cobranded,jdbcType=BIGINT},
+			</if>
+			<if test="designVersion != null">
+				#{designVersion,jdbcType=BIGINT},
+			</if>
+			<if test="releaseYear != null">
+				#{releaseYear,jdbcType=BIGINT},
+			</if>
+			<if test="cardDesc != null">
+				#{cardDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="serialNo != null">
+				#{serialNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorType != null">
+				#{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="issuerID != null">
+				#{issuerID,jdbcType=BIGINT},
+			</if>
+			<if test="issueTime != null">
+				#{issueTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="roleID != null">
+				#{roleID,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.F_MemberCardInfoEntity">
+		update F_MemberCardInfo
+		<set>
+			<if test="activationCodeID != null">
+				ActivationCodeID = #{activationCodeID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				OrgID = #{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="cardCode != null">
+				CardCode = #{cardCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cardSerialNo != null">
+				CardSerialNo = #{cardSerialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="activationCode != null">
+				ActivationCode = #{activationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="batchNo != null">
+				BatchNo = #{batchNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				CardType = #{cardType,jdbcType=BIGINT},
+			</if>
+			<if test="memberName != null">
+				MemberName = #{memberName,jdbcType=VARCHAR},
+			</if>
+			<if test="memberMobile != null">
+				MemberMobile = #{memberMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="cardStatus != null">
+				CardStatus = #{cardStatus,jdbcType=BIGINT},
+			</if>
+			<if test="queryPassword != null">
+				QueryPassword = #{queryPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="payPassword != null">
+				PayPassword = #{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="expirationDate != null">
+				ExpirationDate = #{expirationDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="functionCategory != null">
+				FunctionCategory = #{functionCategory,jdbcType=BIGINT},
+			</if>
+			<if test="cobranded != null">
+				Cobranded = #{cobranded,jdbcType=BIGINT},
+			</if>
+			<if test="designVersion != null">
+				DesignVersion = #{designVersion,jdbcType=BIGINT},
+			</if>
+			<if test="releaseYear != null">
+				ReleaseYear = #{releaseYear,jdbcType=BIGINT},
+			</if>
+			<if test="cardDesc != null">
+				CardDesc = #{cardDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="serialNo != null">
+				SerialNo = #{serialNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorType != null">
+				CreatorType = #{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="issuerID != null">
+				IssuerID = #{issuerID,jdbcType=BIGINT},
+			</if>
+			<if test="issueTime != null">
+				IssueTime = #{issueTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="roleID != null">
+				RoleID = #{roleID,jdbcType=BIGINT},
+			</if>
+		</set>
+		where CardID = #{cardID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.F_MemberCardInfoEntity">
+		update F_MemberCardInfo
+		set ActivationCodeID = #{activationCodeID,jdbcType=BIGINT},
+		OrgID = #{orgID,jdbcType=BIGINT},
+		ArchiveID = #{archiveID,jdbcType=BIGINT},
+		CardCode = #{cardCode,jdbcType=VARCHAR},
+		CardSerialNo = #{cardSerialNo,jdbcType=VARCHAR},
+		ActivationCode = #{activationCode,jdbcType=VARCHAR},
+		BatchNo = #{batchNo,jdbcType=VARCHAR},
+		CardType = #{cardType,jdbcType=BIGINT},
+		MemberName = #{memberName,jdbcType=VARCHAR},
+		MemberMobile = #{memberMobile,jdbcType=VARCHAR},
+		CardStatus = #{cardStatus,jdbcType=BIGINT},
+		QueryPassword = #{queryPassword,jdbcType=VARCHAR},
+		PayPassword = #{payPassword,jdbcType=VARCHAR},
+		ExpirationDate = #{expirationDate,jdbcType=TIMESTAMP},
+		FunctionCategory = #{functionCategory,jdbcType=BIGINT},
+		Cobranded = #{cobranded,jdbcType=BIGINT},
+		DesignVersion = #{designVersion,jdbcType=BIGINT},
+		ReleaseYear = #{releaseYear,jdbcType=BIGINT},
+		CardDesc = #{cardDesc,jdbcType=VARCHAR},
+		SerialNo = #{serialNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		CreatorType = #{creatorType,jdbcType=BIGINT},
+		IssuerID = #{issuerID,jdbcType=BIGINT},
+		IssueTime = #{issueTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT},
+		RoleID = #{roleID,jdbcType=BIGINT}
+		where CardID = #{cardID,jdbcType=BIGINT}
+	</update>
+	<select id="getAll" parameterType="F_MemberCardInfoEntity" resultType="F_MemberCardInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_MemberCardInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="F_MemberCardInfoEntity" resultType="F_MemberCardInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_MemberCardInfoEntity(#{cardID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="F_MemberCardInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteF_MemberCardInfoEntity(#{cardID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="CardID" parameterType="F_MemberCardInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertF_MemberCardInfoEntity(#{activationCode},#{activationCodeID},#{archiveID},#{batchNo},#{cardCode},#{cardDesc},#{cardID,jdbcType=INTEGER,mode=OUT},#{cardLevel},#{cardSerialNo},#{cardStatus},#{cardType},#{cobranded},#{createTime},#{creatorID},#{creatorType},#{designVersion},#{expirationDate},#{functionCategory},#{issuerID},#{issueTime},#{isSync},#{memberMobile},#{memberName},#{memo},#{orgID},#{payPassword},#{queryPassword},#{releaseYear},#{roleID},#{serialNo},'amdin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="F_MemberCardInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateF_MemberCardInfoEntity(#{activationCode},#{activationCodeID},#{archiveID},#{batchNo},#{cardCode},#{cardDesc},#{cardID},#{cardLevel},#{cardSerialNo},#{cardStatus},#{cardType},#{cobranded},#{createTime},#{creatorID},#{creatorType},#{designVersion},#{expirationDate},#{functionCategory},#{issuerID},#{issueTime},#{isSync},#{memberMobile},#{memberName},#{memo},#{orgID},#{payPassword},#{queryPassword},#{releaseYear},#{roleID},#{serialNo})}
+		]]>
+	</update>
+	<!--<select id="list" parameterType="F_MemberCardInfo" resultType="F_MemberCardInfo" statementType="CALLABLE">
+        <![CDATA[
+          {call GetF_MemberCardInfo_query_by_condition(#{activationCode},#{activationCodeID},#{batchNo},#{cardCode},#{cardLevel},#{cardSerialNo},#{cardStatus},#{cardType},#{cobranded},#{createTime},#{creatorID},#{creatorType},#{designVersion},#{functionCategory},#{memo},#{orgID},#{releaseYear},#{serialNo},#{updateTime},#{updatorID},#{updatorType})}
+      ]]>
+    </select>
+    -->
+	<select id="getMemberCardInfoByCondition" parameterType="map" resultType="F_MemberCardInfoEntity"
+			statementType="CALLABLE">
+		<![CDATA[
+
+
+			{call GetF_MemberCardInfoByCondition(#{cardStatus},#{roleID},#{cardType})}
+
+
+        ]]>
+	</select>
+
+	<update id="updateMemberCardStatus" parameterType="F_MemberCardInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+
+
+			{call UpdateF_MemberCardStatus(#{cardID},#{cardStatus},#{updateTime},#{updatorID})} 
+
+
+        ]]>
+  	</update>
+
+	<select id="getMemberCardInfoByCardCodeAndOrgID" resultType="F_MemberCardInfoEntity" statementType="CALLABLE">
+	     Select `ActivationCode`, `ActivationCodeID`, `ArchiveID`, `BatchNo`, `CardCode`, `CardID`, `RoleID`,
+                `CardSerialNo`, `CardStatus`, `CardType`, `Cobranded`, `CreateTime`, `CreatorID`, `CreatorType`,
+                `DesignVersion`, `FunctionCategory`, `Memo`, `OrgID`, `ReleaseYear`, `SerialNo`
+         from F_MemberCardInfo WHERE CardSerialNo=#{cardSerialNo} AND OrgID=#{orgID} LIMIT 1;
+  	</select>
+
+	<select id="getNewMemberCardByOrgID" resultType="F_MemberCardInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+
+			{call GetClientF_MemberCardByOrgID(#{orgID},#{startTime},#{endTime})}
+
+        ]]>
+  	</select>
+	<!-- 根据会员卡编号查询会员卡充值信息 lzy -->
+	<select id="getMemberCardRechargeInfoByCardID" resultType="map" parameterType="Long" statementType="CALLABLE">
+		SELECT fm.CardCode as cardCode,ec.CustomerName as name,ec.Mobile as mobile,fm.RoleID as level,em.TotalBonus as bonus, fv.RealAmount as amount,
+				(SELECT SUM(fsf.AfterAmount - fsf.BeforeAmount) FROM F_SettlementFundChangeInfo fsf WHERE fsf.SettlementAccountID = fs.SettlementAccountID AND fsf.ChangeType = 134) as totalRecharge,
+				(SELECT SUM(fsf.BeforeAmount - fsf.AfterAmount) FROM F_SettlementFundChangeInfo fsf WHERE fsf.SettlementAccountID = fs.SettlementAccountID AND fsf.ChangeType = 135) as totalConsumption,
+				ec.CustomerID as customerID,fm.CardID as cardID
+			FROM F_MemberCardInfo  fm
+			LEFT JOIN F_AccountCardMapping fam ON fm.CardID = fam.CardID
+			LEFT JOIN F_AccountInfo fa ON fa.AccountID = fam.AccountID
+			LEFT JOIN F_ViceFundInfo fv ON fv.AccountID = fa.AccountID
+			LEFT JOIN E_CustomerInfo ec ON ec.CustomerID = fa.CustomerID
+			LEFT JOIN E_MerchantBonusInfo em ON em.CustomerID = ec.CustomerID
+			LEFT JOIN F_SettlementAccountInfo fs ON fs.AccountID = fa.AccountID
+			WHERE fm.CardID = #{cardID}
+	</select>
+
+	<select id="searchMember" resultType="E_CustomerInfoEntity" parameterType="map" statementType="CALLABLE">
+		 select DISTINCT a.ArchiveID,a.customerID,d.MemberName as customerName,d.CardID,d.CardSerialNo,d.MemberMobile as Mobile,b.RealAmount as accountBalance,d.createtime,d.cardStatus,
+               f.DictionaryName as sourceName ,g.RoleName
+        from  E_MerchantBonusInfo a INNER JOIN  F_ViceFundInfo b on a.CardID=b.CardID and b.AccountType=700
+                       INNER JOIN F_MemberCardInfo d on a.CardID=d.CardID
+                       LEFT JOIN  E_CustomerInfo e on a.customerID=e.customerID
+                       LEFT JOIN  C_DictionaryInfo f on e.sourceType=f.DictionaryID
+                       LEFT JOIN  E_RoleInfo g  on d.RoleID=g.RoleID
+         where d.archiveID=#{archiveID} and (d.CardSerialNo like concat('%', #{quValue}, '%')  or d.MemberName like concat('%', #{quValue}, '%') or d.MemberMobile like concat('%', #{quValue}, '%') );
+
+	</select>
+
+	<select id="getQueryMemberCount" resultType="map" parameterType="map" statementType="CALLABLE">
+		select COUNT(*) as 'count'
+		from  E_MerchantBonusInfo a INNER JOIN  F_AccountInfo b on a.customerID=b.customerID
+		INNER JOIN F_MemberCardInfo d on a.CardID=d.CardID
+		where d.archiveID=#{archiveID} and (d.CardSerialNo like concat('%', #{quValue}, '%')  or d.MemberName like concat('%', #{quValue}, '%') or d.MemberMobile like concat('%', #{quValue}, '%') );
+	</select>
+
+	<!--  -->
+	<update id="updateMember" parameterType="F_MemberCardInfoEntity" statementType="CALLABLE">
+		update F_MemberCardInfo SET MemberName=#{memberName},MemberMobile=#{memberMobile},Memo=#{memo},IsSync=0
+		where CardID=#{cardID}
+	</update>
+
+	<!--  -->
+	<update id="updateCountermanID" parameterType="F_MemberCardInfoEntity" statementType="CALLABLE">
+		 update F_MemberCardRequestInfo SET CountermanID=#{countermanID},Counterman=#{countermanName}
+		 where CardID=#{cardID}
+	</update>
+
+
+	<select id="quMemberInfor" resultType="E_CustomerInfoEntity" parameterType="map" statementType="CALLABLE">
+           select a.customerID,b.CustomerName,b.gender,b.mobile,b.email,b.birthday,d.memo,b.passportType,b.IDCode
+                     ,d.CardID,d.CardCode,d.cardType,d.RoleID,d.CardSerialNo,
+                     f.MerchantName as ArchiveName,h.CountermanID,h.Counterman as countermanName
+           from  E_MerchantBonusInfo a INNER JOIN  E_CustomerInfo b on a.customerID=b.customerID
+                       INNER JOIN F_MemberCardInfo d on a.CardID=d.CardID
+                       LEFT JOIN  B_MerchantInfo f on  a.ArchiveID=f.ArchiveID
+                       LEFT JOIN  F_MemberCardRequestInfo h on a.CardID=h.CardID
+		   where d.archiveID=#{archiveID} and a.CardID=#{cardID}
+	</select>
+
+	<select id="getMemberInforByCardCode" resultType="F_MemberCardInfoEntity" parameterType="map"
+			statementType="CALLABLE">
+	       SELECT * FROM F_MemberCardInfo
+	       WHERE CardSerialNo =#{cardSerialNo}
+	</select>
+
+
+	<select id="getCustomerMemberInforByCardCode" resultType="map" parameterType="map" statementType="CALLABLE">
+		select a.customerID,d.MemberName,d.CardID,d.CardCode,d.MemberMobile,b.CanCashAmount,d.createtime
+		from  E_MerchantBonusInfo a INNER JOIN  F_AccountInfo b on a.customerID=b.customerID
+		INNER JOIN F_MemberCardInfo d on a.CardID=d.CardID
+		where d.cardSerialNo=#{cardSerialNo}
+	</select>
+
+	<!--取会员卡的总数，会员卡余额合计-->
+	<select id="getCardCount" resultType="map" parameterType="map" statementType="CALLABLE">
+           SELECT COUNT(a.cardid) as count ,SUM(d.FundAmount) as fundAmount
+           from E_MerchantBonusInfo a INNER JOIN E_CustomerInfo b on a.customerid=b.CustomerID
+                                      INNER JOIN   F_MemberCardInfo c on a.cardid=c.CardID
+                                      INNER JOIN   F_AccountInfo  d on a.customerid=d.CustomerID
+            where a.archiveID=#{archiveID}
+	</select>
+
+	<!-- 根据 cardid 取会员的档案信息 -->
+	<select id="getCardMemberInfor" resultType="F_MemberCardInfoEntity" parameterType="map" statementType="CALLABLE">
+		SELECT DISTINCT a.CustomerID,a.ArchiveID,a.CardID,a.CurrentBonus as cardCurrentBonus,
+           b.Birthday,b.Mobile,b.CreateTime,b.Email,
+           h.DictionaryName as SourceName,
+           c.CardCode,c.CardSerialNo,
+           c.RoleID,c.MemberName,
+           e.DictionaryName as CardLevel,
+           c.CardStatus,f.DictionaryName as CardStatusName,
+           c.IssueTime,c.ExpirationDate,
+           d.FundAmount,
+           j.MerchantName as ArchiveName,
+           i.CountermanID,i.Counterman as countermanName,
+           k.RoleName as cardLevelName
+		from E_MerchantBonusInfo a INNER JOIN E_CustomerInfo b on a.customerid=b.CustomerID
+		   INNER JOIN   F_MemberCardInfo c on a.cardid=c.CardID
+	       INNER JOIN   F_AccountInfo  d on a.CustomerID=d.CustomerID
+           LEFT JOIN C_DictionaryInfo e on c.RoleID=e.DictionaryID
+           LEFT JOIN C_DictionaryInfo f on c.CardStatus=f.DictionaryID
+           LEFT JOIN B_MerchantInfo  j on a.archiveID=j.archiveID
+           LEFT JOIN C_DictionaryInfo h on b.SourceType=h.DictionaryID
+           LEFT JOIN F_MemberCardRequestInfo i on c.CardID=i.CardID
+           LEFT JOIN E_RoleInfo k on c.RoleID=k.RoleID
+		        where a.archiveID=#{archiveID} and a.CardID=#{cardID}
+	</select>
+
+	<!--根据cardID 获取会员的累积消费，充值，预定等信息-->
+	<select id="getCumulateValue" resultType="map" parameterType="map" statementType="CALLABLE">
+		<![CDATA[
+			{call getClient_CumulateValue(#{archiveID},#{cardID})}
+        ]]>
+	</select>
+
+	<select id="getMemRoleLeve" resultType="map" parameterType="long" statementType="CALLABLE">
+         select a.RoleID,a.RoleName from E_RoleInfo a
+         where a.OrgID=#{orgID}  and a.RoleStatus=9
+	</select>
+
+	<!-- 根据手机号取会员的档案信息 -->
+	<select id="getMemberRecordInfoByMobile" resultType="map" parameterType="map" statementType="CALLABLE">
+		select b.cardID,a.customerID,c.roleID,f.roleName,c.memberName,c.issueTime,d.merchantName,b.archiveID,(FundAmount-frozenAmount) canUseAmount,b.totalBonus,b.currentBonus,
+		(select SUM(t1.ChangeAmount)  from F_FundChangeInfo t1 where t1.archiveID=b.ArchiveID  and t1.CardID = b.CardID  and t1.ChangeType=134) cumulateRecharge, -- 充值总额
+		(select SUM(t1.ChangeAmount)  from F_FundChangeInfo t1 where t1.archiveID=b.ArchiveID  and t1.CardID = b.CardID and t1.ChangeType=135 ) cumulateConsume,-- 消费总额,
+		(select AVG(t1.ChangeAmount)  from F_FundChangeInfo t1 where t1.archiveID=b.ArchiveID  and t1.CardID = b.CardID and t1.ChangeType=135 ) avgConsume,-- 单均消费,
+		(select sum(t2.ActualAmount)/SUM(t2.PeopleNum) from O_OrderInfo t2 where t2.OrderID in (select t1.OrderID from O_BookingInfo t1 where t1.Phone = a.Mobile) ) avgPersonConsume,-- 人均消费,
+		(select COUNT(1) from F_FundChangeInfo t1 where t1.archiveID=b.ArchiveID  and t1.CardID = b.CardID  and t1.ChangeType=135 ) consumeCount,   --  消费  次数
+		(select count(1) from O_BookingInfo t1 where t1.Phone = a.Mobile) bookingCount,
+		(select count(1) from O_BookingInfo t1 where t1.Phone = a.Mobile and t1.BookingStatus = 729) cancelCount,
+		(select count(1) from O_BookingInfo t1 where t1.Phone = a.Mobile and t1.BookingStatus = 620) expiredCount
+		from E_CustomerInfo a LEFT JOIN E_MerchantBonusInfo b on a.CustomerID = b.CustomerID
+		LEFT JOIN F_MemberCardInfo c on c.CardID = b.CardID
+		LEFT Join E_RoleInfo f on c.roleID = f.roleID
+		LEFT JOIN B_MerchantInfo d on d.archiveID = b.archiveID
+		LEFT JOIN F_AccountInfo e on e.CustomerID = a.CustomerID
+		where a.Mobile = #{mobile}
+		<if test="archiveID != null">
+			and b.ArchiveID = #{archiveID}
+		</if>
+		limit 1
+	</select>
+	<!-- 会员ID,密码取会员信息 -->
+	<select id="checkPassword" parameterType="map" resultType="F_MemberCardInfoEntity" statementType="CALLABLE">
+        select * from F_MemberCardInfo
+        where CardID=#{cardID} and PayPassword=#{oldPassword}
+	</select>
+
+	<!-- 修改会员支付密码 -->
+	<update id="updateCardPassword" parameterType="map" statementType="CALLABLE">
+       update F_MemberCardInfo set PayPassword=#{newPassword} where CardID=#{cardID}
+	</update>
+
+	<!--
+	根据手机号或会员卡号或会员卡序列号获取会员信息
+	chenkangyi
+	2017-5-25 15:30
+	-->
+	<select id="selectMemberCardInfoBymemberCode" parameterType="map" resultType="cc.toprank.byd.entity.F_MemberCardInfoEntity">
+		SELECT mci.* FROM F_MemberCardInfo mci
+		INNER JOIN F_MemberCardRequestInfo mcri ON mci.CardID = mcri.CardID
+		WHERE
+		<choose>
+			<when test="memberCodeType == 1">
+				mcri.MemberMobile = #{memberCode}
+			</when>
+			<when test="memberCodeType == 2">
+				mci.CardCode = #{memberCode}
+			</when>
+			<when test="memberCodeType == 3">
+				mci.CardSerialNo = #{memberCode}
+			</when>
+		</choose>
+		LIMIT 1
+	</select>
+
+	<update id="updateCardStatus" parameterType="map" statementType="CALLABLE">
+		update F_MemberCardInfo set CardStatus=#{cardStatus} where CardID=#{cardID}
+	</update>
+
+	<select id="queryMemberRecharge" parameterType="map" resultType="map">
+        select b.depositID,b.cardID,b.customerID,a.ChangeAmount as rechargeValue,a.BeforeAmount,a.AfterAmount as afterRechargeValue,a.createTime as rechargeTime,c.loginName,
+               d.DictionaryName as paymentName,f.DictionaryName as statusName,e.OderAmount as openBill
+        from F_FundChangeInfo a INNER JOIN F_DepositInfo b on a.BusinessID=b.DepositID and a.BusinessType=160 and a.AccountType=700
+                                LEFT JOIN U_LoginInfo c on a.CreatorID=c.LoginID
+                                LEFT JOIN C_DictionaryInfo d on b.DepositType=d.DictionaryID
+                                LEFT JOIN F_InvoiceInfo e  on b.depositID=e.orderID
+                                 LEFT JOIN C_DictionaryInfo f on e.InvoiceStatus=f.DictionaryID
+        where a.CreatorID =#{loginID}  and  DATEDIFF(#{quDate},a.CreateTime)=0
+        ORDER BY a.CreateTime
+
+	</select>
+
+	<select id="getRechargeRuleInfo" parameterType="map" resultType="map">
+		select a.ActivityID,a.ActivityName,a.StartDate,a.EndDate,a.StartTime,a.EndTime,a.ActivityDesc,
+	        	b.RuleID,b.RuleName,b.SpentAmount,c.DiscounType, d.DictionaryName as  DiscounTypeName,c.DiscountPercentage,c.PresentAmount,c.PresentBonus
+		from M_ActivityInfo a
+	    	INNER JOIN  M_ActivityRuleInfo b on a.ActivityID=b.ActivityID
+		    INNER JOIN  M_ActivityDiscountInfo c on b.RoleID=c.RuleID
+		    LEFT JOIN  C_DictionaryInfo d on c.DiscounType=d.DictionaryID
+		where a.ArchiveID=#{ArchiveID}  and a.ActivityType=940 and b.ActiviryRuleStatus=9
+		     <![CDATA[ and DATEDIFF(UTC_DATE(),a.StartDate)=0 and DATEDIFF(UTC_DATE(),a.EndDate)<=0  and TIMESTAMPDIFF(MINUTE ,UTC_TIME(),a.EndTime) <=0 and b.SpentAmount <=#{SpentAmount} ]]>
+		ORDER BY b.Priority DESC
+		LIMIT 0,1
+	</select>
+
+	<!-- 根据会员卡号或手机号查询会员信息 hcy -->
+	<select id="queryMemberCardByCondition" parameterType="cc.toprank.byd.entity.F_MemberCardInfoEntity" resultType="cc.toprank.byd.entity.MemCardInfoDTO">
+		SELECT
+			a.MemberName,d.RoleName,a.CardID,a.CardCode,b.RealAmount,c.TotalBonus,a.ExpirationDate,a.CardStatus,b.CustomerID
+		FROM
+			F_MemberCardInfo a
+		INNER JOIN
+			F_ViceFundInfo b
+		ON (a.CardID = b.CardID)
+		LEFT JOIN
+			E_MerchantBonusInfo c
+		ON (c.CardID = a.CardID)
+		LEFT JOIN
+			E_RoleInfo d
+		ON (a.RoleID = d.RoleID)
+		WHERE
+			a.archiveID = #{archiveID}
+			<if test="null != cardID">
+				AND a.CardID = #{cardID}
+			</if>
+			<if test="null != memberMobile">
+				AND a.MemberMobile = #{memberMobile}
+			</if>
+	</select>
+
+</mapper>

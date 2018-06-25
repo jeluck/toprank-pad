@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.U_OrgCustomerMappingDao">
+	<select id="getAll" parameterType="U_OrgCustomerMappingEntity" resultType="U_OrgCustomerMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetU_OrgCustomerMappingCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="U_OrgCustomerMappingEntity" resultType="U_OrgCustomerMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetU_OrgCustomerMappingEntity(#{mappingID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="U_OrgCustomerMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteU_OrgCustomerMappingEntity(#{mappingID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="U_OrgCustomerMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertU_OrgCustomerMappingEntity(#{createTime},#{creatorID},#{customerID},#{mappingCode},#{mappingDesc},#{mappingID,jdbcType=INTEGER,mode=OUT},#{mappingStatus},#{memo},#{orgID},#{sortNo},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="U_OrgCustomerMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateU_OrgCustomerMappingEntity(#{createTime},#{creatorID},#{customerID},#{mappingCode},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{orgID},#{sortNo})}
+		]]>
+	</update>
+  	<!--<select id="list" parameterType="U_OrgCustomerMapping" resultType="U_OrgCustomerMapping" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetU_OrgCustomerMapping_query_by_condition(#{createTime},#{creatorID},#{customerID},#{mappingCode},#{mappingDesc},#{mappingStatus},#{memo},#{orgID},#{sortNo})} 
+		]]>  
+  	</select>
+  	-->
+  	
+  	<!-- 根据机构编号查询机构客户关联信息 hcy -->
+  	<select id="queryOrgCustomerMappingByOrgID" parameterType="long" resultType="U_OrgCustomerMappingEntity">
+		SELECT
+			a.CreateTime, a.CreatorID, a.CustomerID, a.MappingCode, a.MappingDesc, a.MappingID, a.MappingStatus,
+			a.Memo, a.OrgID, a.SortNo
+		FROM
+			U_OrgCustomerMapping a
+		LEFT JOIN
+			E_CustomerInfo b
+		ON
+			(a.CustomerID = b.CustomerID)
+		WHERE
+			a.OrgID = #{orgID}
+		AND
+			b.CustomerType != 932
+	</select>
+  </mapper>

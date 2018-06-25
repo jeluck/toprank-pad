@@ -1,0 +1,31 @@
+package cc.toprank.byd.entity;
+
+/**********************************************************************************************************************
+ * 
+ *   版权所有：(c)2016， 深圳市拓润计算机软件开发有限公司
+ *
+ *   继承自自动生成的实体，具体业务方法使用的实体类
+ *   如果具体业务需要扩展字段，请扩展该类
+ * 
+ * ********************************************************************************************************************/
+public class F_MemberCardRequestInfoEntity  extends F_MemberCardRequestInfoEntityBase{
+  private String memberMobile;
+  private String memberName;
+
+  public String getMemberMobile() {
+    return memberMobile;
+  }
+
+  public void setMemberMobile(String memberMobile) {
+    this.memberMobile = memberMobile;
+  }
+
+  public String getMemberName() {
+    return memberName;
+  }
+
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
+  }
+  
+}

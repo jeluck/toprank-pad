@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.F_ViceFundInfoDao">
+		<select id="getAll" parameterType="F_ViceFundInfoEntity" resultType="F_ViceFundInfoEntity" statementType="CALLABLE">
+			<![CDATA[
+			{call GetF_ViceFundInfoCollection()}
+		]]>
+		</select>
+		<select id="get" parameterType="F_ViceFundInfoEntity" resultType="F_ViceFundInfoEntity" statementType="CALLABLE">
+			<![CDATA[
+			{call GetF_ViceFundInfoEntity(#{fundID})}
+		]]>
+		</select>
+		<delete id="delete" parameterType="F_ViceFundInfoEntity" statementType="CALLABLE">
+			<![CDATA[
+			{call DeleteF_ViceFundInfoEntity(#{fundID})}
+		]]>
+		</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="FundID" parameterType="F_ViceFundInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertF_ViceFundInfoEntity(#{accountID},#{accountType},#{activityDesc},#{activityID},#{activityName},#{archiveID},#{cardCode},#{cardID},#{cardNo},#{createTime},#{currencyID},#{customerID},#{effectiveTime},#{expireTime},#{frequency},#{frozenAmount},#{fundDesc},#{fundID,jdbcType=INTEGER,mode=OUT},#{getMode},#{getTime},#{initAmount},#{isMutuallyExclusive},#{isSync},#{loginID},#{memo},#{onceMaxAmount},#{onceRate},#{orderAmount},#{preferentialStatus},#{preferentialUseTime},#{realAmount},#{realName},#{sourceAccountID},#{stakeholderID},#{stakeholderName},#{targetIDs},#{tempAmount},#{useMode},#{viceCode},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="F_ViceFundInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateF_ViceFundInfoEntity(#{accountID},#{accountType},#{activityDesc},#{activityID},#{activityName},#{archiveID},#{cardCode},#{cardID},#{cardNo},#{createTime},#{currencyID},#{customerID},#{effectiveTime},#{expireTime},#{frequency},#{frozenAmount},#{fundDesc},#{fundID},#{getMode},#{getTime},#{initAmount},#{isMutuallyExclusive},#{isSync},#{loginID},#{memo},#{onceMaxAmount},#{onceRate},#{orderAmount},#{preferentialStatus},#{preferentialUseTime},#{realAmount},#{realName},#{sourceAccountID},#{stakeholderID},#{stakeholderName},#{targetIDs},#{tempAmount},#{useMode},#{viceCode})}
+		]]>
+	</update>
+
+	<update id="updateRealAmount" parameterType="F_ViceFundInfoEntity" statementType="CALLABLE">
+           update F_ViceFundInfo set RealAmount=#{realAmount} ,IsSync=#{isSync}  where FundID=#{fundID}
+	</update>
+
+  	<select id="getViceFundInfoByCustomerIdAccountType"  parameterType="hashmap" resultType="F_ViceFundInfoEntity" statementType="CALLABLE">
+		Select *
+		from F_ViceFundInfo a
+		where
+		a.CustomerID =#{customerID} AND a.ArchiveID = #{archiveID} AND a.AccountType = #{accountType}
+	</select>
+
+  </mapper>

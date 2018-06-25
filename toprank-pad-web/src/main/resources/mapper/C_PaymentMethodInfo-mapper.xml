@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.C_PaymentMethodInfoDao">
+  	<select id="getAll" parameterType="C_PaymentMethodInfoEntity" resultType="C_PaymentMethodInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetC_PaymentMethodInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="C_PaymentMethodInfoEntity" resultType="C_PaymentMethodInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetC_PaymentMethodInfoEntity(#{paymentMethodID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="C_PaymentMethodInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteC_PaymentMethodInfoEntity(#{paymentMethodID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="PaymentMethodID" parameterType="C_PaymentMethodInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertC_PaymentMethodInfoEntity(#{configureArgs},#{configurePath},#{createTime},#{creatorID},#{encryptionParameter},#{isOnline},#{isSync},#{memo},#{methodStatus},#{paymentDescription},#{paymentMethodCode},#{paymentMethodID,jdbcType=INTEGER,mode=OUT},#{paymentName},#{payOrgID},#{returnPath},#{sortNo},#{visibleName})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="C_PaymentMethodInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateC_PaymentMethodInfoEntity(#{configureArgs},#{configurePath},#{createTime},#{creatorID},#{encryptionParameter},#{isOnline},#{isSync},#{memo},#{methodStatus},#{paymentDescription},#{paymentMethodCode},#{paymentMethodID},#{paymentName},#{payOrgID},#{returnPath},#{sortNo},#{visibleName})} 
+		]]>  
+  	</update>
+  	<!--<select id="list" parameterType="C_PaymentMethodInfo" resultType="C_PaymentMethodInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetC_PaymentMethodInfo_query_by_condition(#{configureArgs},#{configurePath},#{createTime},#{creatorID},#{encryptionParameter},#{isOnline},#{isSync},#{memo},#{methodStatus},#{paymentDescription},#{paymentMethodCode},#{paymentName},#{payOrgID},#{returnPath},#{sortNo},#{visibleName})} 
+		]]>  
+  	</select>
+  	-->
+
+	<!-- 根据支付机构编号查询支付方式	hcy -->
+	<select id="getPaymentMethod" resultType="C_PaymentMethodInfoEntity">
+		SELECT
+			a.ConfigureArgs, a.ConfigurePath, a.CreateTime, a.CreatorID, a.EncryptionParameter, a.IsOnline, a.IsSync,
+			a.Memo, a.MethodStatus, a.PaymentDescription, a.PaymentMethodCode, a.PaymentMethodID, a.PaymentName, a.PayOrgID,
+			a.ReturnPath, a.SortNo, a.VisibleName
+		FROM
+			C_PaymentMethodInfo a
+		WHERE
+			a.MethodStatus = 9
+	</select>
+  </mapper>

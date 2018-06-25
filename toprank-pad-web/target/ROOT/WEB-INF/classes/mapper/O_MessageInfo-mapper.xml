@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.O_MessageInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_MessageInfoEntity">
+        <id column="SMSID" jdbcType="BIGINT" property="SMSID"/>
+        <result column="SettingID" jdbcType="BIGINT" property="settingID"/>
+        <result column="SMSCode" jdbcType="VARCHAR" property="SMSCode"/>
+        <result column="BusinessType" jdbcType="BIGINT" property="businessType"/>
+        <result column="BusinessID" jdbcType="BIGINT" property="businessID"/>
+        <result column="BusinessStatus" jdbcType="BIGINT" property="businessStatus"/>
+        <result column="SMSContent" jdbcType="VARCHAR" property="SMSContent"/>
+        <result column="RecipientID" jdbcType="BIGINT" property="recipientID"/>
+        <result column="RecipientType" jdbcType="BIGINT" property="recipientType"/>
+        <result column="GetwayAddress" jdbcType="VARCHAR" property="getwayAddress"/>
+        <result column="SignInfo" jdbcType="VARCHAR" property="signInfo"/>
+        <result column="KeyVersion" jdbcType="VARCHAR" property="keyVersion"/>
+        <result column="IsSMS" jdbcType="BIT" property="isSMS"/>
+        <result column="SendCode" jdbcType="VARCHAR" property="sendCode"/>
+        <result column="ReceiverCode" jdbcType="VARCHAR" property="receiverCode"/>
+        <result column="SendStatus" jdbcType="BIGINT" property="sendStatus"/>
+        <result column="CompletedTime" jdbcType="TIMESTAMP" property="completedTime"/>
+        <result column="CompletedDesc" jdbcType="VARCHAR" property="completedDesc"/>
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo"/>
+        <result column="SenderID" jdbcType="BIGINT" property="senderID"/>
+        <result column="SenderType" jdbcType="BIGINT" property="senderType"/>
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="Memo" jdbcType="VARCHAR" property="memo"/>
+        <result column="IsSync" jdbcType="BIT" property="isSync"/>
+        <result column="TemplateID" jdbcType="BIGINT" property="templateID"/>
+        <result column="SubOrderID" jdbcType="BIGINT" property="subOrderID"/>
+        <result column="TableID" jdbcType="BIGINT" property="tableID"/>
+        <result column="TableName" jdbcType="VARCHAR" property="tableName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        SMSID, SettingID, SMSCode, BusinessType, BusinessID, BusinessStatus, SMSContent,
+        RecipientID, RecipientType, GetwayAddress, SignInfo, KeyVersion, IsSMS, SendCode,
+        ReceiverCode, SendStatus, CompletedTime, CompletedDesc, SortNo, SenderID, SenderType,
+        CreateTime, Memo, IsSync, TemplateID, SubOrderID, TableID, TableName
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from O_MessageInfo
+        where SMSID = #{SMSID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from O_MessageInfo
+        where SMSID = #{SMSID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.O_MessageInfoEntity">
+        insert into O_MessageInfo (SMSID, SettingID, SMSCode,
+        BusinessType, BusinessID, BusinessStatus,
+        SMSContent, RecipientID, RecipientType,
+        GetwayAddress, SignInfo, KeyVersion,
+        IsSMS, SendCode, ReceiverCode,
+        SendStatus, CompletedTime, CompletedDesc,
+        SortNo, SenderID, SenderType,
+        CreateTime, Memo, IsSync,
+        TemplateID, SubOrderID, TableID,
+        TableName)
+        values (#{SMSID,jdbcType=BIGINT}, #{settingID,jdbcType=BIGINT}, #{SMSCode,jdbcType=VARCHAR},
+        #{businessType,jdbcType=BIGINT}, #{businessID,jdbcType=BIGINT}, #{businessStatus,jdbcType=BIGINT},
+        #{SMSContent,jdbcType=VARCHAR}, #{recipientID,jdbcType=BIGINT}, #{recipientType,jdbcType=BIGINT},
+        #{getwayAddress,jdbcType=VARCHAR}, #{signInfo,jdbcType=VARCHAR}, #{keyVersion,jdbcType=VARCHAR},
+        #{isSMS,jdbcType=BIT}, #{sendCode,jdbcType=VARCHAR}, #{receiverCode,jdbcType=VARCHAR},
+        #{sendStatus,jdbcType=BIGINT}, #{completedTime,jdbcType=TIMESTAMP}, #{completedDesc,jdbcType=VARCHAR},
+        #{sortNo,jdbcType=INTEGER}, #{senderID,jdbcType=BIGINT}, #{senderType,jdbcType=BIGINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT},
+        #{templateID,jdbcType=BIGINT}, #{subOrderID,jdbcType=BIGINT}, #{tableID,jdbcType=BIGINT},
+        #{tableName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_MessageInfoEntity">
+        insert into O_MessageInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="SMSID != null">
+                SMSID,
+            </if>
+            <if test="settingID != null">
+                SettingID,
+            </if>
+            <if test="SMSCode != null">
+                SMSCode,
+            </if>
+            <if test="businessType != null">
+                BusinessType,
+            </if>
+            <if test="businessID != null">
+                BusinessID,
+            </if>
+            <if test="businessStatus != null">
+                BusinessStatus,
+            </if>
+            <if test="SMSContent != null">
+                SMSContent,
+            </if>
+            <if test="recipientID != null">
+                RecipientID,
+            </if>
+            <if test="recipientType != null">
+                RecipientType,
+            </if>
+            <if test="getwayAddress != null">
+                GetwayAddress,
+            </if>
+            <if test="signInfo != null">
+                SignInfo,
+            </if>
+            <if test="keyVersion != null">
+                KeyVersion,
+            </if>
+            <if test="isSMS != null">
+                IsSMS,
+            </if>
+            <if test="sendCode != null">
+                SendCode,
+            </if>
+            <if test="receiverCode != null">
+                ReceiverCode,
+            </if>
+            <if test="sendStatus != null">
+                SendStatus,
+            </if>
+            <if test="completedTime != null">
+                CompletedTime,
+            </if>
+            <if test="completedDesc != null">
+                CompletedDesc,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="senderID != null">
+                SenderID,
+            </if>
+            <if test="senderType != null">
+                SenderType,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="templateID != null">
+                TemplateID,
+            </if>
+            <if test="subOrderID != null">
+                SubOrderID,
+            </if>
+            <if test="tableID != null">
+                TableID,
+            </if>
+            <if test="tableName != null">
+                TableName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="SMSID != null">
+                #{SMSID,jdbcType=BIGINT},
+            </if>
+            <if test="settingID != null">
+                #{settingID,jdbcType=BIGINT},
+            </if>
+            <if test="SMSCode != null">
+                #{SMSCode,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=BIGINT},
+            </if>
+            <if test="businessID != null">
+                #{businessID,jdbcType=BIGINT},
+            </if>
+            <if test="businessStatus != null">
+                #{businessStatus,jdbcType=BIGINT},
+            </if>
+            <if test="SMSContent != null">
+                #{SMSContent,jdbcType=VARCHAR},
+            </if>
+            <if test="recipientID != null">
+                #{recipientID,jdbcType=BIGINT},
+            </if>
+            <if test="recipientType != null">
+                #{recipientType,jdbcType=BIGINT},
+            </if>
+            <if test="getwayAddress != null">
+                #{getwayAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="signInfo != null">
+                #{signInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="keyVersion != null">
+                #{keyVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="isSMS != null">
+                #{isSMS,jdbcType=BIT},
+            </if>
+            <if test="sendCode != null">
+                #{sendCode,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverCode != null">
+                #{receiverCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sendStatus != null">
+                #{sendStatus,jdbcType=BIGINT},
+            </if>
+            <if test="completedTime != null">
+                #{completedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="completedDesc != null">
+                #{completedDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="senderID != null">
+                #{senderID,jdbcType=BIGINT},
+            </if>
+            <if test="senderType != null">
+                #{senderType,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="templateID != null">
+                #{templateID,jdbcType=BIGINT},
+            </if>
+            <if test="subOrderID != null">
+                #{subOrderID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableName != null">
+                #{tableName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_MessageInfoEntity">
+        update O_MessageInfo
+        <set>
+            <if test="settingID != null">
+                SettingID = #{settingID,jdbcType=BIGINT},
+            </if>
+            <if test="SMSCode != null">
+                SMSCode = #{SMSCode,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                BusinessType = #{businessType,jdbcType=BIGINT},
+            </if>
+            <if test="businessID != null">
+                BusinessID = #{businessID,jdbcType=BIGINT},
+            </if>
+            <if test="businessStatus != null">
+                BusinessStatus = #{businessStatus,jdbcType=BIGINT},
+            </if>
+            <if test="SMSContent != null">
+                SMSContent = #{SMSContent,jdbcType=VARCHAR},
+            </if>
+            <if test="recipientID != null">
+                RecipientID = #{recipientID,jdbcType=BIGINT},
+            </if>
+            <if test="recipientType != null">
+                RecipientType = #{recipientType,jdbcType=BIGINT},
+            </if>
+            <if test="getwayAddress != null">
+                GetwayAddress = #{getwayAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="signInfo != null">
+                SignInfo = #{signInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="keyVersion != null">
+                KeyVersion = #{keyVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="isSMS != null">
+                IsSMS = #{isSMS,jdbcType=BIT},
+            </if>
+            <if test="sendCode != null">
+                SendCode = #{sendCode,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverCode != null">
+                ReceiverCode = #{receiverCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sendStatus != null">
+                SendStatus = #{sendStatus,jdbcType=BIGINT},
+            </if>
+            <if test="completedTime != null">
+                CompletedTime = #{completedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="completedDesc != null">
+                CompletedDesc = #{completedDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="senderID != null">
+                SenderID = #{senderID,jdbcType=BIGINT},
+            </if>
+            <if test="senderType != null">
+                SenderType = #{senderType,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="templateID != null">
+                TemplateID = #{templateID,jdbcType=BIGINT},
+            </if>
+            <if test="subOrderID != null">
+                SubOrderID = #{subOrderID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                TableID = #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableName != null">
+                TableName = #{tableName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where SMSID = #{SMSID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_MessageInfoEntity">
+        update O_MessageInfo
+        set SettingID = #{settingID,jdbcType=BIGINT},
+        SMSCode = #{SMSCode,jdbcType=VARCHAR},
+        BusinessType = #{businessType,jdbcType=BIGINT},
+        BusinessID = #{businessID,jdbcType=BIGINT},
+        BusinessStatus = #{businessStatus,jdbcType=BIGINT},
+        SMSContent = #{SMSContent,jdbcType=VARCHAR},
+        RecipientID = #{recipientID,jdbcType=BIGINT},
+        RecipientType = #{recipientType,jdbcType=BIGINT},
+        GetwayAddress = #{getwayAddress,jdbcType=VARCHAR},
+        SignInfo = #{signInfo,jdbcType=VARCHAR},
+        KeyVersion = #{keyVersion,jdbcType=VARCHAR},
+        IsSMS = #{isSMS,jdbcType=BIT},
+        SendCode = #{sendCode,jdbcType=VARCHAR},
+        ReceiverCode = #{receiverCode,jdbcType=VARCHAR},
+        SendStatus = #{sendStatus,jdbcType=BIGINT},
+        CompletedTime = #{completedTime,jdbcType=TIMESTAMP},
+        CompletedDesc = #{completedDesc,jdbcType=VARCHAR},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        SenderID = #{senderID,jdbcType=BIGINT},
+        SenderType = #{senderType,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT},
+        TemplateID = #{templateID,jdbcType=BIGINT},
+        SubOrderID = #{subOrderID,jdbcType=BIGINT},
+        TableID = #{tableID,jdbcType=BIGINT},
+        TableName = #{tableName,jdbcType=VARCHAR}
+        where SMSID = #{SMSID,jdbcType=BIGINT}
+    </update>
+
+
+    <!--业务调用xml方法部分-->
+
+
+    <!--获得消息列表-->
+    <select id="getMessageList" resultType="cc.toprank.byd.dto.message.MessageDTO">
+        select
+        SMSID messageID,
+        m.createTime createTime,
+        ms.businessType catalogID,
+        ms.settingDesc settingDesc,
+        m.tableID tableID,
+        m.tableName tableName,
+        m.subOrderID subOrderID,
+        m.SMSContent sMSContent,
+        u.nickName nickName,
+        dic.dictionaryName statusDesc,
+        dic.dictionaryID dictionaryID
+        from O_MessageInfo m
+        left join O_MessageSettingInfo ms on m.SettingID = ms.settingID
+        left join U_LoginInfo u on m.recipientID = u.loginID and m.recipientType = 44
+        left join C_DictionaryInfo dic on dic.DictionaryID = m.businessStatus
+        where
+        TO_DAYS(m.createTime) = TO_DAYS(UTC_TIMESTAMP()) and m.businessID != 0
+        <if test="showType == 0">
+            AND (m.businessStatus = 676 or m.businessStatus = 675)
+        </if>
+        <if test="showType == 1">
+            AND (m.businessStatus = 677)
+        </if>
+        <if test="settingID !=null and settingID!=0">
+            AND m.settingID = #{settingID}
+        </if>
+        <if test="recipientID !=null ">
+            AND m.recipientID = #{recipientID}
+        </if>
+        order by m.createTime desc
+    </select>
+
+    <select id="getMessageCountByShowType" resultType="map">
+        select
+        ifnull(sum(case when (m.businessStatus = 677 ) then 1 else 0 end),0) isHandlerNum,
+        ifnull(sum(case when (m.businessStatus = 676 or m.businessStatus = 675) then 1 else 0 end),0) noHandlerNum
+        from O_MessageInfo m
+        left join O_MessageSettingInfo ms on m.SettingID = ms.settingID
+        left join U_LoginInfo u on m.recipientID = u.loginID and m.recipientType = 44
+        left join C_DictionaryInfo dic on dic.DictionaryID = m.businessStatus
+        where
+        TO_DAYS(m.createTime) = TO_DAYS(UTC_TIMESTAMP())
+        <if test="recipientID !=null ">
+            AND m.recipientID = #{recipientID}
+        </if>
+        <if test="settingID !=null and settingID!=0">
+            AND m.settingID = #{settingID}
+        </if>
+    </select>
+
+    <!--获得各类消息类型和数量-->
+    <select id="getMessageCountList" resultType="cc.toprank.byd.dto.message.MessageCountDTO">
+        select
+          ms.settingID settingID,
+          ms.settingDesc settingDesc,
+          ifnull(sum(case when (o.createTime BETWEEN #{startTime} and #{endTime}) then 1 else 0 end),0) num
+        from O_MessageSettingInfo ms
+        left join O_MessageInfo o on  o.settingID = ms.settingID and (o.businessStatus = 676 or o.businessStatus = 675) and o.BusinessID !=0
+        <if test="recipientID !=null ">
+        AND o.recipientID = #{recipientID}
+        </if>
+        inner join B_DictionaryCatalogInfo dc on ms.businessType = dc.catalogID
+		where
+		dc.parentID = 1
+        group by ms.settingID
+        order by ms.sortNo desc
+    </select>
+
+    <select id="getBusinessList" resultType="map">
+        select
+        d.dictionaryID,
+        d.dictionaryName,
+		setting.settingID
+        from B_DictionaryInfo d
+        left join B_DictionaryCatalogInfo dc on d.catalogID = dc.catalogID
+		inner join O_MessageSettingInfo setting on dc.catalogID = setting.businessType
+        where dictionaryStatus = 9 and setting.businessStatus=9
+    </select>
+
+    <select id="getSettingID" resultType="long">
+        select settingID
+        from O_MessageSettingInfo
+        where businessType = #{businessType}
+    </select>
+
+    <select id="getMessageContentList" resultType="map">
+        select
+        '我' sendName,o.sMSContent smsContent,o.createTime createTime,0 userType,"" headImage
+        from O_MessageInfo o
+        where o.suborderid=#{subOrderID}  and o.businessID != 0
+
+        union all
+
+        select '我' sendName,o.sMSContent smsContent,o.createTime createTime,0 userType,"" headImage from O_MessageInfo o
+        where o.suborderid=#{subOrderID}  and o.businessID = 0 group by o.smsCode
+
+        union all
+
+        select u.nickName sendName,od.dealDesc smsContent,od.createTime createTime,1 userType,"" headImage from O_MessageDealInfo od
+        left join O_MessageInfo o on od.smsID = o.smsID
+        left join U_LoginInfo u on od.transferID = u.loginID
+        where o.suborderid=#{subOrderID}
+
+        order by createTime asc
+    </select>
+
+    <select id="getUserInfo" resultType="map">
+        select loginID,
+               nickName,
+               employeeCode
+        from U_LoginInfo
+        where loginID = #{loginID}
+    </select>
+
+    <select id="getUpLevelPersonList" resultType="map">
+        select rrm.targetID into @i from U_LoginInfo u
+        left join U_RoleLoginInfo rl on u.loginID = rl.loginID
+        left join B_RoleRelationalMapping rrm on rl.roleID = rrm.roleID
+        where u.loginID = 43 and rrm.roleID is not null;
+
+        select u.loginID loginID,u.loginName loginName from U_LoginInfo u
+        left join U_RoleLoginInfo rl on u.loginID = rl.loginID
+        where rl.roleID in (select @i) limit 0,1;
+    </select>
+
+    <select id="getRoleListByArchiveID" resultType="map">
+        select
+        r.roleID,
+        r.roleName
+        from U_RoleInfo r
+        left join U_OrgRoleInfo ori on r.roleID = ori.roleID
+        left join B_MerchantInfo m on ori.OrgID = m.OrgID
+        where m.archiveID = #{archiveID}
+    </select>
+
+    <select id="getTransferPersonList" resultType="map">
+        select
+        l.loginID,
+        l.nickName,
+        l.employeeCode
+        from U_LoginInfo l
+        left join U_RoleLoginInfo rl on l.loginID = rl.loginID
+        left join U_RoleInfo r on rl.roleID = r.roleID
+        left join U_OrgRoleInfo ori on r.roleID = ori.roleID
+        left join B_MerchantInfo m on ori.OrgID = m.OrgID
+        where m.archiveID = #{archiveID}
+        <if test="roleID !=null and roleID != 0">
+            AND r.roleID = #{roleID}
+        </if>
+        <if test="searchContent!=null and searchContent!=''">
+            AND (l.nickName like '%${searchContent}%' or l.employeeCode like '%${searchContent}%' )
+        </if>
+        <if test="loginID != null ">
+            AND l.loginID != #{loginID}
+        </if>
+    </select>
+
+
+    <select id="getMessageListByLastTime" resultType="map">
+        select
+        SMSID messageID,
+        m.createTime createTime,
+        ms.settingDesc settingDesc,
+        m.tableName tableName,
+        m.subOrderID subOrderID,
+        m.SMSContent sMSContent,
+        u.nickName nickName,
+        dic.dictionaryName statusDesc,
+        dic.dictionaryID dictionaryID
+        from O_MessageInfo m
+        left join O_MessageSettingInfo ms on m.SettingID = ms.settingID
+        left join U_LoginInfo u on m.recipientID = u.loginID and m.recipientType = 44
+        left join C_DictionaryInfo dic on dic.DictionaryID = m.businessStatus
+        where
+        <if test="newTime !=null ">
+            m.createTime > #{newTime}
+        </if>
+        AND TO_DAYS(m.createTime) = TO_DAYS(UTC_TIMESTAMP())
+        order by m.createTime desc
+    </select>
+
+    <select id="checkMessageType" resultType="long">
+        select count(1) from O_MessageSettingInfo m
+        inner join B_DictionaryCatalogInfo dc on m.businessType = dc.catalogID
+        left join B_DictionaryInfo d on d.catalogID = dc.catalogID
+        where m.settingID = #{settingID} and d.dictionaryID = #{dictionaryID}
+    </select>
+
+    <!--初始化方法调用-->
+    <select id="getBusinessListDictionaryCatalog" resultType="map">
+        select dc.catalogID catalogID,dc.catalogName catalogName
+        from B_DictionaryCatalogInfo dc
+        left join O_MessageSettingInfo ms on dc.catalogID = ms.businessType
+        where dc.parentiD = 1 and ms.settingID is null
+    </select>
+    <select id="initBusinessList" resultType="map">
+        <foreach collection="list" separator=";" item="item">
+            insert into O_MessageSettingInfo
+            (settingID,archiveID,businessType,businessStatus,settingStatus,settingDesc,sortNo,createTime,memo)
+            values
+            (#{item.settingID},#{archiveID},#{item.catalogID},9,9,#{item.catalogName},#{item.sortNo},UTC_TIMESTAMP(),'lsh初始化数据')
+        </foreach>
+        select * from O_MessageSettingInfo;
+    </select>
+
+
+    <select id="getOrderStatusBySubOrderID" resultType="map">
+        select
+        s.subOrderID,
+        s.orderStatus subOrderStatus,
+        o.orderCode,
+        o.orderID,
+        o.orderStatus
+         from O_SubOrderInfo s
+        left join O_OrderInfo o on s.orderID = o.orderID
+        where s.subOrderID = #{subOrderID}
+    </select>
+
+</mapper>

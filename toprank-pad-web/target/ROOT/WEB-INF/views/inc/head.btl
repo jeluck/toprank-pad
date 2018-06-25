@@ -1,0 +1,10 @@
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="" />
+<title>${title!'商家登录'}</title>
+<script type="text/javascript">
+    var basePath = "${basePath}";
+</script>
+<script src="${basePath}/static/js/jquery/jquery-1.11.1.min.js"></script>
+<script src="${basePath}/static/js/plugins/layer/layer.min.js"></script>

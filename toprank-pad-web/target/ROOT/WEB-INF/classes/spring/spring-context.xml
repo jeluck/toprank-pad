@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd"
+       default-autowire="byName" default-lazy-init="false">
+    <!-- default-lazy-init设置只对scop属性为singleton的bean起作用,
+                       启动时将所有singleton bean提前进行实例化,这样在配置还有个好处是有些错误能在启动时就被发现-->
+    <task:annotation-driven/>
+    <context:spring-configured />
+    <context:component-scan base-package="cc.toprank.byd">
+        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+    <!-- 引入属性文件 -->
+	<context:property-placeholder location="classpath:config.properties"  />
+	<!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:config.properties</value>
+		</property>
+	</bean>-->
+
+    <!--注解配置 -->
+	<!-- 配置要扫描的包 -->
+	<!-- proxy-target-class默认"false",更改为"ture"使用CGLib动态代理 -->  
+	<!-- <aop:aspectj-autoproxy proxy-target-class="true" /> -->
+	<!-- beetl需要获取spring对象 -->
+	<bean class="cc.toprank.byd.beetl.BeanFactoryUtil"></bean>
+	<!--注册验证器 -->
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+        <!--<property name="validationProperties" ref="loadProperties"/> -->
+    </bean>
+	
+	 <!--<import resource="classpath:spring/spring-cache.xml"/>-->
+	 <import resource="classpath:spring/spring-mybatis.xml"/>
+</beans>

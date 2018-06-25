@@ -1,0 +1,571 @@
+ /* 1 - Basic tag css rules */
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+h1,h2,h3,h4,h5,h6,li,p,pre {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 8pt;
+}
+input,textarea,select,option,a,div,li,button {outline: 0 none;}
+ul,li,p,h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	padding: 0;
+	margin: 0;
+}
+/* 2 - Global tag css rules */
+h1,h2,h3,h4,h5,h6, legend {
+	font-weight: normal;
+	font-size: 9pt;
+	color: #026d81;
+	border-bottom: 1px solid #737c81;
+	letter-spacing: 2pt;
+	padding-bottom: 5px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+.section-no-border{
+	font-size: 8pt;
+	border: none;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+pre{
+	margin-top:0;
+	white-space:pre-wrap;
+	white-space:-pre-wrap;
+	white-space:-o-pre-wrap;
+	white-space:-moz-pre-wrap;
+	word-break:break-all;
+    word-wrap:break-word;
+}
+h1.first,h2.first,h3.first,h4.first,h5.first,h6.first {margin-top: 0;}
+.section-title {
+	background-image: url("/prototype-client/statics/images/expand-collapse.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+	cursor: pointer;
+}
+a,a:link,a:visited {color: blue;}
+a:hover {color: #000;}
+label {
+	background-image: url("/prototype-client/statics/images/label.png");
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 7px;
+	height: 20px;
+	line-height: 20px;
+	font-weight: bold;
+	white-space: nowrap;
+	vertical-align: middle;
+	display: block;
+}
+label.required {
+	background-image: url("/prototype-client/statics/images/required.png");
+	cursor: help;
+}
+label.child-icon{
+	display: inline-block;
+}
+label.empty {background: none;}
+li + label {display: inline;}
+.var {
+	display: none;
+	visibility: hidden;
+}
+input[type="text"],input[type="password"] {	
+	border: 1px solid #aaa;
+	border-radius: 0 0 0 0;
+	height: 25px;
+	line-height: 17px;
+	margin: 0;
+	padding: 4px 5px 4px 5px;
+}
+textarea {
+	width:100%;
+	height:100%; 
+	border: 1px solid #aaa;	
+	resize: none;
+	overflow: auto;
+}
+input[type="text"], input[type="password"], textarea{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+input[type=radio]:not(old){
+  display: none!Important;
+}
+input[type=radio]:not(old) + label, input[type=radio]:not(old) + span{
+  display: inline-block!Important;
+  padding-left: 28px!Important;
+  background: url("/prototype-client/statics/images/radio-buttons.png") no-repeat 0 0!Important;
+  height: 24px;
+  line-height: 22px!Important;
+}
+input[type=radio]:not(old).errored + label, input[type=radio]:not(old).errored + span{
+  background-position: 0 -72px!Important;
+}
+input[type=radio]:not(old):checked + label, input[type=radio]:not(old):checked + span{
+  background-position: 0 -48px!Important;
+}
+input[type=radio]:not(old):checked:disabled + label, input[type=radio]:not(old):checked:disabled + span{
+  background-position: 0 -120px!Important;
+}
+input[type=checkbox]:not(old){
+  display: none!Important;
+}
+input[type=checkbox]:not(old) ~ label, input[type=checkbox]:not(old) + span{
+  display: inline-block!Important;
+  padding-left: 22px!Important;
+  background: url("/prototype-client/statics/images/radio-buttons.png") no-repeat -2px -1px!Important;
+  height: 24px;
+  line-height: 22px!Important;
+}
+input[type=checkbox]:not(old).errored  ~ label, input[type=checkbox]:not(old).errored + span{
+  background-position: -2px -73px!Important;
+}
+input[type=checkbox]:not(old):checked  ~ label, input[type=checkbox]:not(old):checked + span{
+  background-position: -2px -25px!Important;
+}
+input[type=checkbox]:not(old):checked:disabled  ~ label, input[type=checkbox]:not(old):checked:disabled + span{
+  background-position: -2px -97px!Important;
+}
+/* 3 - Specific tag css rules */
+.row-closed {
+	background-image: none;
+	background-color: #eee;
+	color: #444 !important;
+}
+.cell-link {cursor: pointer;}
+.cell-link:hover {text-decoration: underline;}
+.cell-more {color: #a8a;}
+.html-file {
+	position: absolute;
+	height: 25px;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	-moz-opacity: 0;
+	z-index: 2;
+	cursor: pointer;
+}
+.cell_percentage {
+	width: 80% !important;
+	vertical-align: middle !important;
+}
+.bold{
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+/**
+ *  DIALOG STYLE :
+ */
+#ACTION_BAR_STUB {
+	position: relative;
+	height: 50px;
+	visibility: hidden;
+}
+#ACTION_BAR,#ACTION_BUTTONS,
+#DIALOG_ACTION_BAR,#DIALOG_ACTION_BUTTONS,
+#DIALOG_MODAL_ACTION_BAR, #DIALOG_MODAL_ACTION_BUTTONS {
+	background-color: #ccc;
+	border: 1px solid #aaa;
+	border-bottom: 0;
+	filter: alpha(opacity = 80);
+	-moz-opacity: 0.8;
+	opacity: 0.8;
+	position: fixed;
+	height: 40px;
+	line-height: 40px;
+	z-index: 98;
+	vertical-align: middle;
+	bottom: 0;
+	left: 100px;
+	right: 100px;
+}
+#DIALOG_ACTION_BAR {z-index: 103;}
+#DIALOG_MODAL_ACTION_BAR {z-index: 105;}
+#ACTION_BUTTONS,#DIALOG_ACTION_BUTTONS,#DIALOG_MODAL_ACTION_BUTTONS,#EXPANDED_BUTTON {
+	background: transparent;
+	filter: none;
+	-moz-opacity: 1;
+	opacity: 1;
+	border: 0;
+	z-index: 99;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: right;
+}
+#DIALOG_ACTION_BUTTONS {z-index: 104;}
+#DIALOG_MODAL_ACTION_BUTTONS {z-index: 106;}
+.ui-front{z-index: 102;}
+.dialog-warning {
+	padding: 5px;
+	color: #ff0000;
+	border: 1px solid #737c81;
+}
+
+/* Mask style: */
+#WAIT_MSG {
+	position: absolute;
+	top: 5px;
+	width: 100%;
+	text-align: center;
+	z-index: 101;
+	display: none;
+}
+#WAIT_MSG p {
+	width: 100%;
+	text-align: center;
+	font-size: 16pt;
+	color: #fff;
+}
+#MANUAL_WAIT_MSG {
+	position: absolute;
+	top: 20px;
+	width: 100%;
+	text-align: center;
+	z-index: 101;
+	display: none;
+}
+#MANUAL_WAIT_MSG p {
+	width: 100%;
+	text-align: center;
+	font-size: 16pt;
+	color: #fff;
+}
+.mask-ui-front{z-index: 9999;}
+.modal-dialog-ui-front{z-index: 10000;}
+
+#SESSION_MSG {
+	background-color: #026d81;
+	color: #fff;
+	position: absolute;
+	width: 200px;
+	padding: 10px;
+	top: 5px;
+	right: 18px;
+	z-index: 1000;
+	display: none;
+}
+/**
+ * BANNER STYLE :
+ */
+#BANNER {
+	background-color: #000;
+	height: 53px;
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-position: 2px;
+}
+#BANNER span {
+	width: 892px;
+	height: 53px;
+	float: right;
+	color: #fff;
+	font-weight: bold;
+	font-size: 12pt;
+	background-image: url("");
+	background-repeat: no-repeat;
+}
+#BANNER img {
+	width: 236px;
+	height: 53px;
+	float: right;
+}
+
+/**
+ *MAIN MENU STYLE (module-north.jsp) : 
+ * 
+ * - #MENU used for the left part of the menu (actions)
+ * - #INFO used for the right part of the menu (information)
+ */ 
+
+#MENU {
+	background-color: #555a5d;
+	height: 30px;
+	width: 100%;
+}
+#MENU li {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	line-height: 30px;
+	color: #fff;
+	vertical-align: middle;
+}
+#MENU li.separator {
+	color: #737C81;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#MODULES {padding-left: 15px;}
+#MODULES li {float: left;}
+#MENU li a {
+	text-decoration: none;
+	white-space: nowrap;
+	color: #9cddd1;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.5pt;
+	white-space: nowrap;
+}
+#MENU li a.active {color: #fff;}
+#MENU li a:hover {color: #fff;}
+#INFO {padding-right: 15px;}
+#INFO li {float: right;}
+/**
+ * MENU (UL-LI) AT THE TOP OF TABBED PANEL
+ */
+#TOP_SCREEN_MENU {text-align: right;}
+#TOP_SCREEN_MENU li {
+	list-style: none outside none;
+	margin: 0 10px 0 0;
+	line-height: 30px;
+	vertical-align: middle;
+	display: inline-block;
+}
+#TOP_SCREEN_MENU li a{
+	color: #097B64;
+    font-weight: bold;
+    letter-spacing: 0.5pt;
+    text-decoration: none;
+    white-space: nowrap;
+}
+/* 
+ * GLOBAL FORM DISPLAY : 
+ * 
+ * - 2 Types of display :
+ *   -> 4 Columns display (default): .row .cell
+ *   -> 2 Columns display : .row .cell-two-columns
+ * - Each cell is declared to be 25% width of the row, no matter the type od display choosed.
+ * - Each component declared in a cell is sized with its default size. If you need to use 100% of the cell width,
+ *   you should decalre .cell > xxx where xxx is the component type (You can exclude some components too).
+ */
+.table {
+	width: 100%; 
+	display: table;
+}
+.row{display: table-row;}
+.cell, .cell-two-columns {	
+	display: table-cell; 
+	padding: 5px; 
+}
+.cell{width: 25%;}
+.cell-two-columns {width: 50%;}
+.cell label ~ input:not(.date-picker), .cell-two-columns label ~ input:not(.date-picker){display: block;}
+.cell > input:not(.date-picker):not([type='checkbox']):not([type='radio']), .cell > button:not(.action-button), 
+.cell-two-columns > input:not(.date-picker):not([type='checkbox']):not([type='radio']), .cell-two-columns > button:not(.action-button),
+.cell > div:not(.ui-multiselect-menu):not(.ui-jqgrid), .cell-two-columns > div:not(.ui-multiselect-menu):not(.ui-jqgrid){width: 100%!Important;}
+.cell.right, .cell-two-columns.right{
+	text-align: right;
+	vertical-align: bottom;
+}
+.cell.left, .cell-two-columns.left{
+	text-align: left;
+	vertical-align: bottom;
+}
+/**
+ * TOOLTIP STYLE :
+ */
+.tooltip,.tooltip-error,.tooltip-success {
+	background: #fff;
+	margin: 0;
+	border-style: solid;
+	border-width: 2px !Important;
+	box-shadow: none;
+	position: absolute;
+	padding: 3px;
+	font-size: 8pt;
+	z-index: 1000;
+	max-width: 250px;
+	outline: 0 none;
+}
+.tooltip-error {border-color: #EA3849;}
+.tooltip-success {border-color: green;}
+/**
+ * OVERRIDEN jQuery STYLES :
+ *   -> jQuery UI;
+ *   -> jQuery chosen (select);
+ *   -> jQuery multiselect;
+ *	 -> jQuery datepicker.
+ */
+.ui-widget {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 8pt;
+}
+.ui-widget-content {
+	color: #33373A;
+}
+.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button {
+	font-size: 8pt;
+}
+.ui-tabs-nav {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+.ui-tabs,.ui-tabs-panel {
+	position: absolute;
+	z-index: 0;
+	padding: 0;
+}
+.ui-tabs-nav {border: none;}
+.ui-tabs {
+	top: 101px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border: 0;
+	margin: 0;
+}
+.ui-tabs .ui-tabs{ 
+	/* Sub-Tabs specific */
+	top: 0;
+	position: relative;
+}
+.ui-tabs-panel{
+	top: 26px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border: 0;
+	margin: 0;
+	overflow-x: auto;
+	overflow-y: scroll;
+}
+.ui-tabs-panel .ui-tabs-panel{
+	/* Sub-Tabs specific */
+	top: 0;
+	position: relative;
+	padding: 0;
+	overflow: hidden;
+}
+.ui-tabs .ui-tabs-nav li a {
+	padding-left: 15px;
+	padding-right: 15px;
+	font-weight: bold;
+}
+.ui-tabs .ui-tabs-nav {padding: 0;}
+.ui-tabs .ui-tabs-nav li {
+	left: 23px;
+	border: none;
+	margin-top: 0;
+}
+.ui-jqgrid .loading {visibility: hidden;}
+.ui-jqgrid {margin-top: 0;}
+.ui-jqgrid .ui-pg-input {height: 22px !Important;}
+.ui-jqgrid .ui-jqgrid-view {font-size: 8pt;}
+.ui-jqgrid th.ui-state-default {
+	background: none !important;
+	background-color: #97a0a4 !important;
+	color: #33373A;
+}
+.ui-jqgrid tr.ui-row-ltr td {border-color: #e0e0e0 !important;}
+.ui-jqgrid tr.ui-row-ltr td.date {text-align: center;}
+.ui-datepicker .ui-icon {cursor: pointer;}
+.ui-datepicker table {font-size: 8pt;}
+.chosen-container,.chosen-container-single .chosen-search input[type="text"] {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 8pt;
+}
+.chosen-container-single .chosen-single {
+	background: none;
+	border: 1px solid #aaa;
+	border-radius: 0;
+	box-shadow: none;
+	color: #33373A;
+}
+.chosen-container .chosen-drop {box-shadow: none;}
+.chosen-container-single .chosen-drop {
+	border-radius: 0;
+	box-shadow: none;
+	width: 100% !important;
+}
+.chosen-container .chosen-results li.highlighted {
+	background-color: #18957f;
+	background-image: none;
+	color: #fff;
+}
+.chosen-container .chosen-results {
+	height: 200px !Important;
+	max-height: 200px !Important;
+}
+.chosen-container .chosen-results li {white-space: nowrap;}
+.ui-dialog {
+	padding: 0;
+	z-index: 102;
+	top: 82px !important;
+	overflow: visible;	
+}
+.ui-dialog .ui-dialog-content {
+	padding: 1em 1.4em;
+ 	overflow-x: hidden !important; 
+ 	overflow-y: scroll !important; 
+}
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	z-index: 1500;
+}
+.ui-autocomplete li {cursor: pointer;}
+.ui-multiselect{height:25px;}
+.ui-multiselect-checkboxes{max-height: 200px !Important;}
+.ui-multiselect-checkboxes label {
+	background-image: none;
+	border: 0 !important;
+	cursor: pointer;
+	padding-left: 0;
+	height: 19px;
+	line-height: 19px;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.ui-jqgrid .ui-jqgrid-pager .ui-state-disabled .ui-pg-div:hover{background-color : inherit;}
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-div:hover{background-color : #18957F;}
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-table td.ui-jqgrid-caption-button{
+	border: 1px solid #CCCCCC;
+	padding: 1px 5px;
+}
+/**
+ * CUSTOM (Tab Panel with jQGrid or Sub jQGrid)
+ */
+.jqgrid-no-caption{height:25px;	background-color: #737C81;} /* Replace Tabbed Panel for 1 of the 2 jQGrids aligned */
+.request-text-area{
+	border: 1px solid #aaa;
+	height: 150px;
+	overflow: auto;
+}
+/**
+ * Fields Style when they are in FOCUS or ERRORED
+ */
+/* Shadowed design when input is not filled */
+.errored{
+	border: 1px solid #EA3849 !Important;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(234, 56, 73, 0.6) !Important;
+	outline: 0 none;
+}
+/* Shadowed design when input is focussed */
+input:not([type="checkbox"]):FOCUS, textarea:FOCUS, .chosen-container-active.chosen-with-drop .chosen-single, button.ui-state-active.ui-multiselect{
+	border: 1px solid #66AFE9 !Important;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6) !Important;
+	outline: 0 none;
+}
+/* Override framework margin */
+.chosen-container-single .chosen-drop{
+	margin: 0 !Important;
+}
+.chosen-search input:FOCUS{
+	box-shadow: none !Important;
+	border: 1px solid #AAAAAA !Important;
+}
+
+.hidden{
+	display: none;
+}
+.module-tabs ul.ui-tabs-nav li.ui-state-active span.ui-icon {background-position: -80px -128px;}

@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.O_BookingInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_BookingInfoEntity">
+        <id column="BookingID" jdbcType="BIGINT" property="bookingID" />
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+        <result column="OrderID" jdbcType="BIGINT" property="orderID" />
+        <result column="LoginID" jdbcType="BIGINT" property="loginID" />
+        <result column="TableID" jdbcType="BIGINT" property="tableID" />
+        <result column="SegmentID" jdbcType="BIGINT" property="segmentID" />
+        <result column="PaymentMethodID" jdbcType="BIGINT" property="paymentMethodID" />
+        <result column="BookingCode" jdbcType="VARCHAR" property="bookingCode" />
+        <result column="VerificationCode" jdbcType="VARCHAR" property="verificationCode" />
+        <result column="MealsID" jdbcType="BIGINT" property="mealsID" />
+        <result column="BookingTime" jdbcType="TIMESTAMP" property="bookingTime" />
+        <result column="Duration" jdbcType="INTEGER" property="duration" />
+        <result column="ExtraMinute" jdbcType="INTEGER" property="extraMinute" />
+        <result column="Contact" jdbcType="VARCHAR" property="contact" />
+        <result column="Phone" jdbcType="VARCHAR" property="phone" />
+        <result column="BookingChannel" jdbcType="BIGINT" property="bookingChannel" />
+        <result column="PeopleNum" jdbcType="INTEGER" property="peopleNum" />
+        <result column="BookingStatus" jdbcType="BIGINT" property="bookingStatus" />
+        <result column="BookingType" jdbcType="BIGINT" property="bookingType" />
+        <result column="BookingAmount" jdbcType="DECIMAL" property="bookingAmount" />
+        <result column="PayStatus" jdbcType="BIGINT" property="payStatus" />
+        <result column="RefundAmount" jdbcType="DECIMAL" property="refundAmount" />
+        <result column="RefundMethod" jdbcType="BIGINT" property="refundMethod" />
+        <result column="RefundStatus" jdbcType="BIGINT" property="refundStatus" />
+        <result column="TableNum" jdbcType="INTEGER" property="tableNum" />
+        <result column="TableCodes" jdbcType="VARCHAR" property="tableCodes" />
+        <result column="BookingDesc" jdbcType="VARCHAR" property="bookingDesc" />
+        <result column="ArrivalTime" jdbcType="TIMESTAMP" property="arrivalTime" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="PendingAmount" jdbcType="DECIMAL" property="pendingAmount" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        BookingID, ArchiveID, OrderID, LoginID, TableID, SegmentID, PaymentMethodID, BookingCode,
+        VerificationCode, MealsID, BookingTime, Duration, ExtraMinute, Contact, Phone, BookingChannel,PendingAmount,
+        PeopleNum, BookingStatus, BookingType, BookingAmount, PayStatus, RefundAmount, RefundMethod,
+        RefundStatus, TableNum, TableCodes, BookingDesc, ArrivalTime, IsSync, CreatorID,
+        CreatorType, CreateTime, Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from O_BookingInfo
+        where BookingID = #{bookingID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from O_BookingInfo
+        where BookingID = #{bookingID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.O_BookingInfoEntity">
+        insert into O_BookingInfo (BookingID, ArchiveID, OrderID,
+        LoginID, TableID, SegmentID,
+        PaymentMethodID, BookingCode, VerificationCode,
+        MealsID, BookingTime, Duration,
+        ExtraMinute, Contact, Phone,
+        BookingChannel,PendingAmount, PeopleNum, BookingStatus,
+        BookingType, BookingAmount, PayStatus,
+        RefundAmount, RefundMethod, RefundStatus,
+        TableNum, TableCodes, BookingDesc,
+        ArrivalTime, IsSync, CreatorID,
+        CreatorType, CreateTime, Memo
+        )
+        values (#{bookingID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{orderID,jdbcType=BIGINT},
+        #{loginID,jdbcType=BIGINT}, #{tableID,jdbcType=BIGINT}, #{segmentID,jdbcType=BIGINT},
+        #{paymentMethodID,jdbcType=BIGINT}, #{bookingCode,jdbcType=VARCHAR}, #{verificationCode,jdbcType=VARCHAR},
+        #{mealsID,jdbcType=BIGINT}, #{bookingTime,jdbcType=TIMESTAMP}, #{duration,jdbcType=INTEGER},
+        #{extraMinute,jdbcType=INTEGER}, #{contact,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+        #{bookingChannel,jdbcType=BIGINT},#{pendingAmount,jdbcType=DECIMAL}, #{peopleNum,jdbcType=INTEGER}, #{bookingStatus,jdbcType=BIGINT},
+        #{bookingType,jdbcType=BIGINT}, #{bookingAmount,jdbcType=DECIMAL}, #{payStatus,jdbcType=BIGINT},
+        #{refundAmount,jdbcType=DECIMAL}, #{refundMethod,jdbcType=BIGINT}, #{refundStatus,jdbcType=BIGINT},
+        #{tableNum,jdbcType=INTEGER}, #{tableCodes,jdbcType=VARCHAR}, #{bookingDesc,jdbcType=VARCHAR},
+        #{arrivalTime,jdbcType=TIMESTAMP}, #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT},
+        #{creatorType,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_BookingInfoEntity">
+        insert into O_BookingInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookingID != null">
+                BookingID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="orderID != null">
+                OrderID,
+            </if>
+            <if test="loginID != null">
+                LoginID,
+            </if>
+            <if test="tableID != null">
+                TableID,
+            </if>
+            <if test="segmentID != null">
+                SegmentID,
+            </if>
+            <if test="paymentMethodID != null">
+                PaymentMethodID,
+            </if>
+            <if test="bookingCode != null">
+                BookingCode,
+            </if>
+            <if test="verificationCode != null">
+                VerificationCode,
+            </if>
+            <if test="mealsID != null">
+                MealsID,
+            </if>
+            <if test="bookingTime != null">
+                BookingTime,
+            </if>
+            <if test="duration != null">
+                Duration,
+            </if>
+            <if test="extraMinute != null">
+                ExtraMinute,
+            </if>
+            <if test="contact != null">
+                Contact,
+            </if>
+            <if test="phone != null">
+                Phone,
+            </if>
+            <if test="bookingChannel != null">
+                BookingChannel,
+            </if>
+            <if test="pendingAmount != null">
+                PendingAmount,
+            </if>
+            <if test="peopleNum != null">
+                PeopleNum,
+            </if>
+            <if test="bookingStatus != null">
+                BookingStatus,
+            </if>
+            <if test="bookingType != null">
+                BookingType,
+            </if>
+            <if test="bookingAmount != null">
+                BookingAmount,
+            </if>
+            <if test="payStatus != null">
+                PayStatus,
+            </if>
+            <if test="refundAmount != null">
+                RefundAmount,
+            </if>
+            <if test="refundMethod != null">
+                RefundMethod,
+            </if>
+            <if test="refundStatus != null">
+                RefundStatus,
+            </if>
+            <if test="tableNum != null">
+                TableNum,
+            </if>
+            <if test="tableCodes != null">
+                TableCodes,
+            </if>
+            <if test="bookingDesc != null">
+                BookingDesc,
+            </if>
+            <if test="arrivalTime != null">
+                ArrivalTime,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="creatorType != null">
+                CreatorType,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bookingID != null">
+                #{bookingID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="orderID != null">
+                #{orderID,jdbcType=BIGINT},
+            </if>
+            <if test="loginID != null">
+                #{loginID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="segmentID != null">
+                #{segmentID,jdbcType=BIGINT},
+            </if>
+            <if test="paymentMethodID != null">
+                #{paymentMethodID,jdbcType=BIGINT},
+            </if>
+            <if test="bookingCode != null">
+                #{bookingCode,jdbcType=VARCHAR},
+            </if>
+            <if test="verificationCode != null">
+                #{verificationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mealsID != null">
+                #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="bookingTime != null">
+                #{bookingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="extraMinute != null">
+                #{extraMinute,jdbcType=INTEGER},
+            </if>
+            <if test="contact != null">
+                #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingChannel != null">
+                #{bookingChannel,jdbcType=BIGINT},
+            </if>
+            <if test="pendingAmount != null">
+                #{pendingAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="peopleNum != null">
+                #{peopleNum,jdbcType=INTEGER},
+            </if>
+            <if test="bookingStatus != null">
+                #{bookingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="bookingType != null">
+                #{bookingType,jdbcType=BIGINT},
+            </if>
+            <if test="bookingAmount != null">
+                #{bookingAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=BIGINT},
+            </if>
+            <if test="refundAmount != null">
+                #{refundAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="refundMethod != null">
+                #{refundMethod,jdbcType=BIGINT},
+            </if>
+            <if test="refundStatus != null">
+                #{refundStatus,jdbcType=BIGINT},
+            </if>
+            <if test="tableNum != null">
+                #{tableNum,jdbcType=INTEGER},
+            </if>
+            <if test="tableCodes != null">
+                #{tableCodes,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingDesc != null">
+                #{bookingDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="arrivalTime != null">
+                #{arrivalTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="creatorType != null">
+                #{creatorType,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_BookingInfoEntity">
+        update O_BookingInfo
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="orderID != null">
+                OrderID = #{orderID,jdbcType=BIGINT},
+            </if>
+            <if test="loginID != null">
+                LoginID = #{loginID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                TableID = #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="segmentID != null">
+                SegmentID = #{segmentID,jdbcType=BIGINT},
+            </if>
+            <if test="paymentMethodID != null">
+                PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+            </if>
+            <if test="bookingCode != null">
+                BookingCode = #{bookingCode,jdbcType=VARCHAR},
+            </if>
+            <if test="verificationCode != null">
+                VerificationCode = #{verificationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mealsID != null">
+                MealsID = #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="bookingTime != null">
+                BookingTime = #{bookingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="duration != null">
+                Duration = #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="extraMinute != null">
+                ExtraMinute = #{extraMinute,jdbcType=INTEGER},
+            </if>
+            <if test="contact != null">
+                Contact = #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                Phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingChannel != null">
+                BookingChannel = #{bookingChannel,jdbcType=BIGINT},
+            </if>
+            <if test="pendingAmount != null">
+                #{pendingAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="peopleNum != null">
+                PeopleNum = #{peopleNum,jdbcType=INTEGER},
+            </if>
+            <if test="bookingStatus != null">
+                BookingStatus = #{bookingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="bookingType != null">
+                BookingType = #{bookingType,jdbcType=BIGINT},
+            </if>
+            <if test="bookingAmount != null">
+                BookingAmount = #{bookingAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="payStatus != null">
+                PayStatus = #{payStatus,jdbcType=BIGINT},
+            </if>
+            <if test="refundAmount != null">
+                RefundAmount = #{refundAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="refundMethod != null">
+                RefundMethod = #{refundMethod,jdbcType=BIGINT},
+            </if>
+            <if test="refundStatus != null">
+                RefundStatus = #{refundStatus,jdbcType=BIGINT},
+            </if>
+            <if test="tableNum != null">
+                TableNum = #{tableNum,jdbcType=INTEGER},
+            </if>
+            <if test="tableCodes != null">
+                TableCodes = #{tableCodes,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingDesc != null">
+                BookingDesc = #{bookingDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="arrivalTime != null">
+                ArrivalTime = #{arrivalTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="creatorType != null">
+                CreatorType = #{creatorType,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where BookingID = #{bookingID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_BookingInfoEntity">
+        update O_BookingInfo
+        set ArchiveID = #{archiveID,jdbcType=BIGINT},
+        OrderID = #{orderID,jdbcType=BIGINT},
+        LoginID = #{loginID,jdbcType=BIGINT},
+        TableID = #{tableID,jdbcType=BIGINT},
+        SegmentID = #{segmentID,jdbcType=BIGINT},
+        PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+        BookingCode = #{bookingCode,jdbcType=VARCHAR},
+        VerificationCode = #{verificationCode,jdbcType=VARCHAR},
+        MealsID = #{mealsID,jdbcType=BIGINT},
+        BookingTime = #{bookingTime,jdbcType=TIMESTAMP},
+        Duration = #{duration,jdbcType=INTEGER},
+        ExtraMinute = #{extraMinute,jdbcType=INTEGER},
+        Contact = #{contact,jdbcType=VARCHAR},
+        Phone = #{phone,jdbcType=VARCHAR},
+        BookingChannel = #{bookingChannel,jdbcType=BIGINT},
+        PendingAmount = #{pendingAmount,jdbcType=DECIMAL},
+        PeopleNum = #{peopleNum,jdbcType=INTEGER},
+        BookingStatus = #{bookingStatus,jdbcType=BIGINT},
+        BookingType = #{bookingType,jdbcType=BIGINT},
+        BookingAmount = #{bookingAmount,jdbcType=DECIMAL},
+        PayStatus = #{payStatus,jdbcType=BIGINT},
+        RefundAmount = #{refundAmount,jdbcType=DECIMAL},
+        RefundMethod = #{refundMethod,jdbcType=BIGINT},
+        RefundStatus = #{refundStatus,jdbcType=BIGINT},
+        TableNum = #{tableNum,jdbcType=INTEGER},
+        TableCodes = #{tableCodes,jdbcType=VARCHAR},
+        BookingDesc = #{bookingDesc,jdbcType=VARCHAR},
+        ArrivalTime = #{arrivalTime,jdbcType=TIMESTAMP},
+        IsSync = #{isSync,jdbcType=BIT},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreatorType = #{creatorType,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where BookingID = #{bookingID,jdbcType=BIGINT}
+    </update>
+
+    <select id="getByID" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select ob.*,so.subOrderID
+        from O_BookingInfo ob
+        LEFT JOIN O_SubOrderInfo so ON so.OrderID=ob.OrderID AND ob.TableID=so.TableID
+        WHERE ob.BookingID = #{bookingID,jdbcType=BIGINT}
+    </select>
+
+    <!--  -->
+    <select id="getBookingOrderListByTableIDAndMealsID" resultType="cc.toprank.byd.entity.O_BookingInfoEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from O_BookingInfo
+        where tableID = #{tableID} and mealsID = #{mealsID}
+        and bookingStatus = 618 and BookingTime &gt; UTC_TIMESTAMP()
+    </select>
+    <select id="getNextBookingOrderByTableID" resultType="cc.toprank.byd.entity.O_BookingInfoEntity">
+        SELECT BookingID,BookingTime FROM O_BookingInfo WHERE BookingTime &gt; UTC_TIMESTAMP() AND TableID=#{tableID}
+        ORDER BY BookingTime ASC LIMIT 1
+    </select>
+    <select id="getLockBookingListByParams" parameterType="map" resultType="map">
+      select segmentID
+        from B_MealTableMapping
+        where tableStatus = #{tableStatus}
+        and tableID = #{tableID}
+        and DATE_FORMAT(startTime,'%H:%i') &lt;= DATE_FORMAT(#{now},'%H:%i')
+        and DATE_FORMAT(recommendBookingTime,'%H:%i') &gt; DATE_FORMAT(#{now},'%H:%i')
+    </select>
+
+    <select id="getEntityByParams" parameterType="map" resultType="O_BookingInfoEntity">
+        select <include refid="Base_Column_List"/> from O_BookingInfo
+        where tableID = #{tableID}
+        and #{now} >= DATE_SUB(BookingTime,INTERVAL #{minTime} MINUTE)
+        and #{now} &lt; DATE_ADD(BookingTime,INTERVAL Duration MINUTE)
+    </select>
+
+    <select id="getBookingDetailBySubOrderID" resultType="map">
+      SELECT ob.bookingID,ob.bookingCode,ob.createTime,ob.bookingTime,ob.bookingAmount,ob.peopleNum,ob.contact,ob.phone,
+        ob.memo,dt.tableCode,dt.tableStatus,
+        (SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=ob.bookingChannel) bookingChannel,
+		(SELECT loginName FROM U_LoginInfo WHERE LoginID=tm.LoginID) waiter
+        FROM O_BookingInfo ob
+        LEFT JOIN O_SubOrderInfo so ON so.OrderID=ob.OrderID
+        LEFT JOIN B_DinningTableInfo dt ON dt.TableID=ob.TableID
+        LEFT JOIN B_TableManagerInfo tm ON tm.TableID=ob.TableID AND tm.mealsID=#{mealsID}
+        WHERE so.SubOrderID=#{subOrderID}
+    </select>
+
+    <!--根据条件查询预订信息-->
+    <select id="getBookingInfoByWhere" parameterType="map" resultType="O_BookingInfoEntity">
+        select <include refid="Base_Column_List"/> from O_BookingInfo
+        <where>
+            <if test="bookingID != null">
+                BookingID = #{bookingID,jdbcType=BIGINT}
+            </if>
+            <if test="archiveID != null">
+                and ArchiveID = #{archiveID,jdbcType=BIGINT}
+            </if>
+            <if test="orderID != null">
+                and OrderID = #{orderID,jdbcType=BIGINT}
+            </if>
+            <if test="loginID != null">
+                and  LoginID = #{loginID,jdbcType=BIGINT}
+            </if>
+            <if test="tableID != null">
+                and TableID = #{tableID,jdbcType=BIGINT}
+            </if>
+            <if test="segmentID != null">
+                and SegmentID = #{segmentID,jdbcType=BIGINT}
+            </if>
+            <if test="bookingCode != null">
+                and BookingCode = #{bookingCode,jdbcType=VARCHAR}
+            </if>
+            <if test="mealsID != null">
+                and  MealsID = #{mealsID,jdbcType=BIGINT}
+            </if>
+            <if test="bookingTime != null">
+                and BookingTime = #{bookingTime}
+            </if>
+            <if test="startTime != null">
+                <![CDATA[  and BookingTime >= #{startTime} ]]>
+            </if>
+            <if test="endTime != null">
+                <![CDATA[  and BookingTime <= #{endTime} ]]>
+            </if>
+            <if test="segment != null">
+                <![CDATA[  and BookingTime = #{segment} ]]>
+            </if>
+            <if test="contact != null">
+                and Contact = #{contact,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null">
+                and Phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="bookingChannel != null">
+                and  BookingChannel = #{bookingChannel,jdbcType=BIGINT}
+            </if>
+            <if test="bookingStatus != null">
+                and BookingStatus = #{bookingStatus,jdbcType=BIGINT}
+            </if>
+            <if test="bookingType != null">
+                and BookingType = #{bookingType,jdbcType=BIGINT}
+            </if>
+            <if test="tableCodes != null">
+                and TableCodes = #{tableCodes,jdbcType=VARCHAR}
+            </if>
+            <if test="creatorID != null">
+                and  CreatorID = #{creatorID,jdbcType=BIGINT}
+            </if>
+        </where>
+        order by BookingTime
+    </select>
+    <!--查询预订详情-->
+    <select id="getBookingDetailInfo" parameterType="java.lang.Long" resultType="O_BookingInfoEntity">
+          select l.NickName,c.CustomerName,b.Phone Mobile,o.TotalAmount actualAmount,b.LoginID,b.BookingID,b.OrderID,b.BookingTime,b.PeopleNum,b.BookingType,b.CreatorID,b.BookingChannel,b.RefundStatus,b.Memo,b.CreateTime,b.BookingAmount,b.TableCodes,b.BookingStatus,b.BookingDesc
+	          from O_BookingInfo b LEFT JOIN E_LoginInfo l on b.LoginID = l.LoginID
+			 LEFT JOIN E_CustomerInfo c on c.CountryID = l.CustomerID
+			 LEFT JOIN O_OrderInfo o on o.OrderID = b.OrderID
+          where BookingID = #{bookingID,jdbcType=BIGINT}
+    </select>
+
+    <!--查询预订时间 的预定信息-->
+    <select id="getBookingInfoListByBookingTime" parameterType="map" resultType="O_BookingInfoEntity">
+        SELECT BookingID,booking.TableID,booking.SegmentID,booking.MealsID,booking.TableCodes,BookingDesc,PeopleNum,OrderID,LoginID,booking.BookingTime,booking.Duration,booking.ExtraMinute
+        FROM O_BookingInfo booking
+        WHERE booking.ArchiveID = #{archiveID} and (booking.BookingStatus = 618 or booking.BookingStatus = 1012) and
+        <![CDATA[    ((booking.BookingTime <= #{startTime} and #{startTime} < DATE_ADD(booking.BookingTime,INTERVAL booking.Duration +  booking.ExtraMinute MINUTE))
+        or (booking.BookingTime < #{endTime} and 	#{endTime} <= DATE_ADD(booking.BookingTime,INTERVAL booking.Duration +  booking.ExtraMinute MINUTE) )
+        OR (#{startTime} <= booking.BookingTime and booking.BookingTime <   #{endTime} )
+        or (#{startTime} < DATE_ADD(booking.BookingTime,INTERVAL booking.Duration +  booking.ExtraMinute MINUTE) and  DATE_ADD(booking.BookingTime,INTERVAL booking.Duration +  booking.ExtraMinute MINUTE) <=  #{endTime})
+        )
+        ]]>
+    </select>
+
+    <!--查询用户预订记录-->
+    <select id="getMemberBookingRecordInfo" parameterType="map" resultType="O_BookingInfoEntity">
+        SELECT o.BookingTime,o.PeopleNum,o.TableCodes,o.BookingType,o.BookingChannel,o.BookingStatus from O_BookingInfo o where o.Phone = #{mobile}
+    </select>
+
+    <!--查询指定桌台,在指定时间属于某个预订单 zhaolingchen-->
+    <select id="getBookingInfoByTableID" parameterType="O_BookingInfoEntity" resultType="O_BookingInfoEntity">
+        select a.* from O_BookingInfo a LEFT JOIN O_SubOrderInfo b on a.OrderID = b.OrderID
+        LEFT JOIN B_DinningTableInfo c on b.TableID = c.TableID
+        LEFT JOIN B_MealsInfo d on a.MealsID = d.MealsID
+        where c.TableID = #{tableID} and a.BookingStatus = 618
+        <![CDATA[ and DATE_ADD(a.BookingTime,INTERVAL -d.SegmentLength MINUTE)<= #{bookingTime}  and	#{bookingTime} <= DATE_ADD(a.BookingTime,INTERVAL a.Duration + a.ExtraMinute MINUTE) ]]>
+        order by a.BookingTime ASC limit 1
+    </select>
+
+    <!-- 根据预订ID更新预订信息 hcy -->
+    <update id="updateByBookingID" parameterType="cc.toprank.byd.entity.O_BookingInfoEntity">
+        update O_BookingInfo
+          set
+            <if test="null != bookingAmount">
+                BookingAmount = IF(ISNULL(BookingAmount)>0,0,BookingAmount) + #{bookingAmount},
+            </if>
+            PayStatus = #{payStatus},
+            BookingStatus = #{bookingStatus},
+            BookingType = #{bookingType}
+        where
+            BookingID = #{bookingID}
+    </update>
+
+    <!-- 根据订单ID查询预订信息   hcy -->
+    <select id="queryByOrderID" parameterType="Long" resultMap="BaseResultMap">
+        select
+          <include refid="Base_Column_List"/>
+        from
+          O_BookingInfo
+        where
+          OrderID = #{orderID}
+    </select>
+</mapper>

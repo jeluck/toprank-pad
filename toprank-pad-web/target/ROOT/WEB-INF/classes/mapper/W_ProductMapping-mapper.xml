@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.W_ProductMappingDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.W_ProductMappingEntity">
+    <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="ProductID" jdbcType="BIGINT" property="productID" />
+    <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+    <result column="ShelfID" jdbcType="BIGINT" property="shelfID" />
+    <result column="ContainerID" jdbcType="BIGINT" property="containerID" />
+    <result column="WarehouseID" jdbcType="BIGINT" property="warehouseID" />
+    <result column="ReceiptID" jdbcType="BIGINT" property="receiptID" />
+    <result column="OptionID" jdbcType="BIGINT" property="optionID" />
+    <result column="UnitID" jdbcType="BIGINT" property="unitID" />
+    <result column="ConfigReason" jdbcType="BIGINT" property="configReason" />
+    <result column="isTotal" jdbcType="BIT" property="isTotal" />
+    <result column="InitQuantity" jdbcType="INTEGER" property="initQuantity" />
+    <result column="InitFloatQuantity" jdbcType="REAL" property="initFloatQuantity" />
+    <result column="ChangeInitQuantity" jdbcType="INTEGER" property="changeInitQuantity" />
+    <result column="ChangeInitFloatQuantity" jdbcType="REAL" property="changeInitFloatQuantity" />
+    <result column="RemainingQuantity" jdbcType="INTEGER" property="remainingQuantity" />
+    <result column="RemainingFloatQuantity" jdbcType="REAL" property="remainingFloatQuantity" />
+    <result column="AvailableQuantity" jdbcType="INTEGER" property="availableQuantity" />
+    <result column="AvailableFloatQuantity" jdbcType="REAL" property="availableFloatQuantity" />
+    <result column="LockQuantity" jdbcType="INTEGER" property="lockQuantity" />
+    <result column="LockFloatQuantity" jdbcType="REAL" property="lockFloatQuantity" />
+    <result column="LossQuantity" jdbcType="INTEGER" property="lossQuantity" />
+    <result column="LossFloatQuantity" jdbcType="REAL" property="lossFloatQuantity" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MappingID, ProductID, VariantID, ShelfID, ContainerID, WarehouseID, ReceiptID, OptionID,
+    UnitID, ConfigReason, isTotal, InitQuantity, InitFloatQuantity, ChangeInitQuantity,
+    ChangeInitFloatQuantity, RemainingQuantity, RemainingFloatQuantity, AvailableQuantity,
+    AvailableFloatQuantity, LockQuantity, LockFloatQuantity, LossQuantity, LossFloatQuantity,
+    IsSync, CreatorID, CreateTime, Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from W_ProductMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from W_ProductMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.W_ProductMappingEntity">
+    insert into W_ProductMapping (MappingID, ProductID, VariantID,
+    ShelfID, ContainerID, WarehouseID,
+    ReceiptID, OptionID, UnitID,
+    ConfigReason, isTotal, InitQuantity,
+    InitFloatQuantity, ChangeInitQuantity, ChangeInitFloatQuantity,
+    RemainingQuantity, RemainingFloatQuantity,
+    AvailableQuantity, AvailableFloatQuantity,
+    LockQuantity, LockFloatQuantity, LossQuantity,
+    LossFloatQuantity, IsSync, CreatorID,
+    CreateTime, Memo)
+    values (#{mappingID,jdbcType=BIGINT}, #{productID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT},
+    #{shelfID,jdbcType=BIGINT}, #{containerID,jdbcType=BIGINT}, #{warehouseID,jdbcType=BIGINT},
+    #{receiptID,jdbcType=BIGINT}, #{optionID,jdbcType=BIGINT}, #{unitID,jdbcType=BIGINT},
+    #{configReason,jdbcType=BIGINT}, #{isTotal,jdbcType=BIT}, #{initQuantity,jdbcType=INTEGER},
+    #{initFloatQuantity,jdbcType=REAL}, #{changeInitQuantity,jdbcType=INTEGER}, #{changeInitFloatQuantity,jdbcType=REAL},
+    #{remainingQuantity,jdbcType=INTEGER}, #{remainingFloatQuantity,jdbcType=REAL},
+    #{availableQuantity,jdbcType=INTEGER}, #{availableFloatQuantity,jdbcType=REAL},
+    #{lockQuantity,jdbcType=INTEGER}, #{lockFloatQuantity,jdbcType=REAL}, #{lossQuantity,jdbcType=INTEGER},
+    #{lossFloatQuantity,jdbcType=REAL}, #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT},
+    #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.W_ProductMappingEntity">
+    insert into W_ProductMapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="productID != null">
+        ProductID,
+      </if>
+      <if test="variantID != null">
+        VariantID,
+      </if>
+      <if test="shelfID != null">
+        ShelfID,
+      </if>
+      <if test="containerID != null">
+        ContainerID,
+      </if>
+      <if test="warehouseID != null">
+        WarehouseID,
+      </if>
+      <if test="receiptID != null">
+        ReceiptID,
+      </if>
+      <if test="optionID != null">
+        OptionID,
+      </if>
+      <if test="unitID != null">
+        UnitID,
+      </if>
+      <if test="configReason != null">
+        ConfigReason,
+      </if>
+      <if test="isTotal != null">
+        isTotal,
+      </if>
+      <if test="initQuantity != null">
+        InitQuantity,
+      </if>
+      <if test="initFloatQuantity != null">
+        InitFloatQuantity,
+      </if>
+      <if test="changeInitQuantity != null">
+        ChangeInitQuantity,
+      </if>
+      <if test="changeInitFloatQuantity != null">
+        ChangeInitFloatQuantity,
+      </if>
+      <if test="remainingQuantity != null">
+        RemainingQuantity,
+      </if>
+      <if test="remainingFloatQuantity != null">
+        RemainingFloatQuantity,
+      </if>
+      <if test="availableQuantity != null">
+        AvailableQuantity,
+      </if>
+      <if test="availableFloatQuantity != null">
+        AvailableFloatQuantity,
+      </if>
+      <if test="lockQuantity != null">
+        LockQuantity,
+      </if>
+      <if test="lockFloatQuantity != null">
+        LockFloatQuantity,
+      </if>
+      <if test="lossQuantity != null">
+        LossQuantity,
+      </if>
+      <if test="lossFloatQuantity != null">
+        LossFloatQuantity,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="productID != null">
+        #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="variantID != null">
+        #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="shelfID != null">
+        #{shelfID,jdbcType=BIGINT},
+      </if>
+      <if test="containerID != null">
+        #{containerID,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseID != null">
+        #{warehouseID,jdbcType=BIGINT},
+      </if>
+      <if test="receiptID != null">
+        #{receiptID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="unitID != null">
+        #{unitID,jdbcType=BIGINT},
+      </if>
+      <if test="configReason != null">
+        #{configReason,jdbcType=BIGINT},
+      </if>
+      <if test="isTotal != null">
+        #{isTotal,jdbcType=BIT},
+      </if>
+      <if test="initQuantity != null">
+        #{initQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="initFloatQuantity != null">
+        #{initFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="changeInitQuantity != null">
+        #{changeInitQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="changeInitFloatQuantity != null">
+        #{changeInitFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="remainingQuantity != null">
+        #{remainingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="remainingFloatQuantity != null">
+        #{remainingFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="availableQuantity != null">
+        #{availableQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="availableFloatQuantity != null">
+        #{availableFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="lockQuantity != null">
+        #{lockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="lockFloatQuantity != null">
+        #{lockFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="lossQuantity != null">
+        #{lossQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="lossFloatQuantity != null">
+        #{lossFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.W_ProductMappingEntity">
+    update W_ProductMapping
+    <set>
+      <if test="productID != null">
+        ProductID = #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="variantID != null">
+        VariantID = #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="shelfID != null">
+        ShelfID = #{shelfID,jdbcType=BIGINT},
+      </if>
+      <if test="containerID != null">
+        ContainerID = #{containerID,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseID != null">
+        WarehouseID = #{warehouseID,jdbcType=BIGINT},
+      </if>
+      <if test="receiptID != null">
+        ReceiptID = #{receiptID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        OptionID = #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="unitID != null">
+        UnitID = #{unitID,jdbcType=BIGINT},
+      </if>
+      <if test="configReason != null">
+        ConfigReason = #{configReason,jdbcType=BIGINT},
+      </if>
+      <if test="isTotal != null">
+        isTotal = #{isTotal,jdbcType=BIT},
+      </if>
+      <if test="initQuantity != null">
+        InitQuantity = #{initQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="initFloatQuantity != null">
+        InitFloatQuantity = #{initFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="changeInitQuantity != null">
+        ChangeInitQuantity = #{changeInitQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="changeInitFloatQuantity != null">
+        ChangeInitFloatQuantity = #{changeInitFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="remainingQuantity != null">
+        RemainingQuantity = #{remainingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="remainingFloatQuantity != null">
+        RemainingFloatQuantity = #{remainingFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="availableQuantity != null">
+        AvailableQuantity = #{availableQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="availableFloatQuantity != null">
+        AvailableFloatQuantity = #{availableFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="lockQuantity != null">
+        LockQuantity = #{lockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="lockFloatQuantity != null">
+        LockFloatQuantity = #{lockFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="lossQuantity != null">
+        LossQuantity = #{lossQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="lossFloatQuantity != null">
+        LossFloatQuantity = #{lossFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.W_ProductMappingEntity">
+    update W_ProductMapping
+    set ProductID = #{productID,jdbcType=BIGINT},
+      VariantID = #{variantID,jdbcType=BIGINT},
+      ShelfID = #{shelfID,jdbcType=BIGINT},
+      ContainerID = #{containerID,jdbcType=BIGINT},
+      WarehouseID = #{warehouseID,jdbcType=BIGINT},
+      ReceiptID = #{receiptID,jdbcType=BIGINT},
+      OptionID = #{optionID,jdbcType=BIGINT},
+      UnitID = #{unitID,jdbcType=BIGINT},
+      ConfigReason = #{configReason,jdbcType=BIGINT},
+      isTotal = #{isTotal,jdbcType=BIT},
+      InitQuantity = #{initQuantity,jdbcType=INTEGER},
+      InitFloatQuantity = #{initFloatQuantity,jdbcType=REAL},
+      ChangeInitQuantity = #{changeInitQuantity,jdbcType=INTEGER},
+      ChangeInitFloatQuantity = #{changeInitFloatQuantity,jdbcType=REAL},
+      RemainingQuantity = #{remainingQuantity,jdbcType=INTEGER},
+      RemainingFloatQuantity = #{remainingFloatQuantity,jdbcType=REAL},
+      AvailableQuantity = #{availableQuantity,jdbcType=INTEGER},
+      AvailableFloatQuantity = #{availableFloatQuantity,jdbcType=REAL},
+      LockQuantity = #{lockQuantity,jdbcType=INTEGER},
+      LockFloatQuantity = #{lockFloatQuantity,jdbcType=REAL},
+      LossQuantity = #{lossQuantity,jdbcType=INTEGER},
+      LossFloatQuantity = #{lossFloatQuantity,jdbcType=REAL},
+      IsSync = #{isSync,jdbcType=BIT},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateLockQuantity">
+    UPDATE W_ProductMapping SET AvailableQuantity = AvailableQuantity - ${lockQuantity}, LockQuantity = LockQuantity + ${lockQuantity}
+    WHERE ProductID = #{productID}
+    <if test="variantID != null and variantID != 0">
+      AND variantID = #{variantID}
+    </if>
+  </update>
+
+  <!-- 根据ArchiveID和CategoryID、searchCode查询商品列表，排除配置完成沽清的菜品 -->
+  <select id="getProductListByConditionFromCurbSale" parameterType="map" resultType="cc.toprank.byd.web.vo.curbsale.ProductCrubSaleInfoVO"  >
+    SELECT  m.ProductID,
+            m.ProductName AS productName,
+            m.OriginalPrice AS originalPrice,
+            m.Price AS price,
+            m.ProductCode AS barCode,
+            (CASE WHEN m.IsCombo = 1 THEN 1 ELSE 2 END) AS productType,
+            m.ProduceCost AS produceCost,
+            m.AreaID AS areaID,
+            m.MealsID AS mealsID,
+            IFNULL(m.VariantID,0) AS variantID,
+            m.NeedWeigh AS needWeigh,
+            m.MenuID,
+			m.IsCombo,
+            c.DictionaryName AS unit,
+            COUNT(sao.OptionID) AS optionIDSum,
+            GROUP_CONCAT(sao.optionID) AS optionIDs
+		FROM B_MerchantMenuInfo m
+		LEFT JOIN B_MerchantInfo a ON a.ArchiveID = m.ArchiveID
+		LEFT JOIN C_DictionaryInfo c ON m.UnitID = c.DictionaryID
+		LEFT JOIN P_VariantSpecificationMapping vsm on m.VariantID = vsm.VariantID AND  vsm.MappingStatus=9
+		LEFT JOIN P_SpecificationAttributeOptionInfo sao ON sao.OptionID = vsm.OptionID
+        LEFT JOIN W_ProductMapping wpm ON wpm.VariantID = m.VariantID AND ((sao.optionID is null and wpm.optionID is null) or (wpm.optionID is not null and  wpm.OptionID = sao.OptionID ) )
+		WHERE
+            a.ArchiveID=#{archiveID}
+            AND m.MenuStatus = 9
+            AND m.AreaID IS NULL
+            AND m.MealsID IS NULL
+            <if test="categoryID != 0">
+              AND m.CategoryID = #{categoryID}
+            </if>
+            AND (m.ProductCode like CONCAT('%',#{searchCode},'%') OR m.FirstLetter like CONCAT(#{searchCode},'%')  OR m.ProductName like CONCAT('%',#{searchCode},'%')  )
+			AND m.IsCombo=0
+            AND wpm.VariantID IS NULL
+    GROUP BY m.MenuID
+    UNION
+    SELECT  m.ProductID,
+            m.ProductName AS productName,
+            m.OriginalPrice AS originalPrice,
+            m.Price AS price,
+            m.ProductCode AS barCode,
+            (CASE WHEN m.IsCombo = 1 THEN 1 ELSE 2 END) AS productType,
+            m.ProduceCost AS produceCost,
+            m.AreaID AS areaID,
+            m.MealsID AS mealsID,
+            IFNULL(m.VariantID,0) AS variantID,
+            m.NeedWeigh AS needWeigh,
+            m.MenuID,
+			m.IsCombo,
+            c.DictionaryName AS unit,
+            COUNT(sao.OptionID) AS optionIDSum,
+            GROUP_CONCAT(sao.optionID) AS optionIDs
+		FROM B_MerchantMenuInfo m
+		LEFT JOIN B_MerchantInfo a ON a.ArchiveID = m.ArchiveID
+		LEFT JOIN C_DictionaryInfo c ON m.UnitID = c.DictionaryID
+		LEFT JOIN P_ProductSpecificationMapping psm on m.ProductID = psm.ProductID AND  psm.MappingStatus=9
+		LEFT JOIN P_SpecificationAttributeOptionInfo sao ON sao.OptionID = psm.OptionID
+        LEFT JOIN W_ProductMapping wpm ON wpm.ProductID = m.ProductID AND ((sao.optionID is null and wpm.optionID is null) or (wpm.optionID is not null and  wpm.OptionID = sao.OptionID ) )
+		WHERE
+            a.ArchiveID=#{archiveID}
+            AND m.MenuStatus = 9
+            AND m.AreaID IS NULL
+            AND m.MealsID IS NULL
+            <if test="categoryID != 0">
+              AND m.CategoryID = #{categoryID}
+            </if>
+            AND (m.ProductCode like CONCAT('%',#{searchCode},'%') OR m.FirstLetter like CONCAT(#{searchCode},'%')  OR m.ProductName like CONCAT('%',#{searchCode},'%')  )
+			AND m.IsCombo=1
+            AND wpm.ProductID IS NULL
+        GROUP BY m.MenuID
+  </select>
+
+  <!--有规格查询单品预定信息和沽清信息 -->
+  <select id="getCurbSaleInfoAndBookingInfoVariant" parameterType="map" resultType="cc.toprank.byd.web.vo.curbsale.CrubSaleInfoAndBookingInfoVO"  >
+    SELECT vsm.OptionName,wpm.OptionID,wpm.VariantID,wpm.ProductID,SUM(1) AS bookingSum,wpm.InitQuantity,wpm.InitFloatQuantity FROM O_OrderDetailInfo odi
+    INNER JOIN O_BookingInfo booking ON booking.OrderID = odi.OrderID AND booking.BookingStatus = 618
+    INNER JOIN P_VariantSpecificationMapping vsm ON vsm.OptionID = odi.OptionID  AND vsm.MappingStatus=9
+    LEFT JOIN W_ProductMapping wpm ON wpm.OptionID = vsm.OptionID AND wpm.VariantID = odi.VariantID
+    WHERE booking.ArchiveID = #{archiveID}
+    AND odi.MenuID = #{menuID}
+    AND vsm.VariantID = odi.VariantID
+    AND TO_DAYS(booking.BookingTime) = TO_DAYS(UTC_TIMESTAMP())
+    GROUP BY vsm.OptionID
+  </select>
+
+  <!--有规格查询套餐预定信息和沽清信息-->
+  <select id="getCurbSaleInfoAndBookingInfoProduct" parameterType="map" resultType="cc.toprank.byd.web.vo.curbsale.CrubSaleInfoAndBookingInfoVO"  >
+    SELECT vsm.OptionName,wpm.ProductID,SUM(1) AS bookingSum,wpm.InitQuantity,wpm.InitFloatQuantity FROM O_OrderDetailInfo odi
+    INNER JOIN O_BookingInfo booking ON booking.OrderID = odi.OrderID
+    INNER JOIN P_ProductSpecificationMapping vsm ON vsm.OptionID = odi.OptionID  AND vsm.MappingStatus=9
+    LEFT JOIN W_ProductMapping wpm ON wpm.OptionID = vsm.OptionID AND wpm.ProductID = odi.ComboID
+    WHERE booking.ArchiveID = #{archiveID}
+    AND odi.MenuID = #{menuID}
+	AND vsm.ProductID = odi.ComboID
+    AND TO_DAYS(booking.BookingTime) = TO_DAYS(UTC_TIMESTAMP())
+	GROUP BY vsm.OptionID
+  </select>
+
+  <!-- 无规格查询预定信息和沽清信息 -->
+  <select id="getCurbSaleInfoAndBookingInfoNoOption" parameterType="map" resultType="cc.toprank.byd.web.vo.curbsale.CrubSaleInfoAndBookingInfoVO"  >
+    SELECT wpm.MappingID,wpm.OptionID,SUM(1) AS bookingSum,wpm.VariantID,wpm.ProductID,wpm.InitQuantity,wpm.InitFloatQuantity FROM O_OrderDetailInfo odi
+    INNER JOIN O_BookingInfo booking ON booking.OrderID = odi.OrderID AND booking.BookingStatus = 618
+	LEFT JOIN W_ProductMapping wpm ON  wpm.VariantID = odi.VariantID
+    WHERE booking.ArchiveID = #{archiveID}
+    AND odi.MenuID = #{menuID}
+	AND wpm.OptionID IS NULL
+    AND TO_DAYS(booking.BookingTime) = TO_DAYS(UTC_TIMESTAMP())
+  </select>
+
+  <!--
+  根据variantID和optionID查询商品配置信息
+  chenkangyi
+  2017-05-16
+  -->
+  <select id="getProductMappingByVariantIDAndOptionID" parameterType="map" resultType="cc.toprank.byd.entity.W_ProductMappingEntity"  >
+    SELECT * FROM W_ProductMapping
+    WHERE VariantID = #{variantID}
+    <if test="optionID != null">
+      AND OptionID  = #{optionID}
+    </if>
+    <if test="optionID == null">
+      AND OptionID  IS NULL
+    </if>
+  </select>
+
+  <!--
+  根据ProductID和optionID查询商品配置信息
+  chenkangyi
+  2017-05-16
+  -->
+  <select id="getProductMappingByProductIDAndOptionID" parameterType="map" resultType="cc.toprank.byd.entity.W_ProductMappingEntity"  >
+    SELECT * FROM W_ProductMapping
+    WHERE ProductID = #{productID}
+    <if test="optionID != null">
+      AND OptionID  = #{optionID}
+    </if>
+    <if test="optionID == null">
+      AND OptionID  IS NULL
+    </if>
+  </select>
+
+  <select id="getCurbSaleOperationListForHistory" parameterType="map" resultType="cc.toprank.byd.web.vo.curbsale.CurbSaleOperationHistoryVO">
+    SELECT
+    d.DealID
+    , d.MappingID
+    , m.ProductName
+    , m.ProductID
+    , m.VariantID
+    , m.FirstLetter
+    , IFNULL(m.NeedWeigh, 0) AS needWeigh
+    , w.OptionID
+    , op.OptionName
+    , d.ChangeType AS changeType
+    , (SELECT DictionaryName FROM C_DictionaryInfo WHERE DictionaryID = d.ChangeType) AS changeTypeName
+    , d.ChangeQuantity AS changeQuantity
+    , d.ChangeFloatQuantity AS changeFloatQuantity
+    , d.ChangeReason AS changeReason
+    , d.CreatorID AS authorizerID
+    , w.CreatorID AS creatorID
+    , d.CreateTime AS createTime
+    FROM W_ProductMappingDealInfo d
+    INNER JOIN V_ProductHisMapping w ON d.MappingID = w.MappingID
+    INNER JOIN (SELECT * FROM B_MerchantMenuInfo tt WHERE tt.AreaID is NULL AND tt.MealsID IS NULL AND tt.MenuStatus = 9 AND tt.ArchiveID = #{archiveID}) m ON w.ProductID = m.ProductID
+    LEFT JOIN P_SpecificationAttributeOptionInfo op ON w.OptionID = op.OptionID
+    LEFT JOIN C_DictionaryInfo c ON w.UnitID = c.DictionaryID
+    LEFT JOIN P_ProductCategoryInfo pc ON (m.CategoryID = pc.CategoryID)
+    WHERE  w.ArchiveID = #{archiveID}
+    AND (w.VariantID = m.VariantID OR (w.VariantID IS NULL AND m.VariantID IS NULL))
+    AND d.CreateTime LIKE CONCAT(#{storeDay}, '%')
+    <if test="searchContent != null and searchContent != ''">
+      AND (m.FirstLetter like CONCAT(#{searchContent},'%') OR m.ProductName like CONCAT('%',#{searchContent},'%') OR d.ChangeReason like CONCAT('%', #{searchContent},'%'))
+    </if>
+    <if test="categoryID != 0">
+      AND m.CategoryID = #{categoryID}
+    </if>
+    <if test="changeType != null">
+      AND d.ChangeType = #{changeType}
+    </if>
+    ORDER BY createTime ASC
+  </select>
+
+
+  <select id="getCurbSaleOperationListForToday" parameterType="map" resultType="cc.toprank.byd.web.vo.curbsale.CurbSaleOperationHistoryVO">
+    SELECT
+    d.DealID
+    , d.MappingID
+    , m.ProductName
+    , m.ProductID
+    , m.VariantID
+    , m.FirstLetter
+    , IFNULL(m.NeedWeigh, 0) AS needWeigh
+    , w.OptionID
+    , op.OptionName
+    , d.ChangeType AS changeType
+    , (SELECT DictionaryName FROM C_DictionaryInfo WHERE DictionaryID = d.ChangeType) AS changeTypeName
+    , d.ChangeQuantity AS changeQuantity
+    , d.ChangeFloatQuantity AS changeFloatQuantity
+    , d.ChangeReason AS changeReason
+    , d.CreatorID AS authorizerID
+    , w.CreatorID AS creatorID
+    , d.CreateTime AS createTime
+    FROM W_ProductMappingDealInfo d
+    INNER JOIN V_ProductMapping w ON d.MappingID = w.MappingID
+    INNER JOIN (SELECT * FROM B_MerchantMenuInfo tt WHERE tt.AreaID is NULL AND tt.MealsID IS NULL AND tt.MenuStatus = 9 AND tt.ArchiveID = #{archiveID}) m ON w.ProductID = m.ProductID
+    LEFT JOIN P_SpecificationAttributeOptionInfo op ON w.OptionID = op.OptionID
+    LEFT JOIN C_DictionaryInfo c ON w.UnitID = c.DictionaryID
+    LEFT JOIN P_ProductCategoryInfo pc ON (m.CategoryID = pc.CategoryID)
+    WHERE  w.ArchiveID = #{archiveID}
+    AND (w.VariantID = m.VariantID OR (w.VariantID IS NULL AND m.VariantID IS NULL))
+    AND d.CreateTime LIKE CONCAT(#{storeDay}, '%')
+    <if test="searchContent != null and searchContent != ''">
+      AND (m.FirstLetter like CONCAT(#{searchContent},'%') OR m.ProductName like CONCAT('%',#{searchContent},'%') OR d.ChangeReason like CONCAT('%', #{searchContent},'%'))
+    </if>
+    <if test="categoryID != 0">
+      AND m.CategoryID = #{categoryID}
+    </if>
+    <if test="changeType != null">
+      AND d.ChangeType = #{changeType}
+    </if>
+    ORDER BY createTime ASC
+  </select>
+
+  <!-- 查询当天沽清列表详情 -->
+  <select id="getCurbSaleDetailForToday" parameterType="map" resultType="cc.toprank.byd.web.vo.curbsale.CurbSaleInfoVO">
+    SELECT w.MappingID
+    , m.MenuID
+    , w.ProductID
+    , w.VariantID
+    , m.ProductName
+    , m.ProductCode
+    , (CASE WHEN m.IsCombo = 1 THEN 1 ELSE 2 END) AS productType
+    , IFNULL(m.NeedWeigh, 0) AS needWeigh
+    , m.FirstLetter AS firstLetter
+    , m.CategoryID AS categoryID
+    , pc.CategoryName AS secondCategoryName
+    , pc.ParentID AS parentID
+    , (SELECT CategoryName FROM P_ProductCategoryInfo WHERE CategoryID = pc.ParentID) AS firstCategoryName
+    , w.OptionID AS optionID
+    , op.OptionName AS optionName
+    , w.UnitID AS unitID
+    , d.DictionaryName AS unitName
+    , (IFNULL(w.InitQuantity, 0) + IFNULL(w.ChangeInitQuantity, 0)) AS initQuantity,
+    TRUNCATE((IFNULL(w.InitFloatQuantity, 0.00) + IFNULL(w.ChangeInitFloatQuantity, 0.00)), 2) as initFloatQuantity,
+    IFNULL(w.LossQuantity, 0) AS lossQuantity,
+    TRUNCATE(IFNULL(w.LossFloatQuantity, 0.00), 2) as lossFloatQuantity,
+    IFNULL(w.RemainingQuantity, 0) AS remainingQuantity,
+    TRUNCATE(IFNULL(w.RemainingFloatQuantity, 0.00), 2) as remainingFloatQuantity
+    , w.CreateTime
+    ,(CASE WHEN (w.OptionID IS NOT NULL AND w.VariantID is NULL) THEN (SELECT count(*) FROM P_ProductSpecificationMapping WHERE ProductID = w.ProductID)
+           WHEN (w.OptionID IS NOT NULL AND w.VariantID is NOT NULL) THEN (SELECT count(*) FROM P_VariantSpecificationMapping WHERE VariantID = w.VariantID)
+           ELSE 0 END) AS optionIDSum
+    , w.ArchiveID
+    , w.OrgID
+    , w.WarehouseID
+    , w.ShelfID
+    , w.ContainerID
+    , w.ReceiptID
+    , w.ConfigReason
+    , w.Memo
+    , w.IsTotal
+    FROM V_ProductMapping w
+    INNER JOIN (SELECT * FROM B_MerchantMenuInfo tt WHERE tt.AreaID is NULL AND tt.MealsID IS NULL AND tt.MenuStatus = 9) m
+    LEFT JOIN P_ProductCategoryInfo pc ON (m.CategoryID = pc.CategoryID)
+    LEFT JOIN P_SpecificationAttributeOptionInfo op ON w.OptionID = op.OptionID
+    LEFT JOIN C_DictionaryInfo d ON w.UnitID = d.DictionaryID
+    WHERE w.ArchiveID = #{archiveID}
+    AND w.ProductID = m.ProductID
+    AND (w.VariantID = m.VariantID OR (w.VariantID IS NULL AND m.VariantID IS NULL))
+    <if test="searchContent != null">
+      AND (m.ProductCode LIKE CONCAT('%',#{searchContent},'%') OR m.ProductName LIKE CONCAT('%',#{searchContent},'%') OR m.FirstLetter LIKE CONCAT(#{searchContent},'%'))
+    </if>
+    <if test="categoryID != 0">
+      AND m.CategoryID  = #{categoryID}
+    </if>
+  </select>
+
+  <!-- 加入购物车 -->
+  <update id="updateForAddProductToShoppingCart" parameterType="map">
+    UPDATE W_ProductMapping w
+    SET
+    <if test="!needWeigh">
+      LockQuantity = IFNULL(LockQuantity, 0) + #{quantity},
+      AvailableQuantity = AvailableQuantity - #{quantity}
+    </if>
+    <if test="needWeigh">
+      LockFloatQuantity = IFNULL(LockFloatQuantity, 0.00) + #{quantity},
+      AvailableFloatQuantity = IFNULL(AvailableFloatQuantity, 0.00) - #{quantity}
+    </if>
+    WHERE MappingID = #{mappingID}
+  </update>
+
+  <!-- 移除购物车 -->
+  <update id="updateForRemoveProductFromShoppingCart" parameterType="map">
+    UPDATE W_ProductMapping w
+    SET
+    <if test="!needWeigh">
+      LockQuantity = LockQuantity - #{quantity},
+      AvailableQuantity = IFNULL(AvailableQuantity, 0) + #{quantity}
+    </if>
+    <if test="needWeigh">
+      LockFloatQuantity = IFNULL(LockFloatQuantity, 0.00) - #{quantity},
+      AvailableFloatQuantity = IFNULL(AvailableFloatQuantity, 0.00) + #{quantity}
+    </if>
+    WHERE MappingID = #{mappingID}
+  </update>
+
+  <select id="queryOperationTypeList" resultType="map">
+    SELECT DictionaryID AS OperationType, DictionaryName AS CatalogName
+    FROM C_DictionaryInfo
+    WHERE CatalogID = 272
+  </select>
+
+  <select id="queryChangeReason" parameterType="map" resultType="map">
+    SELECT * FROM B_DictionaryInfo
+    WHERE CatalogID IN (SELECT CatalogID FROM B_DictionaryCatalogInfo
+    WHERE ArchiveID = #{archiveID} AND CatalogCode = #{catalogCode})
+  </select>
+
+  <select id="queryDefaultChangeReason" parameterType="map" resultType="map">
+    SELECT * FROM B_DictionaryInfo
+    WHERE CatalogID IN (SELECT CatalogID FROM B_DictionaryCatalogInfo
+    WHERE CatalogCode = #{catalogCode} AND ArchiveID IS NULL)
+  </select>
+
+  <select id="getOneByParam" resultType="cc.toprank.byd.entity.W_ProductMappingEntity">
+    SELECT
+    MappingID, ProductID, VariantID, ShelfID, ContainerID, WarehouseID, ReceiptID, OptionID,
+    UnitID, ConfigReason, isTotal, InitQuantity, InitFloatQuantity,
+    ifnull(ChangeInitQuantity,0) ChangeInitQuantity, ifnull(ChangeInitFloatQuantity, 0) ChangeInitFloatQuantity,
+    ifnull(RemainingQuantity,0) RemainingQuantity, ifnull(RemainingFloatQuantity, 0) RemainingFloatQuantity,
+    ifnull(AvailableQuantity,0) AvailableQuantity, ifnull(AvailableFloatQuantity,0) AvailableFloatQuantity,
+    ifnull(LockQuantity,0) LockQuantity, ifnull(LockFloatQuantity,0) LockFloatQuantity,
+    ifnull(LossQuantity,0) LossQuantity, ifnull(LossFloatQuantity,0) LossFloatQuantity
+    FROM W_ProductMapping
+    WHERE ProductID=#{productID}
+    <choose>
+      <when test="variantID != null">
+        AND variantID=#{variantID}
+      </when>
+      <otherwise>
+        AND variantID IS NULL
+      </otherwise>
+    </choose>
+    <choose>
+      <when test="optionID != null">
+        AND optionID=#{optionID}
+      </when>
+      <otherwise>
+        AND optionID IS NULL
+      </otherwise>
+    </choose>
+    limit 1
+  </select>
+
+  <select id="getAvailableQuantityByParam" resultType="java.lang.Integer">
+    SELECT SUM(AvailableQuantity) FROM W_ProductMapping
+    WHERE ProductID=#{productID}
+    <if test="variantID != null">
+      AND variantID=#{variantID}
+    </if>
+    <if test="optionID != null">
+      AND optionID=#{optionID}
+    </if>
+  </select>
+
+  <select id="getAvailableFloatQuantityByParam" resultType="java.lang.Float">
+    SELECT sum(AvailableFloatQuantity) FROM W_ProductMapping
+    WHERE ProductID=#{productID}
+    <if test="variantID != null">
+      AND variantID=#{variantID}
+    </if>
+    <if test="optionID != null">
+      AND optionID=#{optionID}
+    </if>
+  </select>
+
+</mapper>

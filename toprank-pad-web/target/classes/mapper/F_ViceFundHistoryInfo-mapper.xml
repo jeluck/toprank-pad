@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.F_ViceFundHistoryInfoDao">
+	<select id="getAll" parameterType="F_ViceFundHistoryInfoEntity" resultType="F_ViceFundHistoryInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_ViceFundHistoryInfoCollection()} 
+		]]>  
+	</select>
+	<select id="get" parameterType="F_ViceFundHistoryInfoEntity" resultType="F_ViceFundHistoryInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_ViceFundHistoryInfoEntity(#{hisID})} 
+		]]>  
+	</select>
+	<delete id="delete" parameterType="F_ViceFundHistoryInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteF_ViceFundHistoryInfoEntity(#{hisID})} 
+		]]> 
+  	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="HisID" parameterType="F_ViceFundHistoryInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertF_ViceFundHistoryInfoEntity(#{accountID},#{accountType},#{activityDesc},#{activityID},#{activityName},#{archiveID},#{cardCode},#{cardID},#{cardNo},#{createTime},#{currencyID},#{customerID},#{effectiveTime},#{expireTime},#{frequency},#{fundDesc},#{fundID},#{getMode},#{getTime},#{hisID,jdbcType=INTEGER,mode=OUT},#{initAmount},#{isMutuallyExclusive},#{loginID},#{memo},#{onceMaxAmount},#{onceRate},#{orderAmount},#{realName},#{sourceAccountID},#{stakeholderID},#{stakeholderName},#{targetIDs},#{tempAmount},#{useMode},#{viceCode},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="F_ViceFundHistoryInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateF_ViceFundHistoryInfoEntity(#{accountID},#{accountType},#{activityDesc},#{activityID},#{activityName},#{archiveID},#{cardCode},#{cardID},#{cardNo},#{createTime},#{currencyID},#{customerID},#{effectiveTime},#{expireTime},#{frequency},#{fundDesc},#{fundID},#{getMode},#{getTime},#{hisID},#{initAmount},#{isMutuallyExclusive},#{loginID},#{memo},#{onceMaxAmount},#{onceRate},#{orderAmount},#{realName},#{sourceAccountID},#{stakeholderID},#{stakeholderName},#{targetIDs},#{tempAmount},#{useMode},#{viceCode})}
+		]]>
+	</update>
+  	<!--<select id="list" parameterType="F_ViceFundHistoryInfo" resultType="F_ViceFundHistoryInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetF_ViceFundHistoryInfo_query_by_condition(#{accountID},#{accountType},#{activityDesc},#{activityID},#{activityName},#{cardCode},#{createTime},#{currencyID},#{customerID},#{effectiveTime},#{expireTme},#{frequency},#{fundID},#{getMode},#{getTime},#{initAmount},#{isMutuallyExclusive},#{keyword},#{loginID},#{memo},#{onceMaxAmount},#{onceRate},#{orderAmount},#{realName},#{sourceAccountID},#{stakeholderID},#{stakeholderName},#{targetIDs},#{tempAmount},#{useMode},#{viceCode})} 
+		]]>  
+  	</select>
+  	-->
+  </mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.F_InvoiceInfoDao">
+  	<select id="getAll" parameterType="F_InvoiceInfoEntity" resultType="F_InvoiceInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_InvoiceInfoCollection()}
+		]]>
+	</select>
+  	<select id="get" parameterType="F_InvoiceInfoEntity" resultType="F_InvoiceInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_InvoiceInfoEntity(#{invoiceID})}
+		]]>
+	</select>
+  	<delete id="delete" parameterType="F_InvoiceInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteF_InvoiceInfoEntity(#{invoiceID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="InvoiceID" parameterType="F_InvoiceInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertF_InvoiceInfoEntity(#{addressID},#{bankAccount},#{bankName},#{createTime},#{creatorID},#{customerID},#{departName},#{iDCode},#{invoiceCode},#{invoiceContent},#{invoiceDesc},#{invoiceID,jdbcType=INTEGER,mode=OUT},#{invoiceMode},#{invoiceStatus},#{invoiceTitle},#{invoiceType},#{isSync},#{itemID},#{memo},#{oderAmount},#{orderID},#{orderType},#{registerAddress},#{registerPhone},'admin')}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="F_InvoiceInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateF_InvoiceInfoEntity(#{addressID},#{bankAccount},#{bankName},#{createTime},#{creatorID},#{customerID},#{departName},#{iDCode},#{invoiceCode},#{invoiceContent},#{invoiceDesc},#{invoiceID},#{invoiceMode},#{invoiceStatus},#{invoiceTitle},#{invoiceType},#{isSync},#{itemID},#{memo},#{oderAmount},#{orderID},#{orderType},#{registerAddress},#{registerPhone})}
+		]]>
+  	</update>
+  	<!--<select id="list" parameterType="F_InvoiceInfo" resultType="F_InvoiceInfo" statementType="CALLABLE">
+  		<![CDATA[
+			{call GetF_InvoiceInfo_query_by_condition(#{addressID},#{bankAccount},#{bankName},#{createTime},#{creatorID},#{customerID},#{departName},#{iDCode},#{invoiceCode},#{invoiceContent},#{invoiceDesc},#{invoiceMode},#{invoiceStatus},#{invoiceTitle},#{invoiceType},#{isSync},#{itemID},#{memo},#{oderAmount},#{orderID},#{orderType},#{registerAddress},#{registerPhone})}
+		]]>
+  	</select>
+  	-->
+	<select id="getInvoiceInfoBySubOrderID" parameterType="Long" resultType="F_InvoiceInfoEntity">
+		select a.`AddressID`, a.`BankAccount`, a.`BankName`, a.`CreateTime`, a.`CreatorID`, a.`CustomerID`, a.`DepartName`,
+        a.`IDCode`, a.`InvoiceCode`, a.`InvoiceContent`, a.`InvoiceDesc`, a.`InvoiceID`, a.`InvoiceMode`, a.`InvoiceStatus`,
+        a.`InvoiceTitle`, a.`InvoiceType`,a.`ItemID`, a.`Memo`, a.`OderAmount`, a.`OrderID`,
+        a.`OrderType`, a.`RegisterAddress`, a.`RegisterPhone` from F_InvoiceInfo a LEFT JOIN F_InvoiceSubOrderMapping b on a.InvoiceID = b.InvoiceID
+   		where b.SubOrderID = #{_parameter};
+	</select>
+</mapper>

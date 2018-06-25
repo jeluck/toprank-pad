@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.F_FundChangeDetailInfoDao">
+  	<select id="getAll" parameterType="F_FundChangeDetailInfoEntity" resultType="F_FundChangeDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_FundChangeDetailInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="F_FundChangeDetailInfoEntity" resultType="F_FundChangeDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_FundChangeDetailInfoEntity(#{detailID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="F_FundChangeDetailInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteF_FundChangeDetailInfoEntity(#{detailID})} 
+		]]> 
+  	</delete>
+
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="DetailID" parameterType="F_FundChangeDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertF_FundChangeDetailInfoEntity(#{accountID},#{accountType},#{afterAmount},#{beforeAmount},#{changeAmount},#{changeDetail},#{changeID},#{changeReason},#{createTime},#{creatorID},#{currencyID},#{detailCode},#{detailID,jdbcType=INTEGER,mode=OUT},#{fundID},#{isSync},#{memo},#{paymentMethodID},#{proportion},#{sourceAccountID},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="F_FundChangeDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateF_FundChangeDetailInfoEntity(#{accountID},#{accountType},#{afterAmount},#{beforeAmount},#{changeAmount},#{changeDetail},#{changeID},#{changeReason},#{createTime},#{creatorID},#{currencyID},#{detailCode},#{detailID},#{fundID},#{isSync},#{memo},#{paymentMethodID},#{proportion},#{sourceAccountID})}
+		]]>
+	</update>
+  	<!--<select id="list" parameterType="F_FundChangeDetailInfo" resultType="F_FundChangeDetailInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetF_FundChangeDetailInfo_query_by_condition(#{accountID},#{accountType},#{changeAmount},#{changeDetail},#{changeID},#{changeReason},#{createTime},#{creatorID},#{currencyID},#{detailCode},#{fundID},#{isSync},#{memo},#{paymentMethodID},#{proportion},#{sourceAccountID})} 
+		]]>  
+  	</select>
+  	-->
+	<select id="getFundChangeDetailInfoByChangeID" parameterType="Long" resultType="F_FundChangeDetailInfoEntity" >
+		  Select AccountID, AccountType, ChangeAmount, ChangeDetail, ChangeID, ChangeReason, CreateTime,
+        CreatorID, CurrencyID, DetailCode, DetailID, FundID, IsSync, Memo,
+        PaymentMethodID, Proportion, SourceAccountID
+		from F_FundChangeDetailInfo
+		where
+			ChangeID = #{_parameter}
+	</select>
+
+	<!-- 新增资金变动明细信息 hcy -->
+	<insert id="saveFundChangeDetailInfo" parameterType="F_FundChangeDetailInfoEntity">
+		INSERT INTO 
+			F_FundChangeDetailInfo(AccountID, AccountType, AfterAmount, BeforeAmount, ChangeAmount, ChangeDetail, ChangeID,
+			ChangeReason, CreateTime, CreatorID, CurrencyID, DetailCode, DetailID, FundID,
+			IsSync, Memo, PaymentMethodID, Proportion, SourceAccountID)
+		VALUES
+			(#{accountID}, #{accountType}, #{afterAmount}, #{beforeAmount}, #{changeAmount}, #{changeDetail}, #{changeID},
+			#{changeReason}, #{createTime}, #{creatorID}, #{currencyID}, #{detailCode}, #{detailID}, #{fundID},
+			#{isSync}, #{memo}, #{paymentMethodID}, #{proportion}, #{sourceAccountID})
+	</insert>
+  </mapper>

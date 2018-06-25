@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_ProductDesignerMappingDao">
+  	<select id="getAll" parameterType="P_ProductDesignerMappingEntity" resultType="P_ProductDesignerMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ProductDesignerMappingCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_ProductDesignerMappingEntity" resultType="P_ProductDesignerMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ProductDesignerMappingEntity(#{mappingID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_ProductDesignerMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_ProductDesignerMappingEntity(#{mappingID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="P_ProductDesignerMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_ProductDesignerMappingEntity(#{categoryID},#{createTime},#{creatorID},#{designerID},#{gtin},#{isGoodat},#{mappingDesc},#{mappingID,jdbcType=INTEGER,mode=OUT},#{mappingStatus},#{memo},#{produceCost},#{produceLevel},#{produceMinute},#{productID},#{productName},#{sortNo},#{variantID},"admin")}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_ProductDesignerMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_ProductDesignerMappingEntity(#{categoryID},#{createTime},#{creatorID},#{designerID},#{gtin},#{isGoodat},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{produceCost},#{produceLevel},#{produceMinute},#{productID},#{productName},#{sortNo},#{variantID})} 
+		]]>  
+  	</update>
+
+	<select id="getDesignerInfoByVariantIDAndDesignerID" parameterType="P_ProductDesignerMappingEntity" resultType="P_ProductDesignerMappingEntity">
+		SELECT p.`CategoryID`, p.`CreateTime`, p.`CreatorID`, p.`DesignerID`, p.`Gtin`, p.`IsGoodat`, p.`MappingDesc`,
+					p.`MappingID`, p.`MappingStatus`, p.`Memo`, p.`ProduceCost`, p.`ProduceLevel`, p.`ProduceMinute`, p.`ProductID`,
+					p.`ProductName`, p.`SortNo`, p.`VariantID`,d.DesignerName
+				FROM P_ProductDesignerMapping p
+				LEFT JOIN P_DesignerInfo d ON p.DesignerID = d.DesignerID
+				WHERE
+					p.DesignerID = #{designerID}
+					AND p.VariantID = #{variantID}
+	</select>
+  </mapper>

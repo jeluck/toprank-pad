@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.ReceptionBookingInfoDao">
+  	<!-- 
+  		@Author HuTao
+  		获取所有的预订列表  根据机构id
+  	 -->
+  	<select id="getBookingInfoCollection" parameterType="hashmap" resultType="ReceptionBookingInfoEntity" statementType="CALLABLE">
+		SELECT a.BookingID,c.TableID,a.SegmentID,a.MealsID,a.TableCodes,a.BookingDesc,a.PeopleNum,a.OrderID,a.LoginID,a.BookingTime,a.Duration,a.ExtraMinute
+		FROM O_BookingInfo  a  INNER JOIN B_MealsInfo b on a.MealsID=b.MealsID
+			INNER JOIN O_SubOrderInfo c on a.OrderID=c.OrderID and c.OrderStatus=626
+			INNER JOIN B_DinningTableInfo d on c.TableID=d.TableID
+		WHERE a.ArchiveID = #{archiveID} and a.BookingStatus=618 and
+		<![CDATA[  DATE_ADD(a.BookingTime,INTERVAL -b.SegmentLength MINUTE)<=#{bookTime}  and
+		   #{bookTime} <=DATE_ADD(a.BookingTime,INTERVAL a.Duration+a.ExtraMinute MINUTE) ]]>
+	</select>
+	
+	<!-- 
+		@author HuTao
+		获取当前桌的消费金额总和
+	 -->
+	<select id="getTableInfoActualAmountByCondition" parameterType="hashmap" resultType="ReceptionUsingTableEntity">
+		<![CDATA[  
+			{call GetO_Reception_TableInfoActualAmountByCondition(#{archiveID},#{tableID},#{tableName},#{orderStatus})} 
+		]]>  
+	</select>
+	<!--
+		@author HuTao    GetO_TogetherNumTimesCondition
+		查询当前便用桌的时间长，拼台数量，联台信息
+	 -->
+	<select id="getTogetherNumTimes" parameterType="hashmap" resultType="ReceptionUsingTableEntity">
+		<![CDATA[
+			{call GetClientO_TogetherNumTimesCondition(#{archiveID},#{tableID})}
+		]]>
+	</select>
+
+	<select id="getBookingInfoCount" parameterType="hashmap" resultType="hashmap">
+		SELECT COUNT(*) as bCount
+		FROM O_BookingInfo  a  INNER JOIN B_MealsInfo b on a.MealsID=b.MealsID
+		    INNER JOIN O_SubOrderInfo c on a.OrderID=c.OrderID and c.OrderStatus=626
+		    INNER JOIN B_DinningTableInfo d on c.TableID=d.TableID
+		WHERE a.ArchiveID = #{archiveID}  and a.BookingStatus = 618 and
+		<![CDATA[  DATE_ADD(a.BookingTime,INTERVAL -b.SegmentLength MINUTE)<=#{bookTime}  and
+		   #{bookTime} <=DATE_ADD(a.BookingTime,INTERVAL a.Duration+a.ExtraMinute MINUTE) ]]>
+		<if test="areaID != null">
+			and d.AreaID=#{areaID}
+		</if>
+
+	</select>
+
+  </mapper>

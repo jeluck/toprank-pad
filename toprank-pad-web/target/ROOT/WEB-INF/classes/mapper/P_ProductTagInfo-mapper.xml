@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.P_ProductTagInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_ProductTagInfoEntity">
+        <id column="TagID" jdbcType="BIGINT" property="tagid" />
+        <result column="TagCode" jdbcType="VARCHAR" property="tagcode" />
+        <result column="TagName" jdbcType="VARCHAR" property="tagname" />
+        <result column="TagStatus" jdbcType="BIGINT" property="tagstatus" />
+        <result column="TagDesc" jdbcType="VARCHAR" property="tagdesc" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortno" />
+        <result column="Keyword" jdbcType="VARCHAR" property="keyword" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorid" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        TagID, TagCode, TagName, TagStatus, TagDesc, SortNo, Keyword, CreatorID, CreateTime,
+        Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from P_ProductTagInfo
+        where TagID = #{tagid,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from P_ProductTagInfo
+        where TagID = #{tagid,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.P_ProductTagInfoEntity">
+        insert into P_ProductTagInfo (TagID, TagCode, TagName,
+        TagStatus, TagDesc, SortNo,
+        Keyword, CreatorID, CreateTime,
+        Memo)
+        values (#{tagid,jdbcType=BIGINT}, #{tagcode,jdbcType=VARCHAR}, #{tagname,jdbcType=VARCHAR},
+        #{tagstatus,jdbcType=BIGINT}, #{tagdesc,jdbcType=VARCHAR}, #{sortno,jdbcType=INTEGER},
+        #{keyword,jdbcType=VARCHAR}, #{creatorid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP},
+        #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_ProductTagInfoEntity">
+        insert into P_ProductTagInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tagid != null">
+                TagID,
+            </if>
+            <if test="tagcode != null">
+                TagCode,
+            </if>
+            <if test="tagname != null">
+                TagName,
+            </if>
+            <if test="tagstatus != null">
+                TagStatus,
+            </if>
+            <if test="tagdesc != null">
+                TagDesc,
+            </if>
+            <if test="sortno != null">
+                SortNo,
+            </if>
+            <if test="keyword != null">
+                Keyword,
+            </if>
+            <if test="creatorid != null">
+                CreatorID,
+            </if>
+            <if test="createtime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tagid != null">
+                #{tagid,jdbcType=BIGINT},
+            </if>
+            <if test="tagcode != null">
+                #{tagcode,jdbcType=VARCHAR},
+            </if>
+            <if test="tagname != null">
+                #{tagname,jdbcType=VARCHAR},
+            </if>
+            <if test="tagstatus != null">
+                #{tagstatus,jdbcType=BIGINT},
+            </if>
+            <if test="tagdesc != null">
+                #{tagdesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortno != null">
+                #{sortno,jdbcType=INTEGER},
+            </if>
+            <if test="keyword != null">
+                #{keyword,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorid != null">
+                #{creatorid,jdbcType=BIGINT},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_ProductTagInfoEntity">
+        update P_ProductTagInfo
+        <set>
+            <if test="tagcode != null">
+                TagCode = #{tagcode,jdbcType=VARCHAR},
+            </if>
+            <if test="tagname != null">
+                TagName = #{tagname,jdbcType=VARCHAR},
+            </if>
+            <if test="tagstatus != null">
+                TagStatus = #{tagstatus,jdbcType=BIGINT},
+            </if>
+            <if test="tagdesc != null">
+                TagDesc = #{tagdesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortno != null">
+                SortNo = #{sortno,jdbcType=INTEGER},
+            </if>
+            <if test="keyword != null">
+                Keyword = #{keyword,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorid != null">
+                CreatorID = #{creatorid,jdbcType=BIGINT},
+            </if>
+            <if test="createtime != null">
+                CreateTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where TagID = #{tagid,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_ProductTagInfoEntity">
+        update P_ProductTagInfo
+        set TagCode = #{tagcode,jdbcType=VARCHAR},
+        TagName = #{tagname,jdbcType=VARCHAR},
+        TagStatus = #{tagstatus,jdbcType=BIGINT},
+        TagDesc = #{tagdesc,jdbcType=VARCHAR},
+        SortNo = #{sortno,jdbcType=INTEGER},
+        Keyword = #{keyword,jdbcType=VARCHAR},
+        CreatorID = #{creatorid,jdbcType=BIGINT},
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where TagID = #{tagid,jdbcType=BIGINT}
+    </update>
+</mapper>

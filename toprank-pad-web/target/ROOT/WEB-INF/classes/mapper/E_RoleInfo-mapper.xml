@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.E_RoleInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.E_RoleInfoEntity">
+    <id column="RoleID" jdbcType="BIGINT" property="roleID" />
+    <result column="OrgID" jdbcType="BIGINT" property="orgID" />
+    <result column="ParentID" jdbcType="BIGINT" property="parentID" />
+    <result column="RoleCode" jdbcType="VARCHAR" property="roleCode" />
+    <result column="RoleName" jdbcType="VARCHAR" property="roleName" />
+    <result column="RoleDesc" jdbcType="VARCHAR" property="roleDesc" />
+    <result column="RoleLevel" jdbcType="INTEGER" property="roleLevel" />
+    <result column="RoleStatus" jdbcType="BIGINT" property="roleStatus" />
+    <result column="ExpPoint" jdbcType="INTEGER" property="expPoint" />
+    <result column="NextExp" jdbcType="INTEGER" property="nextExp" />
+    <result column="TreeCode" jdbcType="VARCHAR" property="treeCode" />
+    <result column="IsValid" jdbcType="BIT" property="isValid" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="Keyword" jdbcType="VARCHAR" property="keyword" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="RoleType" jdbcType="BIGINT" property="roleType" />
+    <result column="ExpMode" jdbcType="BIGINT" property="expMode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RoleID, OrgID, ParentID, RoleCode, RoleName, RoleDesc, RoleLevel, RoleStatus, ExpPoint, 
+    NextExp, TreeCode, IsValid, SortNo, Keyword, CreatorID, CreateTime, Memo, RoleType, 
+    ExpMode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from E_RoleInfo
+    where RoleID = #{roleID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from E_RoleInfo
+    where RoleID = #{roleID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.E_RoleInfoEntity">
+    insert into E_RoleInfo (RoleID, OrgID, ParentID, 
+      RoleCode, RoleName, RoleDesc, 
+      RoleLevel, RoleStatus, ExpPoint, 
+      NextExp, TreeCode, IsValid, 
+      SortNo, Keyword, CreatorID, 
+      CreateTime, Memo, RoleType, 
+      ExpMode)
+    values (#{roleID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT}, #{parentID,jdbcType=BIGINT}, 
+      #{roleCode,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, 
+      #{roleLevel,jdbcType=INTEGER}, #{roleStatus,jdbcType=BIGINT}, #{expPoint,jdbcType=INTEGER}, 
+      #{nextExp,jdbcType=INTEGER}, #{treeCode,jdbcType=VARCHAR}, #{isValid,jdbcType=BIT}, 
+      #{sortNo,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{roleType,jdbcType=BIGINT}, 
+      #{expMode,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.E_RoleInfoEntity">
+    insert into E_RoleInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleID != null">
+        RoleID,
+      </if>
+      <if test="orgID != null">
+        OrgID,
+      </if>
+      <if test="parentID != null">
+        ParentID,
+      </if>
+      <if test="roleCode != null">
+        RoleCode,
+      </if>
+      <if test="roleName != null">
+        RoleName,
+      </if>
+      <if test="roleDesc != null">
+        RoleDesc,
+      </if>
+      <if test="roleLevel != null">
+        RoleLevel,
+      </if>
+      <if test="roleStatus != null">
+        RoleStatus,
+      </if>
+      <if test="expPoint != null">
+        ExpPoint,
+      </if>
+      <if test="nextExp != null">
+        NextExp,
+      </if>
+      <if test="treeCode != null">
+        TreeCode,
+      </if>
+      <if test="isValid != null">
+        IsValid,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="keyword != null">
+        Keyword,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="roleType != null">
+        RoleType,
+      </if>
+      <if test="expMode != null">
+        ExpMode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleID != null">
+        #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="parentID != null">
+        #{parentID,jdbcType=BIGINT},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null">
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roleLevel != null">
+        #{roleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="roleStatus != null">
+        #{roleStatus,jdbcType=BIGINT},
+      </if>
+      <if test="expPoint != null">
+        #{expPoint,jdbcType=INTEGER},
+      </if>
+      <if test="nextExp != null">
+        #{nextExp,jdbcType=INTEGER},
+      </if>
+      <if test="treeCode != null">
+        #{treeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=BIT},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null">
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        #{roleType,jdbcType=BIGINT},
+      </if>
+      <if test="expMode != null">
+        #{expMode,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.E_RoleInfoEntity">
+    update E_RoleInfo
+    <set>
+      <if test="orgID != null">
+        OrgID = #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="parentID != null">
+        ParentID = #{parentID,jdbcType=BIGINT},
+      </if>
+      <if test="roleCode != null">
+        RoleCode = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        RoleName = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null">
+        RoleDesc = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roleLevel != null">
+        RoleLevel = #{roleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="roleStatus != null">
+        RoleStatus = #{roleStatus,jdbcType=BIGINT},
+      </if>
+      <if test="expPoint != null">
+        ExpPoint = #{expPoint,jdbcType=INTEGER},
+      </if>
+      <if test="nextExp != null">
+        NextExp = #{nextExp,jdbcType=INTEGER},
+      </if>
+      <if test="treeCode != null">
+        TreeCode = #{treeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        IsValid = #{isValid,jdbcType=BIT},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null">
+        Keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        RoleType = #{roleType,jdbcType=BIGINT},
+      </if>
+      <if test="expMode != null">
+        ExpMode = #{expMode,jdbcType=BIGINT},
+      </if>
+    </set>
+    where RoleID = #{roleID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.E_RoleInfoEntity">
+    update E_RoleInfo
+    set OrgID = #{orgID,jdbcType=BIGINT},
+      ParentID = #{parentID,jdbcType=BIGINT},
+      RoleCode = #{roleCode,jdbcType=VARCHAR},
+      RoleName = #{roleName,jdbcType=VARCHAR},
+      RoleDesc = #{roleDesc,jdbcType=VARCHAR},
+      RoleLevel = #{roleLevel,jdbcType=INTEGER},
+      RoleStatus = #{roleStatus,jdbcType=BIGINT},
+      ExpPoint = #{expPoint,jdbcType=INTEGER},
+      NextExp = #{nextExp,jdbcType=INTEGER},
+      TreeCode = #{treeCode,jdbcType=VARCHAR},
+      IsValid = #{isValid,jdbcType=BIT},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      Keyword = #{keyword,jdbcType=VARCHAR},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      RoleType = #{roleType,jdbcType=BIGINT},
+      ExpMode = #{expMode,jdbcType=BIGINT}
+    where RoleID = #{roleID,jdbcType=BIGINT}
+  </update>
+</mapper>

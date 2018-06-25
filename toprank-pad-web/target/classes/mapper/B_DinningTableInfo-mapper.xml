@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="cc.toprank.byd.dao.B_DinningTableInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		<id column="TableID" jdbcType="BIGINT" property="tableID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="AreaID" jdbcType="BIGINT" property="areaID" />
+		<result column="TypeID" jdbcType="BIGINT" property="typeID" />
+		<result column="TableCode" jdbcType="VARCHAR" property="tableCode" />
+		<result column="QRCode" jdbcType="VARCHAR" property="QRCode" />
+		<result column="TableName" jdbcType="VARCHAR" property="tableName" />
+		<result column="DefaultPerson" jdbcType="INTEGER" property="defaultPerson" />
+		<result column="MaxPerson" jdbcType="INTEGER" property="maxPerson" />
+		<result column="MinPerson" jdbcType="INTEGER" property="minPerson" />
+		<result column="TableStatus" jdbcType="BIGINT" property="tableStatus" />
+		<result column="MinConsumption" jdbcType="DECIMAL" property="minConsumption" />
+		<result column="HighestConsumption" jdbcType="DECIMAL" property="highestConsumption" />
+		<result column="CanBooking" jdbcType="BIT" property="canBooking" />
+		<result column="CanSharing" jdbcType="BIT" property="canSharing" />
+		<result column="CanCombine" jdbcType="BIT" property="canCombine" />
+		<result column="CanSplit" jdbcType="BIT" property="canSplit" />
+		<result column="ShareNumber" jdbcType="INTEGER" property="shareNumber" />
+		<result column="ShareCode" jdbcType="VARCHAR" property="shareCode" />
+		<result column="CombineNumber" jdbcType="INTEGER" property="combineNumber" />
+		<result column="CombineName" jdbcType="VARCHAR" property="combineName" />
+		<result column="CombineCode" jdbcType="VARCHAR" property="combineCode" />
+		<result column="SplitNumber" jdbcType="INTEGER" property="splitNumber" />
+		<result column="SplitCode" jdbcType="VARCHAR" property="splitCode" />
+		<result column="TableDesc" jdbcType="VARCHAR" property="tableDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		TableID, ArchiveID, AreaID, TypeID, TableCode, QRCode, TableName, DefaultPerson,
+		MaxPerson, MinPerson, TableStatus, MinConsumption, HighestConsumption, CanBooking,
+		CanSharing, CanCombine, CanSplit, ShareNumber, ShareCode, CombineNumber, CombineName,
+		CombineCode, SplitNumber, SplitCode, TableDesc, SortNo, IsSync, CreatorID, CreateTime,
+		Memo
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from B_DinningTableInfo
+		where TableID = #{tableID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_DinningTableInfo
+		where TableID = #{tableID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		insert into B_DinningTableInfo (TableID, ArchiveID, AreaID,
+		TypeID, TableCode, QRCode,
+		TableName, DefaultPerson, MaxPerson,
+		MinPerson, TableStatus, MinConsumption,
+		HighestConsumption, CanBooking, CanSharing,
+		CanCombine, CanSplit, ShareNumber,
+		ShareCode, CombineNumber, CombineName,
+		CombineCode, SplitNumber, SplitCode,
+		TableDesc, SortNo, IsSync,
+		CreatorID, CreateTime, Memo
+		)
+		values (#{tableID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{areaID,jdbcType=BIGINT},
+		#{typeID,jdbcType=BIGINT}, #{tableCode,jdbcType=VARCHAR}, #{QRCode,jdbcType=VARCHAR},
+		#{tableName,jdbcType=VARCHAR}, #{defaultPerson,jdbcType=INTEGER}, #{maxPerson,jdbcType=INTEGER},
+		#{minPerson,jdbcType=INTEGER}, #{tableStatus,jdbcType=BIGINT}, #{minConsumption,jdbcType=DECIMAL},
+		#{highestConsumption,jdbcType=DECIMAL}, #{canBooking,jdbcType=BIT}, #{canSharing,jdbcType=BIT},
+		#{canCombine,jdbcType=BIT}, #{canSplit,jdbcType=BIT}, #{shareNumber,jdbcType=INTEGER},
+		#{shareCode,jdbcType=VARCHAR}, #{combineNumber,jdbcType=INTEGER}, #{combineName,jdbcType=VARCHAR},
+		#{combineCode,jdbcType=VARCHAR}, #{splitNumber,jdbcType=INTEGER}, #{splitCode,jdbcType=VARCHAR},
+		#{tableDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{isSync,jdbcType=BIT},
+		#{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		insert into B_DinningTableInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tableID != null">
+				TableID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="areaID != null">
+				AreaID,
+			</if>
+			<if test="typeID != null">
+				TypeID,
+			</if>
+			<if test="tableCode != null">
+				TableCode,
+			</if>
+			<if test="QRCode != null">
+				QRCode,
+			</if>
+			<if test="tableName != null">
+				TableName,
+			</if>
+			<if test="defaultPerson != null">
+				DefaultPerson,
+			</if>
+			<if test="maxPerson != null">
+				MaxPerson,
+			</if>
+			<if test="minPerson != null">
+				MinPerson,
+			</if>
+			<if test="tableStatus != null">
+				TableStatus,
+			</if>
+			<if test="minConsumption != null">
+				MinConsumption,
+			</if>
+			<if test="highestConsumption != null">
+				HighestConsumption,
+			</if>
+			<if test="canBooking != null">
+				CanBooking,
+			</if>
+			<if test="canSharing != null">
+				CanSharing,
+			</if>
+			<if test="canCombine != null">
+				CanCombine,
+			</if>
+			<if test="canSplit != null">
+				CanSplit,
+			</if>
+			<if test="shareNumber != null">
+				ShareNumber,
+			</if>
+			<if test="shareCode != null">
+				ShareCode,
+			</if>
+			<if test="combineNumber != null">
+				CombineNumber,
+			</if>
+			<if test="combineName != null">
+				CombineName,
+			</if>
+			<if test="combineCode != null">
+				CombineCode,
+			</if>
+			<if test="splitNumber != null">
+				SplitNumber,
+			</if>
+			<if test="splitCode != null">
+				SplitCode,
+			</if>
+			<if test="tableDesc != null">
+				TableDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="tableID != null">
+				#{tableID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="areaID != null">
+				#{areaID,jdbcType=BIGINT},
+			</if>
+			<if test="typeID != null">
+				#{typeID,jdbcType=BIGINT},
+			</if>
+			<if test="tableCode != null">
+				#{tableCode,jdbcType=VARCHAR},
+			</if>
+			<if test="QRCode != null">
+				#{QRCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				#{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultPerson != null">
+				#{defaultPerson,jdbcType=INTEGER},
+			</if>
+			<if test="maxPerson != null">
+				#{maxPerson,jdbcType=INTEGER},
+			</if>
+			<if test="minPerson != null">
+				#{minPerson,jdbcType=INTEGER},
+			</if>
+			<if test="tableStatus != null">
+				#{tableStatus,jdbcType=BIGINT},
+			</if>
+			<if test="minConsumption != null">
+				#{minConsumption,jdbcType=DECIMAL},
+			</if>
+			<if test="highestConsumption != null">
+				#{highestConsumption,jdbcType=DECIMAL},
+			</if>
+			<if test="canBooking != null">
+				#{canBooking,jdbcType=BIT},
+			</if>
+			<if test="canSharing != null">
+				#{canSharing,jdbcType=BIT},
+			</if>
+			<if test="canCombine != null">
+				#{canCombine,jdbcType=BIT},
+			</if>
+			<if test="canSplit != null">
+				#{canSplit,jdbcType=BIT},
+			</if>
+			<if test="shareNumber != null">
+				#{shareNumber,jdbcType=INTEGER},
+			</if>
+			<if test="shareCode != null">
+				#{shareCode,jdbcType=VARCHAR},
+			</if>
+			<if test="combineNumber != null">
+				#{combineNumber,jdbcType=INTEGER},
+			</if>
+			<if test="combineName != null">
+				#{combineName,jdbcType=VARCHAR},
+			</if>
+			<if test="combineCode != null">
+				#{combineCode,jdbcType=VARCHAR},
+			</if>
+			<if test="splitNumber != null">
+				#{splitNumber,jdbcType=INTEGER},
+			</if>
+			<if test="splitCode != null">
+				#{splitCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tableDesc != null">
+				#{tableDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		update B_DinningTableInfo
+		<set>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="areaID != null">
+				AreaID = #{areaID,jdbcType=BIGINT},
+			</if>
+			<if test="typeID != null">
+				TypeID = #{typeID,jdbcType=BIGINT},
+			</if>
+			<if test="tableCode != null">
+				TableCode = #{tableCode,jdbcType=VARCHAR},
+			</if>
+			<if test="QRCode != null">
+				QRCode = #{QRCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				TableName = #{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultPerson != null">
+				DefaultPerson = #{defaultPerson,jdbcType=INTEGER},
+			</if>
+			<if test="maxPerson != null">
+				MaxPerson = #{maxPerson,jdbcType=INTEGER},
+			</if>
+			<if test="minPerson != null">
+				MinPerson = #{minPerson,jdbcType=INTEGER},
+			</if>
+			<if test="tableStatus != null">
+				TableStatus = #{tableStatus,jdbcType=BIGINT},
+			</if>
+			<if test="minConsumption != null">
+				MinConsumption = #{minConsumption,jdbcType=DECIMAL},
+			</if>
+			<if test="highestConsumption != null">
+				HighestConsumption = #{highestConsumption,jdbcType=DECIMAL},
+			</if>
+			<if test="canBooking != null">
+				CanBooking = #{canBooking,jdbcType=BIT},
+			</if>
+			<if test="canSharing != null">
+				CanSharing = #{canSharing,jdbcType=BIT},
+			</if>
+			<if test="canCombine != null">
+				CanCombine = #{canCombine,jdbcType=BIT},
+			</if>
+			<if test="canSplit != null">
+				CanSplit = #{canSplit,jdbcType=BIT},
+			</if>
+			<if test="shareNumber != null">
+				ShareNumber = #{shareNumber,jdbcType=INTEGER},
+			</if>
+			<if test="shareCode != null">
+				ShareCode = #{shareCode,jdbcType=VARCHAR},
+			</if>
+			<if test="combineNumber != null">
+				CombineNumber = #{combineNumber,jdbcType=INTEGER},
+			</if>
+			<if test="combineName != null">
+				CombineName = #{combineName,jdbcType=VARCHAR},
+			</if>
+			<if test="combineCode != null">
+				CombineCode = #{combineCode,jdbcType=VARCHAR},
+			</if>
+			<if test="splitNumber != null">
+				SplitNumber = #{splitNumber,jdbcType=INTEGER},
+			</if>
+			<if test="splitCode != null">
+				SplitCode = #{splitCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tableDesc != null">
+				TableDesc = #{tableDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where TableID = #{tableID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		update B_DinningTableInfo
+		set ArchiveID = #{archiveID,jdbcType=BIGINT},
+		AreaID = #{areaID,jdbcType=BIGINT},
+		TypeID = #{typeID,jdbcType=BIGINT},
+		TableCode = #{tableCode,jdbcType=VARCHAR},
+		QRCode = #{QRCode,jdbcType=VARCHAR},
+		TableName = #{tableName,jdbcType=VARCHAR},
+		DefaultPerson = #{defaultPerson,jdbcType=INTEGER},
+		MaxPerson = #{maxPerson,jdbcType=INTEGER},
+		MinPerson = #{minPerson,jdbcType=INTEGER},
+		TableStatus = #{tableStatus,jdbcType=BIGINT},
+		MinConsumption = #{minConsumption,jdbcType=DECIMAL},
+		HighestConsumption = #{highestConsumption,jdbcType=DECIMAL},
+		CanBooking = #{canBooking,jdbcType=BIT},
+		CanSharing = #{canSharing,jdbcType=BIT},
+		CanCombine = #{canCombine,jdbcType=BIT},
+		CanSplit = #{canSplit,jdbcType=BIT},
+		ShareNumber = #{shareNumber,jdbcType=INTEGER},
+		ShareCode = #{shareCode,jdbcType=VARCHAR},
+		CombineNumber = #{combineNumber,jdbcType=INTEGER},
+		CombineName = #{combineName,jdbcType=VARCHAR},
+		CombineCode = #{combineCode,jdbcType=VARCHAR},
+		SplitNumber = #{splitNumber,jdbcType=INTEGER},
+		SplitCode = #{splitCode,jdbcType=VARCHAR},
+		TableDesc = #{tableDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where TableID = #{tableID,jdbcType=BIGINT}
+	</update>
+
+  	<select id="getAll" parameterType="B_DinningTableInfoEntity" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_DinningTableInfoCollection()}
+		]]>
+	</select>
+  	<select id="get" parameterType="B_DinningTableInfoEntity" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_DinningTableInfoEntity(#{tableID})}
+		]]>
+	</select>
+	<select id="getTablesByTableIds" parameterType="String" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_GetB_DinningTableInfoEntityBatch(#{tableIDs})}
+		]]>
+	</select>
+  	<delete id="delete" parameterType="B_DinningTableInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteB_DinningTableInfoEntity(#{tableID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="TableID" parameterType="B_DinningTableInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertB_DinningTableInfoEntity(#{archiveID},#{areaID},#{canBooking},#{canCombine},#{canSharing},#{canSplit},#{combineCode},#{combineName},#{combineNumber},#{createTime},#{creatorID},#{defaultPerson},#{highestConsumption},#{isSync},#{maxPerson},#{memo},#{minConsumption},#{minPerson},#{qRCode},#{shareCode},#{shareNumber},#{sortNo},#{splitCode},#{splitNumber},#{tableCode},#{tableDesc},#{tableID,jdbcType=INTEGER,mode=OUT},#{tableName},#{tableStatus},"admin")}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="B_DinningTableInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateB_DinningTableInfoEntity(#{archiveID},#{areaID},#{canBooking},#{canCombine},#{canSharing},#{canSplit},#{combineCode},#{combineName},#{combineNumber},#{createTime},#{creatorID},#{defaultPerson},#{highestConsumption},#{isSync},#{maxPerson},#{memo},#{minConsumption},#{minPerson},#{qRCode},#{shareCode},#{shareNumber},#{sortNo},#{splitCode},#{splitNumber},#{tableCode},#{tableDesc},#{tableID},#{tableName},#{tableStatus},#{typeID})}
+		]]>
+  	</update>
+
+	<update id="updateTablesBatch" parameterType="Hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_UpdateB_DinningTableInfoEntityBatch(#{tableStatus},#{tableIDs},#{shareNumber},#{combineName},#{combineNumber})}
+		]]>
+	</update>
+
+	<!-- 根据区域id和archiveID查找餐桌信息 -->
+	<select id="getTableInfoByAreaIDAndOrgID" parameterType="hashmap" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_DinningTableInfoByMultiCondition(#{archiveID},#{areaID},#{mealName})}
+		]]>
+	</select>
+	<!-- 根据archiveID和tableCode获取areaID zhangbo -->
+	 <select id="getTableInfoByOrgIDAndTableCode" parameterType="hashmap" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_DinningTableByOrgIDAndTableCode(#{tableCode},#{archiveID})}
+		]]>
+	</select>
+
+
+  		<!--
+	根据tableID获取桌台信息
+	@author xuexin
+	 -->
+  	<select id="getDinningTableInfoEntityByTableId" parameterType="B_DinningTableInfoEntity" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_DinningTableInfoEntityByTableIdANDArchiveID(#{tableID})}
+		]]>
+	</select>
+
+  	 <!--
+		根据tableCode获取桌台信息
+		@author zhoufy
+	 -->
+  	<select id="getDinningTableInfoByTableCode" parameterType="hashmap" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_DiningTableInfoEntityByTableCode(#{tableCode})}
+		]]>
+	</select>
+
+	  	 <!--
+		根据档案编号、tableCode获取桌台信息
+		@author zhoufy
+	 -->
+  	<select id="getDinningTableByArchiveIDAndTableCode" parameterType="hashmap" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_DinningTableByArchiveIDAndTableCode(#{archiveID},#{tableCode})}
+		]]>
+	</select>
+
+		  	 <!--
+		根据桌台编号获取桌台信息
+		@author zhoufy
+	 -->
+  	<select id="getDinningTableInfoByTableIdForAreaName" parameterType="hashmap" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_DinningTableInfoEntityByTableIdForAreaName(#{tableID})}
+		]]>
+	</select>
+
+	<!--
+		根据机构编号和区域编号查询可以联合的桌台
+		@author LinYN
+	 -->
+	<select id="getCanCombineTableInfos" parameterType="hashmap" resultType="cc.toprank.byd.web.vo.tablevo.TableMessageVO">
+		<![CDATA[
+			select t.TableID as tableID
+					, t.TableName as tableName
+                    , a.areaName as areaName
+                    , a.areaType as areaType
+					, t.TableCode as tableCode
+					, t.DefaultPerson as defaultPerson
+					, t.TableStatus as tableStatus
+					, t.CombineName as combineName
+					, t.CombineNumber as combineNumber
+					, t.AreaID as areaID
+					, t.ShareNumber as shareNumber
+					, so.PeopleNum as customerNumber
+                    , so.SubOrderID as subOrderID
+                    , so.OrderID as orderID
+            from (
+              select tb.*
+              from B_DinningTableInfo tb
+              where tb.ArchiveID = #{archiveID}
+                  and tb.TableStatus in (652,827)
+                  and tb.CanCombine = 1
+                  and ifnull(tb.CombineNumber, 0) < 2
+                  and ifnull(tb.ShareNumber, 0) < 2
+                  and tb.TableID != #{tableID}
+            ) t
+            left join O_SubOrderInfo so on (so.TableID = t.TableID and (OrderStatus = 654 OR OrderStatus = 875))
+            left join B_ShopAreaInfo a on t.AreaID = a.AreaID
+			;
+		]]>
+	</select>
+
+	<!--
+		根据机构编号和区域编号查询可以联合的桌台
+		@author LinYN
+	 -->
+	<select id="getCanSplitTableInfos" parameterType="hashmap" resultType="cc.toprank.byd.web.vo.tablevo.TableMessageVO">
+		<![CDATA[
+			select t.TableID as tableID
+					, t.TableName as tableName
+                    , a.areaName as areaName
+                    , a.areaType as areaType
+					, t.TableCode as tableCode
+					, t.DefaultPerson as defaultPerson
+					, t.TableStatus as tableStatus
+					, t.CombineName as combineName
+					, t.CombineNumber as combineNumber
+					, t.AreaID as areaID
+					, t.ShareNumber as shareNumber
+					, so.PeopleNum as customerNumber
+                    , so.SubOrderID as subOrderID
+                    , so.OrderID as orderID
+			from (
+              select tb.*
+              from B_DinningTableInfo tb
+              where ifnull(tb.CombineNumber, 0) > 1
+                  and tb.TableID in (
+                      select distinct subOrder.TableID
+                      from O_SubOrderInfo subOrder
+                      where subOrder.OrderID in (
+                            select distinct so.OrderID
+                            from O_SubOrderInfo so
+                            where so.TableID = #{tableID} and (so.OrderStatus = 654 or so.OrderStatus = 875)
+                          )
+                          and subOrder.TableID != #{tableID}
+                  )
+              ) t
+              left join O_SubOrderInfo so on (so.TableID = t.TableID and (OrderStatus = 654 OR OrderStatus = 875))
+              left join B_ShopAreaInfo a on t.AreaID = a.AreaID
+			;
+		]]>
+	</select>
+
+
+	<!--
+    根据机构编号和区域编号查询可以联合的桌台,包含本身
+    @author zhouwei
+ -->
+	<select id="getCanUnionTables" parameterType="hashmap" resultType="cc.toprank.byd.web.vo.tablevo.TableMessageVO">
+		<![CDATA[
+			select t.TableID as tableID
+					, t.TableName as tableName
+                    , a.areaName as areaName
+                    , a.areaType as areaType
+					, t.TableCode as tableCode
+					, t.DefaultPerson as defaultPerson
+					, t.TableStatus as tableStatus
+					, t.CombineName as combineName
+					, t.CombineNumber as combineNumber
+					, t.AreaID as areaID
+					, t.ShareNumber as shareNumber
+					, so.PeopleNum as customerNumber
+                    , so.SubOrderID as subOrderID
+                    , so.OrderID as orderID
+			from (
+              select tb.*
+              from B_DinningTableInfo tb
+              where ifnull(tb.CombineNumber, 0) > 1
+                  and tb.TableID in (
+                      select distinct subOrder.TableID
+                      from O_SubOrderInfo subOrder
+                      where subOrder.OrderID in (
+                            select distinct so.OrderID
+                            from O_SubOrderInfo so
+                            where so.TableID = #{tableID} and (so.OrderStatus = 654 or so.OrderStatus = 875)
+                          )
+                  )
+              ) t
+              left join O_SubOrderInfo so on (so.TableID = t.TableID and (OrderStatus = 654 OR OrderStatus = 875))
+              left join B_ShopAreaInfo a on t.AreaID = a.AreaID
+			;
+		]]>
+	</select>
+
+	<!--
+		根据机构编号和区域编号查询可以联合的桌台
+		@author LinYN
+	 -->
+	<select id="getCanTransferTableInfos" parameterType="hashmap" resultType="cc.toprank.byd.web.vo.tablevo.TableMessageVO">
+			select t.TableID as tableID
+				, t.TableName as tableName
+				, so.TableName shareTableName
+				, t.TableCode as tableCode
+				, t.DefaultPerson as defaultPerson
+				, case so.OrderStatus
+					when 875 then 827
+					when 654 then 652
+					else t.TableStatus end as tableStatus
+				, t.CombineName as combineName
+				, t.CombineNumber as combineNumber
+				, t.AreaID as areaID
+				, t.ShareNumber as shareNumber
+				, so.SubOrderID as subOrderID
+				, so.OrderID as orderID
+				, so.PeopleNum as customerNumber
+				, t.AreaName as areaName
+				, t.AreaType as areaType
+			from (select tb.*, a.AreaName, a.AreaType from B_DinningTableInfo tb left join B_ShopAreaInfo a on tb.AreaID = a.AreaID
+					where tb.ArchiveID = #{archiveID}
+						<if test="isSharing == true ">
+							and ifnull(tb.CombineNumber, 0) &lt; 2
+						</if>
+						and (tb.TableStatus = 652 or  tb.TableStatus = 827)
+				) t, (select * from O_SubOrderInfo subOrder
+					where subOrder.OrderStatus = 875 OR subOrder.OrderStatus = 654) so
+			where t.TableID = so.TableID and t.TableID != ifnull(#{tableID},0)
+			UNION
+			select t.TableID as tableID
+				, t.TableName as tableName
+				, t.TableName shareTableName
+				, t.TableCode as tableCode
+				, t.DefaultPerson as defaultPerson
+				, t.TableStatus as tableStatus
+				, t.CombineName as combineName
+				, t.CombineNumber as combineNumber
+				, t.AreaID as areaID
+				, t.ShareNumber as shareNumber
+				, null as subOrderID
+				, null as orderID
+				, 0 as customerNumber
+				, a.AreaName as areaName
+				, a.AreaType as areaType
+			from B_DinningTableInfo t left join B_ShopAreaInfo a on t.AreaID = a.AreaID
+					where t.ArchiveID = #{archiveID}
+						and t.TableStatus = 607
+						and t.TableID != ifnull(#{tableID},0)
+				;
+	</select>
+
+	<!--
+		根据机构编号和区域编号查询可以联合的桌台
+		@author LinYN
+	 -->
+	<select id="getUsingTableInfosByTableName" parameterType="hashmap" resultType="cc.toprank.byd.web.vo.tablevo.TableMessageVO" statementType="CALLABLE">
+			select t.TableID as tableID
+				, t.AreaID as AreaID
+				, so.SubOrderID as subOrderID
+				, sa.AreaName as AreaName
+				, t.TableName as tableName
+				, t.TableCode as tableCode
+				, t.DefaultPerson as defaultPerson
+				, t.TableStatus as tableStatus
+				, t.CombineName as combineName
+				, t.CombineNumber as combineNumber
+				, t.AreaID as areaID
+				, t.ShareNumber as shareNumber
+				, so.PeopleNum as customerNumber
+				, so.TableName as shareName
+			from B_DinningTableInfo t left join O_SubOrderInfo so on t.TableID = so.TableID
+				left join B_ShopAreaInfo sa on ( sa.AreaID = t.AreaID and sa.ArchiveID = t.ArchiveID)
+			where t.ArchiveID = #{archiveID}
+				and ( t.TableStatus = 652 or t.TableStatus = 827 )
+				and ( so.OrderStatus = 654 or so.OrderStatus = 875)
+			<if test="tableName != null and tableName != ''">
+				and ( t.TableName like concat('%',#{tableName},'%') or t.TableCode like concat('%',#{tableName},'%') )
+			</if>
+	</select>
+
+	<!--
+	根据tableId和status获取右侧展示信息
+    @author zhouwei
+ -->
+	<select id="getTableShowMessage" parameterType="hashmap" resultType="cc.toprank.byd.web.vo.tablevo.DinningTableInfoVO" statementType="CALLABLE">
+		<choose>
+			<when test="tableStatus == 609">
+				Select DISTINCT BDTI.*, BDTI.TableID as TableID, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus from B_DinningTableInfo  AS BDTI
+				-- INNER JOIN B_MealTableMapping BMTM ON BDTI.TableID = BMTM.TableID AND BDTI.ArchiveID = BMTM.ArchiveID AND BDTI.AreaID=BMTM.AreaID AND BDTI.TableCode=BMTM.TableCode
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				WHERE BDTI.TableID =#{tableID} AND BDTI.TableStatus = #{tableStatus};
+			</when>
+			<when test="tableStatus == 606">
+				Select DISTINCT BDTI.*, BDTI.TableID as TableID, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus,
+				OBI.BookingCode as BookingCode,OBI.BookingStatus as BookingStatus,OBI.PeopleNum as PeopleNum,OBI.BookingTime as BookingTime,OBI.BookingType as BookingType,OOI.OrderCode as OrderCode,OBI.BookingID as bookingID,
+				OBI.PaymentMethodID as PaymentMethodID,OBI.ArrivalTime as ArrivalTime,OBI.BookingAmount as BookingAmount,OBI.Contact as Contact,OBI.Phone as Phone,OBI.Memo as Memo
+				from B_DinningTableInfo  AS BDTI
+				-- INNER JOIN B_MealTableMapping BMTM ON BDTI.TableID = BMTM.TableID AND BDTI.ArchiveID = BMTM.ArchiveID AND BDTI.AreaID=BMTM.AreaID AND BDTI.TableCode=BMTM.TableCode
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				-- INNER JOIN B_DinningTableUseInfo BDTUI ON BDTUI.ArchiveID = BDTI.ArchiveID AND BDTUI.TableID=BDTI.TableID
+				-- AND BDTUI.MealsID=BMTM.MealsID
+				INNER JOIN O_BookingInfo OBI ON OBI.ArchiveID = BDTI.ArchiveID
+				INNER JOIN O_OrderInfo OOI ON OOI.OrderID = OBI.OrderID and OOI.ArchiveID = OBI.ArchiveID
+				-- AND OBI.MealsID = BMTM.MealsID AND OBI.SegmentID = BMTM.SegmentID
+				WHERE BDTI.TableID =#{tableID}  ORDER BY OBI.CreateTime DESC LIMIT 1;
+			</when>
+			<when test="tableStatus == 652">
+				Select DISTINCT BDTI.*, BDTI.TableID as TableID, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus,
+				OSOI.SubOrderID as SubOrderID,OSOI.OrderStatus as SUBOrderStatus,OSOI.TotalAmount as subTotalAmount,OSOI.PeopleNum as subPeopleNum,
+				(OSOI.Quantity- SUM(OODI.ServedNum)) as subUnservedNum,SUM(OODI.ServedNum) as subServedNum,OSOI.NickName as subNickName,OSOI.Memo as Memo,OOI.OrderID as orderID,OOI.NickName as nickName,
+				OOI.Phone as phone,OOI.PeopleNum as PeopleNum, OOI.TotalAmount AS TotalAmount,OOI.OrderStatus as OrderStatus,OOI.OrderCode as orderCode
+				from B_DinningTableInfo  AS BDTI
+				-- INNER JOIN B_MealTableMapping BMTM ON BDTI.TableID = BMTM.TableID AND BDTI.ArchiveID = BMTM.ArchiveID AND BDTI.AreaID=BMTM.AreaID AND BDTI.TableCode=BMTM.TableCode
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				INNER JOIN O_SubOrderInfo OSOI ON
+				-- OSOI.MealsID = BMTM.MealsID AND
+				OSOI.TableID = BDTI.TableID
+				INNER JOIN O_OrderDetailInfo OODI ON OODI.SubOrderID = OSOI.SubOrderID
+				INNER JOIN O_OrderInfo OOI ON OOI.OrderID = OSOI.OrderID and OOI.ArchiveID = BDTI.ArchiveID
+				WHERE BDTI.TableID =#{tableID} AND BDTI.TableStatus = #{tableStatus}
+				<if test="subOrderID != null and subOrderID != ''">
+					AND OSOI.SubOrderID = #{subOrderID}
+				</if>
+				AND OOI.OrderStatus != 68  AND OSOI.OrderStatus!=68;
+			</when>
+			<when test="tableStatus == 728">
+				Select DISTINCT BDTI.*, BDTI.TableID as TableID, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus,
+				OSOI.SubOrderID as SubOrderID,OSOI.OrderStatus as SUBOrderStatus,OSOI.TotalAmount as subTotalAmount,OSOI.PeopleNum as subPeopleNum,
+				(OSOI.Quantity- SUM(OODI.ServedNum)) as subUnservedNum,SUM(OODI.ServedNum) as subServedNum,OSOI.NickName as subNickName,OSOI.Memo as Memo,OOI.OrderID as orderID,OOI.NickName as nickName,
+				OOI.Phone as phone,OOI.PeopleNum as PeopleNum, OOI.TotalAmount AS TotalAmount,OOI.OrderStatus as OrderStatus , OOI.OrderCode as orderCode
+				from B_DinningTableInfo  AS BDTI
+				-- INNER JOIN B_MealTableMapping BMTM ON BDTI.TableID = BMTM.TableID AND BDTI.ArchiveID = BMTM.ArchiveID AND BDTI.AreaID=BMTM.AreaID AND BDTI.TableCode=BMTM.TableCode
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				INNER JOIN B_DinningTableUseInfo BDTUI ON BDTUI.ArchiveID = BDTI.ArchiveID AND BDTUI.TableID=BDTI.TableID
+				-- AND BDTUI.MealsID=BMTM.MealsID
+				INNER JOIN O_SubOrderInfo OSOI ON
+				-- OSOI.MealsID = BMTM.MealsID AND
+				OSOI.TableID = BDTI.TableID
+				INNER JOIN O_OrderDetailInfo OODI ON OODI.SubOrderID = OSOI.SubOrderID
+				INNER JOIN O_OrderInfo OOI ON OOI.OrderID = OSOI.OrderID and OOI.ArchiveID = BDTI.ArchiveID
+				WHERE BDTI.TableID =#{tableID} AND BDTI.TableStatus = #{tableStatus}
+				<if test="subOrderID != null and subOrderID != ''">
+					AND OSOI.SubOrderID = #{subOrderID}
+				</if>
+				ORDER BY BDTUI.CreateTime DESC LIMIT 1;
+			</when>
+			<when test="tableStatus == 607">
+				Select DISTINCT BDTI.*, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus
+				from B_DinningTableInfo  AS BDTI
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				WHERE BDTI.TableID =#{tableID} AND BDTI.TableStatus = #{tableStatus};
+			</when>
+			<when test="tableStatus == 610">
+				Select DISTINCT BDTI.*, BDTI.TableID as TableID, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus
+				from B_DinningTableInfo  AS BDTI
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				WHERE BDTI.TableID =#{tableID} AND BDTI.TableStatus = #{tableStatus} ;
+			</when>
+			<when test="tableStatus == 827">
+				Select DISTINCT BDTI.*, BDTI.TableID as TableID, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus,
+				OSOI.SubOrderID as SubOrderID,OSOI.OrderStatus as SUBOrderStatus,OSOI.TotalAmount as subTotalAmount,OSOI.PeopleNum as subPeopleNum,
+				(OSOI.Quantity- SUM(OODI.ServedNum)) as subUnservedNum,SUM(OODI.ServedNum) as subServedNum,OSOI.NickName as subNickName,OSOI.Memo as Memo,OOI.OrderID as orderID,OOI.NickName as nickName,
+				OOI.Phone as phone,OOI.PeopleNum as PeopleNum, OOI.TotalAmount AS TotalAmount,OOI.OrderStatus as OrderStatus,OOI.OrderCode as orderCode
+				from B_DinningTableInfo  AS BDTI
+				-- INNER JOIN B_MealTableMapping BMTM ON BDTI.TableID = BMTM.TableID AND BDTI.ArchiveID = BMTM.ArchiveID AND BDTI.AreaID=BMTM.AreaID AND BDTI.TableCode=BMTM.TableCode
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				INNER JOIN O_SubOrderInfo OSOI ON
+				-- OSOI.MealsID = BMTM.MealsID AND
+				OSOI.TableID = BDTI.TableID
+				INNER JOIN O_OrderDetailInfo OODI ON OODI.SubOrderID = OSOI.SubOrderID
+				INNER JOIN O_OrderInfo OOI ON OOI.OrderID = OSOI.OrderID and OOI.ArchiveID = BDTI.ArchiveID
+				WHERE BDTI.TableID =#{tableID} AND BDTI.TableStatus = #{tableStatus}
+				<if test="subOrderID != null and subOrderID != ''">
+					AND OSOI.SubOrderID = #{subOrderID}
+				</if>
+				 AND OOI.OrderStatus != 68  AND OSOI.OrderStatus!=68;
+			</when>
+			<otherwise>
+				Select DISTINCT BDTI.*, BDTI.TableName as TableName,BDTI.AreaID as AreaID,BSAI.AreaName as AreaName,BDTI.MaxPerson as MaxPerson,BDTI.TableStatus as TableStatus
+				from B_DinningTableInfo  AS BDTI
+				INNER JOIN B_ShopAreaInfo AS BSAI ON BSAI.AreaID = BDTI.AreaID AND BSAI.ArchiveID = BDTI.ArchiveID
+				WHERE BDTI.TableID =#{tableID} AND BDTI.TableStatus = #{tableStatus};
+			</otherwise>
+		</choose>
+	</select>
+
+	<!--
+		根据多个桌台编号改变当前使用中的桌台信息中的联合属性
+		LinYN
+	-->
+	<update id="updateCombineInfoByTableIDs" parameterType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_Update_CombineInfoOfTableByTableIDs(#{tableIDs},#{combineNumber},#{combineName})}
+		]]>
+	</update>
+
+
+	<!-- 根据桌台id查询当前桌台信息	 zhouwei -->
+	<select id="getDinningTableInfoEntityByTableID" parameterType="hashmap" resultType="B_DinningTableInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_DiningTableInfoEntityByTableIDAndArchiveID(#{tableID},#{archiveID})}
+		]]>
+	</select>
+
+	<!-- 获得桌台基本信息 -->
+	<!--IFNULL(sum(duser.CustomerNumber),0) customerNumber-->
+	<select id="getTableBaseDetailByTableID" parameterType="long" resultType="map">
+		select
+		d.tableID tableID,
+		d.TableStatus tableStatus,
+		d.tablecode tableCode,
+		d.tableName tableName,
+		d.maxperson maxPerson,
+		d.MinPerson minPerson,
+		area.AreaName areaName,
+		area.areaid areaID,
+		CONCAT(IFNULL(d.CanSharing,1),"") canSharing,
+		d.ShareNumber shareNumber,
+		IFNULL(d.MinConsumption,0) minConsumption,
+		IFNULL(sum(sub.peopleNum),0) customerNumber
+		from B_DinningTableInfo d
+		left join B_ShopAreaInfo area on d.areaid = area.areaid
+		left join O_SubOrderInfo sub on sub.tableID = d.tableID and sub.orderStatus=654
+		where d.tableID = #{tableID}
+		group by d.tableID
+	</select>
+	<!-- 根据参数获得对应的table列表 -->
+	<select id="getTableListByParam" parameterType="map" resultType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		select
+		<include refid="Base_Column_List" />
+		from B_DinningTableInfo
+		<where>
+			<if test="areaID !=null ">
+				areaID = #{areaID}
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据areaID 获得桌台某些信息 列表 -->
+	<select id="getListByAreaID" parameterType="map" resultType="map">
+		select
+		d.tableID tableID,
+		d.TableStatus tableStatus,
+		d.tablecode tableCode,
+		d.tableName tableName,
+		d.maxperson maxPerson,
+		d.MinPerson minPerson,
+		area.AreaName areaName,
+		IFNULL(d.MinConsumption,0) minConsumption,
+		(SELECT COUNT(pt.mappingID) FROM B_PadTableMapping pt WHERE MappingStatus=802 AND pt.tableID = d.tableID) bindPadNumber,
+		IFNULL(sum(sub.peopleNum),0) customerNumber
+		from B_DinningTableInfo d
+		left join B_ShopAreaInfo area on d.areaid = area.areaid
+		left join O_SubOrderInfo sub on sub.tableID = d.tableID and sub.orderStatus=654
+		<where>
+			d.archiveID=#{archiveID} AND d.tablestatus !=780
+			<if test="areaID != 0">
+				and d.areaid = #{areaID}
+			</if>
+		</where>
+		group by d.tableID
+	</select>
+	<!-- 根据padID 获得该水牌目前绑定的桌台 -->
+	<select id="queryDinningTableInfoByPadID" resultType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		SELECT <include refid="Base_Column_List" /> FROM B_DinningTableInfo d
+		WHERE d.TableID = (SELECT m.TableID FROM B_PadTableMapping m WHERE m.PadID =  #{padID} AND m.MappingStatus = #{mappingStatus} )
+	</select>
+
+	<!-- 按条件查询桌台信息 hcy -->
+	<select id="queryDinningTableInfoByCondition" parameterType="Map" resultType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		B_DinningTableInfo
+		where ArchiveID = #{archiveID}
+		<if test="areaID != null">
+			and AreaID = #{areaID}
+		</if>
+		<if test="tableName != null">
+			and TableName LIKE  CONCAT('%',#{tableName},'%')
+		</if>
+		<![CDATA[ and TableStatus <> 780 and TableStatus <> 610 ]]>
+	</select>
+
+	<!--清除桌台当前订单-->
+	<update id="cleanTableUsingOrderList" parameterType="map">
+		SET FOREIGN_KEY_CHECKS=0;
+		delete from O_OrderInfo where orderID in
+		(
+		select orderID from (
+		select o.orderID from O_OrderInfo o
+		left join O_SubOrderInfo sub on o.orderID = sub.orderID
+		where sub.tableID = #{tableID}
+		)t
+		);
+
+		delete from O_SubOrderInfo where suborderID in
+		(select suborderID from (select suborderId from O_SubOrderInfo where tableID =#{tableID}) t);
+
+		update B_DinningTableInfo set tableStatus = 607,shareNumber=0 where tableID = #{tableID};
+
+		SET FOREIGN_KEY_CHECKS=1;
+	</update>
+
+	<!--  查找已预定的桌台 ht    -->
+	<select id="getDinningTableInfoArchiveIDAndAreaID" parameterType="map" resultType="cc.toprank.byd.entity.B_DinningTableInfoEntity">
+		select a.*,c.DictionaryID as AreaType,c.DictionaryName as AreaTypeName
+		from B_DinningTableInfo a LEFT JOIN B_ShopAreaInfo b on a.AreaID=b.AreaID
+		                          LEFT JOIN C_DictionaryInfo c on b.AreaType=c.DictionaryID
+		where a.ArchiveID= #{archiveID}
+		<if test="status != null">
+			and a.TableStatus = #{status}
+		</if>
+		<if test="areaID != null">
+			and a.AreaID = #{areaID}
+		</if>
+	</select>
+
+	<select id="getTableCountByStatusAndArchiveID" parameterType="map" resultType="int">
+		select count(*)  from B_DinningTableInfo
+		where  TableStatus not in (780,605) and ArchiveID= #{archiveID}
+		<if test="status != null">
+			and TableStatus = #{status}
+		</if>
+		<if test="areaID != null">
+			and AreaID = #{areaID}
+		</if>
+	</select>
+
+	<!--查询可预定的桌台-->
+	<select id="queryBookingTableListByBookingID" parameterType="Long" resultType="B_DinningTableInfoEntity">
+		select c.*,a.BookingID from O_BookingInfo a LEFT JOIN O_SubOrderInfo b on a.OrderID = b.OrderID
+			LEFT JOIN B_DinningTableInfo c on b.TableID = c.TableID
+		where a.BookingID = #{bookingID}
+	</select>
+
+	<!--根据区域筛选可以用桌-->
+	<select id="getTableByStatusAndArchiveID" parameterType="map" resultType="B_DinningTableInfoEntity">
+		select <include refid="Base_Column_List" />  from B_DinningTableInfo
+		where ArchiveID= #{archiveID}
+		<if test="status != null">
+			and TableStatus = #{status}
+		</if>
+		<if test="areaID != null">
+			and AreaID = #{areaID}
+		</if>
+	</select>
+
+	<!-- 根据桌台ID改变桌台状态 hcy -->
+	<update id="updateTableStatusByTableID" parameterType="B_DinningTableInfoEntity">
+		update
+			B_DinningTableInfo
+		set
+			tableStatus = #{tableStatus}
+		where
+			tableID = #{tableID};
+	</update>
+
+	<!--查询桌台预订状态信息-->
+	<select id="getDinningTableBookingInfo" parameterType="map" resultType="map">
+		select b.contact,b.bookingTime,b.bookingStatus,b.bookingType,d.tableName,d.tableID,d.defaultPerson from B_DinningTableInfo d  LEFT JOIN O_SubOrderInfo o on o.TableID = d.TableID
+		LEFT JOIN O_BookingInfo b on b.OrderID = o.OrderID and b.BookingStatus = 618 and <![CDATA[ b.BookingTime >= #{startTime} and b.BookingTime < #{endTime} ]]>
+		where
+		d.ArchiveID = #{archiveID}
+		<if test="areaID != null">
+			and	d.AreaID = #{areaID}
+		</if>
+	</select>
+
+	<!--查询用户偏好桌,预订次数前三的桌台-->
+	<select id="getPreferenceDinningTableInfo" parameterType="map" resultType="B_DinningTableInfoEntity">
+		select d.TableID,d.TableName,count(1) bookingNum from O_BookingInfo b
+			LEFT JOIN O_SubOrderInfo o on b.OrderID = o.OrderID
+		  inner JOIN B_DinningTableInfo d   on o.TableID = d.TableID
+		where  b.ArchiveID = #{archiveID} and b.LoginID = #{loginID} group by d.TableID,d.TableName order by bookingNum DESC limit 3
+	</select>
+
+	<!--根据区域及桌台编码查询-->
+	<select id="getTablesByAreaIDAndTableCode" parameterType="map" resultType="B_DinningTableInfoEntity">
+		SELECT <include refid="Base_Column_List" />  FROM B_DinningTableInfo
+		WHERE ArchiveID= #{archiveID}
+		<if test="areaID != null">
+			AND AreaID = #{areaID}
+		</if>
+		<if test="searchContent != null">
+			AND (TableName LIKE concat('%',#{searchContent},'%') OR TableCode LIKE concat('%',#{searchContent},'%'))
+		</if>
+	</select>
+
+</mapper>
+

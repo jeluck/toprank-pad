@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.RefundDao">
+
+    <sql id="query_sql">
+        <if test="refundStatus != null">
+            AND bi.`RefundStatus`=#{refundStatus, jdbcType=BIGINT}
+        </if>
+        <if test="archiveID != null">
+            AND bi.ArchiveID = #{archiveID,jdbcType=BIGINT}
+        </if>
+        <if test="bookingCode != null and bookingCode != ''">
+            AND bi.BookingCode LIKE CONCAT('%', #{bookingCode,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="dealUer != null and dealUer != ''">
+            AND `u.UserName` LIKE CONCAT('%', #{dealUer, jdbcType = VARCHAR}, '%')
+        </if>
+        <if test="refundDateStart != null and refundDateStart != ''">
+            <![CDATA[ AND t.CreateTime >= #{refundDateStart, jdbcType = VARCHAR}]]>
+        </if>
+        <if test="refundDateEnd != null and refundDateEnd != ''">
+            <![CDATA[ AND t.CreateTime <= #{refundDateEnd, jdbcType = VARCHAR}]]>
+        </if>
+    </sql>
+
+    <select id="getRefundListByCondition" parameterType="cc.toprank.byd.web.vo.order.RefundQueryVO" resultType="map">
+        SELECT bi.`BookingCode` bookingCode,
+        bi.`BookingAmount` bookingAmount,
+        bi.RefundAmount refundAmount,
+        bi.BookingStatus bookingStatus,
+        bi.BookingID bookingID,
+        ROUND(bi.RefundAmount/bi.`BookingAmount`, 2)*100 refundRate,
+        bi.PaymentMethodID refundMethod,
+        bdi.CreateTime refundDate,
+        bdi.DealID,
+        u.`UserName` dealUer
+        FROM O_BookingInfo bi INNER JOIN
+        (SELECT MAX(bdi.`CreateTime`) CreateTime, bdi.`BookingID` FROM O_BookingDealInfo bdi GROUP BY bdi.`BookingID`) t
+        ON bi.BookingID=t.`BookingID`
+        INNER JOIN O_BookingDealInfo bdi ON bdi.`BookingID`=bi.`BookingID`
+        LEFT JOIN `U_UserInfo` u ON u.`UserID`=bdi.`CreatorID`
+        WHERE bdi.`CreateTime`=t.CreateTime
+        <include refid="query_sql"/>
+        order by t.CreateTime DESC
+    </select>
+
+    <select id="countRefund" parameterType="cc.toprank.byd.web.vo.order.RefundQueryVO" resultType="Integer">
+        SELECT COUNT(*)
+        FROM O_BookingInfo bi INNER JOIN
+        (SELECT MAX(bdi.`CreateTime`) CreateTime, bdi.`BookingID` FROM O_BookingDealInfo bdi GROUP BY bdi.`BookingID`) t
+        ON bi.BookingID=t.`BookingID`
+        INNER JOIN O_BookingDealInfo bdi ON bdi.`BookingID`=bi.`BookingID`
+        LEFT JOIN `U_UserInfo` u ON u.`UserID`=bdi.`CreatorID`
+        WHERE bdi.`CreateTime`=t.CreateTime
+        <include refid="query_sql"/>
+    </select>
+
+    <select id="getRefundByBookingIDAndDealID" parameterType="map" resultType="map">
+        SELECT bi.`BookingCode` bookingCode,
+                bi.`BookingAmount` bookingAmount,
+                bi.RefundAmount refundAmount,
+                bi.BookingStatus bookingStatus,
+                bi.BookingID bookingID,
+                ROUND(bi.RefundAmount/bi.`BookingAmount`, 2)*100 refundRate,
+                bi.PaymentMethodID refundMethod,
+                bdi.CreateTime refundDate,
+                u.`UserName` dealUer,
+                bi.Contact bookingUser,
+                (bi.`BookingAmount`- bi.RefundAmount) payedAmount
+        FROM O_BookingInfo bi INNER JOIN `O_BookingDealInfo` bdi ON bi.BookingID=bdi.`BookingID`
+        LEFT JOIN `U_UserInfo` u ON u.`UserID`=bdi.`CreatorID`
+        WHERE bi.`BookingID`=${bookingID} AND bdi.`DealID`= ${dealID} LIMIT 1
+    </select>
+
+</mapper>

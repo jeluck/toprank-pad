@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_DutyInfoDao">
+  	<select id="getAll" parameterType="B_DutyInfoEntity" resultType="B_DutyInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_DutyInfoCollection()}
+		]]>
+	</select>
+  	<select id="get" parameterType="B_DutyInfoEntity" resultType="B_DutyInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_DutyInfoEntity(#{dutyID})}
+		]]>
+	</select>
+  	<delete id="delete" parameterType="B_DutyInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteB_DutyInfoEntity(#{dutyID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DutyID" parameterType="B_DutyInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertB_DutyInfoEntity(#{archiveID},#{areaID},#{createTime},#{creatorID},#{dutyCode},#{dutyDay},#{dutyID,jdbcType=INTEGER,mode=OUT},#{isSync},#{loginID},#{manageType},#{mealsID},#{memo},#{roleDesc},#{roleID},#{roleName},#{serviceAnswerType},#{sortNo})}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="B_DutyInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateB_DutyInfoEntity(#{archiveID},#{areaID},#{createTime},#{creatorID},#{dutyCode},#{dutyDay},#{dutyID},#{isSync},#{loginID},#{manageType},#{mealsID},#{memo},#{roleDesc},#{roleID},#{roleName},#{serviceAnswerType},#{sortNo})}
+		]]>
+  	</update>
+
+	<select id="getDeskRole"  resultType="map" statementType="CALLABLE">
+          select a.RoleID,a.RoleName,a.RoleType,b.DictionaryName as RoleTypeName
+          from U_RoleInfo a INNER JOIN C_DictionaryInfo b on a.RoleType=b.DictionaryID
+          where a.RoleType=5
+	</select>
+
+  	<!--<select id="list" parameterType="B_DutyInfo" resultType="B_DutyInfo" statementType="CALLABLE">
+  		<![CDATA[
+			{call GetB_DutyInfo_query_by_condition(#{archiveID},#{areaID},#{createTime},#{creatorID},#{dutyCode},#{dutyDay},#{isSync},#{loginID},#{manageType},#{mealsID},#{memo},#{roleDesc},#{roleID},#{roleName},#{serviceAnswerType},#{sortNo})}
+		]]>
+  	</select>
+  	-->
+
+
+</mapper>

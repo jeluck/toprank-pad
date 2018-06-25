@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_TableManagerInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_TableManagerInfoEntity">
+        <id column="ConfigID" jdbcType="BIGINT" property="configID" />
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+        <result column="LoginID" jdbcType="BIGINT" property="loginID" />
+        <result column="MealsID" jdbcType="BIGINT" property="mealsID" />
+        <result column="AreaID" jdbcType="BIGINT" property="areaID" />
+        <result column="SettingID" jdbcType="BIGINT" property="settingID" />
+        <result column="TableID" jdbcType="BIGINT" property="tableID" />
+        <result column="DutyID" jdbcType="BIGINT" property="dutyID" />
+        <result column="TableCode" jdbcType="VARCHAR" property="tableCode" />
+        <result column="TableName" jdbcType="VARCHAR" property="tableName" />
+        <result column="ManageType" jdbcType="BIGINT" property="manageType" />
+        <result column="ServiceAnswerType" jdbcType="BIGINT" property="serviceAnswerType" />
+        <result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+        <result column="ManageDesc" jdbcType="VARCHAR" property="manageDesc" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        ConfigID, ArchiveID, LoginID, MealsID, AreaID, SettingID, TableID, DutyID, TableCode,
+        TableName, ManageType, ServiceAnswerType, MappingStatus, ManageDesc, IsSync, CreatorID,
+        CreateTime, Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_TableManagerInfo
+        where ConfigID = #{configID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_TableManagerInfo
+        where ConfigID = #{configID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_TableManagerInfoEntity">
+        insert into B_TableManagerInfo (ConfigID, ArchiveID, LoginID,
+        MealsID, AreaID, SettingID,
+        TableID, DutyID, TableCode,
+        TableName, ManageType, ServiceAnswerType,
+        MappingStatus, ManageDesc, IsSync,
+        CreatorID, CreateTime, Memo
+        )
+        values (#{configID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT},
+        #{mealsID,jdbcType=BIGINT}, #{areaID,jdbcType=BIGINT}, #{settingID,jdbcType=BIGINT},
+        #{tableID,jdbcType=BIGINT}, #{dutyID,jdbcType=BIGINT}, #{tableCode,jdbcType=VARCHAR},
+        #{tableName,jdbcType=VARCHAR}, #{manageType,jdbcType=BIGINT}, #{serviceAnswerType,jdbcType=BIGINT},
+        #{mappingStatus,jdbcType=BIGINT}, #{manageDesc,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT},
+        #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_TableManagerInfoEntity">
+        insert into B_TableManagerInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="configID != null">
+                ConfigID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="loginID != null">
+                LoginID,
+            </if>
+            <if test="mealsID != null">
+                MealsID,
+            </if>
+            <if test="areaID != null">
+                AreaID,
+            </if>
+            <if test="settingID != null">
+                SettingID,
+            </if>
+            <if test="tableID != null">
+                TableID,
+            </if>
+            <if test="dutyID != null">
+                DutyID,
+            </if>
+            <if test="tableCode != null">
+                TableCode,
+            </if>
+            <if test="tableName != null">
+                TableName,
+            </if>
+            <if test="manageType != null">
+                ManageType,
+            </if>
+            <if test="serviceAnswerType != null">
+                ServiceAnswerType,
+            </if>
+            <if test="mappingStatus != null">
+                MappingStatus,
+            </if>
+            <if test="manageDesc != null">
+                ManageDesc,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="configID != null">
+                #{configID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="loginID != null">
+                #{loginID,jdbcType=BIGINT},
+            </if>
+            <if test="mealsID != null">
+                #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="areaID != null">
+                #{areaID,jdbcType=BIGINT},
+            </if>
+            <if test="settingID != null">
+                #{settingID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="dutyID != null">
+                #{dutyID,jdbcType=BIGINT},
+            </if>
+            <if test="tableCode != null">
+                #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tableName != null">
+                #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="manageType != null">
+                #{manageType,jdbcType=BIGINT},
+            </if>
+            <if test="serviceAnswerType != null">
+                #{serviceAnswerType,jdbcType=BIGINT},
+            </if>
+            <if test="mappingStatus != null">
+                #{mappingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="manageDesc != null">
+                #{manageDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_TableManagerInfoEntity">
+        update B_TableManagerInfo
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="loginID != null">
+                LoginID = #{loginID,jdbcType=BIGINT},
+            </if>
+            <if test="mealsID != null">
+                MealsID = #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="areaID != null">
+                AreaID = #{areaID,jdbcType=BIGINT},
+            </if>
+            <if test="settingID != null">
+                SettingID = #{settingID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                TableID = #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="dutyID != null">
+                DutyID = #{dutyID,jdbcType=BIGINT},
+            </if>
+            <if test="tableCode != null">
+                TableCode = #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tableName != null">
+                TableName = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="manageType != null">
+                ManageType = #{manageType,jdbcType=BIGINT},
+            </if>
+            <if test="serviceAnswerType != null">
+                ServiceAnswerType = #{serviceAnswerType,jdbcType=BIGINT},
+            </if>
+            <if test="mappingStatus != null">
+                MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="manageDesc != null">
+                ManageDesc = #{manageDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ConfigID = #{configID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_TableManagerInfoEntity">
+        update B_TableManagerInfo
+        set ArchiveID = #{archiveID,jdbcType=BIGINT},
+        LoginID = #{loginID,jdbcType=BIGINT},
+        MealsID = #{mealsID,jdbcType=BIGINT},
+        AreaID = #{areaID,jdbcType=BIGINT},
+        SettingID = #{settingID,jdbcType=BIGINT},
+        TableID = #{tableID,jdbcType=BIGINT},
+        DutyID = #{dutyID,jdbcType=BIGINT},
+        TableCode = #{tableCode,jdbcType=VARCHAR},
+        TableName = #{tableName,jdbcType=VARCHAR},
+        ManageType = #{manageType,jdbcType=BIGINT},
+        ServiceAnswerType = #{serviceAnswerType,jdbcType=BIGINT},
+        MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+        ManageDesc = #{manageDesc,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where ConfigID = #{configID,jdbcType=BIGINT}
+    </update>
+
+    <select id="getAll" parameterType="B_TableManagerInfoEntity" resultType="B_TableManagerInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_TableManagerInfoCollection()}
+		]]>
+    </select>
+    <select id="get" parameterType="B_TableManagerInfoEntity" resultType="B_TableManagerInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_TableManagerInfoEntity(#{configID})}
+		]]>
+    </select>
+    <delete id="delete" parameterType="B_TableManagerInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call DeleteB_TableManagerInfoEntity(#{configID})}
+		]]>
+    </delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="ConfigID" parameterType="B_TableManagerInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call InsertB_TableManagerInfoEntity(#{archiveID},#{areaID},#{configID,jdbcType=INTEGER,mode=OUT},#{createTime},#{creatorID},#{dutyID},#{isSync},#{loginID},#{manageDesc},#{manageType},#{mappingStatus},#{mealsID},#{memo},#{serviceAnswerType},#{settingID},#{tableCode},#{tableID},#{tableName},'admin')}
+		]]>
+    </insert>
+
+    <update id="update" parameterType="B_TableManagerInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call UpdateB_TableManagerInfoEntity(#{archiveID},#{areaID},#{configID},#{createTime},#{creatorID},#{dutyID},#{isSync},#{loginID},#{manageDesc},#{manageType},#{mappingStatus},#{mealsID},#{memo},#{serviceAnswerType},#{settingID},#{tableCode},#{tableID},#{tableName})}
+		]]>
+    </update>
+    <!--<select id="list" parameterType="B_TableManagerInfo" resultType="B_TableManagerInfo" statementType="CALLABLE">
+        <![CDATA[
+          {call GetB_TableManagerInfo_query_by_condition(#{archiveID},#{areaID},#{createTime},#{creatorID},#{dutyID},#{isSync},#{loginID},#{manageDesc},#{manageType},#{mappingStatus},#{mealsID},#{memo},#{serviceAnswerType},#{settingID},#{tableCode},#{tableID},#{tableName})}
+      ]]>
+    </select>
+    -->
+    <!-- 根据条件查询桌台负责人信息 zhangbo -->
+    <select id="getTableManagerInfoByCondition" parameterType="hashmap" resultType="B_TableManagerInfoEntity" statementType="CALLABLE">
+        <!--<![CDATA[-->
+			<!--{call Get_ReceptionB_TableManagerInfoByCondition(#{archiveID},#{mealName},#{tableCode})}-->
+		<!--]]>-->
+         SELECT bt.ConfigID,sa.ArchiveID,bt.AreaID,bt.TableID,bt.tableCode,bt.LoginID,ui.UserName,bt.ManageType,bt.MealsID,bt.ServiceAnswerType,bt.ManageDesc,
+        a.DutyDay,b.DictionaryName as ServiceTypeName
+         from B_TableManagerInfo bt
+             LEFT JOIN B_DinningTableInfo bd ON bd.TableID =bt.TableID
+             LEFT JOIN B_MealsInfo m ON bt.MealsID =m.MealsID
+             LEFT JOIN B_ShopAreaInfo sa on bt.AreaID =sa.AreaID
+             LEFT JOIN O_MessageSettingInfo o on bt.SettingID =o.SettingID
+             LEFT JOIN U_LoginInfo u ON bt.LoginID =u.LoginID
+             LEFT JOIN U_UserInfo ui ON u.UserID =ui.UserID
+             LEFT JOIN B_DutyInfo a on bt.DutyID=a.DutyID
+             LEFT JOIN C_DictionaryInfo b on a.ServiceAnswerType=b.DictionaryID
+           where sa.ArchiveID =#{archiveID}
+           <if test="mealID != null">
+               and m.mealID =#{mealID}
+           </if>
+           <if test="dutyDay != null">
+               and a.DutyDay =#{dutyDay}
+           </if>
+               and bt.tableCode like CONCAT("%",V_tableCode,"%")
+    </select>
+    <!-- 查询桌台信息的数量 zhangbo -->
+    <select id="getTableManagerInfoCountByCondition" parameterType="hashmap" resultType="Integer" statementType="CALLABLE">
+        <![CDATA[
+			{call Get_ReceptionB_TableManagerInfoCountByCondition(#{loginID},#{manageType},#{tableCode})}
+		]]>
+    </select>
+
+    <!--根据tableID 获得桌台负责人信息 -->
+    <select id="getCurrentTableManager" resultType="cc.toprank.byd.entity.B_TableManagerInfoEntity">
+        select
+        b.*,u.nickName
+        from B_TableManagerInfo b
+        left join U_LoginInfo u on b.loginID = u.loginID
+        where b.ArchiveID=#{archiveID} AND b.tableID = #{tableID}
+        <if test="mealsID != null">
+            AND b.mealsID=#{mealsID}
+        </if>
+    </select>
+
+    <update id="updateDeskPersonStatus" parameterType="long" statementType="CALLABLE">
+        update B_TableManagerInfo set MappingStatus=11  where  ArchiveID=#{archiveID}   and  LoginID =#{loginID}
+    </update>
+
+    <select id="getAllServerItem" resultType="map">
+        SELECT DictionaryID,DictionaryName  from C_DictionaryInfo where CatalogID=173
+    </select>
+
+    <!-- 根据区域餐次查询有效的桌台负责人管理信息 9表示正常, 11表示已删除-->
+    <select id="getTableManagerByAreaIDAndMealsID" parameterType="map" resultType="cc.toprank.byd.web.vo.tablevo.TableManagerSettingVO">
+        SELECT t.ConfigID
+        , t.ArchiveID
+        , t.LoginID
+        , lg.EmployeeCode
+        , u.UserName
+        , t.AreaID
+        , t.TableID
+        , t.TableCode
+        , t.TableName
+        , t.ServiceAnswerType
+        , t.MealsID
+        , t.MappingStatus
+        FROM B_TableManagerInfo t
+        INNER JOIN U_LoginInfo lg ON t.LoginID = lg.LoginID
+        INNER JOIN U_UserInfo u ON lg.UserID = u.UserID
+        WHERE t.ArchiveID = #{archiveID}
+        <if test="areaID != null">
+            AND AreaID = #{areaID}
+        </if>
+        <if test="mealsID != null">
+            AND t.MealsID = #{mealsID}
+        </if>
+        AND MappingStatus = 9
+    </select>
+
+    <select id="getAllServiceAnswer" resultType="cc.toprank.byd.web.vo.tablevo.ServiceAnswerTypeVO">
+        SELECT DictionaryID AS serviceAnswerTypeID
+        , DictionaryName  AS serviceAnswerTypeName
+        FROM C_DictionaryInfo
+        WHERE CatalogID = 174
+    </select>
+
+    <select id="getChildOrgList" parameterType="long" resultType="string">
+        SELECT GetChildOrgList(#{orgID})
+    </select>
+
+    <select id="getU_LoginInfoByOrgRoleID" parameterType="map" resultType="cc.toprank.byd.web.vo.tablevo.OrgRoleUserInfoVO">
+        SELECT
+          U_LoginInfo.LoginID
+          , U_LoginInfo.EmployeeCode
+          , U_UserInfo.UserName
+          , U_OrganizationInfo.OrgName
+          , U_RoleInfo.RoleID
+          , U_RoleInfo.RoleName
+          , U_UserInfo.OrgID
+          , U_UserInfo.UserID
+        FROM U_LoginInfo
+        INNER JOIN U_UserInfo ON U_LoginInfo.UserID = U_UserInfo.UserID
+        INNER JOIN U_OrganizationInfo ON U_UserInfo.OrgID = U_OrganizationInfo.OrgID
+        LEFT  JOIN U_RoleLoginInfo ON U_LoginInfo.LoginID = U_RoleLoginInfo.LoginID
+        LEFT JOIN U_RoleInfo ON U_RoleLoginInfo.RoleID = U_RoleInfo.RoleID
+        WHERE FIND_IN_SET(U_UserInfo.OrgID, #{orgIDSet})
+        <if test="roleID != null">
+            AND U_RoleLoginInfo.RoleID = #{roleID})
+        </if>
+        <if test="searchContent != null">
+            AND (U_UserInfo.UserName LIKE CONCAT('%',#{searchContent},'%') OR U_LoginInfo.EmployeeCode LIKE CONCAT('%',#{searchContent},'%'))
+        </if>
+    </select>
+
+    <select id="getTableManagerByParams" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM B_TableManagerInfo
+        WHERE ArchiveID = #{archiveID}
+        <if test="mappingStatus != null">
+            AND MappingStatus = #{mappingStatus}
+        </if>
+        <if test="loginID != null">
+            AND LoginID = #{loginID}
+        </if>
+        <if test="tableID != null">
+            AND TableID = #{tableID}
+        </if>
+        <if test="mealsID != null">
+            AND MealsID = #{mealsID}
+        </if>
+    </select>
+
+    <!-- 根据登录编号、桌台编号、餐次编号、服务内容确定唯一记录 -->
+    <select id="selectOneByServiceType" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM B_TableManagerInfo
+        WHERE ArchiveID = #{archiveID}
+        AND LoginID = #{loginID}
+        AND TableID = #{tableID}
+        AND MealsID = #{mealsID}
+        AND ServiceAnswerType = #{serviceAnswerType}
+        LIMIT 1
+    </select>
+
+</mapper>

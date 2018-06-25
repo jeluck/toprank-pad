@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/toprank-pad-common/pad-common.iml" filepath="$PROJECT_DIR$/toprank-pad-common/pad-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/toprank-pad-web/pad-web.iml" filepath="$PROJECT_DIR$/toprank-pad-web/pad-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/toprank-pad.iml" filepath="$PROJECT_DIR$/toprank-pad.iml" />
+    </modules>
+  </component>
+</project>

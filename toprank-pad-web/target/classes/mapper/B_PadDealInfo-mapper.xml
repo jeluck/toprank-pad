@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_PadDealInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        <id column="DealID" jdbcType="BIGINT" property="dealID" />
+        <result column="PadID" jdbcType="BIGINT" property="padID" />
+        <result column="DealCode" jdbcType="VARCHAR" property="dealCode" />
+        <result column="BeforeStatus" jdbcType="BIGINT" property="beforeStatus" />
+        <result column="AfterStatus" jdbcType="BIGINT" property="afterStatus" />
+        <result column="ChangeContent" jdbcType="VARCHAR" property="changeContent" />
+        <result column="DealDesc" jdbcType="VARCHAR" property="dealDesc" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        DealID, PadID, DealCode, BeforeStatus, AfterStatus, ChangeContent, DealDesc, SortNo,
+        CreatorID, CreateTime, Memo, IsSync
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_PadDealInfo
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_PadDealInfo
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        insert into B_PadDealInfo (DealID, PadID, DealCode,
+        BeforeStatus, AfterStatus, ChangeContent,
+        DealDesc, SortNo, CreatorID,
+        CreateTime, Memo, IsSync
+        )
+        values (#{dealID,jdbcType=BIGINT}, #{padID,jdbcType=BIGINT}, #{dealCode,jdbcType=VARCHAR},
+        #{beforeStatus,jdbcType=BIGINT}, #{afterStatus,jdbcType=BIGINT}, #{changeContent,jdbcType=VARCHAR},
+        #{dealDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        insert into B_PadDealInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dealID != null">
+                DealID,
+            </if>
+            <if test="padID != null">
+                PadID,
+            </if>
+            <if test="dealCode != null">
+                DealCode,
+            </if>
+            <if test="beforeStatus != null">
+                BeforeStatus,
+            </if>
+            <if test="afterStatus != null">
+                AfterStatus,
+            </if>
+            <if test="changeContent != null">
+                ChangeContent,
+            </if>
+            <if test="dealDesc != null">
+                DealDesc,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dealID != null">
+                #{dealID,jdbcType=BIGINT},
+            </if>
+            <if test="padID != null">
+                #{padID,jdbcType=BIGINT},
+            </if>
+            <if test="dealCode != null">
+                #{dealCode,jdbcType=VARCHAR},
+            </if>
+            <if test="beforeStatus != null">
+                #{beforeStatus,jdbcType=BIGINT},
+            </if>
+            <if test="afterStatus != null">
+                #{afterStatus,jdbcType=BIGINT},
+            </if>
+            <if test="changeContent != null">
+                #{changeContent,jdbcType=VARCHAR},
+            </if>
+            <if test="dealDesc != null">
+                #{dealDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        update B_PadDealInfo
+        <set>
+            <if test="padID != null">
+                PadID = #{padID,jdbcType=BIGINT},
+            </if>
+            <if test="dealCode != null">
+                DealCode = #{dealCode,jdbcType=VARCHAR},
+            </if>
+            <if test="beforeStatus != null">
+                BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+            </if>
+            <if test="afterStatus != null">
+                AfterStatus = #{afterStatus,jdbcType=BIGINT},
+            </if>
+            <if test="changeContent != null">
+                ChangeContent = #{changeContent,jdbcType=VARCHAR},
+            </if>
+            <if test="dealDesc != null">
+                DealDesc = #{dealDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+        </set>
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        update B_PadDealInfo
+        set PadID = #{padID,jdbcType=BIGINT},
+        DealCode = #{dealCode,jdbcType=VARCHAR},
+        BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+        AfterStatus = #{afterStatus,jdbcType=BIGINT},
+        ChangeContent = #{changeContent,jdbcType=VARCHAR},
+        DealDesc = #{dealDesc,jdbcType=VARCHAR},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT}
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </update>
+</mapper>

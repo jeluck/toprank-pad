@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_ShopAreaInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_ShopAreaInfoEntity">
+        <id column="AreaID" jdbcType="BIGINT" property="areaID" />
+        <result column="ParentID" jdbcType="BIGINT" property="parentID" />
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+        <result column="OrgID" jdbcType="BIGINT" property="orgID" />
+        <result column="AreaCode" jdbcType="VARCHAR" property="areaCode" />
+        <result column="AreaStatus" jdbcType="BIGINT" property="areaStatus" />
+        <result column="AreaType" jdbcType="BIGINT" property="areaType" />
+        <result column="AreaName" jdbcType="VARCHAR" property="areaName" />
+        <result column="IsDefault" jdbcType="BIGINT" property="isDefault" />
+        <result column="AreaDesc" jdbcType="VARCHAR" property="areaDesc" />
+        <result column="LocationCode" jdbcType="VARCHAR" property="locationCode" />
+        <result column="LocationDesc" jdbcType="VARCHAR" property="locationDesc" />
+        <result column="ManagerID" jdbcType="BIGINT" property="managerID" />
+        <result column="ManagerName" jdbcType="VARCHAR" property="managerName" />
+        <result column="IsBooking" jdbcType="BIT" property="isBooking" />
+        <result column="TreeID" jdbcType="VARCHAR" property="treeID" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        AreaID, ParentID, ArchiveID, OrgID, AreaCode, AreaStatus, AreaType, AreaName, IsDefault,
+        AreaDesc, LocationCode, LocationDesc, ManagerID, ManagerName, IsBooking, TreeID,
+        SortNo, CreatorID, CreateTime, Memo, IsSync
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_ShopAreaInfo
+        where AreaID = #{areaID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_ShopAreaInfo
+        where AreaID = #{areaID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_ShopAreaInfoEntity">
+        insert into B_ShopAreaInfo (AreaID, ParentID, ArchiveID,
+        OrgID, AreaCode, AreaStatus,
+        AreaType, AreaName, IsDefault,
+        AreaDesc, LocationCode, LocationDesc,
+        ManagerID, ManagerName, IsBooking,
+        TreeID, SortNo, CreatorID,
+        CreateTime, Memo, IsSync
+        )
+        values (#{areaID,jdbcType=BIGINT}, #{parentID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT},
+        #{orgID,jdbcType=BIGINT}, #{areaCode,jdbcType=VARCHAR}, #{areaStatus,jdbcType=BIGINT},
+        #{areaType,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIGINT},
+        #{areaDesc,jdbcType=VARCHAR}, #{locationCode,jdbcType=VARCHAR}, #{locationDesc,jdbcType=VARCHAR},
+        #{managerID,jdbcType=BIGINT}, #{managerName,jdbcType=VARCHAR}, #{isBooking,jdbcType=BIT},
+        #{treeID,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_ShopAreaInfoEntity">
+        insert into B_ShopAreaInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="areaID != null">
+                AreaID,
+            </if>
+            <if test="parentID != null">
+                ParentID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="orgID != null">
+                OrgID,
+            </if>
+            <if test="areaCode != null">
+                AreaCode,
+            </if>
+            <if test="areaStatus != null">
+                AreaStatus,
+            </if>
+            <if test="areaType != null">
+                AreaType,
+            </if>
+            <if test="areaName != null">
+                AreaName,
+            </if>
+            <if test="isDefault != null">
+                IsDefault,
+            </if>
+            <if test="areaDesc != null">
+                AreaDesc,
+            </if>
+            <if test="locationCode != null">
+                LocationCode,
+            </if>
+            <if test="locationDesc != null">
+                LocationDesc,
+            </if>
+            <if test="managerID != null">
+                ManagerID,
+            </if>
+            <if test="managerName != null">
+                ManagerName,
+            </if>
+            <if test="isBooking != null">
+                IsBooking,
+            </if>
+            <if test="treeID != null">
+                TreeID,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="areaID != null">
+                #{areaID,jdbcType=BIGINT},
+            </if>
+            <if test="parentID != null">
+                #{parentID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="orgID != null">
+                #{orgID,jdbcType=BIGINT},
+            </if>
+            <if test="areaCode != null">
+                #{areaCode,jdbcType=VARCHAR},
+            </if>
+            <if test="areaStatus != null">
+                #{areaStatus,jdbcType=BIGINT},
+            </if>
+            <if test="areaType != null">
+                #{areaType,jdbcType=BIGINT},
+            </if>
+            <if test="areaName != null">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault,jdbcType=BIGINT},
+            </if>
+            <if test="areaDesc != null">
+                #{areaDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="locationCode != null">
+                #{locationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="locationDesc != null">
+                #{locationDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="managerID != null">
+                #{managerID,jdbcType=BIGINT},
+            </if>
+            <if test="managerName != null">
+                #{managerName,jdbcType=VARCHAR},
+            </if>
+            <if test="isBooking != null">
+                #{isBooking,jdbcType=BIT},
+            </if>
+            <if test="treeID != null">
+                #{treeID,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_ShopAreaInfoEntity">
+        update B_ShopAreaInfo
+        <set>
+            <if test="parentID != null">
+                ParentID = #{parentID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="orgID != null">
+                OrgID = #{orgID,jdbcType=BIGINT},
+            </if>
+            <if test="areaCode != null">
+                AreaCode = #{areaCode,jdbcType=VARCHAR},
+            </if>
+            <if test="areaStatus != null">
+                AreaStatus = #{areaStatus,jdbcType=BIGINT},
+            </if>
+            <if test="areaType != null">
+                AreaType = #{areaType,jdbcType=BIGINT},
+            </if>
+            <if test="areaName != null">
+                AreaName = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefault != null">
+                IsDefault = #{isDefault,jdbcType=BIGINT},
+            </if>
+            <if test="areaDesc != null">
+                AreaDesc = #{areaDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="locationCode != null">
+                LocationCode = #{locationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="locationDesc != null">
+                LocationDesc = #{locationDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="managerID != null">
+                ManagerID = #{managerID,jdbcType=BIGINT},
+            </if>
+            <if test="managerName != null">
+                ManagerName = #{managerName,jdbcType=VARCHAR},
+            </if>
+            <if test="isBooking != null">
+                IsBooking = #{isBooking,jdbcType=BIT},
+            </if>
+            <if test="treeID != null">
+                TreeID = #{treeID,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+        </set>
+        where AreaID = #{areaID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_ShopAreaInfoEntity">
+        update B_ShopAreaInfo
+        set ParentID = #{parentID,jdbcType=BIGINT},
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+        OrgID = #{orgID,jdbcType=BIGINT},
+        AreaCode = #{areaCode,jdbcType=VARCHAR},
+        AreaStatus = #{areaStatus,jdbcType=BIGINT},
+        AreaType = #{areaType,jdbcType=BIGINT},
+        AreaName = #{areaName,jdbcType=VARCHAR},
+        IsDefault = #{isDefault,jdbcType=BIGINT},
+        AreaDesc = #{areaDesc,jdbcType=VARCHAR},
+        LocationCode = #{locationCode,jdbcType=VARCHAR},
+        LocationDesc = #{locationDesc,jdbcType=VARCHAR},
+        ManagerID = #{managerID,jdbcType=BIGINT},
+        ManagerName = #{managerName,jdbcType=VARCHAR},
+        IsBooking = #{isBooking,jdbcType=BIT},
+        TreeID = #{treeID,jdbcType=VARCHAR},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT}
+        where AreaID = #{areaID,jdbcType=BIGINT}
+    </update>
+
+
+    <select id="getAll" parameterType="B_ShopAreaInfoEntity" resultType="B_ShopAreaInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_ShopAreaInfoCollection()}
+		]]>
+    </select>
+    <select id="get" parameterType="B_ShopAreaInfoEntity" resultType="B_ShopAreaInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_ShopAreaInfoEntity(#{areaID})}
+		]]>
+    </select>
+    <delete id="delete" parameterType="B_ShopAreaInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call DeleteB_ShopAreaInfoEntity(#{areaID})}
+		]]>
+    </delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="AreaID" parameterType="B_ShopAreaInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call InsertB_ShopAreaInfoEntity(#{areaCode},#{areaDesc},#{areaID,jdbcType=INTEGER,mode=OUT},#{areaName},#{createTime},#{creatorID},#{isBooking},#{isDefault},#{locationCode},#{locationDesc},#{managerID},#{managerName},#{memo},#{orgID},#{parentID},#{sortNo})}
+		]]>
+    </insert>
+
+    <update id="update" parameterType="B_ShopAreaInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call UpdateB_ShopAreaInfoEntity(#{areaCode},#{areaDesc},#{areaID},#{areaName},#{createTime},#{creatorID},#{isBooking},#{isDefault},#{locationCode},#{locationDesc},#{managerID},#{managerName},#{memo},#{orgID},#{parentID},#{sortNo})}
+		]]>
+    </update>
+
+    <!-- 根据机构id获取区域信息
+        @Author xujin
+     -->
+    <select id="getShopAreaInfoCollectionByArchiveID" parameterType="long" resultType="B_ShopAreaInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_ShopAreaInfoCollectionByArchiveID(#{archiveID})}
+		]]>
+    </select>
+    <!--<select id="list" parameterType="B_ShopAreaInfo" resultType="B_ShopAreaInfo" statementType="CALLABLE">
+        <![CDATA[
+          {call GetB_ShopAreaInfo_query_by_condition(#{areaCode},#{areaDesc},#{areaName},#{createTime},#{creatorID},#{isBooking},#{isDefault},#{locationCode},#{locationDesc},#{managerID},#{managerName},#{memo},#{orgID},#{parentID},#{sortNo})}
+      ]]>
+    </select>
+    -->
+
+    <!--
+    根据OrgID获取 一级区域
+    @author lwh
+     -->
+    <select id="getB_ShopAreaInfoCollectionByOrgIDTop" parameterType="B_ShopAreaInfoEntity" resultType="B_ShopAreaInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_ShopAreaInfoCollectionByOrgIDTop(#{orgID})}
+		]]>
+    </select>
+
+
+    <!--获得areaList-->
+    <select id="getListByArchiveID" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM B_ShopAreaInfo where ArchiveID = #{archiveid,jdbcType=BIGINT}
+    </select>
+
+    <!-- 根据条件查询区域信息 hcy -->
+    <select id="queryAreaInfoByCondition" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from B_ShopAreaInfo
+        <where>
+            ArchiveID = #{archiveID}
+            <if test="areaID != null">
+                and AreaID = #{areaID}
+            </if>
+            <if test="areaID == null">
+                and ParentID is NULL
+            </if>
+        </where>
+    </select>
+
+    <select id="getAreaInfoByTableID" resultType="cc.toprank.byd.entity.B_ShopAreaInfoEntity">
+        select s.*
+        from B_ShopAreaInfo s , B_DinningTableInfo d where s.AreaID=d.AreaID and d.TableID = #{tableid}
+    </select>
+
+    <!--
+  	根据 档案ID 获取所有区域信息
+  	@author zhaolingchen
+  	 -->
+    <select id="getShopAreaInfoListByArchiveID" parameterType="java.lang.Long" resultType="B_ShopAreaInfoEntity">
+        Select *   	from B_ShopAreaInfo shop where shop.ArchiveID = #{archiveID,jdbcType=BIGINT} and shop.IsBooking = 1
+    </select>
+
+</mapper>

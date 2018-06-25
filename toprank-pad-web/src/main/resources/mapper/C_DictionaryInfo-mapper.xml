@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.C_DictionaryInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.C_DictionaryInfoEntity">
+        <id column="DictionaryID" jdbcType="BIGINT" property="dictionaryID" />
+        <result column="CatalogID" jdbcType="BIGINT" property="catalogID" />
+        <result column="DictionaryCode" jdbcType="VARCHAR" property="dictionaryCode" />
+        <result column="DictionaryName" jdbcType="VARCHAR" property="dictionaryName" />
+        <result column="DictionaryValue" jdbcType="VARCHAR" property="dictionaryValue" />
+        <result column="ShortName" jdbcType="VARCHAR" property="shortName" />
+        <result column="DictionaryDesc" jdbcType="VARCHAR" property="dictionaryDesc" />
+        <result column="DictionaryStatus" jdbcType="BIGINT" property="dictionaryStatus" />
+        <result column="RelationInfo" jdbcType="VARCHAR" property="relationInfo" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        DictionaryID, CatalogID, DictionaryCode, DictionaryName, DictionaryValue, ShortName,
+        DictionaryDesc, DictionaryStatus, RelationInfo, CreatorID, CreateTime, Memo, IsSync
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from C_DictionaryInfo
+        where DictionaryID = #{dictionaryID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from C_DictionaryInfo
+        where DictionaryID = #{dictionaryID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.C_DictionaryInfoEntity">
+        insert into C_DictionaryInfo (DictionaryID, CatalogID, DictionaryCode,
+        DictionaryName, DictionaryValue, ShortName,
+        DictionaryDesc, DictionaryStatus, RelationInfo,
+        CreatorID, CreateTime, Memo,
+        IsSync)
+        values (#{dictionaryID,jdbcType=BIGINT}, #{catalogID,jdbcType=BIGINT}, #{dictionaryCode,jdbcType=VARCHAR},
+        #{dictionaryName,jdbcType=VARCHAR}, #{dictionaryValue,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR},
+        #{dictionaryDesc,jdbcType=VARCHAR}, #{dictionaryStatus,jdbcType=BIGINT}, #{relationInfo,jdbcType=VARCHAR},
+        #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR},
+        #{isSync,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.C_DictionaryInfoEntity">
+        insert into C_DictionaryInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dictionaryID != null">
+                DictionaryID,
+            </if>
+            <if test="catalogID != null">
+                CatalogID,
+            </if>
+            <if test="dictionaryCode != null">
+                DictionaryCode,
+            </if>
+            <if test="dictionaryName != null">
+                DictionaryName,
+            </if>
+            <if test="dictionaryValue != null">
+                DictionaryValue,
+            </if>
+            <if test="shortName != null">
+                ShortName,
+            </if>
+            <if test="dictionaryDesc != null">
+                DictionaryDesc,
+            </if>
+            <if test="dictionaryStatus != null">
+                DictionaryStatus,
+            </if>
+            <if test="relationInfo != null">
+                RelationInfo,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dictionaryID != null">
+                #{dictionaryID,jdbcType=BIGINT},
+            </if>
+            <if test="catalogID != null">
+                #{catalogID,jdbcType=BIGINT},
+            </if>
+            <if test="dictionaryCode != null">
+                #{dictionaryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryName != null">
+                #{dictionaryName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryValue != null">
+                #{dictionaryValue,jdbcType=VARCHAR},
+            </if>
+            <if test="shortName != null">
+                #{shortName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryDesc != null">
+                #{dictionaryDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryStatus != null">
+                #{dictionaryStatus,jdbcType=BIGINT},
+            </if>
+            <if test="relationInfo != null">
+                #{relationInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.C_DictionaryInfoEntity">
+        update C_DictionaryInfo
+        <set>
+            <if test="catalogID != null">
+                CatalogID = #{catalogID,jdbcType=BIGINT},
+            </if>
+            <if test="dictionaryCode != null">
+                DictionaryCode = #{dictionaryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryName != null">
+                DictionaryName = #{dictionaryName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryValue != null">
+                DictionaryValue = #{dictionaryValue,jdbcType=VARCHAR},
+            </if>
+            <if test="shortName != null">
+                ShortName = #{shortName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryDesc != null">
+                DictionaryDesc = #{dictionaryDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="dictionaryStatus != null">
+                DictionaryStatus = #{dictionaryStatus,jdbcType=BIGINT},
+            </if>
+            <if test="relationInfo != null">
+                RelationInfo = #{relationInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+        </set>
+        where DictionaryID = #{dictionaryID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.C_DictionaryInfoEntity">
+        update C_DictionaryInfo
+        set CatalogID = #{catalogID,jdbcType=BIGINT},
+        DictionaryCode = #{dictionaryCode,jdbcType=VARCHAR},
+        DictionaryName = #{dictionaryName,jdbcType=VARCHAR},
+        DictionaryValue = #{dictionaryValue,jdbcType=VARCHAR},
+        ShortName = #{shortName,jdbcType=VARCHAR},
+        DictionaryDesc = #{dictionaryDesc,jdbcType=VARCHAR},
+        DictionaryStatus = #{dictionaryStatus,jdbcType=BIGINT},
+        RelationInfo = #{relationInfo,jdbcType=VARCHAR},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT}
+        where DictionaryID = #{dictionaryID,jdbcType=BIGINT}
+    </update>
+    <select id="getByDictionaryBycatalogNameOrCode" parameterType="C_DictionaryInfoEntity" resultType="map">
+        SELECT
+        dinf.DictionaryName name,
+        dinf.DictionaryID value
+        FROM
+        C_DictionaryCatalogInfo dlog
+        LEFT JOIN C_DictionaryInfo dinf ON dlog.CatalogID = dinf.CatalogID
+        WHERE
+        dlog.CatalogCode =  #{catalogCode}
+        <if test="filterID != null">
+            <![CDATA[  and  dinf.DictionaryID <> #{filterID} ]]>
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.B_MerchantMenuInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        <id column="MenuID" jdbcType="BIGINT" property="menuID" />
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+        <result column="AreaID" jdbcType="BIGINT" property="areaID" />
+        <result column="MealsID" jdbcType="BIGINT" property="mealsID" />
+        <result column="CategoryID" jdbcType="BIGINT" property="categoryID" />
+        <result column="ProductID" jdbcType="BIGINT" property="productID" />
+        <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+        <result column="CurrencyID" jdbcType="BIGINT" property="currencyID" />
+        <result column="TypeID" jdbcType="BIGINT" property="typeID" />
+        <result column="ProductName" jdbcType="VARCHAR" property="productName" />
+        <result column="ProductCode" jdbcType="VARCHAR" property="productCode" />
+        <result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter" />
+        <result column="MenuStatus" jdbcType="BIGINT" property="menuStatus" />
+        <result column="IsCombo" jdbcType="BIT" property="isCombo" />
+        <result column="ProductNum" jdbcType="INTEGER" property="productNum" />
+        <result column="PriceType" jdbcType="BIGINT" property="priceType" />
+        <result column="OriginalPrice" jdbcType="DECIMAL" property="originalPrice" />
+        <result column="Price" jdbcType="DECIMAL" property="price" />
+        <result column="MemberPrice" jdbcType="DECIMAL" property="memberPrice" />
+        <result column="NeedWeigh" jdbcType="BIT" property="needWeigh" />
+        <result column="Quantity" jdbcType="INTEGER" property="quantity" />
+        <result column="ProduceCost" jdbcType="DECIMAL" property="produceCost" />
+        <result column="UnitID" jdbcType="BIGINT" property="unitID" />
+        <result column="StockQuantity" jdbcType="INTEGER" property="stockQuantity" />
+        <result column="AllowDiscount" jdbcType="BIT" property="allowDiscount" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        MenuID, ArchiveID, AreaID, MealsID, CategoryID, ProductID, VariantID, CurrencyID,
+        TypeID, ProductName, ProductCode, FirstLetter, MenuStatus, IsCombo, ProductNum, PriceType,
+        OriginalPrice, Price, MemberPrice, NeedWeigh, Quantity, ProduceCost, UnitID, StockQuantity,
+        AllowDiscount, CreatorID, CreateTime, Memo, IsSync
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_MerchantMenuInfo
+        where MenuID = #{menuID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_MerchantMenuInfo
+        where MenuID = #{menuID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        insert into B_MerchantMenuInfo (MenuID, ArchiveID, AreaID,
+        MealsID, CategoryID, ProductID,
+        VariantID, CurrencyID, TypeID,
+        ProductName, ProductCode, FirstLetter,
+        MenuStatus, IsCombo, ProductNum,
+        PriceType, OriginalPrice, Price,
+        MemberPrice, NeedWeigh, Quantity,
+        ProduceCost, UnitID, StockQuantity,
+        AllowDiscount, CreatorID, CreateTime,
+        Memo, IsSync)
+        values (#{menuID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{areaID,jdbcType=BIGINT},
+        #{mealsID,jdbcType=BIGINT}, #{categoryID,jdbcType=BIGINT}, #{productID,jdbcType=BIGINT},
+        #{variantID,jdbcType=BIGINT}, #{currencyID,jdbcType=BIGINT}, #{typeID,jdbcType=BIGINT},
+        #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR},
+        #{menuStatus,jdbcType=BIGINT}, #{isCombo,jdbcType=BIT}, #{productNum,jdbcType=INTEGER},
+        #{priceType,jdbcType=BIGINT}, #{originalPrice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL},
+        #{memberPrice,jdbcType=DECIMAL}, #{needWeigh,jdbcType=BIT}, #{quantity,jdbcType=INTEGER},
+        #{produceCost,jdbcType=DECIMAL}, #{unitID,jdbcType=BIGINT}, #{stockQuantity,jdbcType=INTEGER},
+        #{allowDiscount,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        insert into B_MerchantMenuInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="menuID != null">
+                MenuID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="areaID != null">
+                AreaID,
+            </if>
+            <if test="mealsID != null">
+                MealsID,
+            </if>
+            <if test="categoryID != null">
+                CategoryID,
+            </if>
+            <if test="productID != null">
+                ProductID,
+            </if>
+            <if test="variantID != null">
+                VariantID,
+            </if>
+            <if test="currencyID != null">
+                CurrencyID,
+            </if>
+            <if test="typeID != null">
+                TypeID,
+            </if>
+            <if test="productName != null">
+                ProductName,
+            </if>
+            <if test="productCode != null">
+                ProductCode,
+            </if>
+            <if test="firstLetter != null">
+                FirstLetter,
+            </if>
+            <if test="menuStatus != null">
+                MenuStatus,
+            </if>
+            <if test="isCombo != null">
+                IsCombo,
+            </if>
+            <if test="productNum != null">
+                ProductNum,
+            </if>
+            <if test="priceType != null">
+                PriceType,
+            </if>
+            <if test="originalPrice != null">
+                OriginalPrice,
+            </if>
+            <if test="price != null">
+                Price,
+            </if>
+            <if test="memberPrice != null">
+                MemberPrice,
+            </if>
+            <if test="needWeigh != null">
+                NeedWeigh,
+            </if>
+            <if test="quantity != null">
+                Quantity,
+            </if>
+            <if test="produceCost != null">
+                ProduceCost,
+            </if>
+            <if test="unitID != null">
+                UnitID,
+            </if>
+            <if test="stockQuantity != null">
+                StockQuantity,
+            </if>
+            <if test="allowDiscount != null">
+                AllowDiscount,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="menuID != null">
+                #{menuID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="areaID != null">
+                #{areaID,jdbcType=BIGINT},
+            </if>
+            <if test="mealsID != null">
+                #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryID != null">
+                #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="productID != null">
+                #{productID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="currencyID != null">
+                #{currencyID,jdbcType=BIGINT},
+            </if>
+            <if test="typeID != null">
+                #{typeID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productCode != null">
+                #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="firstLetter != null">
+                #{firstLetter,jdbcType=VARCHAR},
+            </if>
+            <if test="menuStatus != null">
+                #{menuStatus,jdbcType=BIGINT},
+            </if>
+            <if test="isCombo != null">
+                #{isCombo,jdbcType=BIT},
+            </if>
+            <if test="productNum != null">
+                #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="priceType != null">
+                #{priceType,jdbcType=BIGINT},
+            </if>
+            <if test="originalPrice != null">
+                #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="memberPrice != null">
+                #{memberPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="needWeigh != null">
+                #{needWeigh,jdbcType=BIT},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="produceCost != null">
+                #{produceCost,jdbcType=DECIMAL},
+            </if>
+            <if test="unitID != null">
+                #{unitID,jdbcType=BIGINT},
+            </if>
+            <if test="stockQuantity != null">
+                #{stockQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="allowDiscount != null">
+                #{allowDiscount,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        update B_MerchantMenuInfo
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="areaID != null">
+                AreaID = #{areaID,jdbcType=BIGINT},
+            </if>
+            <if test="mealsID != null">
+                MealsID = #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryID != null">
+                CategoryID = #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="productID != null">
+                ProductID = #{productID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                VariantID = #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="currencyID != null">
+                CurrencyID = #{currencyID,jdbcType=BIGINT},
+            </if>
+            <if test="typeID != null">
+                TypeID = #{typeID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                ProductName = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productCode != null">
+                ProductCode = #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="firstLetter != null">
+                FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+            </if>
+            <if test="menuStatus != null">
+                MenuStatus = #{menuStatus,jdbcType=BIGINT},
+            </if>
+            <if test="isCombo != null">
+                IsCombo = #{isCombo,jdbcType=BIT},
+            </if>
+            <if test="productNum != null">
+                ProductNum = #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="priceType != null">
+                PriceType = #{priceType,jdbcType=BIGINT},
+            </if>
+            <if test="originalPrice != null">
+                OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                Price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="memberPrice != null">
+                MemberPrice = #{memberPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="needWeigh != null">
+                NeedWeigh = #{needWeigh,jdbcType=BIT},
+            </if>
+            <if test="quantity != null">
+                Quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="produceCost != null">
+                ProduceCost = #{produceCost,jdbcType=DECIMAL},
+            </if>
+            <if test="unitID != null">
+                UnitID = #{unitID,jdbcType=BIGINT},
+            </if>
+            <if test="stockQuantity != null">
+                StockQuantity = #{stockQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="allowDiscount != null">
+                AllowDiscount = #{allowDiscount,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+        </set>
+        where MenuID = #{menuID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        update B_MerchantMenuInfo
+        set ArchiveID = #{archiveID,jdbcType=BIGINT},
+        AreaID = #{areaID,jdbcType=BIGINT},
+        MealsID = #{mealsID,jdbcType=BIGINT},
+        CategoryID = #{categoryID,jdbcType=BIGINT},
+        ProductID = #{productID,jdbcType=BIGINT},
+        VariantID = #{variantID,jdbcType=BIGINT},
+        CurrencyID = #{currencyID,jdbcType=BIGINT},
+        TypeID = #{typeID,jdbcType=BIGINT},
+        ProductName = #{productName,jdbcType=VARCHAR},
+        ProductCode = #{productCode,jdbcType=VARCHAR},
+        FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+        MenuStatus = #{menuStatus,jdbcType=BIGINT},
+        IsCombo = #{isCombo,jdbcType=BIT},
+        ProductNum = #{productNum,jdbcType=INTEGER},
+        PriceType = #{priceType,jdbcType=BIGINT},
+        OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+        Price = #{price,jdbcType=DECIMAL},
+        MemberPrice = #{memberPrice,jdbcType=DECIMAL},
+        NeedWeigh = #{needWeigh,jdbcType=BIT},
+        Quantity = #{quantity,jdbcType=INTEGER},
+        ProduceCost = #{produceCost,jdbcType=DECIMAL},
+        UnitID = #{unitID,jdbcType=BIGINT},
+        StockQuantity = #{stockQuantity,jdbcType=INTEGER},
+        AllowDiscount = #{allowDiscount,jdbcType=BIT},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT}
+        where MenuID = #{menuID,jdbcType=BIGINT}
+    </update>
+    <select id="getAll" parameterType="B_MerchantMenuInfoEntity" resultType="B_MerchantMenuInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_MerchantMenuInfoCollection()}
+		]]>
+    </select>
+    <select id="get" parameterType="B_MerchantMenuInfoEntity" resultType="B_MerchantMenuInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_MerchantMenuInfoEntity(#{menuID})}
+		]]>
+    </select>
+    <delete id="delete" parameterType="B_MerchantMenuInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call DeleteB_MerchantMenuInfoEntity(#{menuID})}
+		]]>
+    </delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="MenuID" parameterType="B_MerchantMenuInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call InsertB_MerchantMenuInfoEntity(#{allowDiscount},#{archiveID},#{areaID},#{categoryID},#{createTime},#{creatorID},#{currencyID},#{firstLetter},#{isCombo},#{isSync},#{mealsID},#{memberPrice},#{memo},#{menuID,jdbcType=INTEGER,mode=OUT},#{menuStatus},#{needWeigh},#{originalPrice},#{price},#{priceType},#{produceCost},#{productCode},#{productID},#{productName},#{productNum},#{quantity},#{stockQuantity},#{typeID},#{unitID},#{variantID})}
+		]]>
+    </insert>
+
+    <update id="update" parameterType="B_MerchantMenuInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call UpdateB_MerchantMenuInfoEntity(#{allowDiscount},#{archiveID},#{areaID},#{categoryID},#{createTime},#{creatorID},#{currencyID},#{firstLetter},#{isCombo},#{isSync},#{mealsID},#{memberPrice},#{memo},#{menuID},#{menuStatus},#{needWeigh},#{originalPrice},#{price},#{priceType},#{produceCost},#{productCode},#{productID},#{productName},#{productNum},#{quantity},#{stockQuantity},#{typeID},#{unitID},#{variantID})}
+		]]>
+    </update>
+    <!--<select id="list" parameterType="B_MerchantMenuInfo" resultType="B_MerchantMenuInfo" statementType="CALLABLE">
+        <![CDATA[
+          {call GetB_MerchantMenuInfo_query_by_condition(#{allowDiscount},#{archiveID},#{areaID},#{categoryID},#{createTime},#{creatorID},#{currencyID},#{firstLetter},#{isCombo},#{isSync},#{mealsID},#{memberPrice},#{memo},#{menuStatus},#{needWeigh},#{originalPrice},#{price},#{priceType},#{produceCost},#{productCode},#{productID},#{productName},#{productNum},#{quantity},#{stockQuantity},#{typeID},#{unitID},#{variantID})}
+      ]]>
+    </select>
+    -->
+    <!-- 同价位的菜单 -->
+    <select id="getSamePriceFoodList" parameterType="HashMap" resultType="B_MerchantMenuInfoEntity">
+        select * from B_MerchantMenuInfo where Price = (select Price from B_MerchantMenuInfo where MenuID =#{menuID})
+        <if test ="productName != null and productName != ''">
+            And  ProductName LIKE concat('%',#{productName},'%')
+        </if>
+    </select>
+
+    <!-- 不同价位的菜单 -->
+    <select id="getNotSamePriceFoodList" parameterType="HashMap" resultType="B_MerchantMenuInfoEntity">
+        select * from B_MerchantMenuInfo where Price != (select Price from B_MerchantMenuInfo where MenuID =#{menuID})
+        <if test ="productName != null and productName != ''">
+            And  ProductName LIKE concat('%',#{productName},'%')
+        </if>
+    </select>
+
+    <!-- 通过变体ID查询菜单菜品信息 -->
+    <select id="getByVariantID" resultType="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        SELECT mm.VariantID,mm.ProductID,mm.UnitID,mm.ProductName,mm.OriginalPrice,mm.Price,mm.NeedWeigh,pv.ProduceMinute,am.FilePath
+        FROM B_MerchantMenuInfo mm
+        LEFT JOIN P_ProductVariantInfo pv ON pv.VariantID=mm.VariantID
+        LEFT JOIN P_AttachmentMapping am ON am.TargetID=mm.VariantID AND TargetType=840
+        WHERE pv.VariantID=#{variantID} LIMIT 1
+    </select>
+
+    <!-- 通过商品ID查询菜单套餐信息 -->
+    <select id="getCombosByProductID" resultType="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        SELECT mm.VariantID,mm.ProductID,mm.UnitID,mm.ProductName,mm.OriginalPrice,mm.Price,mm.NeedWeigh,am.FilePath
+        FROM B_MerchantMenuInfo mm
+        LEFT JOIN P_AttachmentMapping am ON am.TargetID=mm.ProductID AND TargetType=624
+        WHERE mm.ProductID=#{productID} AND mm.VariantID is NULL LIMIT 1
+    </select>
+
+    <!-- 通过商品ID查询菜单套餐信息 -->
+    <select id="getByMenuID" resultType="cc.toprank.byd.entity.B_MerchantMenuInfoEntity">
+        SELECT mm.VariantID,mm.ProductID,mm.UnitID,mm.ProductName,mm.OriginalPrice,mm.Price,ifnull(mm.NeedWeigh,0) NeedWeigh,
+        ifnull(mm.quantity,0),
+        pv.ProduceMinute,am.FilePath
+        FROM B_MerchantMenuInfo mm
+        LEFT JOIN P_ProductVariantInfo pv ON pv.VariantID=mm.VariantID
+        LEFT JOIN P_AttachmentMapping am ON
+        <choose>
+            <when test="isCombo">
+                am.TargetID=mm.ProductID AND TargetType=624
+            </when>
+            <otherwise>
+                am.TargetID=mm.VariantID AND TargetType=625
+            </otherwise>
+        </choose>
+        WHERE mm.MenuID=#{menuID} limit 1
+    </select>
+
+    <!-- 查询单个菜品规格信息 -->
+    <select id="getVariantSpecification" resultType="cc.toprank.byd.pad.pojo.SpecificationDTO">
+        SELECT vsm.variantID,s.specificationID,s.specificationName,sao.optionID,sao.optionName,ifnull(vsm.Fare,0) as addedPrice
+        FROM P_SpecificationAttributeOptionInfo sao
+        LEFT JOIN P_SpecificationInfo s ON s.SpecificationID=sao.SpecificationID
+        LEFT JOIN P_VariantSpecificationMapping vsm ON vsm.OptionID=sao.OptionID AND vsm.MappingStatus=9
+        WHERE vsm.VariantID=#{variantID}
+        <if test="optionID != null">
+            AND vsm.optionID=#{optionID}
+        </if>
+        ORDER BY vsm.SortNo ASC
+    </select>
+
+    <!-- 查询套餐规格信息 -->
+    <select id="getCombosSpecification" resultType="cc.toprank.byd.pad.pojo.SpecificationDTO">
+        SELECT psm.productID,s.specificationID,s.specificationName,sao.optionID,sao.optionName,ifnull(psm.Fare,0) as addedPrice
+        FROM P_SpecificationAttributeOptionInfo sao
+        LEFT JOIN P_SpecificationInfo s ON s.SpecificationID=sao.SpecificationID
+        LEFT JOIN P_ProductSpecificationMapping psm ON psm.OptionID=sao.OptionID AND psm.MappingStatus=9
+        WHERE psm.ProductID=#{productID}
+        <if test="optionID != null">
+            AND psm.optionID=#{optionID}
+        </if>
+        ORDER BY psm.SortNo ASC;
+    </select>
+    <!--时价维护 查询菜单信息-->
+    <select id="queryMerchantMenuAndProductInfoByCondition" parameterType="map" resultType="map">
+        select mm.menuID,mt.menuName,mm.areaID,mm.unitID,mm.price,p.productID,p.productName,p.gtin,p.firstLetter,p.categoryID
+        from B_MerchantMenuInfo mm  LEFT JOIN B_MerchantMenuTypeInfo mt on mt.TypeID = mm.TypeID
+        left JOIN P_ProductInfo p on p.ProductID = mm.ProductID
+        left JOIN P_ProductCategoryInfo pc on pc.CategoryID = p.CategoryID
+        where
+        mm.MenuStatus = 9 and  mm.ArchiveID = #{archiveID}
+        <if test="categoryID != null and categoryID > 0">
+            AND (p.CategoryID = #{categoryID} or pc.ParentID = #{categoryID})
+        </if>
+        <if test="searchKey != null" >
+            and (p.ProductName like '%${searchKey}%' or p.Gtin like '%${searchKey}%' or p.FirstLetter like '%${searchKey}%')
+        </if>
+    </select>
+
+    <select id="getProductUnitName" parameterType="long" resultType="string">
+        SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=(SELECT unitID FROM B_MerchantMenuInfo WHERE menuID=#{menuID})
+    </select>
+
+    <!--
+    查询停售菜品列表
+    chenkangyi
+    2017-6-5 13:46
+    -->
+    <select id="getProductListFromHaltsSales" parameterType="map" resultType="cc.toprank.byd.web.vo.haltsales.ProductHaltsSalesInfoVO">
+        SELECT  m.ProductID,
+        m.ProductName AS productName,
+        m.OriginalPrice AS originalPrice,
+        m.Price AS price,
+        m.ProductCode AS barCode,
+        (CASE WHEN m.IsCombo = 1 THEN 1 ELSE 2 END) AS productType,
+        m.ProduceCost AS produceCost,
+        m.AreaID AS areaID,
+        m.MealsID AS mealsID,
+        IFNULL(m.VariantID,0) AS variantID,
+        m.NeedWeigh AS needWeigh,
+        m.MenuID,
+        c.DictionaryName AS unit
+        FROM B_MerchantMenuInfo m
+        LEFT JOIN B_MerchantInfo a ON a.ArchiveID = m.ArchiveID
+        LEFT JOIN C_DictionaryInfo c ON m.UnitID = c.DictionaryID
+        LEFT JOIN (SELECT TypeID,ArchiveID,TypeStatus,DATEDIFF(ExpireTime,EffectiveTime) AS dayNum FROM B_MerchantMenuTypeInfo ORDER BY dayNum  LIMIT 0,1) f ON f.ArchiveID = m.ArchiveID
+        WHERE
+        a.ArchiveID=#{archiveID}
+        AND m.MenuStatus = #{menuStatus}
+        AND f.TypeID = m.TypeID
+        AND f.TypeStatus = 837
+        AND m.AreaID IS NULL
+        AND m.MealsID IS NULL
+        <if test="categoryID != 0">
+            AND m.CategoryID = #{categoryID}
+        </if>
+        AND (m.ProductCode like CONCAT('%',#{searchCode},'%') OR m.FirstLetter like CONCAT(#{searchCode},'%')  OR m.ProductName like CONCAT('%',#{searchCode},'%')  )
+        GROUP BY m.menuID
+    </select>
+
+    <!--
+    更新菜单的停售状态
+    chenkangyi
+    2017-6-14 18:46
+    -->
+    <update id="updateByProductIDAndVariantID" parameterType="map">
+        UPDATE B_MerchantMenuInfo SET MenuStatus = #{menuStatus}
+        WHERE ProductID = #{productID}
+        <if test="variantID == null">
+            AND VariantID IS  NULL
+        </if>
+        <if test="variantID != null">
+            AND VariantID = #{variantID}
+        </if>
+    </update>
+
+</mapper>

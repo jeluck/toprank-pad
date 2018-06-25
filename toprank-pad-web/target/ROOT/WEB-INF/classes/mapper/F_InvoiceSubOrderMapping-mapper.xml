@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.F_InvoiceSubOrderMappingDao">
+  	<select id="getAll" parameterType="F_InvoiceSubOrderMappingEntity" resultType="F_InvoiceSubOrderMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_InvoiceSubOrderMappingCollection()}
+		]]>
+	</select>
+  	<select id="get" parameterType="F_InvoiceSubOrderMappingEntity" resultType="F_InvoiceSubOrderMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_InvoiceSubOrderMappingEntity(#{mappingID})}
+		]]>
+	</select>
+  	<delete id="delete" parameterType="F_InvoiceSubOrderMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteF_InvoiceSubOrderMappingEntity(#{mappingID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="F_InvoiceSubOrderMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertF_InvoiceSubOrderMappingEntity(#{createTime},#{creatorID},#{invoiceID},#{isSync},#{mappingDesc},#{mappingID,jdbcType=INTEGER,mode=OUT},#{mappingStatus},#{memo},#{sortNo},#{subOrderID},"admin")}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="F_InvoiceSubOrderMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateF_InvoiceSubOrderMappingEntity(#{createTime},#{creatorID},#{invoiceID},#{isSync},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{sortNo},#{subOrderID})}
+		]]>
+  	</update>
+  	<!--<select id="list" parameterType="F_InvoiceSubOrderMapping" resultType="F_InvoiceSubOrderMapping" statementType="CALLABLE">
+  		<![CDATA[
+			{call GetF_InvoiceSubOrderMapping_query_by_condition(#{createTime},#{creatorID},#{invoiceID},#{isSync},#{mappingDesc},#{mappingStatus},#{memo},#{sortNo},#{subOrderID})}
+		]]>
+  	</select>
+  	-->
+</mapper>

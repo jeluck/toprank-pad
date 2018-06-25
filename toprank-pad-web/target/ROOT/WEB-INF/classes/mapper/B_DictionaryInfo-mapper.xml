@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cc.toprank.byd.dao.B_DictionaryInfoDao">
+
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_DictionaryInfoEntity" >
+				<id column="DictionaryID" property="dictionaryID" jdbcType="BIGINT" />
+				<result column="CatalogID" property="catalogID" jdbcType="BIGINT"/>
+				<result column="CreateTime" property="createTime" jdbcType="TIMESTAMP"/>
+				<result column="CreatorID" property="creatorID" jdbcType="BIGINT"/>
+				<result column="DictionaryCode" property="dictionaryCode" jdbcType="VARCHAR"/>
+				<result column="DictionaryDesc" property="dictionaryDesc" jdbcType="VARCHAR"/>
+				<result column="DictionaryName" property="dictionaryName" jdbcType="VARCHAR"/>
+				<result column="DictionaryStatus" property="dictionaryStatus" jdbcType="BIGINT"/>
+				<result column="DictionaryValue" property="dictionaryValue" jdbcType="VARCHAR"/>
+				<result column="IsSync" property="isSync" jdbcType="BIT"/>
+				<result column="Memo" property="memo" jdbcType="VARCHAR"/>
+				<result column="RelationInfo" property="relationInfo" jdbcType="VARCHAR"/>
+				<result column="ShortName" property="shortName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+  	<!--公用所有字段的sql-->
+  	<sql id="Base_Column_List">
+  			DictionaryID,
+  			CatalogID,
+  			CreateTime,
+  			CreatorID,
+  			DictionaryCode,
+  			DictionaryDesc,
+  			DictionaryName,
+  			DictionaryStatus,
+  			DictionaryValue,
+  			IsSync,
+  			Memo,
+  			RelationInfo,
+  			ShortName
+  	</sql>
+
+  	<select id="getAll" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/> from B_DictionaryInfo
+  	</select>
+  	
+  	<select id="get" parameterType="B_DictionaryInfoEntity" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/>
+		from
+  		B_DictionaryInfo
+  				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			     DictionaryID = #{dictionaryID}
+  			    </trim>
+  	</select>
+  	<delete id="delete" parameterType="B_DictionaryInfoEntity">
+  		delete from B_DictionaryInfo 
+  				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			     DictionaryID = #{dictionaryID}
+  			    </trim>
+  	</delete>
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DictionaryID" parameterType="B_DictionaryInfoEntity">
+  		insert into B_DictionaryInfo 
+  		(
+        	<include refid="Base_Column_List"/>
+  		)
+  		values
+  		(
+  				#{catalogID},
+  				#{createTime},
+  				#{creatorID},
+  				#{dictionaryCode},
+  				#{dictionaryDesc},
+  				#{dictionaryID},
+  				#{dictionaryName},
+  				#{dictionaryStatus},
+  				#{dictionaryValue},
+  				#{isSync},
+  				#{memo},
+  				#{relationInfo},
+  				#{shortName}
+  		)
+  	</insert>
+  	<update id="update" parameterType="B_DictionaryInfoEntity">
+  		update B_DictionaryInfo 
+  		<set>
+  					<if test="catalogID != null and catalogID != ''">
+  					CatalogID=#{catalogID},
+  					</if>
+  					<if test="createTime != null and createTime != ''">
+  					CreateTime=#{createTime},
+  					</if>
+  					<if test="creatorID != null and creatorID != ''">
+  					CreatorID=#{creatorID},
+  					</if>
+  					<if test="dictionaryCode != null and dictionaryCode != ''">
+  					DictionaryCode=#{dictionaryCode},
+  					</if>
+  					<if test="dictionaryDesc != null and dictionaryDesc != ''">
+  					DictionaryDesc=#{dictionaryDesc},
+  					</if>
+  					<if test="dictionaryName != null and dictionaryName != ''">
+  					DictionaryName=#{dictionaryName},
+  					</if>
+  					<if test="dictionaryStatus != null and dictionaryStatus != ''">
+  					DictionaryStatus=#{dictionaryStatus},
+  					</if>
+  					<if test="dictionaryValue != null and dictionaryValue != ''">
+  					DictionaryValue=#{dictionaryValue},
+  					</if>
+  					<if test="isSync != null and isSync != ''">
+  					IsSync=#{isSync},
+  					</if>
+  					<if test="memo != null and memo != ''">
+  					Memo=#{memo},
+  					</if>
+  					<if test="relationInfo != null and relationInfo != ''">
+  					RelationInfo=#{relationInfo},
+  					</if>
+  					<if test="shortName != null and shortName != ''">
+  					ShortName=#{shortName}
+  					</if>
+  		</set>
+  		where
+			DictionaryID=#{dictionaryID}
+  	</update>
+  	<select id="list" parameterType="B_DictionaryInfoEntity" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/>
+  		 from
+  		B_DictionaryInfo
+  		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			<if test="catalogID != null and catalogID != ''">
+	  			CatalogID = #{catalogID}
+	  		</if>
+  			<if test="createTime != null and createTime != ''">
+	  			 and CreateTime = #{createTime}
+	  		</if>
+  			<if test="creatorID != null and creatorID != ''">
+	  			 and CreatorID = #{creatorID}
+	  		</if>
+  			<if test="dictionaryCode != null and dictionaryCode != ''">
+	  			 and DictionaryCode like concat('%',#{dictionaryCode},'%')
+	  		</if>
+  			<if test="dictionaryDesc != null and dictionaryDesc != ''">
+	  			 and DictionaryDesc like concat('%',#{dictionaryDesc},'%')
+	  		</if>
+  			<if test="dictionaryID != null and dictionaryID != ''">
+	  			 and DictionaryID = #{dictionaryID}
+	  		</if>
+  			<if test="dictionaryName != null and dictionaryName != ''">
+	  			 and DictionaryName like concat('%',#{dictionaryName},'%')
+	  		</if>
+  			<if test="dictionaryStatus != null and dictionaryStatus != ''">
+	  			 and DictionaryStatus = #{dictionaryStatus}
+	  		</if>
+  			<if test="dictionaryValue != null and dictionaryValue != ''">
+	  			 and DictionaryValue like concat('%',#{dictionaryValue},'%')
+	  		</if>
+  			<if test="isSync != null and isSync != ''">
+	  			 and IsSync = #{isSync}
+	  		</if>
+  			<if test="memo != null and memo != ''">
+	  			 and Memo like concat('%',#{memo},'%')
+	  		</if>
+  			<if test="relationInfo != null and relationInfo != ''">
+	  			 and RelationInfo like concat('%',#{relationInfo},'%')
+	  		</if>
+  			<if test="shortName != null and shortName != ''">
+	  			 and ShortName like concat('%',#{shortName},'%')
+	  		</if>
+  		</trim>
+  	</select>
+
+	<!--
+		根据字典类型编码查询商户字典表
+		LinYN 2017-5-25
+	-->
+	<select id="getDictionaryByCatalogCode" parameterType="map" resultType="B_DictionaryInfoEntity">
+		SELECT * from B_DictionaryInfo bd LEFT JOIN B_DictionaryCatalogInfo bdc on bd.CatalogID = bdc.CatalogID
+		where bdc.CatalogCode = #{catalogCode}
+		<if test="archiveID != null">
+			and bdc.ArchiveID = #{archiveID}
+		</if>
+		<if test="archiveID == null">
+			and bdc.ArchiveID is null
+		</if>
+	</select>
+
+	<!--
+		根据字典类型编码查询操作原因
+		LinYN 2017-5-26
+	-->
+	<select id="getReasonByCatalogCode" parameterType="map" resultType="cc.toprank.byd.vo.ReasonVO">
+		SELECT bd.DictionaryID as reasonID, bd.DictionaryName as reason
+		from B_DictionaryInfo bd LEFT JOIN B_DictionaryCatalogInfo bdc on bd.CatalogID = bdc.CatalogID
+		where bdc.CatalogCode = #{catalogCode}
+		<if test="archiveID != null">
+			and bdc.ArchiveID = #{archiveID}
+		</if>
+		<if test="archiveID == null">
+			and bdc.ArchiveID is null
+		</if>
+	</select>
+  </mapper>

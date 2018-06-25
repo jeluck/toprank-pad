@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.O_RoleDiscountInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_RoleDiscountInfoEntity">
+    <id column="RecordID" jdbcType="BIGINT" property="recordID" />
+    <result column="RoleID" jdbcType="BIGINT" property="roleID" />
+    <result column="DiscountItem" jdbcType="VARCHAR" property="discountItem" />
+    <result column="HighestRate" jdbcType="REAL" property="highestRate" />
+    <result column="HighestAmount" jdbcType="DECIMAL" property="highestAmount" />
+    <result column="DiscountDesc" jdbcType="VARCHAR" property="discountDesc" />
+    <result column="OrtherDesc" jdbcType="VARCHAR" property="ortherDesc" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RecordID, RoleID, DiscountItem, HighestRate, HighestAmount, DiscountDesc, OrtherDesc, 
+    CreatorID, CreateTime, Memo, IsSync
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from O_RoleDiscountInfo
+    where RecordID = #{recordID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from O_RoleDiscountInfo
+    where RecordID = #{recordID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.O_RoleDiscountInfoEntity">
+    insert into O_RoleDiscountInfo (RecordID, RoleID, DiscountItem, 
+      HighestRate, HighestAmount, DiscountDesc, 
+      OrtherDesc, CreatorID, CreateTime, 
+      Memo, IsSync)
+    values (#{recordID,jdbcType=BIGINT}, #{roleID,jdbcType=BIGINT}, #{discountItem,jdbcType=VARCHAR}, 
+      #{highestRate,jdbcType=REAL}, #{highestAmount,jdbcType=DECIMAL}, #{discountDesc,jdbcType=VARCHAR}, 
+      #{ortherDesc,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_RoleDiscountInfoEntity">
+    insert into O_RoleDiscountInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordID != null">
+        RecordID,
+      </if>
+      <if test="roleID != null">
+        RoleID,
+      </if>
+      <if test="discountItem != null">
+        DiscountItem,
+      </if>
+      <if test="highestRate != null">
+        HighestRate,
+      </if>
+      <if test="highestAmount != null">
+        HighestAmount,
+      </if>
+      <if test="discountDesc != null">
+        DiscountDesc,
+      </if>
+      <if test="ortherDesc != null">
+        OrtherDesc,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordID != null">
+        #{recordID,jdbcType=BIGINT},
+      </if>
+      <if test="roleID != null">
+        #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="discountItem != null">
+        #{discountItem,jdbcType=VARCHAR},
+      </if>
+      <if test="highestRate != null">
+        #{highestRate,jdbcType=REAL},
+      </if>
+      <if test="highestAmount != null">
+        #{highestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountDesc != null">
+        #{discountDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ortherDesc != null">
+        #{ortherDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_RoleDiscountInfoEntity">
+    update O_RoleDiscountInfo
+    <set>
+      <if test="roleID != null">
+        RoleID = #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="discountItem != null">
+        DiscountItem = #{discountItem,jdbcType=VARCHAR},
+      </if>
+      <if test="highestRate != null">
+        HighestRate = #{highestRate,jdbcType=REAL},
+      </if>
+      <if test="highestAmount != null">
+        HighestAmount = #{highestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountDesc != null">
+        DiscountDesc = #{discountDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ortherDesc != null">
+        OrtherDesc = #{ortherDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+    </set>
+    where RecordID = #{recordID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_RoleDiscountInfoEntity">
+    update O_RoleDiscountInfo
+    set RoleID = #{roleID,jdbcType=BIGINT},
+      DiscountItem = #{discountItem,jdbcType=VARCHAR},
+      HighestRate = #{highestRate,jdbcType=REAL},
+      HighestAmount = #{highestAmount,jdbcType=DECIMAL},
+      DiscountDesc = #{discountDesc,jdbcType=VARCHAR},
+      OrtherDesc = #{ortherDesc,jdbcType=VARCHAR},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT}
+    where RecordID = #{recordID,jdbcType=BIGINT}
+  </update>
+  <!--
+  根据登录ID查询角色折扣信息
+  chenkangyi
+  2017-5-19 14:49
+  -->
+  <select id="getRoleDiscountInfoByLoginID" parameterType="long" resultType="cc.toprank.byd.entity.O_RoleDiscountInfoEntity">
+    SELECT o_rdi.* FROM O_RoleDiscountInfo o_rdi
+    LEFT JOIN U_RoleInfo u_roleinfo ON u_roleinfo.RoleID = o_rdi.RoleID
+    LEFT JOIN U_RoleLoginInfo u_rolelogininfo ON u_rolelogininfo.RoleID = u_roleinfo.RoleID
+    LEFT JOIN U_LoginInfo u_logininfo ON u_logininfo.LoginID = u_rolelogininfo.LoginID
+    WHERE u_logininfo.LoginID = #{loginID}
+  </select>
+</mapper>

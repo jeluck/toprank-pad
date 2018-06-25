@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.U_RoleLoginInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.U_RoleLoginInfoEntity">
+    <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="RoleID" jdbcType="BIGINT" property="roleID" />
+    <result column="LoginID" jdbcType="BIGINT" property="loginID" />
+    <result column="EffectiveTime" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="ExpireTime" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MappingID, RoleID, LoginID, EffectiveTime, ExpireTime, CreatorID, CreateTime, SortNo, 
+    Memo, IsSync
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from U_RoleLoginInfo
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from U_RoleLoginInfo
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.U_RoleLoginInfoEntity">
+    insert into U_RoleLoginInfo (MappingID, RoleID, LoginID, 
+      EffectiveTime, ExpireTime, CreatorID, 
+      CreateTime, SortNo, Memo, 
+      IsSync)
+    values (#{mappingID,jdbcType=BIGINT}, #{roleID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT}, 
+      #{effectiveTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP}, #{creatorID,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{sortNo,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
+      #{isSync,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.U_RoleLoginInfoEntity">
+    insert into U_RoleLoginInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="roleID != null">
+        RoleID,
+      </if>
+      <if test="loginID != null">
+        LoginID,
+      </if>
+      <if test="effectiveTime != null">
+        EffectiveTime,
+      </if>
+      <if test="expireTime != null">
+        ExpireTime,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="roleID != null">
+        #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="loginID != null">
+        #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.U_RoleLoginInfoEntity">
+    update U_RoleLoginInfo
+    <set>
+      <if test="roleID != null">
+        RoleID = #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="loginID != null">
+        LoginID = #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="effectiveTime != null">
+        EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+    </set>
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.U_RoleLoginInfoEntity">
+    update U_RoleLoginInfo
+    set RoleID = #{roleID,jdbcType=BIGINT},
+      LoginID = #{loginID,jdbcType=BIGINT},
+      EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+      ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      Memo = #{memo,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT}
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+
+  <!--
+  根据loginID、moduleCode、privilegeCode获取角色的权限信息
+  chenkangyi
+  2017-5-26 17:59
+  -->
+  <select id="selectPrivilegeInfo" parameterType="map" resultType="cc.toprank.byd.entity.U_RoleLoginInfoEntity">
+    SELECT *
+    FROM U_RoleLoginInfo a
+    INNER JOIN U_RoleInfo b ON a.RoleID=b.RoleID
+    INNER JOIN U_RolePrivilegeInfo c ON b.RoleID=c.RoleID
+    INNER JOIN U_PrivilegeInfo f ON c.PrivilegeID=f.PrivilegeID
+    INNER JOIN U_ModuleInfo e ON e.ModuleID=f.ModuleID
+    WHERE a.LoginID=#{loginID} AND e.ModuleCode=#{moduleCode} AND f.PrivilegeCode=#{privilegeCode} LIMIT 1
+  </select>
+</mapper>

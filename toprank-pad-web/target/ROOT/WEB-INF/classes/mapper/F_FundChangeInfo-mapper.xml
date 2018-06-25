@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.F_FundChangeInfoDao">
+  	<select id="getAll" parameterType="F_FundChangeInfoEntity" resultType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_FundChangeInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="F_FundChangeInfoEntity" resultType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_FundChangeInfoEntity(#{changeID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="F_FundChangeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteF_FundChangeInfoEntity(#{changeID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="ChangeID" parameterType="F_FundChangeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertF_FundChangeInfoEntity(#{accountID},#{accountType},#{afterAmount},#{archiveID},#{beforeAmount},#{businessID},#{businessType},#{cardCode},#{cardID},#{changeAmount},#{changeCode},#{changeID,jdbcType=INTEGER,mode=OUT},#{changeReason},#{changeType},#{createTime},#{creatorID},#{currencyID},#{customerID},#{isInitiator},#{isRelationPlatform},#{isSync},#{loginID},#{memo},#{platformID},#{platformStatus},#{platformTypeID},#{proportion},#{realName},#{requestData},#{responseData},#{sourceAccountID},"admin")}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="F_FundChangeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateF_FundChangeInfoEntity(#{accountID},#{accountType},#{afterAmount},#{archiveID},#{beforeAmount},#{businessID},#{businessType},#{cardCode},#{cardID},#{changeAmount},#{changeCode},#{changeID},#{changeReason},#{changeType},#{createTime},#{creatorID},#{currencyID},#{customerID},#{isInitiator},#{isRelationPlatform},#{isSync},#{loginID},#{memo},#{platformID},#{platformStatus},#{platformTypeID},#{proportion},#{realName},#{requestData},#{responseData},#{sourceAccountID})} 
+		]]>  
+  	</update>
+  	<!--<select id="list" parameterType="F_FundChangeInfo" resultType="F_FundChangeInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetF_FundChangeInfo_query_by_condition(#{accountID},#{accountType},#{afterAmount},#{archiveID},#{beforeAmount},#{businessID},#{businessType},#{cardCode},#{cardID},#{changeAmount},#{changeCode},#{changeReason},#{changeType},#{createTime},#{creatorID},#{currencyID},#{customerID},#{isInitiator},#{isRelationPlatform},#{isSync},#{loginID},#{memo},#{platformID},#{platformStatus},#{platformTypeID},#{proportion},#{realName},#{requestData},#{responseData},#{sourceAccountID})} 
+		]]>  
+  	</select>
+  	-->
+
+	<!-- 通过会员卡id及业务类型获取最后变动信息  lijun -->
+	<select id="GetF_FundChangeInfoByBusinessType" parameterType="F_FundChangeInfoEntity"  resultType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_FundChangeInfoByBusinessType(#{cardID},#{businessType})}
+		]]>
+	</select>
+
+	<select id="GetF_FundChangeInfoByArchiveIDAndBusinessType" parameterType="F_FundChangeInfoEntity"  resultType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_FundChangeInfoByArchiveIDAndBusinessType(#{archiveID},#{accountType},#{businessType},#{startTime},#{endTime})}
+		]]>
+	</select>
+
+	<!-- 根据业务类型和业务编号（预订信息编号）、账户信息编号 查询资金变动信息		zhoufy -->
+	<select id="getFundChangeInfoByCondition" parameterType="hashMap" resultType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionF_FundChangeInfoByBusinessIDAndBusinessType(#{businessID},#{businessType},#{accountID})}
+		]]>
+	</select>
+
+	<!-- 根据业务类型、账户编号和业务编号查询资金变动信息 	hcy -->
+	<select id="queryByBusinessIDAndBusinessType" parameterType="F_FundChangeInfoEntity"  resultType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		 Select AccountID, AccountType, AfterAmount, ArchiveID, BeforeAmount, BusinessID, BusinessType,
+        CardCode, CardID, ChangeAmount, ChangeCode, ChangeID, ChangeReason, ChangeType,
+        CreateTime, CreatorID, CurrencyID, CustomerID, IsInitiator, IsRelationPlatform, LoginID,
+        Memo, PlatformID, PlatformStatus, PlatformTypeID, Proportion, RealName, RequestData,
+        ResponseData, SourceAccountID
+    from F_FundChangeInfo
+		where 	BusinessID = #{businessID}
+		<if test="businessType != null">
+			AND	 BusinessType = #{businessType}
+		</if>
+		<if test="accountID != null">
+			AND	 AccountID = #{accountID}
+		</if>
+		limit 1
+	</select>
+
+	<!-- 更新资金变动信息的变动金额 	hcy -->
+	<update id="updateFundChangeAmount" parameterType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Update_ReceptionF_FundChangeInfoEntityByBusinessID(#{changeID},#{changeAmount})}
+		]]>
+	</update>
+
+	<!-- 根据子订单编号查询子订单已付的金额   	hcy -->
+	<select id="queryOrderPaidAmountBySubOrderID" parameterType="F_FundChangeInfoEntity"  resultType="F_FundChangeInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionF_FundChangeInfoByBusinessID(#{businessID})}
+		]]>
+	</select>
+
+	<select id="getAllCount" parameterType="map"  resultType="map" statementType="CALLABLE">
+		select a.LoginID,b.PaymentMethodID,sum(b.ChangeAmount) as DetailChangeAmount,
+	       	c.DictionaryName as paymentMethodName
+		from F_FundChangeInfo a INNER JOIN F_FundChangeDetailInfo b on a.ChangeID=b.ChangeID
+		LEFT JOIN C_DictionaryInfo c on b.PaymentMethodID=c.DictionaryID
+		where a.LoginID  =#{loginID}    and    a.CreateTime=
+		GROUP BY a.LoginID
+	</select>
+
+	<select id="getDiscountAmount" parameterType="map"  resultType="map" statementType="CALLABLE">
+	    select b.DiscountType,c.DictionaryName as DiscountTypeName,sum(b.DiscountAmount)   as DiscountAmount
+	    from F_FundChangeInfo a INNER JOIN O_OrderDiscountMapping b on a.BusinessID=b.SubOrderID
+	    LEFT JOIN C_DictionaryInfo c  on  b.DiscountType=c.DictionaryID
+	     where  a.LoginID  =#{loginID}    and    a.CreateTime=
+	     GROUP BY b.DiscountType
+	</select>
+
+	<select id="getAllCountAverage" parameterType="map"  resultType="map" statementType="CALLABLE">
+         select sum(b.PeopleNum) countPeople ,Sum(b.ActualAmount) as countActualAmount,
+          COUNT(*) as counOrder,Sum(b.ActualAmount)/sum(b.PeopleNum) as PeopleAverage,Sum(b.ActualAmount)/COUNT(*) as orderAverage
+          from F_FundChangeInfo a INNER JOIN O_SubOrderInfo b on a.BusinessID=b.SubOrderID
+          where a.BusinessType=673 and a.LoginID  and  a.CreateTime
+	</select>
+
+	<select id="getMemberCount" parameterType="map"  resultType="map" statementType="CALLABLE">
+        select a.LoginID,b.PaymentMethodID,sum(b.ChangeAmount) as DetailChangeAmount,
+           c.DictionaryName as paymentMethodName
+        from F_FundChangeInfo a INNER JOIN F_FundChangeDetailInfo b on a.ChangeID=b.ChangeID
+                                INNER JOIN F_DepositInfo d on a.BusinessID=d.DepositID
+                                LEFT JOIN C_DictionaryInfo c on b.PaymentMethodID=c.DictionaryID
+        where a.BusinessType=160 and  a.LoginID  =    and    a.CreateTime=
+        GROUP BY a.LoginID,b.PaymentMethodID
+
+	</select>
+
+	<select id="getBookningCount" parameterType="map"  resultType="map" statementType="CALLABLE">
+         select a.LoginID,b.PaymentMethodID,sum(b.ChangeAmount) as DetailChangeAmount,
+            c.DictionaryName as paymentMethodName
+        from F_FundChangeInfo a INNER JOIN F_FundChangeDetailInfo b on a.ChangeID=b.ChangeID
+                         INNER JOIN O_BookingInfo d on a.BusinessID=d.BookingID
+                          LEFT JOIN C_DictionaryInfo c on b.PaymentMethodID=c.DictionaryID
+         where  a.BusinessType=159 and a.LoginID  =    and    a.CreateTime=
+         GROUP BY a.LoginID,b.PaymentMethodID
+	</select>
+
+	<select id="getCancelCount" parameterType="map"  resultType="map" statementType="CALLABLE">
+         select a.LoginID,b.PaymentMethodID,sum(d.RefundAmount) as DetailChangeAmount,
+            c.DictionaryName as paymentMethodName
+        from F_FundChangeInfo a INNER JOIN F_FundChangeDetailInfo b on a.ChangeID=b.ChangeID
+                         INNER JOIN O_BookingInfo d on a.BusinessID=d.BookingID
+                          LEFT JOIN C_DictionaryInfo c on b.PaymentMethodID=c.DictionaryID
+         where  a.BusinessType=159 and a.LoginID  =    and    a.CreateTime=
+         GROUP BY a.LoginID,b.PaymentMethodID
+	</select>
+
+	<!-- 新增资金变动信息 hcy -->
+	<insert id="saveFundChangeInfo" parameterType="F_FundChangeInfoEntity">
+		Insert into
+			F_FundChangeInfo(AccountID, AccountType, AfterAmount, ArchiveID, BeforeAmount, BusinessID, BusinessType,
+			CardCode, CardID, ChangeAmount, ChangeCode, ChangeID, ChangeReason, ChangeType,
+			CreateTime, CreatorID, CurrencyID, CustomerID, IsInitiator, IsRelationPlatform, IsSync,
+			LoginID, Memo, PlatformID, PlatformStatus, PlatformTypeID, Proportion, RealName,
+			RequestData, ResponseData, SourceAccountID)
+		values
+			(#{accountID}, #{accountType}, #{afterAmount}, #{archiveID}, #{beforeAmount}, #{businessID}, #{businessType},
+			#{cardCode}, #{cardID}, #{changeAmount}, #{changeCode}, #{changeID}, #{changeReason}, #{changeType},
+			#{createTime}, #{creatorID}, #{currencyID}, #{customerID}, #{isInitiator}, #{isRelationPlatform}, #{isSync},
+			#{loginID}, #{memo}, #{platformID}, #{platformStatus}, #{platformTypeID}, #{proportion}, #{realName},
+			#{requestData}, #{responseData}, #{sourceAccountID})
+	</insert>
+  </mapper>

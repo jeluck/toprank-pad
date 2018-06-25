@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.B_MerchantTagMappingDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+    <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="TagID" jdbcType="BIGINT" property="tagID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="OrgID" jdbcType="BIGINT" property="orgID" />
+    <result column="TargetType" jdbcType="BIGINT" property="targetType" />
+    <result column="TargetID" jdbcType="BIGINT" property="targetID" />
+    <result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+    <result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MappingID, TagID, ArchiveID, OrgID, TargetType, TargetID, MappingStatus, MappingDesc, 
+    SortNo, IsSync, CreatorType, CreatorID, CreateTime, Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from B_MerchantTagMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from B_MerchantTagMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+    insert into B_MerchantTagMapping (MappingID, TagID, ArchiveID, 
+      OrgID, TargetType, TargetID, 
+      MappingStatus, MappingDesc, SortNo, 
+      IsSync, CreatorType, CreatorID, 
+      CreateTime, Memo)
+    values (#{mappingID,jdbcType=BIGINT}, #{tagID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, 
+      #{orgID,jdbcType=BIGINT}, #{targetType,jdbcType=BIGINT}, #{targetID,jdbcType=BIGINT}, 
+      #{mappingStatus,jdbcType=BIGINT}, #{mappingDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{isSync,jdbcType=BIT}, #{creatorType,jdbcType=BIGINT}, #{creatorID,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+    insert into B_MerchantTagMapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="tagID != null">
+        TagID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="orgID != null">
+        OrgID,
+      </if>
+      <if test="targetType != null">
+        TargetType,
+      </if>
+      <if test="targetID != null">
+        TargetID,
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus,
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="creatorType != null">
+        CreatorType,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="tagID != null">
+        #{tagID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="targetType != null">
+        #{targetType,jdbcType=BIGINT},
+      </if>
+      <if test="targetID != null">
+        #{targetID,jdbcType=BIGINT},
+      </if>
+      <if test="mappingStatus != null">
+        #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorType != null">
+        #{creatorType,jdbcType=BIGINT},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+    update B_MerchantTagMapping
+    <set>
+      <if test="tagID != null">
+        TagID = #{tagID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        OrgID = #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="targetType != null">
+        TargetType = #{targetType,jdbcType=BIGINT},
+      </if>
+      <if test="targetID != null">
+        TargetID = #{targetID,jdbcType=BIGINT},
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorType != null">
+        CreatorType = #{creatorType,jdbcType=BIGINT},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+    update B_MerchantTagMapping
+    set TagID = #{tagID,jdbcType=BIGINT},
+      ArchiveID = #{archiveID,jdbcType=BIGINT},
+      OrgID = #{orgID,jdbcType=BIGINT},
+      TargetType = #{targetType,jdbcType=BIGINT},
+      TargetID = #{targetID,jdbcType=BIGINT},
+      MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      IsSync = #{isSync,jdbcType=BIT},
+      CreatorType = #{creatorType,jdbcType=BIGINT},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertBatch" parameterType="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+    insert into B_MerchantTagMapping (MappingID, TagID, ArchiveID,
+    OrgID, TargetType, TargetID,
+    MappingStatus, MappingDesc, SortNo,
+    IsSync, CreatorType, CreatorID,
+    CreateTime, Memo)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.mappingID}, #{item.tagID}, #{item.archiveID},
+      #{item.orgID}, #{item.targetType}, #{item.targetID},
+      #{item.mappingStatus}, #{item.mappingDesc}, #{item.sortNo},
+      #{item.isSync}, #{item.creatorType}, #{item.creatorID},
+      #{item.createTime}, #{item.memo})
+    </foreach>
+  </insert>
+
+  <!-- 根据明细ID查询标签关联信息 LZY -->
+  <select id="getMerchantTagMappingByDetailID" parameterType="java.lang.Long" resultType="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+    SELECT od.CreatorID,od.CreatorType,bm.ArchiveID,bm.OrgID
+        FROM O_OrderDetailInfo od
+        LEFT JOIN B_MerchantMenuInfo mm ON od.MenuID = mm.MenuID
+        LEFT JOIN B_MerchantInfo bm ON mm.ArchiveID = bm.ArchiveID
+        WHERE
+            od.DetailID = #{detailID};
+  </select>
+
+
+  <!-- 根据明细ID查询标签关联信息 LZY -->
+  <select id="getMerchantTagMappingByTargetIDAndTagID" parameterType="B_MerchantTagMappingEntity" resultType="cc.toprank.byd.entity.B_MerchantTagMappingEntity">
+      SELECT * FROM B_MerchantTagMapping WHERE TagID = #{tagID} AND TargetID = #{targetID} LIMIT 1;
+  </select>
+</mapper>

@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.B_MealTableMappingDao">
+
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MealTableMappingEntity">
+        <id column="SegmentID" jdbcType="BIGINT" property="segmentID"/>
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID"/>
+        <result column="AreaID" jdbcType="BIGINT" property="areaID"/>
+        <result column="TableID" jdbcType="BIGINT" property="tableID"/>
+        <result column="TableCode" jdbcType="VARCHAR" property="tableCode"/>
+        <result column="TableName" jdbcType="VARCHAR" property="tableName"/>
+        <result column="MealsID" jdbcType="BIGINT" property="mealsID"/>
+        <result column="TableStatus" jdbcType="BIGINT" property="tableStatus"/>
+        <result column="StartTime" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="RecommendBookingTime" jdbcType="TIMESTAMP" property="recommendBookingTime"/>
+        <result column="IsBooking" jdbcType="BIT" property="isBooking"/>
+        <result column="IsSharing" jdbcType="BIT" property="isSharing"/>
+        <result column="ShareNumber" jdbcType="INTEGER" property="shareNumber"/>
+        <result column="ShareCode" jdbcType="VARCHAR" property="shareCode"/>
+        <result column="IsCombine" jdbcType="BIT" property="isCombine"/>
+        <result column="CombineNumber" jdbcType="INTEGER" property="combineNumber"/>
+        <result column="CombineName" jdbcType="VARCHAR" property="combineName"/>
+        <result column="CombineCode" jdbcType="VARCHAR" property="combineCode"/>
+        <result column="IsSplit" jdbcType="BIT" property="isSplit"/>
+        <result column="SplitNumber" jdbcType="INTEGER" property="splitNumber"/>
+        <result column="SplitCode" jdbcType="VARCHAR" property="splitCode"/>
+        <result column="RelationTable" jdbcType="VARCHAR" property="relationTable"/>
+        <result column="CustomerNumber" jdbcType="INTEGER" property="customerNumber"/>
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo"/>
+        <result column="IsSync" jdbcType="BIT" property="isSync"/>
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="Memo" jdbcType="VARCHAR" property="memo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		SegmentID, ArchiveID, AreaID, TableID, TableCode, TableName, MealsID, TableStatus,
+		StartTime, RecommendBookingTime, IsBooking, IsSharing, ShareNumber, ShareCode, IsCombine,
+		CombineNumber, CombineName, CombineCode, IsSplit, SplitNumber, SplitCode, RelationTable,
+		CustomerNumber, SortNo, IsSync, CreateTime, Memo
+	</sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from B_MealTableMapping
+        where SegmentID = #{segmentID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_MealTableMapping
+		where SegmentID = #{segmentID,jdbcType=BIGINT}
+	</delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_MealTableMappingEntity">
+		insert into B_MealTableMapping (SegmentID, ArchiveID, AreaID,
+		TableID, TableCode, TableName,
+		MealsID, TableStatus, StartTime,
+		RecommendBookingTime, IsBooking, IsSharing,
+		ShareNumber, ShareCode, IsCombine,
+		CombineNumber, CombineName, CombineCode,
+		IsSplit, SplitNumber, SplitCode,
+		RelationTable, CustomerNumber, SortNo,
+		IsSync, CreateTime, Memo
+		)
+		values (#{segmentID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{areaID,jdbcType=BIGINT},
+		#{tableID,jdbcType=BIGINT}, #{tableCode,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR},
+		#{mealsID,jdbcType=BIGINT}, #{tableStatus,jdbcType=BIGINT}, #{startTime,jdbcType=TIMESTAMP},
+		#{recommendBookingTime,jdbcType=TIMESTAMP}, #{isBooking,jdbcType=BIT}, #{isSharing,jdbcType=BIT},
+		#{shareNumber,jdbcType=INTEGER}, #{shareCode,jdbcType=VARCHAR}, #{isCombine,jdbcType=BIT},
+		#{combineNumber,jdbcType=INTEGER}, #{combineName,jdbcType=VARCHAR}, #{combineCode,jdbcType=VARCHAR},
+		#{isSplit,jdbcType=BIT}, #{splitNumber,jdbcType=INTEGER}, #{splitCode,jdbcType=VARCHAR},
+		#{relationTable,jdbcType=VARCHAR}, #{customerNumber,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER},
+		#{isSync,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MealTableMappingEntity">
+        insert into B_MealTableMapping
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="segmentID != null">
+                SegmentID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="areaID != null">
+                AreaID,
+            </if>
+            <if test="tableID != null">
+                TableID,
+            </if>
+            <if test="tableCode != null">
+                TableCode,
+            </if>
+            <if test="tableName != null">
+                TableName,
+            </if>
+            <if test="mealsID != null">
+                MealsID,
+            </if>
+            <if test="tableStatus != null">
+                TableStatus,
+            </if>
+            <if test="startTime != null">
+                StartTime,
+            </if>
+            <if test="recommendBookingTime != null">
+                RecommendBookingTime,
+            </if>
+            <if test="isBooking != null">
+                IsBooking,
+            </if>
+            <if test="isSharing != null">
+                IsSharing,
+            </if>
+            <if test="shareNumber != null">
+                ShareNumber,
+            </if>
+            <if test="shareCode != null">
+                ShareCode,
+            </if>
+            <if test="isCombine != null">
+                IsCombine,
+            </if>
+            <if test="combineNumber != null">
+                CombineNumber,
+            </if>
+            <if test="combineName != null">
+                CombineName,
+            </if>
+            <if test="combineCode != null">
+                CombineCode,
+            </if>
+            <if test="isSplit != null">
+                IsSplit,
+            </if>
+            <if test="splitNumber != null">
+                SplitNumber,
+            </if>
+            <if test="splitCode != null">
+                SplitCode,
+            </if>
+            <if test="relationTable != null">
+                RelationTable,
+            </if>
+            <if test="customerNumber != null">
+                CustomerNumber,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="segmentID != null">
+                #{segmentID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="areaID != null">
+                #{areaID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableCode != null">
+                #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tableName != null">
+                #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="mealsID != null">
+                #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="tableStatus != null">
+                #{tableStatus,jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recommendBookingTime != null">
+                #{recommendBookingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isBooking != null">
+                #{isBooking,jdbcType=BIT},
+            </if>
+            <if test="isSharing != null">
+                #{isSharing,jdbcType=BIT},
+            </if>
+            <if test="shareNumber != null">
+                #{shareNumber,jdbcType=INTEGER},
+            </if>
+            <if test="shareCode != null">
+                #{shareCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isCombine != null">
+                #{isCombine,jdbcType=BIT},
+            </if>
+            <if test="combineNumber != null">
+                #{combineNumber,jdbcType=INTEGER},
+            </if>
+            <if test="combineName != null">
+                #{combineName,jdbcType=VARCHAR},
+            </if>
+            <if test="combineCode != null">
+                #{combineCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isSplit != null">
+                #{isSplit,jdbcType=BIT},
+            </if>
+            <if test="splitNumber != null">
+                #{splitNumber,jdbcType=INTEGER},
+            </if>
+            <if test="splitCode != null">
+                #{splitCode,jdbcType=VARCHAR},
+            </if>
+            <if test="relationTable != null">
+                #{relationTable,jdbcType=VARCHAR},
+            </if>
+            <if test="customerNumber != null">
+                #{customerNumber,jdbcType=INTEGER},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MealTableMappingEntity">
+        update B_MealTableMapping
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="areaID != null">
+                AreaID = #{areaID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                TableID = #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableCode != null">
+                TableCode = #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tableName != null">
+                TableName = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="mealsID != null">
+                MealsID = #{mealsID,jdbcType=BIGINT},
+            </if>
+            <if test="tableStatus != null">
+                TableStatus = #{tableStatus,jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+                StartTime = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recommendBookingTime != null">
+                RecommendBookingTime = #{recommendBookingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isBooking != null">
+                IsBooking = #{isBooking,jdbcType=BIT},
+            </if>
+            <if test="isSharing != null">
+                IsSharing = #{isSharing,jdbcType=BIT},
+            </if>
+            <if test="shareNumber != null">
+                ShareNumber = #{shareNumber,jdbcType=INTEGER},
+            </if>
+            <if test="shareCode != null">
+                ShareCode = #{shareCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isCombine != null">
+                IsCombine = #{isCombine,jdbcType=BIT},
+            </if>
+            <if test="combineNumber != null">
+                CombineNumber = #{combineNumber,jdbcType=INTEGER},
+            </if>
+            <if test="combineName != null">
+                CombineName = #{combineName,jdbcType=VARCHAR},
+            </if>
+            <if test="combineCode != null">
+                CombineCode = #{combineCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isSplit != null">
+                IsSplit = #{isSplit,jdbcType=BIT},
+            </if>
+            <if test="splitNumber != null">
+                SplitNumber = #{splitNumber,jdbcType=INTEGER},
+            </if>
+            <if test="splitCode != null">
+                SplitCode = #{splitCode,jdbcType=VARCHAR},
+            </if>
+            <if test="relationTable != null">
+                RelationTable = #{relationTable,jdbcType=VARCHAR},
+            </if>
+            <if test="customerNumber != null">
+                CustomerNumber = #{customerNumber,jdbcType=INTEGER},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where SegmentID = #{segmentID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MealTableMappingEntity">
+		update B_MealTableMapping
+		set ArchiveID = #{archiveID,jdbcType=BIGINT},
+		AreaID = #{areaID,jdbcType=BIGINT},
+		TableID = #{tableID,jdbcType=BIGINT},
+		TableCode = #{tableCode,jdbcType=VARCHAR},
+		TableName = #{tableName,jdbcType=VARCHAR},
+		MealsID = #{mealsID,jdbcType=BIGINT},
+		TableStatus = #{tableStatus,jdbcType=BIGINT},
+		StartTime = #{startTime,jdbcType=TIMESTAMP},
+		RecommendBookingTime = #{recommendBookingTime,jdbcType=TIMESTAMP},
+		IsBooking = #{isBooking,jdbcType=BIT},
+		IsSharing = #{isSharing,jdbcType=BIT},
+		ShareNumber = #{shareNumber,jdbcType=INTEGER},
+		ShareCode = #{shareCode,jdbcType=VARCHAR},
+		IsCombine = #{isCombine,jdbcType=BIT},
+		CombineNumber = #{combineNumber,jdbcType=INTEGER},
+		CombineName = #{combineName,jdbcType=VARCHAR},
+		CombineCode = #{combineCode,jdbcType=VARCHAR},
+		IsSplit = #{isSplit,jdbcType=BIT},
+		SplitNumber = #{splitNumber,jdbcType=INTEGER},
+		SplitCode = #{splitCode,jdbcType=VARCHAR},
+		RelationTable = #{relationTable,jdbcType=VARCHAR},
+		CustomerNumber = #{customerNumber,jdbcType=INTEGER},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where SegmentID = #{segmentID,jdbcType=BIGINT}
+	</update>
+
+    <update id="updateStatusBatchByID">
+        UPDATE B_MealTableMapping SET TableStatus=#{tableStatus} WHERE SegmentID IN (${segmentIDs})
+    </update>
+
+    <select id="getAll" parameterType="B_MealTableMappingEntity" resultType="B_MealTableMappingEntity"
+            statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MealTableMappingCollection()}
+        ]]>
+	</select>
+    <select id="get" parameterType="B_MealTableMappingEntity" resultType="B_MealTableMappingEntity"
+            statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MealTableMappingEntity(#{segmentID})}
+        ]]>
+	</select>
+    <delete id="delete" parameterType="B_MealTableMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteB_MealTableMappingEntity(#{segmentID})}
+        ]]>
+  	</delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="SegmentID" parameterType="B_MealTableMappingEntity"
+            statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertB_MealTableMappingEntity(#{archiveID},#{areaID},#{combineCode},#{combineName},#{combineNumber},#{createTime},#{customerNumber},#{isBooking},#{isCombine},#{isSharing},#{isSplit},#{isSync},#{mealsID},#{memo},#{recommendBookingTime},#{relationTable},#{segmentID,jdbcType=INTEGER,mode=OUT},#{shareCode},#{shareNumber},#{sortNo},#{splitCode},#{splitNumber},#{startTime},#{tableCode},#{tableID},#{tableName},#{tableStatus},"admin")}
+        ]]>
+  	</insert>
+
+    <update id="update" parameterType="B_MealTableMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateB_MealTableMappingEntity(#{archiveID},#{areaID},#{combineCode},#{combineName},#{combineNumber},#{createTime},#{customerNumber},#{isBooking},#{isCombine},#{isSharing},#{isSplit},#{isSync},#{mealsID},#{memo},#{recommendBookingTime},#{relationTable},#{segmentID},#{shareCode},#{shareNumber},#{sortNo},#{splitCode},#{splitNumber},#{startTime},#{tableCode},#{tableID},#{tableName},#{tableStatus})}
+        ]]>
+  	</update>
+
+
+    <!-- 根据餐次桌台id修改餐次桌台表中的桌台状态xuexin -->
+    <update id="updateMealTableMappingEntityTableStatus" parameterType="B_MealTableMappingEntity">
+		Update B_MealTableMapping
+			Set
+				`CombineName` = #{combineName},
+				`CombineNumber` = #{combineNumber},
+				`CreateTime` = #{createTime},
+				`CustomerNumber` = #{customerNumber},
+				`IsBooking` = #{isBooking},
+				`IsCombine` = #{isCombine},
+				`IsSharing` = #{isSharing},
+				`IsSplit` = #{isSplit},
+				`MealsID` = #{mealsID},
+				`Memo` = #{memo},
+				`RecommendBookingTime` = #{recommendBookingTime},
+				`RelationTable` = #{relationTable},
+				`ShareNumber` = #{shareNumber},
+				`SortNo` = #{sortNo},
+				`SplitNumber` = #{splitNumber},
+				`StartTime` = #{startTime},
+				`TableID` = #{tableID},
+				`TableStatus` = #{tableStatus},
+				`RelationTable` = #{relationTable}
+			where
+				`SegmentID` = #{segmentID} ;
+	</update>
+
+
+    <!--
+             根据 餐次和桌台 餐段 查询数据
+        @author xuexin
+     -->
+    <select id="getMealTableMappingEntity" parameterType="hashmap" resultType="B_MealTableMappingEntity"
+            statementType="CALLABLE">
+		<![CDATA[
+
+
+			{call Get_ReceptionB_MealTableMapping(#{mealsID},#{tableID})}
+
+
+        ]]>
+	</select>
+
+    <!--
+             根据 餐次和桌台 餐段 查询数据
+        @author zhaolingchen
+     -->
+    <select id="getMealTableMappingEntityByTableIDAndTableStatus" parameterType="hashmap"
+            resultType="B_MealTableMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+
+
+			{call Get_ReceptionB_MealTableMappingByTableIDAndTableStatus(#{tableId},#{tableStatus})}
+
+
+        ]]>
+	</select>
+
+    <!--
+    根据桌台编号,餐次,区域,档案    获取 (当前时间  至 当前时间  + 最短时长*2 ） or nowDate + 餐次最短时长
+    @author lwh
+     -->
+    <select id="GetB_MealTableMappingCollectionByTableID" parameterType="B_MealTableMappingEntity"
+            resultType="B_MealTableMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+
+		SELECT
+			mealTableMapping.*
+		FROM
+			B_MealTableMapping mealTableMapping
+		WHERE
+		mealTableMapping.TableID = #{tableID}
+		AND mealTableMapping.AreaID = #{areaID}
+		AND mealTableMapping.ArchiveID = #{archiveID}
+		AND mealTableMapping.TableStatus!=780
+		AND mealTableMapping.MealsID = #{mealsID}
+		AND DATE_FORMAT(mealTableMapping.StartTime,'%H:%i:%s') >= DATE_FORMAT(UTC_TIMESTAMP(), '%H:%i:%s')
+		AND DATE_FORMAT(mealTableMapping.StartTime,'%H:%i:%s') < DATE_FORMAT(
+		case when #{endTime} is NULL THEN
+			date_add(UTC_TIMESTAMP(),
+			INTERVAL (
+				SELECT
+					info.MinLength * 2
+				FROM
+					B_MealsInfo info
+				WHERE
+					info.MealsID = mealTableMapping.MealsID
+				) DAY_MINUTE
+			)
+		else
+			date_add(#{endTime},
+				INTERVAL (
+				SELECT
+					info.MinLength
+				FROM
+					B_MealsInfo info
+				WHERE
+					info.MealsID = mealTableMapping.MealsID
+				) DAY_MINUTE
+			)
+		END
+			,'%H:%i:%s')
+		order by mealTableMapping.StartTime ASC
+		;
+        ]]>
+	</select>
+
+    <!--
+    根据桌台编号   获取 下一个时间段的
+    @author lwh
+     -->
+    <select id="GetB_MealTableMappingCollectionByTableIDForOne" parameterType="B_MealTableMappingEntity"
+            resultType="B_MealTableMappingEntity" statementType="CALLABLE">
+		SELECT
+			mealTableMapping.*
+		FROM
+			B_MealTableMapping mealTableMapping
+		WHERE
+			mealTableMapping.TableID = #{tableID}
+			and mealTableMapping.MealsID = #{mealsID}
+			and mealTableMapping.AreaID = #{areaID}
+			and mealTableMapping.ArchiveID = #{archiveID}
+			and mealTableMapping.TableStatus != 780
+			and DATE_FORMAT(mealTableMapping.StartTime,'%H:%i:%s') >= DATE_FORMAT(UTC_TIMESTAMP(), '%H:%i:%s')
+			limit 1
+	</select>
+
+    <!-- 根据桌台编号改变当前使用中的桌台餐次信息中的桌台状态		LinYN -->
+    <update id="updateTableStatusByTableID" parameterType="B_MealTableMappingEntity">
+        <![CDATA[
+
+			Update B_MealTableMapping
+				Set
+					TableStatus = #{tableStatus}
+				where
+					TableID = #{tableID} and (TableStatus = 652 OR TableStatus = 827)
+
+        ]]>
+    </update>
+
+    <!-- 根据桌台编号改变当前使用中的桌台餐次信息中的桌台状态和预订状态		LinYN -->
+    <update id="updateTableStatusAndBookingByTableID" parameterType="B_MealTableMappingEntity">
+		<![CDATA[
+
+			Update B_MealTableMapping
+				Set
+					TableStatus = #{tableStatus}
+					IsBooking = #{isBooking}
+				where
+					TableID = #{tableID} and (TableStatus = 652 OR TableStatus = 827)
+
+        ]]>
+	</update>
+
+    <!-- 根据多个桌台编号改变当前使用中的桌台餐次信息中的联合属性	LinYN -->
+    <update id="updateCombineInfoByTableIDs" parameterType="hashmap" statementType="CALLABLE">
+        <![CDATA[
+
+			Update B_MealTableMapping
+			Set
+				IsCombine = #{isCombine},
+				CombineNumber = #{combineNumber},
+				CombineName = #{combineName},
+				CustomerNumber = #{customerNumber}
+			where find_in_set(TableID, #{tableIDs})
+				and (TableStatus = 827 or TableStatus = 652)
+
+        ]]>
+    </update>
+
+    <!--
+		根据档案ID,区域ID,桌台ID，查询开台或者在用状态的餐次桌台信息 Lzy
+	 -->
+    <select id="getMealTableMappingInfoByCondition" parameterType="B_MealTableMappingEntity"
+            resultType="B_MealTableMappingEntity">
+		SELECT
+			`ArchiveID`, `AreaID`, `CombineCode`, `CombineName`, `CombineNumber`, `CreateTime`, `CustomerNumber`,
+			`IsBooking`, `IsCombine`, `IsSharing`, `IsSplit`, `IsSync`, `MealsID`, `Memo`,
+			`RecommendBookingTime`, `RelationTable`, `SegmentID`, `ShareCode`, `ShareNumber`, `SortNo`, `SplitCode`,
+			`SplitNumber`, `StartTime`, `TableCode`, `TableID`, `TableName`, `TableStatus`
+			FROM B_MealTableMapping
+			WHERE
+				ArchiveID = #{archiveID}
+				AND AreaID = #{areaID}
+				AND TableID = #{tableID}
+				AND (TableStatus = 827 OR TableStatus = 652)
+	</select>
+
+    <!--
+   根据 餐次、区域、档案、桌台  并且不包含segmentID  修改多个 桌台状态
+   @author lwh
+    -->
+    <update id="UpdateB_MealTableMappingEntityByStatusAndNotEqSegmentID" parameterType="B_MealTableMappingEntity"
+            statementType="CALLABLE">
+		<![CDATA[
+
+
+			{call UpdateB_MealTableMappingEntityByStatusAndNotEqSegmentID(#{archiveID},#{areaID},#{combineCode},#{combineName},#{combineNumber},#{createTime},#{customerNumber},#{isBooking},#{isCombine},#{isSharing},#{isSplit},#{isSync},#{mealsID},#{memo},#{recommendBookingTime},#{relationTable},#{segmentID},#{shareCode},#{shareNumber},#{sortNo},#{splitCode},#{splitNumber},#{startTime},#{tableCode},#{tableID},#{tableName},#{tableStatus})}
+
+
+        ]]>
+	</update>
+
+    <!--
+   根据桌台编号，餐次，区域，档案，传入时间    获取   桌台状态：在用
+   @author lwh
+    -->
+    <select id="GetB_MealTableMappingEntityByTableIDAndGtDate" parameterType="B_MealTableMappingEntity"
+            resultType="B_MealTableMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+
+
+			{call GetB_MealTableMappingEntityByTableIDAndGtDate(#{tableID},#{mealsID},#{areaID},#{archiveID},#{endTime})}
+
+
+        ]]>
+	</select>
+
+    <!--
+         根据 状态和桌台 餐段 查询数据
+    @author zhouwei
+ -->
+    <select id="getMealTableMappingByTableIDAndStatus" parameterType="hashmap" resultType="B_MealTableMappingEntity"
+            statementType="CALLABLE">
+		<![CDATA[
+
+
+			{call Client_Get_ReceptionB_MealTableMappingByTableIDAndStatus(#{tableID})}
+
+
+        ]]>
+	</select>
+
+
+    <!--
+     根据 状态 609 和桌台 餐段 查询数据
+@author zhouwei
+-->
+    <update id="updateMealTableMappingByTableIDAndTableStatus" parameterType="hashmap"
+            statementType="CALLABLE">
+		<![CDATA[
+
+			{call Client_Update_ReceptionB_MealTableMappingByTableIDAndTableStatus(#{tableIDs})}
+
+
+        ]]>
+	</update>
+
+    <!-- 根据mealsID餐次ID 和 时间取下一个最近的餐次 Lish -->
+    <select id="getMealTableInfoByMealsIDAndCurrentDate" resultType="B_MealTableMappingEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from B_MealTableMapping
+        where MealsID=#{mealsID} and tableID=#{tableID}
+        and DATE_FORMAT(recommendBookingTime,'%H:%i') &gt;= DATE_FORMAT(#{date},'%H:%i')
+        order by startTime
+        limit 0,1
+    </select>
+
+    <!--根据时间段查询出在该时间段的餐次数据 Lish -->
+    <select id="getMealTableInfoByMealsIDAndStartDateAndEndDate" resultType="B_MealTableMappingEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from B_MealTableMapping
+        where MealsID=#{mealsID} and tableID=#{tableID}
+        and DATE_FORMAT(recommendBookingTime,'%H:%i') &gt;= DATE_FORMAT(#{startDate},'%H:%i')
+        and DATE_FORMAT(startTime,'%H:%i') &lt; DATE_FORMAT(#{endDate},'%H:%i')
+        and tableStatus != 780
+    </select>
+
+    <select id="getListByParam" resultType="B_MealTableMappingEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from B_MealTableMapping
+        <where>
+            <if test="tableID != null">
+                AND tableID = #{tableID}
+            </if>
+            <if test="mealsID != null">
+                AND mealsID = #{mealsID}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByParam" resultType="B_MealTableMappingEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from B_MealTableMapping
+        <where>
+            <if test="tableID != null">
+                AND tableID = #{tableID}
+            </if>
+            <if test="mealsID != null">
+                AND mealsID = #{mealsID}
+            </if>
+            <if test="tableName != null">
+                AND tableName = #{tableName}
+            </if>
+            <if test="tableStatus != null">
+                AND tableStatus = #{tableStatus}
+            </if>
+        </where>
+        limit 1
+    </select>
+
+    <select id="getMealTableMappingByCollention" parameterType="Map" resultType="B_MealTableMappingEntity"
+            statementType="CALLABLE">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        B_MealTableMapping mealTableMapping
+        WHERE
+        mealTableMapping.ArchiveID = #{archiveID}
+        and mealTableMapping.TableID = #{tableID}
+        <if test="mealsID != null">
+            and mealTableMapping.MealsID = #{mealsID}
+        </if>
+        <if test="areaID != null">
+            and mealTableMapping.AreaID = #{areaID}
+        </if>
+        AND mealTableMapping.TableStatus!=780
+        <![CDATA[
+		and DATE_FORMAT(mealTableMapping.StartTime,'%H:%i:%s') >= DATE_FORMAT(#{startTime},'%H:%i:%s')
+		AND DATE_FORMAT(mealTableMapping.StartTime,'%H:%i:%s') < DATE_FORMAT(#{endTime},'%H:%i:%s')
+		]]>
+        order by mealTableMapping.StartTime ASC
+    </select>
+
+
+    <!--根据桌台ID,开始时间,附加时长查询桌台餐次关联信息 Lzy -->
+    <select id="getBetweenMealsTableMapping" resultType="B_MealTableMappingEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetBetweenMeals(#{tableID},#{startTime},#{minute})}
+        ]]>
+    </select>
+
+    <!-- 根据桌台ID查询餐次桌台信息 hcy -->
+    <select id="queryMealTableMappingByTableID" parameterType="Long" resultType="B_MealTableMappingEntity">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+          B_MealTableMapping
+        WHERE
+          TableID = #{tableID}
+    </select>
+</mapper>

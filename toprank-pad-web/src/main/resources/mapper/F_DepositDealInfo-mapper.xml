@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.F_DepositDealInfoDao">
+  	<select id="getAll" parameterType="F_DepositDealInfoEntity" resultType="F_DepositDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_DepositDealInfoCollection()}
+		]]>
+	</select>
+  	<select id="get" parameterType="F_DepositDealInfoEntity" resultType="F_DepositDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetF_DepositDealInfoEntity(#{dealID})}
+		]]>
+	</select>
+  	<delete id="delete" parameterType="F_DepositDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteF_DepositDealInfoEntity(#{dealID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DealID" parameterType="F_DepositDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertF_DepositDealInfoEntity(#{afterStatus},#{beforeStatus},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{dealID,jdbcType=INTEGER,mode=OUT},#{depositID},#{isRelationPlatform},#{isSync},#{memo},#{platformID},#{platformStatus},#{platformTypeID},#{requestData},#{responseData},#{sortNo},'amdin')}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="F_DepositDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateF_DepositDealInfoEntity(#{afterStatus},#{beforeStatus},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{dealID},#{depositID},#{isRelationPlatform},#{isSync},#{memo},#{platformID},#{platformStatus},#{platformTypeID},#{requestData},#{responseData},#{sortNo})}
+		]]>
+  	</update>
+  	<!--<select id="list" parameterType="F_DepositDealInfo" resultType="F_DepositDealInfo" statementType="CALLABLE">
+  		<![CDATA[
+			{call GetF_DepositDealInfo_query_by_condition(#{afterStatus},#{beforeStatus},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{depositID},#{isRelationPlatform},#{isSync},#{memo},#{platformID},#{platformStatus},#{platformTypeID},#{requestData},#{responseData},#{sortNo})}
+		]]>
+  	</select>
+  	-->
+</mapper>

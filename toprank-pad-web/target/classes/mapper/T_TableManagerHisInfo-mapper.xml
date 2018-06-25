@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.T_TableManagerHisInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.T_TableManagerHisInfoEntity">
+    <id column="HisID" jdbcType="BIGINT" property="hisID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="LoginID" jdbcType="BIGINT" property="loginID" />
+    <result column="NickName" jdbcType="VARCHAR" property="nickName" />
+    <result column="UserName" jdbcType="VARCHAR" property="userName" />
+    <result column="MealsID" jdbcType="BIGINT" property="mealsID" />
+    <result column="MealName" jdbcType="VARCHAR" property="mealName" />
+    <result column="AreaID" jdbcType="BIGINT" property="areaID" />
+    <result column="AreaName" jdbcType="VARCHAR" property="areaName" />
+    <result column="TableID" jdbcType="BIGINT" property="tableID" />
+    <result column="TableCode" jdbcType="VARCHAR" property="tableCode" />
+    <result column="TableName" jdbcType="VARCHAR" property="tableName" />
+    <result column="DutyDate" jdbcType="TIMESTAMP" property="dutyDate" />
+    <result column="DutyDuration" jdbcType="INTEGER" property="dutyDuration" />
+    <result column="ManageType" jdbcType="BIGINT" property="manageType" />
+    <result column="ManagTypeName" jdbcType="VARCHAR" property="managTypeName" />
+    <result column="ServiceAnswerType" jdbcType="BIGINT" property="serviceAnswerType" />
+    <result column="ServiceAnswerTypeName" jdbcType="VARCHAR" property="serviceAnswerTypeName" />
+    <result column="ServiceNum" jdbcType="INTEGER" property="serviceNum" />
+    <result column="ManageDesc" jdbcType="VARCHAR" property="manageDesc" />
+    <result column="ComplaintNum" jdbcType="INTEGER" property="complaintNum" />
+    <result column="Severity" jdbcType="BIGINT" property="severity" />
+    <result column="Score" jdbcType="INTEGER" property="score" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Evaluator" jdbcType="BIGINT" property="evaluator" />
+    <result column="EvaluateTime" jdbcType="TIMESTAMP" property="evaluateTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+    <result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HisID, ArchiveID, LoginID, NickName, UserName, MealsID, MealName, AreaID, AreaName, 
+    TableID, TableCode, TableName, DutyDate, DutyDuration, ManageType, ManagTypeName, 
+    ServiceAnswerType, ServiceAnswerTypeName, ServiceNum, ManageDesc, ComplaintNum, Severity, 
+    Score, CreatorID, CreateTime, Evaluator, EvaluateTime, Memo, SyncTime, SyncTimeResult
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_TableManagerHisInfo
+    where HisID = #{hisID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_TableManagerHisInfo
+    where HisID = #{hisID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.T_TableManagerHisInfoEntity">
+    insert into T_TableManagerHisInfo (HisID, ArchiveID, LoginID, 
+      NickName, UserName, MealsID, 
+      MealName, AreaID, AreaName, 
+      TableID, TableCode, TableName, 
+      DutyDate, DutyDuration, ManageType, 
+      ManagTypeName, ServiceAnswerType, ServiceAnswerTypeName, 
+      ServiceNum, ManageDesc, ComplaintNum, 
+      Severity, Score, CreatorID, 
+      CreateTime, Evaluator, EvaluateTime, 
+      Memo, SyncTime, SyncTimeResult
+      )
+    values (#{hisID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT}, 
+      #{nickName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{mealsID,jdbcType=BIGINT}, 
+      #{mealName,jdbcType=VARCHAR}, #{areaID,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
+      #{tableID,jdbcType=BIGINT}, #{tableCode,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
+      #{dutyDate,jdbcType=TIMESTAMP}, #{dutyDuration,jdbcType=INTEGER}, #{manageType,jdbcType=BIGINT}, 
+      #{managTypeName,jdbcType=VARCHAR}, #{serviceAnswerType,jdbcType=BIGINT}, #{serviceAnswerTypeName,jdbcType=VARCHAR}, 
+      #{serviceNum,jdbcType=INTEGER}, #{manageDesc,jdbcType=VARCHAR}, #{complaintNum,jdbcType=INTEGER}, 
+      #{severity,jdbcType=BIGINT}, #{score,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{evaluator,jdbcType=BIGINT}, #{evaluateTime,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, #{syncTimeResult,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.T_TableManagerHisInfoEntity">
+    insert into T_TableManagerHisInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hisID != null">
+        HisID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="loginID != null">
+        LoginID,
+      </if>
+      <if test="nickName != null">
+        NickName,
+      </if>
+      <if test="userName != null">
+        UserName,
+      </if>
+      <if test="mealsID != null">
+        MealsID,
+      </if>
+      <if test="mealName != null">
+        MealName,
+      </if>
+      <if test="areaID != null">
+        AreaID,
+      </if>
+      <if test="areaName != null">
+        AreaName,
+      </if>
+      <if test="tableID != null">
+        TableID,
+      </if>
+      <if test="tableCode != null">
+        TableCode,
+      </if>
+      <if test="tableName != null">
+        TableName,
+      </if>
+      <if test="dutyDate != null">
+        DutyDate,
+      </if>
+      <if test="dutyDuration != null">
+        DutyDuration,
+      </if>
+      <if test="manageType != null">
+        ManageType,
+      </if>
+      <if test="managTypeName != null">
+        ManagTypeName,
+      </if>
+      <if test="serviceAnswerType != null">
+        ServiceAnswerType,
+      </if>
+      <if test="serviceAnswerTypeName != null">
+        ServiceAnswerTypeName,
+      </if>
+      <if test="serviceNum != null">
+        ServiceNum,
+      </if>
+      <if test="manageDesc != null">
+        ManageDesc,
+      </if>
+      <if test="complaintNum != null">
+        ComplaintNum,
+      </if>
+      <if test="severity != null">
+        Severity,
+      </if>
+      <if test="score != null">
+        Score,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="evaluator != null">
+        Evaluator,
+      </if>
+      <if test="evaluateTime != null">
+        EvaluateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="syncTime != null">
+        SyncTime,
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hisID != null">
+        #{hisID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="loginID != null">
+        #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mealsID != null">
+        #{mealsID,jdbcType=BIGINT},
+      </if>
+      <if test="mealName != null">
+        #{mealName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaID != null">
+        #{areaID,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableID != null">
+        #{tableID,jdbcType=BIGINT},
+      </if>
+      <if test="tableCode != null">
+        #{tableCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyDate != null">
+        #{dutyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutyDuration != null">
+        #{dutyDuration,jdbcType=INTEGER},
+      </if>
+      <if test="manageType != null">
+        #{manageType,jdbcType=BIGINT},
+      </if>
+      <if test="managTypeName != null">
+        #{managTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAnswerType != null">
+        #{serviceAnswerType,jdbcType=BIGINT},
+      </if>
+      <if test="serviceAnswerTypeName != null">
+        #{serviceAnswerTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceNum != null">
+        #{serviceNum,jdbcType=INTEGER},
+      </if>
+      <if test="manageDesc != null">
+        #{manageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="complaintNum != null">
+        #{complaintNum,jdbcType=INTEGER},
+      </if>
+      <if test="severity != null">
+        #{severity,jdbcType=BIGINT},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluator != null">
+        #{evaluator,jdbcType=BIGINT},
+      </if>
+      <if test="evaluateTime != null">
+        #{evaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.T_TableManagerHisInfoEntity">
+    update T_TableManagerHisInfo
+    <set>
+      <if test="archiveID != null">
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="loginID != null">
+        LoginID = #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null">
+        NickName = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        UserName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mealsID != null">
+        MealsID = #{mealsID,jdbcType=BIGINT},
+      </if>
+      <if test="mealName != null">
+        MealName = #{mealName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaID != null">
+        AreaID = #{areaID,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null">
+        AreaName = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableID != null">
+        TableID = #{tableID,jdbcType=BIGINT},
+      </if>
+      <if test="tableCode != null">
+        TableCode = #{tableCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        TableName = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyDate != null">
+        DutyDate = #{dutyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutyDuration != null">
+        DutyDuration = #{dutyDuration,jdbcType=INTEGER},
+      </if>
+      <if test="manageType != null">
+        ManageType = #{manageType,jdbcType=BIGINT},
+      </if>
+      <if test="managTypeName != null">
+        ManagTypeName = #{managTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAnswerType != null">
+        ServiceAnswerType = #{serviceAnswerType,jdbcType=BIGINT},
+      </if>
+      <if test="serviceAnswerTypeName != null">
+        ServiceAnswerTypeName = #{serviceAnswerTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceNum != null">
+        ServiceNum = #{serviceNum,jdbcType=INTEGER},
+      </if>
+      <if test="manageDesc != null">
+        ManageDesc = #{manageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="complaintNum != null">
+        ComplaintNum = #{complaintNum,jdbcType=INTEGER},
+      </if>
+      <if test="severity != null">
+        Severity = #{severity,jdbcType=BIGINT},
+      </if>
+      <if test="score != null">
+        Score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluator != null">
+        Evaluator = #{evaluator,jdbcType=BIGINT},
+      </if>
+      <if test="evaluateTime != null">
+        EvaluateTime = #{evaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where HisID = #{hisID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.T_TableManagerHisInfoEntity">
+    update T_TableManagerHisInfo
+    set ArchiveID = #{archiveID,jdbcType=BIGINT},
+      LoginID = #{loginID,jdbcType=BIGINT},
+      NickName = #{nickName,jdbcType=VARCHAR},
+      UserName = #{userName,jdbcType=VARCHAR},
+      MealsID = #{mealsID,jdbcType=BIGINT},
+      MealName = #{mealName,jdbcType=VARCHAR},
+      AreaID = #{areaID,jdbcType=BIGINT},
+      AreaName = #{areaName,jdbcType=VARCHAR},
+      TableID = #{tableID,jdbcType=BIGINT},
+      TableCode = #{tableCode,jdbcType=VARCHAR},
+      TableName = #{tableName,jdbcType=VARCHAR},
+      DutyDate = #{dutyDate,jdbcType=TIMESTAMP},
+      DutyDuration = #{dutyDuration,jdbcType=INTEGER},
+      ManageType = #{manageType,jdbcType=BIGINT},
+      ManagTypeName = #{managTypeName,jdbcType=VARCHAR},
+      ServiceAnswerType = #{serviceAnswerType,jdbcType=BIGINT},
+      ServiceAnswerTypeName = #{serviceAnswerTypeName,jdbcType=VARCHAR},
+      ServiceNum = #{serviceNum,jdbcType=INTEGER},
+      ManageDesc = #{manageDesc,jdbcType=VARCHAR},
+      ComplaintNum = #{complaintNum,jdbcType=INTEGER},
+      Severity = #{severity,jdbcType=BIGINT},
+      Score = #{score,jdbcType=INTEGER},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Evaluator = #{evaluator,jdbcType=BIGINT},
+      EvaluateTime = #{evaluateTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+    where HisID = #{hisID,jdbcType=BIGINT}
+  </update>
+</mapper>

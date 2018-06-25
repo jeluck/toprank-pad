@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.P_ProductTagMappingDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_ProductTagMappingEntity">
+    <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="TagID" jdbcType="BIGINT" property="tagID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="TargetType" jdbcType="BIGINT" property="targetType" />
+    <result column="TargetID" jdbcType="BIGINT" property="targetID" />
+    <result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+    <result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MappingID, TagID, ArchiveID, TargetType, TargetID, MappingStatus, MappingDesc, SortNo, 
+    CreatorID, CreateTime, Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_ProductTagMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from P_ProductTagMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.P_ProductTagMappingEntity">
+    insert into P_ProductTagMapping (MappingID, TagID, ArchiveID, 
+      TargetType, TargetID, MappingStatus, 
+      MappingDesc, SortNo, CreatorID, 
+      CreateTime, Memo)
+    values (#{mappingID,jdbcType=BIGINT}, #{tagID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, 
+      #{targetType,jdbcType=BIGINT}, #{targetID,jdbcType=BIGINT}, #{mappingStatus,jdbcType=BIGINT}, 
+      #{mappingDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_ProductTagMappingEntity">
+    insert into P_ProductTagMapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="tagID != null">
+        TagID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="targetType != null">
+        TargetType,
+      </if>
+      <if test="targetID != null">
+        TargetID,
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus,
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="tagID != null">
+        #{tagID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="targetType != null">
+        #{targetType,jdbcType=BIGINT},
+      </if>
+      <if test="targetID != null">
+        #{targetID,jdbcType=BIGINT},
+      </if>
+      <if test="mappingStatus != null">
+        #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_ProductTagMappingEntity">
+    update P_ProductTagMapping
+    <set>
+      <if test="tagID != null">
+        TagID = #{tagID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="targetType != null">
+        TargetType = #{targetType,jdbcType=BIGINT},
+      </if>
+      <if test="targetID != null">
+        TargetID = #{targetID,jdbcType=BIGINT},
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_ProductTagMappingEntity">
+    update P_ProductTagMapping
+    set TagID = #{tagID,jdbcType=BIGINT},
+      ArchiveID = #{archiveID,jdbcType=BIGINT},
+      TargetType = #{targetType,jdbcType=BIGINT},
+      TargetID = #{targetID,jdbcType=BIGINT},
+      MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+
+  <select id="getEntityByParams" parameterType="map" resultType="cc.toprank.byd.entity.P_ProductTagMappingEntity">
+    select
+    <include refid="Base_Column_List" />
+    from P_ProductTagMapping
+    where targetID = #{targetID} and archiveID = #{archiveID} and tagID = #{tagID}
+    and (targetType = #{targetType} or targetType is null)
+  </select>
+</mapper>

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.B_MerchantInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MerchantInfoEntity">
+		<id column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="OrgID" jdbcType="BIGINT" property="orgID" />
+		<result column="MerchantType" jdbcType="BIGINT" property="merchantType" />
+		<result column="ArchiveCode" jdbcType="VARCHAR" property="archiveCode" />
+		<result column="MerchantName" jdbcType="VARCHAR" property="merchantName" />
+		<result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter" />
+		<result column="MarchantStatus" jdbcType="BIGINT" property="marchantStatus" />
+		<result column="MerchantLevel" jdbcType="BIGINT" property="merchantLevel" />
+		<result column="IntelligentStar" jdbcType="INTEGER" property="intelligentStar" />
+		<result column="StarLevel" jdbcType="INTEGER" property="starLevel" />
+		<result column="HelpfulYesTotal" jdbcType="INTEGER" property="helpfulYesTotal" />
+		<result column="HelpfulNoTotal" jdbcType="INTEGER" property="helpfulNoTotal" />
+		<result column="EffectiveTime" jdbcType="TIMESTAMP" property="effectiveTime" />
+		<result column="ExpireTime" jdbcType="TIMESTAMP" property="expireTime" />
+		<result column="RenewalNumber" jdbcType="INTEGER" property="renewalNumber" />
+		<result column="Developer" jdbcType="BIGINT" property="developer" />
+		<result column="DevelopTime" jdbcType="TIMESTAMP" property="developTime" />
+		<result column="DeveloperMobile" jdbcType="VARCHAR" property="developerMobile" />
+		<result column="MarchantManager" jdbcType="VARCHAR" property="marchantManager" />
+		<result column="ManagerMobile" jdbcType="VARCHAR" property="managerMobile" />
+		<result column="ManagerPhone" jdbcType="VARCHAR" property="managerPhone" />
+		<result column="ManagerEmail" jdbcType="VARCHAR" property="managerEmail" />
+		<result column="BranchArea" jdbcType="VARCHAR" property="branchArea" />
+		<result column="DailyRidership" jdbcType="VARCHAR" property="dailyRidership" />
+		<result column="DailyTurnover" jdbcType="DECIMAL" property="dailyTurnover" />
+		<result column="PerCapita" jdbcType="DECIMAL" property="perCapita" />
+		<result column="BusinessCategory" jdbcType="VARCHAR" property="businessCategory" />
+		<result column="AroundDesc" jdbcType="VARCHAR" property="aroundDesc" />
+		<result column="NetworkType" jdbcType="BIGINT" property="networkType" />
+		<result column="HasDeposit" jdbcType="BIT" property="hasDeposit" />
+		<result column="DepositAmount" jdbcType="DECIMAL" property="depositAmount" />
+		<result column="PaymentMethod" jdbcType="BIGINT" property="paymentMethod" />
+		<result column="RegistrationCode" jdbcType="VARCHAR" property="registrationCode" />
+		<result column="BusinessLicense" jdbcType="VARCHAR" property="businessLicense" />
+		<result column="LegalPerson" jdbcType="VARCHAR" property="legalPerson" />
+		<result column="CredentialType" jdbcType="BIGINT" property="credentialType" />
+		<result column="CredentialCode" jdbcType="VARCHAR" property="credentialCode" />
+		<result column="AttachmentNumber" jdbcType="INTEGER" property="attachmentNumber" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ArchiveID, OrgID, MerchantType, ArchiveCode, MerchantName, FirstLetter, MarchantStatus,
+		MerchantLevel, IntelligentStar, StarLevel, HelpfulYesTotal, HelpfulNoTotal, EffectiveTime,
+		ExpireTime, RenewalNumber, Developer, DevelopTime, DeveloperMobile, MarchantManager,
+		ManagerMobile, ManagerPhone, ManagerEmail, BranchArea, DailyRidership, DailyTurnover,
+		PerCapita, BusinessCategory, AroundDesc, NetworkType, HasDeposit, DepositAmount,
+		PaymentMethod, RegistrationCode, BusinessLicense, LegalPerson, CredentialType, CredentialCode,
+		AttachmentNumber, CreatorID, CreateTime, Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from B_MerchantInfo
+		where ArchiveID = #{archiveID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_MerchantInfo
+		where ArchiveID = #{archiveID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.B_MerchantInfoEntity">
+		insert into B_MerchantInfo (ArchiveID, OrgID, MerchantType,
+		ArchiveCode, MerchantName, FirstLetter,
+		MarchantStatus, MerchantLevel, IntelligentStar,
+		StarLevel, HelpfulYesTotal, HelpfulNoTotal,
+		EffectiveTime, ExpireTime, RenewalNumber,
+		Developer, DevelopTime, DeveloperMobile,
+		MarchantManager, ManagerMobile, ManagerPhone,
+		ManagerEmail, BranchArea, DailyRidership,
+		DailyTurnover, PerCapita, BusinessCategory,
+		AroundDesc, NetworkType, HasDeposit,
+		DepositAmount, PaymentMethod, RegistrationCode,
+		BusinessLicense, LegalPerson, CredentialType,
+		CredentialCode, AttachmentNumber, CreatorID,
+		CreateTime, Memo, IsSync
+		)
+		values (#{archiveID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT}, #{merchantType,jdbcType=BIGINT},
+		#{archiveCode,jdbcType=VARCHAR}, #{merchantName,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR},
+		#{marchantStatus,jdbcType=BIGINT}, #{merchantLevel,jdbcType=BIGINT}, #{intelligentStar,jdbcType=INTEGER},
+		#{starLevel,jdbcType=INTEGER}, #{helpfulYesTotal,jdbcType=INTEGER}, #{helpfulNoTotal,jdbcType=INTEGER},
+		#{effectiveTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP}, #{renewalNumber,jdbcType=INTEGER},
+		#{developer,jdbcType=BIGINT}, #{developTime,jdbcType=TIMESTAMP}, #{developerMobile,jdbcType=VARCHAR},
+		#{marchantManager,jdbcType=VARCHAR}, #{managerMobile,jdbcType=VARCHAR}, #{managerPhone,jdbcType=VARCHAR},
+		#{managerEmail,jdbcType=VARCHAR}, #{branchArea,jdbcType=VARCHAR}, #{dailyRidership,jdbcType=VARCHAR},
+		#{dailyTurnover,jdbcType=DECIMAL}, #{perCapita,jdbcType=DECIMAL}, #{businessCategory,jdbcType=VARCHAR},
+		#{aroundDesc,jdbcType=VARCHAR}, #{networkType,jdbcType=BIGINT}, #{hasDeposit,jdbcType=BIT},
+		#{depositAmount,jdbcType=DECIMAL}, #{paymentMethod,jdbcType=BIGINT}, #{registrationCode,jdbcType=VARCHAR},
+		#{businessLicense,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, #{credentialType,jdbcType=BIGINT},
+		#{credentialCode,jdbcType=VARCHAR}, #{attachmentNumber,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MerchantInfoEntity">
+		insert into B_MerchantInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="orgID != null">
+				OrgID,
+			</if>
+			<if test="merchantType != null">
+				MerchantType,
+			</if>
+			<if test="archiveCode != null">
+				ArchiveCode,
+			</if>
+			<if test="merchantName != null">
+				MerchantName,
+			</if>
+			<if test="firstLetter != null">
+				FirstLetter,
+			</if>
+			<if test="marchantStatus != null">
+				MarchantStatus,
+			</if>
+			<if test="merchantLevel != null">
+				MerchantLevel,
+			</if>
+			<if test="intelligentStar != null">
+				IntelligentStar,
+			</if>
+			<if test="starLevel != null">
+				StarLevel,
+			</if>
+			<if test="helpfulYesTotal != null">
+				HelpfulYesTotal,
+			</if>
+			<if test="helpfulNoTotal != null">
+				HelpfulNoTotal,
+			</if>
+			<if test="effectiveTime != null">
+				EffectiveTime,
+			</if>
+			<if test="expireTime != null">
+				ExpireTime,
+			</if>
+			<if test="renewalNumber != null">
+				RenewalNumber,
+			</if>
+			<if test="developer != null">
+				Developer,
+			</if>
+			<if test="developTime != null">
+				DevelopTime,
+			</if>
+			<if test="developerMobile != null">
+				DeveloperMobile,
+			</if>
+			<if test="marchantManager != null">
+				MarchantManager,
+			</if>
+			<if test="managerMobile != null">
+				ManagerMobile,
+			</if>
+			<if test="managerPhone != null">
+				ManagerPhone,
+			</if>
+			<if test="managerEmail != null">
+				ManagerEmail,
+			</if>
+			<if test="branchArea != null">
+				BranchArea,
+			</if>
+			<if test="dailyRidership != null">
+				DailyRidership,
+			</if>
+			<if test="dailyTurnover != null">
+				DailyTurnover,
+			</if>
+			<if test="perCapita != null">
+				PerCapita,
+			</if>
+			<if test="businessCategory != null">
+				BusinessCategory,
+			</if>
+			<if test="aroundDesc != null">
+				AroundDesc,
+			</if>
+			<if test="networkType != null">
+				NetworkType,
+			</if>
+			<if test="hasDeposit != null">
+				HasDeposit,
+			</if>
+			<if test="depositAmount != null">
+				DepositAmount,
+			</if>
+			<if test="paymentMethod != null">
+				PaymentMethod,
+			</if>
+			<if test="registrationCode != null">
+				RegistrationCode,
+			</if>
+			<if test="businessLicense != null">
+				BusinessLicense,
+			</if>
+			<if test="legalPerson != null">
+				LegalPerson,
+			</if>
+			<if test="credentialType != null">
+				CredentialType,
+			</if>
+			<if test="credentialCode != null">
+				CredentialCode,
+			</if>
+			<if test="attachmentNumber != null">
+				AttachmentNumber,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				#{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="merchantType != null">
+				#{merchantType,jdbcType=BIGINT},
+			</if>
+			<if test="archiveCode != null">
+				#{archiveCode,jdbcType=VARCHAR},
+			</if>
+			<if test="merchantName != null">
+				#{merchantName,jdbcType=VARCHAR},
+			</if>
+			<if test="firstLetter != null">
+				#{firstLetter,jdbcType=VARCHAR},
+			</if>
+			<if test="marchantStatus != null">
+				#{marchantStatus,jdbcType=BIGINT},
+			</if>
+			<if test="merchantLevel != null">
+				#{merchantLevel,jdbcType=BIGINT},
+			</if>
+			<if test="intelligentStar != null">
+				#{intelligentStar,jdbcType=INTEGER},
+			</if>
+			<if test="starLevel != null">
+				#{starLevel,jdbcType=INTEGER},
+			</if>
+			<if test="helpfulYesTotal != null">
+				#{helpfulYesTotal,jdbcType=INTEGER},
+			</if>
+			<if test="helpfulNoTotal != null">
+				#{helpfulNoTotal,jdbcType=INTEGER},
+			</if>
+			<if test="effectiveTime != null">
+				#{effectiveTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireTime != null">
+				#{expireTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="renewalNumber != null">
+				#{renewalNumber,jdbcType=INTEGER},
+			</if>
+			<if test="developer != null">
+				#{developer,jdbcType=BIGINT},
+			</if>
+			<if test="developTime != null">
+				#{developTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="developerMobile != null">
+				#{developerMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="marchantManager != null">
+				#{marchantManager,jdbcType=VARCHAR},
+			</if>
+			<if test="managerMobile != null">
+				#{managerMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="managerPhone != null">
+				#{managerPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="managerEmail != null">
+				#{managerEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="branchArea != null">
+				#{branchArea,jdbcType=VARCHAR},
+			</if>
+			<if test="dailyRidership != null">
+				#{dailyRidership,jdbcType=VARCHAR},
+			</if>
+			<if test="dailyTurnover != null">
+				#{dailyTurnover,jdbcType=DECIMAL},
+			</if>
+			<if test="perCapita != null">
+				#{perCapita,jdbcType=DECIMAL},
+			</if>
+			<if test="businessCategory != null">
+				#{businessCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="aroundDesc != null">
+				#{aroundDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="networkType != null">
+				#{networkType,jdbcType=BIGINT},
+			</if>
+			<if test="hasDeposit != null">
+				#{hasDeposit,jdbcType=BIT},
+			</if>
+			<if test="depositAmount != null">
+				#{depositAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="paymentMethod != null">
+				#{paymentMethod,jdbcType=BIGINT},
+			</if>
+			<if test="registrationCode != null">
+				#{registrationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="businessLicense != null">
+				#{businessLicense,jdbcType=VARCHAR},
+			</if>
+			<if test="legalPerson != null">
+				#{legalPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="credentialType != null">
+				#{credentialType,jdbcType=BIGINT},
+			</if>
+			<if test="credentialCode != null">
+				#{credentialCode,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentNumber != null">
+				#{attachmentNumber,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MerchantInfoEntity">
+		update B_MerchantInfo
+		<set>
+			<if test="orgID != null">
+				OrgID = #{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="merchantType != null">
+				MerchantType = #{merchantType,jdbcType=BIGINT},
+			</if>
+			<if test="archiveCode != null">
+				ArchiveCode = #{archiveCode,jdbcType=VARCHAR},
+			</if>
+			<if test="merchantName != null">
+				MerchantName = #{merchantName,jdbcType=VARCHAR},
+			</if>
+			<if test="firstLetter != null">
+				FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+			</if>
+			<if test="marchantStatus != null">
+				MarchantStatus = #{marchantStatus,jdbcType=BIGINT},
+			</if>
+			<if test="merchantLevel != null">
+				MerchantLevel = #{merchantLevel,jdbcType=BIGINT},
+			</if>
+			<if test="intelligentStar != null">
+				IntelligentStar = #{intelligentStar,jdbcType=INTEGER},
+			</if>
+			<if test="starLevel != null">
+				StarLevel = #{starLevel,jdbcType=INTEGER},
+			</if>
+			<if test="helpfulYesTotal != null">
+				HelpfulYesTotal = #{helpfulYesTotal,jdbcType=INTEGER},
+			</if>
+			<if test="helpfulNoTotal != null">
+				HelpfulNoTotal = #{helpfulNoTotal,jdbcType=INTEGER},
+			</if>
+			<if test="effectiveTime != null">
+				EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireTime != null">
+				ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="renewalNumber != null">
+				RenewalNumber = #{renewalNumber,jdbcType=INTEGER},
+			</if>
+			<if test="developer != null">
+				Developer = #{developer,jdbcType=BIGINT},
+			</if>
+			<if test="developTime != null">
+				DevelopTime = #{developTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="developerMobile != null">
+				DeveloperMobile = #{developerMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="marchantManager != null">
+				MarchantManager = #{marchantManager,jdbcType=VARCHAR},
+			</if>
+			<if test="managerMobile != null">
+				ManagerMobile = #{managerMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="managerPhone != null">
+				ManagerPhone = #{managerPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="managerEmail != null">
+				ManagerEmail = #{managerEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="branchArea != null">
+				BranchArea = #{branchArea,jdbcType=VARCHAR},
+			</if>
+			<if test="dailyRidership != null">
+				DailyRidership = #{dailyRidership,jdbcType=VARCHAR},
+			</if>
+			<if test="dailyTurnover != null">
+				DailyTurnover = #{dailyTurnover,jdbcType=DECIMAL},
+			</if>
+			<if test="perCapita != null">
+				PerCapita = #{perCapita,jdbcType=DECIMAL},
+			</if>
+			<if test="businessCategory != null">
+				BusinessCategory = #{businessCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="aroundDesc != null">
+				AroundDesc = #{aroundDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="networkType != null">
+				NetworkType = #{networkType,jdbcType=BIGINT},
+			</if>
+			<if test="hasDeposit != null">
+				HasDeposit = #{hasDeposit,jdbcType=BIT},
+			</if>
+			<if test="depositAmount != null">
+				DepositAmount = #{depositAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="paymentMethod != null">
+				PaymentMethod = #{paymentMethod,jdbcType=BIGINT},
+			</if>
+			<if test="registrationCode != null">
+				RegistrationCode = #{registrationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="businessLicense != null">
+				BusinessLicense = #{businessLicense,jdbcType=VARCHAR},
+			</if>
+			<if test="legalPerson != null">
+				LegalPerson = #{legalPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="credentialType != null">
+				CredentialType = #{credentialType,jdbcType=BIGINT},
+			</if>
+			<if test="credentialCode != null">
+				CredentialCode = #{credentialCode,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentNumber != null">
+				AttachmentNumber = #{attachmentNumber,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where ArchiveID = #{archiveID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MerchantInfoEntity">
+		update B_MerchantInfo
+		set OrgID = #{orgID,jdbcType=BIGINT},
+		MerchantType = #{merchantType,jdbcType=BIGINT},
+		ArchiveCode = #{archiveCode,jdbcType=VARCHAR},
+		MerchantName = #{merchantName,jdbcType=VARCHAR},
+		FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+		MarchantStatus = #{marchantStatus,jdbcType=BIGINT},
+		MerchantLevel = #{merchantLevel,jdbcType=BIGINT},
+		IntelligentStar = #{intelligentStar,jdbcType=INTEGER},
+		StarLevel = #{starLevel,jdbcType=INTEGER},
+		HelpfulYesTotal = #{helpfulYesTotal,jdbcType=INTEGER},
+		HelpfulNoTotal = #{helpfulNoTotal,jdbcType=INTEGER},
+		EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+		ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+		RenewalNumber = #{renewalNumber,jdbcType=INTEGER},
+		Developer = #{developer,jdbcType=BIGINT},
+		DevelopTime = #{developTime,jdbcType=TIMESTAMP},
+		DeveloperMobile = #{developerMobile,jdbcType=VARCHAR},
+		MarchantManager = #{marchantManager,jdbcType=VARCHAR},
+		ManagerMobile = #{managerMobile,jdbcType=VARCHAR},
+		ManagerPhone = #{managerPhone,jdbcType=VARCHAR},
+		ManagerEmail = #{managerEmail,jdbcType=VARCHAR},
+		BranchArea = #{branchArea,jdbcType=VARCHAR},
+		DailyRidership = #{dailyRidership,jdbcType=VARCHAR},
+		DailyTurnover = #{dailyTurnover,jdbcType=DECIMAL},
+		PerCapita = #{perCapita,jdbcType=DECIMAL},
+		BusinessCategory = #{businessCategory,jdbcType=VARCHAR},
+		AroundDesc = #{aroundDesc,jdbcType=VARCHAR},
+		NetworkType = #{networkType,jdbcType=BIGINT},
+		HasDeposit = #{hasDeposit,jdbcType=BIT},
+		DepositAmount = #{depositAmount,jdbcType=DECIMAL},
+		PaymentMethod = #{paymentMethod,jdbcType=BIGINT},
+		RegistrationCode = #{registrationCode,jdbcType=VARCHAR},
+		BusinessLicense = #{businessLicense,jdbcType=VARCHAR},
+		LegalPerson = #{legalPerson,jdbcType=VARCHAR},
+		CredentialType = #{credentialType,jdbcType=BIGINT},
+		CredentialCode = #{credentialCode,jdbcType=VARCHAR},
+		AttachmentNumber = #{attachmentNumber,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where ArchiveID = #{archiveID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="B_MerchantInfoEntity" resultType="B_MerchantInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_MerchantInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="B_MerchantInfoEntity" resultType="B_MerchantInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_MerchantInfoEntity(#{archiveID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="B_MerchantInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteB_MerchantInfoEntity(#{archiveID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="ArchiveID" parameterType="B_MerchantInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertB_MerchantInfoEntity(#{archiveCode},#{archiveID,jdbcType=INTEGER,mode=OUT},#{aroundDesc},#{attachmentNumber},#{branchArea},#{businessCategory},#{businessLicense},#{createTime},#{creatorID},#{credentialCode},#{credentialType},#{dailyRidership},#{dailyTurnover},#{depositAmount},#{developer},#{developerMobile},#{developTime},#{effectiveTime},#{expireTime},#{hasDeposit},#{helpfulNoTotal},#{helpfulYesTotal},#{intelligentStar},#{legalPerson},#{managerEmail},#{managerMobile},#{managerPhone},#{marchantManager},#{marchantStatus},#{memo},#{merchantLevel},#{merchantName},#{merchantType},#{networkType},#{orgID},#{paymentMethod},#{perCapita},#{registrationCode},#{renewalNumber},#{starLevel})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="B_MerchantInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateB_MerchantInfoEntity(#{archiveCode},#{archiveID},#{aroundDesc},#{attachmentNumber},#{branchArea},#{businessCategory},#{businessLicense},#{createTime},#{creatorID},#{credentialCode},#{credentialType},#{dailyRidership},#{dailyTurnover},#{depositAmount},#{developer},#{developerMobile},#{developTime},#{effectiveTime},#{expireTime},#{hasDeposit},#{helpfulNoTotal},#{helpfulYesTotal},#{intelligentStar},#{legalPerson},#{managerEmail},#{managerMobile},#{managerPhone},#{marchantManager},#{marchantStatus},#{memo},#{merchantLevel},#{merchantName},#{merchantType},#{networkType},#{orgID},#{paymentMethod},#{perCapita},#{registrationCode},#{renewalNumber},#{starLevel})} 
+		]]>  
+  	</update>
+  	<!--<select id="list" parameterType="B_MerchantInfo" resultType="B_MerchantInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetB_MerchantInfo_query_by_condition(#{archiveCode},#{aroundDesc},#{attachmentNumber},#{branchArea},#{businessCategory},#{businessLicense},#{createTime},#{creatorID},#{credentialCode},#{credentialType},#{dailyRidership},#{dailyTurnover},#{depositAmount},#{developer},#{developerMobile},#{developTime},#{effectiveTime},#{expireTime},#{hasDeposit},#{helpfulNoTotal},#{helpfulYesTotal},#{intelligentStar},#{legalPerson},#{managerEmail},#{managerMobile},#{managerPhone},#{marchantManager},#{marchantStatus},#{memo},#{merchantLevel},#{merchantName},#{merchantType},#{networkType},#{orgID},#{paymentMethod},#{perCapita},#{registrationCode},#{renewalNumber},#{starLevel})} 
+		]]>  
+  	</select>
+  	-->
+  	
+  	
+  	<!--   	
+	   	根据机构编号查询商户档案信息
+	    lanziyao 
+    -->         
+  	<select id="getMerchantInfoByOrgID" parameterType="int" resultType="B_MerchantInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_ReceptionB_MerchantInfoByOrgID(#{orgID})} 
+		]]>  
+	</select>
+	
+	<!-- 根据机构编号查询商户档案信息  hcy -->
+  	<select id="queryByOrgID" parameterType="B_MerchantInfoEntity" resultType="B_MerchantInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_ReceptionB_MerchantInfoEntityByOrgID(#{orgID})} 
+		]]>  
+	</select>
+
+	<select id="selectByListByOnly" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" />
+		FROM B_MerchantInfo limit 0,1
+	</select>
+
+	<!--根据档案ID获取商户基本信息 -->
+	<select id="getMerchantInfoByArchiveID" parameterType="Long" resultType="B_MerchantInfoEntity">
+		select * from B_MerchantInfo where ArchiveID = #{_parameter}
+	</select>
+
+	<!--根据档案ID获取商户基本信息 -->
+	<select id="getMerchantInfoOrgByArchiveID" parameterType="Long" resultType="B_MerchantInfoEntity">
+		SELECT m.MerchantName,m.ManagerPhone,o.PostalAddress,o.OrgName from B_MerchantInfo m LEFT JOIN U_OrganizationInfo o on m.OrgID = o.OrgID
+			where m.ArchiveID = #{_parameter}
+	</select>
+  </mapper>

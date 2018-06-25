@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_StallWeighContentInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_StallWeighContentInfoEntity">
+        <id column="ContentID" jdbcType="BIGINT" property="contentID" />
+        <result column="StallID" jdbcType="BIGINT" property="stallID" />
+        <result column="TitleName" jdbcType="VARCHAR" property="titleName" />
+        <result column="TitleField" jdbcType="VARCHAR" property="titleField" />
+        <result column="IsFixed" jdbcType="BIT" property="isFixed" />
+        <result column="IsShow" jdbcType="BIT" property="isShow" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        ContentID, StallID, TitleName, TitleField, IsFixed, IsShow, SortNo, IsSync, CreatorID,
+        CreateTime, Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_StallWeighContentInfo
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_StallWeighContentInfo
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_StallWeighContentInfoEntity">
+        insert into B_StallWeighContentInfo (ContentID, StallID, TitleName,
+        TitleField, IsFixed, IsShow,
+        SortNo, IsSync, CreatorID,
+        CreateTime, Memo)
+        values (#{contentID,jdbcType=BIGINT}, #{stallID,jdbcType=BIGINT}, #{titleName,jdbcType=VARCHAR},
+        #{titleField,jdbcType=VARCHAR}, #{isFixed,jdbcType=BIT}, #{isShow,jdbcType=BIT},
+        #{sortNo,jdbcType=INTEGER}, #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_StallWeighContentInfoEntity">
+        insert into B_StallWeighContentInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contentID != null">
+                ContentID,
+            </if>
+            <if test="stallID != null">
+                StallID,
+            </if>
+            <if test="titleName != null">
+                TitleName,
+            </if>
+            <if test="titleField != null">
+                TitleField,
+            </if>
+            <if test="isFixed != null">
+                IsFixed,
+            </if>
+            <if test="isShow != null">
+                IsShow,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contentID != null">
+                #{contentID,jdbcType=BIGINT},
+            </if>
+            <if test="stallID != null">
+                #{stallID,jdbcType=BIGINT},
+            </if>
+            <if test="titleName != null">
+                #{titleName,jdbcType=VARCHAR},
+            </if>
+            <if test="titleField != null">
+                #{titleField,jdbcType=VARCHAR},
+            </if>
+            <if test="isFixed != null">
+                #{isFixed,jdbcType=BIT},
+            </if>
+            <if test="isShow != null">
+                #{isShow,jdbcType=BIT},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_StallWeighContentInfoEntity">
+        update B_StallWeighContentInfo
+        <set>
+            <if test="stallID != null">
+                StallID = #{stallID,jdbcType=BIGINT},
+            </if>
+            <if test="titleName != null">
+                TitleName = #{titleName,jdbcType=VARCHAR},
+            </if>
+            <if test="titleField != null">
+                TitleField = #{titleField,jdbcType=VARCHAR},
+            </if>
+            <if test="isFixed != null">
+                IsFixed = #{isFixed,jdbcType=BIT},
+            </if>
+            <if test="isShow != null">
+                IsShow = #{isShow,jdbcType=BIT},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_StallWeighContentInfoEntity">
+        update B_StallWeighContentInfo
+        set StallID = #{stallID,jdbcType=BIGINT},
+        TitleName = #{titleName,jdbcType=VARCHAR},
+        TitleField = #{titleField,jdbcType=VARCHAR},
+        IsFixed = #{isFixed,jdbcType=BIT},
+        IsShow = #{isShow,jdbcType=BIT},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        IsSync = #{isSync,jdbcType=BIT},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </update>
+
+    <!--根据档口ID 查询称重档口看板内容-->
+    <select id="selectStallWeighContentInfoList" resultType="cc.toprank.byd.entity.B_StallWeighContentInfoEntity" parameterType="Long">
+        select
+        <include refid="Base_Column_List" />
+        from B_StallWeighContentInfo
+        where StallID = #{stallID}
+    </select>
+</mapper>

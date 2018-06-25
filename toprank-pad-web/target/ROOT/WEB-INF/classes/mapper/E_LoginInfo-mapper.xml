@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.E_LoginInfoDao">
+	<select id="getAll" parameterType="E_LoginInfoEntity" resultType="E_LoginInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetE_LoginInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="E_LoginInfoEntity" resultType="E_LoginInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetE_LoginInfoEntity(#{loginID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="E_LoginInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteE_LoginInfoEntity(#{loginID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="LoginID" parameterType="E_LoginInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertE_LoginInfoEntity(#{code},#{createTime},#{currencyID},#{customerID},#{dayFailedNumber},#{dayLoginNumber},#{failedArea},#{failedIP},#{failedTime},#{isForceChange},#{isNormal},#{latestLoginArea},#{latestLoginIP},#{latestLoginTime},#{latestModifyTime},#{loginID,jdbcType=INTEGER,mode=OUT},#{loginName},#{loginPassword},#{loginStatus},#{logoUrl},#{memo},#{nickName},#{signature},#{thirdType},#{totalLoginNumber},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="E_LoginInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateE_LoginInfoEntity(#{code},#{createTime},#{currencyID},#{customerID},#{dayFailedNumber},#{dayLoginNumber},#{failedArea},#{failedIP},#{failedTime},#{isForceChange},#{isNormal},#{latestLoginArea},#{latestLoginIP},#{latestLoginTime},#{latestModifyTime},#{loginID},#{loginName},#{loginPassword},#{loginStatus},#{logoUrl},#{memo},#{nickName},#{signature},#{thirdType},#{totalLoginNumber})}
+		]]>
+	</update>
+
+	<select id="getLoginInfoByMobile" parameterType="String" resultType="E_LoginInfoEntity">
+			select l.LoginID,c.CustomerID,c.CustomerName,c.Gender,c.Mobile from E_LoginInfo l LEFT JOIN E_CustomerInfo c on l.CustomerID = c.CustomerID
+					where Mobile = #{mobile} LIMIT 1
+	</select>
+  </mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.M_ActivityInfoDao">
+
+    <select id="getActivityInfoList" parameterType="hashmap" resultType="cc.toprank.byd.web.vo.discount.ActivityInfoVO" >
+            select mai.*,mari.DiscountType as DiscountType,mari.RuleName as RuleName,mari.ActiviryRuleStatus as ActiviryRuleStatus,
+            mari.SpentAmount as SpentAmount,mari.ProductQuantity as ProductQuantity,mari.IsAmount as IsAmount,mari.Priority as Priority,
+            mari.TotalQuantity as TotalQuantity,mari.RemainQuqntity as RemainQuqntity,madi.DiscountName as DiscountName,madi.BaseAmount as BaseAmount,
+            madi.LowPrice as LowPrice,madi.HighPrice as HighPrice,madi.DiscountPercentage as DiscountPercentage,madi.DiscountAmount as DiscountAmount,
+            madi.PresentAmount as PresentAmount,madi.PresentBonus as PresentBonus,madi.BonusMultiply as BonusMultiply , madi.CanAccumulative as CanAccumulative,
+            madi.DiscountStatus as DiscountStatus from M_ActivityInfo as mai
+            INNER JOIN M_ActivityRuleInfo as mari ON mai.ActivityID = mari.ActivityID
+            INNER  JOIN M_ActivityDiscountInfo as madi ON mari.RuleID = madi.RuleID
+            WHERE 1=1 AND current_time BETWEEN mai.StartTime and mai.EndTime
+             and mai.ArchiveID = #{archiveID}
+            <if test="currentAmount != null">
+             and mari.SpentAmount >= #{currentAmount}
+            </if>
+            ORDER BY mai.ActivityPriority ASC
+    </select>
+</mapper>

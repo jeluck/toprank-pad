@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.P_ProductSpecificationMappingDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_ProductSpecificationMappingEntity">
+    <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="ProductID" jdbcType="BIGINT" property="productID" />
+    <result column="OptionID" jdbcType="BIGINT" property="optionID" />
+    <result column="SpecificationName" jdbcType="VARCHAR" property="specificationName" />
+    <result column="OptionName" jdbcType="VARCHAR" property="optionName" />
+    <result column="ExchangeRate" jdbcType="REAL" property="exchangeRate" />
+    <result column="Fare" jdbcType="DECIMAL" property="fare" />
+    <result column="LowestNum" jdbcType="INTEGER" property="lowestNum" />
+    <result column="HighestNum" jdbcType="INTEGER" property="highestNum" />
+    <result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+    <result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MappingID, ProductID, OptionID, SpecificationName, OptionName, ExchangeRate, Fare, 
+    LowestNum, HighestNum, MappingStatus, MappingDesc, SortNo, CreatorID, CreateTime, 
+    Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_ProductSpecificationMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from P_ProductSpecificationMapping
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.P_ProductSpecificationMappingEntity">
+    insert into P_ProductSpecificationMapping (MappingID, ProductID, OptionID, 
+      SpecificationName, OptionName, ExchangeRate, 
+      Fare, LowestNum, HighestNum, 
+      MappingStatus, MappingDesc, SortNo, 
+      CreatorID, CreateTime, Memo
+      )
+    values (#{mappingID,jdbcType=BIGINT}, #{productID,jdbcType=BIGINT}, #{optionID,jdbcType=BIGINT}, 
+      #{specificationName,jdbcType=VARCHAR}, #{optionName,jdbcType=VARCHAR}, #{exchangeRate,jdbcType=REAL}, 
+      #{fare,jdbcType=DECIMAL}, #{lowestNum,jdbcType=INTEGER}, #{highestNum,jdbcType=INTEGER}, 
+      #{mappingStatus,jdbcType=BIGINT}, #{mappingDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_ProductSpecificationMappingEntity">
+    insert into P_ProductSpecificationMapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="productID != null">
+        ProductID,
+      </if>
+      <if test="optionID != null">
+        OptionID,
+      </if>
+      <if test="specificationName != null">
+        SpecificationName,
+      </if>
+      <if test="optionName != null">
+        OptionName,
+      </if>
+      <if test="exchangeRate != null">
+        ExchangeRate,
+      </if>
+      <if test="fare != null">
+        Fare,
+      </if>
+      <if test="lowestNum != null">
+        LowestNum,
+      </if>
+      <if test="highestNum != null">
+        HighestNum,
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus,
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="productID != null">
+        #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="specificationName != null">
+        #{specificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="optionName != null">
+        #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        #{exchangeRate,jdbcType=REAL},
+      </if>
+      <if test="fare != null">
+        #{fare,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestNum != null">
+        #{lowestNum,jdbcType=INTEGER},
+      </if>
+      <if test="highestNum != null">
+        #{highestNum,jdbcType=INTEGER},
+      </if>
+      <if test="mappingStatus != null">
+        #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_ProductSpecificationMappingEntity">
+    update P_ProductSpecificationMapping
+    <set>
+      <if test="productID != null">
+        ProductID = #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        OptionID = #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="specificationName != null">
+        SpecificationName = #{specificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="optionName != null">
+        OptionName = #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        ExchangeRate = #{exchangeRate,jdbcType=REAL},
+      </if>
+      <if test="fare != null">
+        Fare = #{fare,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestNum != null">
+        LowestNum = #{lowestNum,jdbcType=INTEGER},
+      </if>
+      <if test="highestNum != null">
+        HighestNum = #{highestNum,jdbcType=INTEGER},
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="mappingDesc != null">
+        MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_ProductSpecificationMappingEntity">
+    update P_ProductSpecificationMapping
+    set ProductID = #{productID,jdbcType=BIGINT},
+      OptionID = #{optionID,jdbcType=BIGINT},
+      SpecificationName = #{specificationName,jdbcType=VARCHAR},
+      OptionName = #{optionName,jdbcType=VARCHAR},
+      ExchangeRate = #{exchangeRate,jdbcType=REAL},
+      Fare = #{fare,jdbcType=DECIMAL},
+      LowestNum = #{lowestNum,jdbcType=INTEGER},
+      HighestNum = #{highestNum,jdbcType=INTEGER},
+      MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+
+  <!--
+	根据ProductID查询规格信息
+	chenkangyi
+	2017-05-16 17:25
+	-->
+  <select id="getProductSpecificationMappingByProductID" parameterType="long" resultType="cc.toprank.byd.entity.P_ProductSpecificationMappingEntity"  >
+    SELECT * FROM P_ProductSpecificationMapping WHERE ProductID = #{productID} AND MappingStatus = 9
+  </select>
+</mapper>

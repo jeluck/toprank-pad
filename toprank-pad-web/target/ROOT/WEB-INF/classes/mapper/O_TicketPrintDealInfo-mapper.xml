@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cc.toprank.byd.dao.O_TicketPrintDealInfoDao">
+
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_TicketPrintDealInfoEntity" >
+				<id column="DealID" property="dealID" jdbcType="BIGINT" />
+				<result column="AfterStatus" property="afterStatus" jdbcType="BIGINT"/>
+				<result column="ArchiveID" property="archiveID" jdbcType="BIGINT"/>
+				<result column="BeforeStatus" property="beforeStatus" jdbcType="BIGINT"/>
+				<result column="CreateTime" property="createTime" jdbcType="TIMESTAMP"/>
+				<result column="CreatorID" property="creatorID" jdbcType="BIGINT"/>
+				<result column="DealDesc" property="dealDesc" jdbcType="VARCHAR"/>
+				<result column="Memo" property="memo" jdbcType="VARCHAR"/>
+				<result column="PortID" property="portID" jdbcType="BIGINT"/>
+				<result column="PrinterCode" property="printerCode" jdbcType="VARCHAR"/>
+				<result column="PrinterIP" property="printerIP" jdbcType="VARCHAR"/>
+				<result column="PrinterName" property="printerName" jdbcType="VARCHAR"/>
+				<result column="PrinterPort" property="printerPort" jdbcType="INTEGER"/>
+				<result column="PrinterType" property="printerType" jdbcType="BIGINT"/>
+				<result column="RecordID" property="recordID" jdbcType="BIGINT"/>
+				<result column="ReprintNum" property="reprintNum" jdbcType="INTEGER"/>
+				<result column="SyncTime" property="syncTime" jdbcType="TIMESTAMP"/>
+				<result column="SyncTimeResult" property="syncTimeResult" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+  	<!--公用所有字段的sql-->
+  	<sql id="Base_Column_List">
+  			DealID,
+  			AfterStatus,
+  			ArchiveID,
+  			BeforeStatus,
+  			CreateTime,
+  			CreatorID,
+  			DealDesc,
+  			Memo,
+  			PortID,
+  			PrinterCode,
+  			PrinterIP,
+  			PrinterName,
+  			PrinterPort,
+  			PrinterType,
+  			RecordID,
+  			ReprintNum,
+  			SyncTime,
+  			SyncTimeResult
+  	</sql>
+
+  	<select id="queryAll" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/> from O_TicketPrintDealInfo
+  	</select>
+  	
+  	<select id="get" parameterType="O_TicketPrintDealInfoEntity" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/>
+		from
+  		O_TicketPrintDealInfo
+  				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			     DealID = #{dealID}
+  			    </trim>
+  	</select>
+  	<delete id="delete" parameterType="O_TicketPrintDealInfoEntity">
+  		delete from O_TicketPrintDealInfo 
+  				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			     DealID = #{dealID}
+  			    </trim>
+  	</delete>
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DealID" parameterType="O_TicketPrintDealInfoEntity">
+  		insert into O_TicketPrintDealInfo 
+  		(
+        	<include refid="Base_Column_List"/>
+  		)
+  		values
+  		(
+  				#{dealID},
+  				#{afterStatus},
+  				#{archiveID},
+  				#{beforeStatus},
+  				#{createTime},
+  				#{creatorID},
+  				#{dealDesc},
+  				#{memo},
+  				#{portID},
+  				#{printerCode},
+  				#{printerIP},
+  				#{printerName},
+  				#{printerPort},
+  				#{printerType},
+  				#{recordID},
+  				#{reprintNum},
+  				#{syncTime},
+  				#{syncTimeResult}
+  		)
+  	</insert>
+  	<update id="update" parameterType="O_TicketPrintDealInfoEntity">
+  		update O_TicketPrintDealInfo 
+  		<set>
+  					<if test="afterStatus != null and afterStatus != ''">
+  					AfterStatus=#{afterStatus},
+  					</if>
+  					<if test="archiveID != null and archiveID != ''">
+  					ArchiveID=#{archiveID},
+  					</if>
+  					<if test="beforeStatus != null and beforeStatus != ''">
+  					BeforeStatus=#{beforeStatus},
+  					</if>
+  					<if test="createTime != null and createTime != ''">
+  					CreateTime=#{createTime},
+  					</if>
+  					<if test="creatorID != null and creatorID != ''">
+  					CreatorID=#{creatorID},
+  					</if>
+  					<if test="dealDesc != null and dealDesc != ''">
+  					DealDesc=#{dealDesc},
+  					</if>
+  					<if test="memo != null and memo != ''">
+  					Memo=#{memo},
+  					</if>
+  					<if test="portID != null and portID != ''">
+  					PortID=#{portID},
+  					</if>
+  					<if test="printerCode != null and printerCode != ''">
+  					PrinterCode=#{printerCode},
+  					</if>
+  					<if test="printerIP != null and printerIP != ''">
+  					PrinterIP=#{printerIP},
+  					</if>
+  					<if test="printerName != null and printerName != ''">
+  					PrinterName=#{printerName},
+  					</if>
+  					<if test="printerPort != null and printerPort != ''">
+  					PrinterPort=#{printerPort},
+  					</if>
+  					<if test="printerType != null and printerType != ''">
+  					PrinterType=#{printerType},
+  					</if>
+  					<if test="recordID != null and recordID != ''">
+  					RecordID=#{recordID},
+  					</if>
+  					<if test="reprintNum != null and reprintNum != ''">
+  					ReprintNum=#{reprintNum},
+  					</if>
+  					<if test="syncTime != null and syncTime != ''">
+  					SyncTime=#{syncTime},
+  					</if>
+  					<if test="syncTimeResult != null and syncTimeResult != ''">
+  					SyncTimeResult=#{syncTimeResult}
+  					</if>
+  		</set>
+  		where
+			DealID=#{dealID}
+  	</update>
+  	<select id="list" parameterType="O_TicketPrintDealInfoEntity" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List"/>
+  		 from
+  		O_TicketPrintDealInfo
+  		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  			<if test="afterStatus != null and afterStatus != ''">
+	  			AfterStatus = #{afterStatus}
+	  		</if>
+  			<if test="archiveID != null and archiveID != ''">
+	  			 and ArchiveID = #{archiveID}
+	  		</if>
+  			<if test="beforeStatus != null and beforeStatus != ''">
+	  			 and BeforeStatus = #{beforeStatus}
+	  		</if>
+  			<if test="createTime != null and createTime != ''">
+	  			 and CreateTime = #{createTime}
+	  		</if>
+  			<if test="creatorID != null and creatorID != ''">
+	  			 and CreatorID = #{creatorID}
+	  		</if>
+  			<if test="dealDesc != null and dealDesc != ''">
+	  			 and DealDesc like concat('%',#{dealDesc},'%')
+	  		</if>
+  			<if test="dealID != null and dealID != ''">
+	  			 and DealID = #{dealID}
+	  		</if>
+  			<if test="memo != null and memo != ''">
+	  			 and Memo like concat('%',#{memo},'%')
+	  		</if>
+  			<if test="portID != null and portID != ''">
+	  			 and PortID = #{portID}
+	  		</if>
+  			<if test="printerCode != null and printerCode != ''">
+	  			 and PrinterCode like concat('%',#{printerCode},'%')
+	  		</if>
+  			<if test="printerIP != null and printerIP != ''">
+	  			 and PrinterIP like concat('%',#{printerIP},'%')
+	  		</if>
+  			<if test="printerName != null and printerName != ''">
+	  			 and PrinterName like concat('%',#{printerName},'%')
+	  		</if>
+  			<if test="printerPort != null and printerPort != ''">
+	  			 and PrinterPort = #{printerPort}
+	  		</if>
+  			<if test="printerType != null and printerType != ''">
+	  			 and PrinterType = #{printerType}
+	  		</if>
+  			<if test="recordID != null and recordID != ''">
+	  			 and RecordID = #{recordID}
+	  		</if>
+  			<if test="reprintNum != null and reprintNum != ''">
+	  			 and ReprintNum = #{reprintNum}
+	  		</if>
+  			<if test="syncTime != null and syncTime != ''">
+	  			 and SyncTime = #{syncTime}
+	  		</if>
+  			<if test="syncTimeResult != null and syncTimeResult != ''">
+	  			 and SyncTimeResult = #{syncTimeResult}
+	  		</if>
+  		</trim>
+  	</select>
+
+	<select id="getPrintHistoryByRecord" parameterType="java.lang.Long" resultType="map">
+		SELECT d.`PrinterName` printName,d.`CreateTime` printTime,d.`AfterStatus` printStatus, u.`UserName` operator
+		FROM `O_TicketPrintDealInfo` d LEFT JOIN `U_UserInfo` u ON u.`UserID`=d.`CreatorID`
+		WHERE d.`RecordID`=#{recordID}
+	</select>
+  </mapper>

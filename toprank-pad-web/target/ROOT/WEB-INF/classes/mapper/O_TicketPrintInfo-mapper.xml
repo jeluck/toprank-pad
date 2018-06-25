@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.O_TicketPrintInfoDao">
+
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_TicketPrintInfoEntity" >
+		<id column="RecordID" property="recordID" jdbcType="BIGINT" />
+		<result column="ArchiveID" property="archiveID" jdbcType="BIGINT"/>
+		<result column="BusinessID" property="businessID" jdbcType="BIGINT"/>
+		<result column="BusinessType" property="businessType" jdbcType="BIGINT"/>
+		<result column="ComboDetailID" property="comboDetailID" jdbcType="BIGINT"/>
+		<result column="CreateTime" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="CreatorID" property="creatorID" jdbcType="BIGINT"/>
+		<result column="DataType" property="dataType" jdbcType="INTEGER"/>
+		<result column="DetailID" property="detailID" jdbcType="BIGINT"/>
+		<result column="IsSync" property="isSync" jdbcType="BIT"/>
+		<result column="LongContent" property="longContent" jdbcType="VARCHAR"/>
+		<result column="MappingID" property="mappingID" jdbcType="BIGINT"/>
+		<result column="Memo" property="memo" jdbcType="VARCHAR"/>
+		<result column="PortID" property="portID" jdbcType="BIGINT"/>
+		<result column="PrintContent" property="printContent" jdbcType="VARCHAR"/>
+		<result column="PrintNumber" property="printNumber" jdbcType="INTEGER"/>
+		<result column="PrintStatus" property="printStatus" jdbcType="BIGINT"/>
+		<result column="SyncTime" property="syncTime" jdbcType="TIMESTAMP"/>
+		<result column="SyncTimeResult" property="syncTimeResult" jdbcType="TIMESTAMP"/>
+		<result column="TicketName" property="ticketName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<!--公用所有字段的sql-->
+	<sql id="Base_Column_List">
+		ArchiveID,
+		BusinessID,
+		BusinessType,
+		ComboDetailID,
+		CreateTime,
+		CreatorID,
+		DataType,
+		DetailID,
+		IsSync,
+		LongContent,
+		MappingID,
+		Memo,
+		PortID,
+		PrintContent,
+		PrintNumber,
+		PrintStatus,
+		RecordID,
+		SyncTime,
+		SyncTimeResult,
+		TicketName
+	</sql>
+
+	<select id="getAll" parameterType="O_TicketPrintInfoEntity" resultType="O_TicketPrintInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_TicketPrintInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="O_TicketPrintInfoEntity" resultType="O_TicketPrintInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_TicketPrintInfoEntity(#{recordID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="O_TicketPrintInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteO_TicketPrintInfoEntity(#{recordID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="RecordID" parameterType="O_TicketPrintInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertO_TicketPrintInfoEntity(#{archiveID},#{businessID},#{businessType},#{comboDetailID},#{createTime},#{creatorID},#{dataType},#{detailID},#{isSync},#{longContent},#{mappingID},#{memo},#{portID},#{printContent},#{printNumber},#{printStatus},#{recordID,jdbcType=INTEGER,mode=OUT},#{ticketName},'amdin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="O_TicketPrintInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateO_TicketPrintInfoEntity(#{archiveID},#{businessID},#{businessType},#{comboDetailID},#{createTime},#{creatorID},#{dataType},#{detailID},#{isSync},#{longContent},#{mappingID},#{memo},#{portID},#{printContent},#{printNumber},#{printStatus},#{recordID},#{ticketName})}
+		]]>
+	</update>
+  	
+<!--  //  获的票据打印配置信息  -->
+    <select id="getPrintConfigtInfo" parameterType="map" resultType="map" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_PrintConfigtInfo(#{ticketCode,},#{ArchiveID})} 
+		]]>  
+	</select>
+			
+	    <!--  // 根据订单号到档案ID  -->
+    <select id="getArchiveID" parameterType="string" resultType="map" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_ArchiveIDByOrderID(#{subOrderID})} 
+		]]>  
+	</select>	
+	
+	  	<!--  //  获取订单信息  -->
+    <select id="getOrderInfo" parameterType="string" resultType="O_SubOrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_OrderInfo(#{vOrderID})} 
+		]]>  
+	</select>
+	
+	   	<!--  //     获取档案信息  -->
+    <select id="getCustInfo" parameterType="string" resultType="map" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_CustInfo(#{vArchiveID})} 
+		]]>  
+	</select>
+	
+	  	<!--  //  获取订单 菜系类别信息  -->
+    <select id="getOrderMenuType" parameterType="map" resultType="map" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_OrderMenuTypeCollection(#{OrderID},#{ArchiveID})}
+		]]>  
+	</select>
+	
+	   	 <!--  取订单明细  -->
+    <select id="getAllMenuList" parameterType="string" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[  		          
+			{call Get_AllMenuListCollection(#{OrderID},#{ArchiveID})} 
+		]]>  
+	</select>
+	
+	   <!--  取台单的所有数据  --> 	
+    <select id="getMenuList" parameterType="string" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[  		          
+			{call Get_MenuListCollection(#{OrderID},#{ArchiveID})} 
+		]]>  
+	</select>
+	 	
+	<!--  取厨打明细  -->
+    <select id="getPrintMenuList" parameterType="map" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_PrintMenuListCollection(#{OrderID},#{ArchiveID},#{CategoryID})} 
+		]]>  
+	</select>
+
+	<!--  	 取订单的 楼层 桌号 餐次 等信息 -->
+	<select id="Get_OrderDetailInfoBySubOrderID" parameterType="map" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_OrderDetailInfoBySubOrderID(#{subOrderID})}
+		]]>
+	</select>
+
+	<!--  	 取单道菜的IP -->
+	<select id="getCancelMenuPrintIPSet" parameterType="map" resultType="map" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_CancelMenuPrintIPSet(#{archiveID},#{variantIDStr})}
+		]]>
+	</select>
+
+
+	<!--  	 取退菜所有明细 -->
+	<select id="getAllCancelMenuList" parameterType="map" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_AllCancelMenuLisCollection(#{OrderID})}
+		]]>
+	</select>
+
+  	<!--  取退菜明细  按类别 -->
+    <select id="getCancelMenuList" parameterType="map" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_CancelMenuListCollection(#{OrderID},#{ArchiveID},#{CategoryID})}
+		]]>  
+	</select>
+	
+	  	<!--  获取套餐明细  -->
+    <select id="getComboDetail" parameterType="string" resultType="map" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_ComboDetailInfoCollectionByDetailID(#{detailID})}
+		]]>  
+	</select>
+	
+	  	<!--   获取支付方式明细  -->
+    <select id="getPayType" parameterType="string" resultType="map" statementType="CALLABLE">
+		<![CDATA[  
+			{call Get_PayTypCollection(#{subOrderIDStr})}
+		]]>  
+	</select>
+
+	<!--   获取充值记录打印信息  -->
+	<select id="getRechargeTicketInfo" parameterType="map" resultType="O_TicketPrintInfoEntity" statementType="CALLABLE">
+           select * from O_TicketPrintInfo
+           where orderID=#{cardID} and DetaillID=#{depositID}  and
+           limit 0,1
+	</select>
+
+	
+  	<!--<select id="list" parameterType="O_TicketPrintInfo" resultType="O_TicketPrintInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetO_TicketPrintInfo_query_by_condition(#{createTime},#{creatorID},#{detailID},#{isSync},#{longContent},#{mappingID},#{memo},#{orderID},#{printContent},#{printNumber},#{printStatus},#{ticketName})} 
+		]]>  
+  	</select>
+  	-->
+
+	<!-- 获取打印日志列表 -->
+	<select id="getPrintLogList" parameterType="map" resultType="map">
+		SELECT tp.`PrintContent` printContent,
+		        tp.`CreateTime` printTime,
+				tp.RecordID recordID,
+		        bpi.`PrinterIP` printIP,
+		        bpi.`PrinterName` printName
+		FROM O_TicketPrintInfo tp
+		LEFT JOIN B_PrinterTicketMapping ptm ON tp.`MappingID`=ptm.`MappingID`
+		LEFT JOIN B_PrinterInfo bpi ON ptm.`PrinterID`=bpi.`PrinterID`
+		<where>
+			<if test="printDate != null and printDate != ''">
+				AND tp.`CreateTime` BETWEEN CONCAT(#{printDate},' 00:00:00') AND CONCAT(#{printDate}, ' 23:59:59')
+			</if>
+			<if test="ceriation != null and ceriation != ''">
+				AND (bpi.`PrinterName` LIKE CONCAT('%', #{ceriation},'%') OR tp.`PrintContent` LIKE CONCAT('%', #{ceriation},'%'))
+			</if>
+		</where>
+	</select>
+
+
+	<!--   根据业务ID和业务类型找到打印记录  LinYN 2017-6-8 -->
+	<select id="getTicketPrintInfoByBusinessIDAndType" parameterType="cc.toprank.byd.vo.print.BusinessVO" resultType="O_TicketPrintInfoEntity">
+			select <include refid="Base_Column_List" />
+			from O_TicketPrintInfo tp
+			where tp.BusinessID = #{businessID}
+				and tp.BusinessType = #{businessType}
+			<if test="dataType != null">
+				and tp.DataType = #{dataType}
+			</if>
+	</select>
+
+	<!--   根据单据编号查询打印机  LinYN 2017-6-10 -->
+	<select id="getPrinterListByTicketCode" parameterType="map" resultType="cc.toprank.byd.vo.print.PrinterVO">
+		<![CDATA[
+			SELECT tkm.mappingID as mappingID
+				, tkm.TemplateID as templateID
+				, pt.PrinterID as printerID
+				, pt.PrinterName as printerName
+				, pt.PrinterStatus as printerStatus
+				, pt.PrinterIP as printerIP
+				, pt.PrinterPort as printerPort
+			from B_PrinterTicketMapping tkm left join B_PrinterInfo pt on tkm.PrinterID = pt.PrinterID
+				left join B_PrintTemplateInfo tmp on tkm.TemplateID = tmp.TemplateID
+			where tkm.ArchiveID = #{archiveID}
+				and tkm.MappingStatus = 9
+				and tmp.SortNo = #{ticketType}
+				and EXISTS (
+					SELECT * from B_PrintTicketInfo tk
+					where tkm.TicketID = tk.TicketID
+						and tk.TicketStatus = 9
+						and tk.TicketCode = #{ticketCode});
+		]]>
+	</select>
+
+	<!--   根据菜品查询出品口和打印机  LinYN 2017-6-10 -->
+	<select id="getPortPrinterByProductDetail" parameterType="cc.toprank.byd.vo.print.ProductDetailVO" resultType="cc.toprank.byd.vo.print.PortPrinterVO">
+		<![CDATA[
+			SELECT ppm.MappingID as mappingID
+				, ppm.PrinterID as printerID
+				, pp.PortID as portID
+				, pp.PortName as portName
+				, ppcm.CategoryID as categoryID
+				, ppcm.ProductID as productID
+				, ppcm.VariantID as variantID
+			from B_ProducePrinterMapping ppm
+				  LEFT JOIN B_ProducePortInfo pp on pp.PortID = ppm.PortID
+				  LEFT JOIN B_PortProductCategoryMapping ppcm on ppm.PortID = ppcm.PortID
+			where pp.ArchiveID = #{archiveID} and
+			 	  (ppcm.CategoryID = #{categoryID} or ppcm.ProductID = #{productID} or ppcm.VariantID = #{variantID}) ;
+		]]>
+	</select>
+
+	<select id="getRecordsBySubOrder" parameterType="java.lang.Long" resultType="map">
+		SELECT tp.RecordID recordID,tp.PrintStatus printStatus,tp.TicketName ticketName,tp.PrintNumber printNumber, tp.`CreateTime` printTime,u.UserName operator,
+		        bpi.`PrinterName` printName,odi.ProductName productName,pp.`PortName` portName
+		FROM O_TicketPrintInfo tp INNER JOIN O_OrderDetailInfo odi ON ( odi.DetailID=tp.BusinessID AND tp.BusinessType = 1086)
+		LEFT JOIN B_PrinterTicketMapping ptm ON tp.`MappingID`=ptm.`MappingID`
+		LEFT JOIN B_PrinterInfo bpi ON ptm.`PrinterID`=bpi.`PrinterID`
+		LEFT JOIN `U_UserInfo` u ON u.UserID=tp.CreatorID
+		LEFT JOIN B_ProducePortInfo pp ON pp.`PortID`=tp.`PortID`
+		WHERE odi.SubOrderID=#{subOrderID}
+		UNION
+		SELECT tp.RecordID recordID,tp.PrintStatus printStatus,tp.TicketName ticketName,tp.PrintNumber printNumber, tp.`CreateTime` printTime,u.UserName operator,
+		        bpi.`PrinterName` printName,odi.ProductName productName,pp.`PortName` portName
+		FROM O_TicketPrintInfo tp INNER JOIN O_ComboDetailInfo odi ON ( odi.RecordID=tp.BusinessID AND tp.BusinessType = 1087 )
+		LEFT JOIN O_OrderDetailInfo d ON d.`DetailID`=odi.`DetailID`
+		LEFT JOIN B_PrinterTicketMapping ptm ON tp.`MappingID`=ptm.`MappingID`
+		LEFT JOIN B_PrinterInfo bpi ON ptm.`PrinterID`=bpi.`PrinterID`
+		LEFT JOIN `U_UserInfo` u ON u.UserID=tp.CreatorID
+		LEFT JOIN B_ProducePortInfo pp ON pp.`PortID`=tp.`PortID`
+		WHERE d.SubOrderID=#{subOrderID}
+	</select>
+
+	<!--   根据档案编号获取打印机列表  LinYN 2017-6-13 -->
+	<select id="getPrinterListByArchiveID" parameterType="long" resultType="cc.toprank.byd.vo.print.message.DeviceMessageVO">
+		<![CDATA[
+			SELECT p.PrinterID as devId
+					, 1 as devType
+					, p.PrinterName as devName
+					, p.PrinterIP as devIP
+					, p.PrinterPort as devPort
+					, p.PrinterStatus as devState
+			from B_PrinterInfo p
+			where p.ArchiveID = #{archiveID}
+		]]>
+	</select>
+
+	<!--   根据打印机编号修改打印机状态  LinYN 2017-6-13 -->
+	<update id="updatePrinterStatusByID" parameterType="cc.toprank.byd.vo.print.PrinterVO">
+		<![CDATA[
+			update B_PrinterInfo set PrinterStatus = #{printerStatus} where PrinterID = #{printerID} and ArchiveID = #{archiveID};
+		]]>
+	</update>
+
+	<select id="getRecordInfoById" parameterType="java.lang.Long" resultType="map">
+		SELECT tp.TicketName ticketName, odi.ProductName productName,pp.`PortName` portName
+		FROM O_TicketPrintInfo tp INNER JOIN O_OrderDetailInfo odi ON ( odi.DetailID=tp.BusinessID AND tp.BusinessType = 1086)
+		LEFT JOIN B_ProducePortInfo pp ON pp.`PortID`=tp.`PortID` WHERE tp.`RecordID`=#{recordID}
+		UNION
+		SELECT tp.TicketName ticketName, odi.ProductName productName,pp.`PortName` portName
+		FROM O_TicketPrintInfo tp INNER JOIN O_ComboDetailInfo odi ON ( odi.RecordID=tp.BusinessID AND tp.BusinessType = 1087)
+		LEFT JOIN B_ProducePortInfo pp ON pp.`PortID`=tp.`PortID` WHERE tp.`RecordID`=#{recordID}
+	</select>
+  </mapper>

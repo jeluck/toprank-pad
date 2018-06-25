@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_MonitorContentInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MonitorContentInfoEntity">
+        <id column="ContentID" jdbcType="BIGINT" property="contentID" />
+        <result column="MonitorID" jdbcType="BIGINT" property="monitorID" />
+        <result column="TitleName" jdbcType="VARCHAR" property="titleName" />
+        <result column="TitleField" jdbcType="VARCHAR" property="titleField" />
+        <result column="IsFiexd" jdbcType="BIT" property="isFiexd" />
+        <result column="IsShow" jdbcType="BIT" property="isShow" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        ContentID, MonitorID, TitleName, TitleField, IsFiexd, IsShow, IsSync, CreatorID,
+        CreateTime, Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_MonitorContentInfo
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_MonitorContentInfo
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_MonitorContentInfoEntity">
+        insert into B_MonitorContentInfo (ContentID, MonitorID, TitleName,
+        TitleField, IsFiexd, IsShow,
+        IsSync, CreatorID, CreateTime,
+        Memo)
+        values (#{contentID,jdbcType=BIGINT}, #{monitorID,jdbcType=BIGINT}, #{titleName,jdbcType=VARCHAR},
+        #{titleField,jdbcType=VARCHAR}, #{isFiexd,jdbcType=BIT}, #{isShow,jdbcType=BIT},
+        #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MonitorContentInfoEntity">
+        insert into B_MonitorContentInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contentID != null">
+                ContentID,
+            </if>
+            <if test="monitorID != null">
+                MonitorID,
+            </if>
+            <if test="titleName != null">
+                TitleName,
+            </if>
+            <if test="titleField != null">
+                TitleField,
+            </if>
+            <if test="isFiexd != null">
+                IsFiexd,
+            </if>
+            <if test="isShow != null">
+                IsShow,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contentID != null">
+                #{contentID,jdbcType=BIGINT},
+            </if>
+            <if test="monitorID != null">
+                #{monitorID,jdbcType=BIGINT},
+            </if>
+            <if test="titleName != null">
+                #{titleName,jdbcType=VARCHAR},
+            </if>
+            <if test="titleField != null">
+                #{titleField,jdbcType=VARCHAR},
+            </if>
+            <if test="isFiexd != null">
+                #{isFiexd,jdbcType=BIT},
+            </if>
+            <if test="isShow != null">
+                #{isShow,jdbcType=BIT},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MonitorContentInfoEntity">
+        update B_MonitorContentInfo
+        <set>
+            <if test="monitorID != null">
+                MonitorID = #{monitorID,jdbcType=BIGINT},
+            </if>
+            <if test="titleName != null">
+                TitleName = #{titleName,jdbcType=VARCHAR},
+            </if>
+            <if test="titleField != null">
+                TitleField = #{titleField,jdbcType=VARCHAR},
+            </if>
+            <if test="isFiexd != null">
+                IsFiexd = #{isFiexd,jdbcType=BIT},
+            </if>
+            <if test="isShow != null">
+                IsShow = #{isShow,jdbcType=BIT},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MonitorContentInfoEntity">
+        update B_MonitorContentInfo
+        set MonitorID = #{monitorID,jdbcType=BIGINT},
+        TitleName = #{titleName,jdbcType=VARCHAR},
+        TitleField = #{titleField,jdbcType=VARCHAR},
+        IsFiexd = #{isFiexd,jdbcType=BIT},
+        IsShow = #{isShow,jdbcType=BIT},
+        IsSync = #{isSync,jdbcType=BIT},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where ContentID = #{contentID,jdbcType=BIGINT}
+    </update>
+
+    <select id="getByMonitorID" resultType="cc.toprank.byd.entity.B_MonitorContentInfoEntity">
+        SELECT <include refid="Base_Column_List" /> FROM B_MonitorContentInfo WHERE MonitorID=#{monitorID}
+    </select>
+
+</mapper>

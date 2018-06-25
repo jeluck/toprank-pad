@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_ComboGroupInfoDao">
+  	<select id="getAll" parameterType="P_ComboGroupInfoEntity" resultType="P_ComboGroupInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ComboGroupInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_ComboGroupInfoEntity" resultType="P_ComboGroupInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetP_ComboGroupInfoEntity(#{groupID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_ComboGroupInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_ComboGroupInfoEntity(#{groupID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="GroupID" parameterType="P_ComboGroupInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_ComboGroupInfoEntity(#{allowFloatQuantity},#{allowQuantity},#{archiveID},#{createTime},#{creatorID},#{firstLetter},#{floatQuantity},#{groupCode},#{groupID,jdbcType=INTEGER,mode=OUT},#{groupName},#{groupType},#{isSync},#{memo},#{productQuantity},#{shortName},#{sortNo})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_ComboGroupInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_ComboGroupInfoEntity(#{allowFloatQuantity},#{allowQuantity},#{archiveID},#{createTime},#{creatorID},#{firstLetter},#{floatQuantity},#{groupCode},#{groupID},#{groupName},#{groupType},#{isSync},#{memo},#{productQuantity},#{shortName},#{sortNo})} 
+		]]>  
+  	</update>
+
+	<!--  根据菜品ID查询分组信息 lzy -->
+	<select id="getComboGroupInfoByProductID" parameterType="Long" resultType="P_ComboGroupInfoEntity" >
+			SELECT g.GroupID,g.GroupName,IFNULL(pm.VariantName,ps.VariantName) VariantName,IFNULL(pm.Price,ps.Price) Price,
+				  	IFNULL(pm.Quantity,ps.Quantity) number,IFNULL(pm.VariantID,ps.VariantID) VariantID,
+					c.DictionaryName unit,psa.OptionName,g.AllowQuantity,g.AllowFloatQuantity,
+					pm.MappingID,p.PriceType,ps.SettingID
+			FROM  P_ComboSettingInfo ps
+			LEFT JOIN P_ComboGroupProductMapping pm ON pm.GroupID = ps.GroupID AND pm.MappingStatus = 9
+			LEFT JOIN P_ComboGroupInfo g ON ps.GroupID = g.GroupID
+			LEFT JOIN P_SpecificationAttributeOptionInfo psa ON
+						CASE WHEN ps.OptionID IS NULL THEN psa.OptionID = pm.OptionID ELSE psa.OptionID = ps.OptionID END
+			LEFT JOIN P_ProductInfo p ON p.ProductID = ps.ProductID
+			LEFT JOIN C_DictionaryInfo c ON
+					   CASE WHEN pm.UnitID IS NULL THEN ps.ProductUnit= c.DictionaryID ELSE pm.UnitID = c.DictionaryID END
+			WHERE
+					ps.ProductID =  #{productID};
+	</select>
+  </mapper>

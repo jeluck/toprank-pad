@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.B_MerchantTagInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MerchantTagInfoEntity">
+    <id column="TagID" jdbcType="BIGINT" property="tagID" />
+    <result column="OrgID" jdbcType="BIGINT" property="orgID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="TagCode" jdbcType="VARCHAR" property="tagCode" />
+    <result column="TagName" jdbcType="VARCHAR" property="tagName" />
+    <result column="TagType" jdbcType="BIGINT" property="tagType" />
+    <result column="TagStatus" jdbcType="BIGINT" property="tagStatus" />
+    <result column="IsPlatform" jdbcType="BIT" property="isPlatform" />
+    <result column="TagDesc" jdbcType="VARCHAR" property="tagDesc" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TagID, OrgID, ArchiveID, TagCode, TagName, TagType, TagStatus, IsPlatform, TagDesc, 
+    SortNo, IsSync, CreatorType, CreatorID, CreateTime, Memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from B_MerchantTagInfo
+    where TagID = #{tagID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from B_MerchantTagInfo
+    where TagID = #{tagID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.B_MerchantTagInfoEntity">
+    insert into B_MerchantTagInfo (TagID, OrgID, ArchiveID, 
+      TagCode, TagName, TagType, 
+      TagStatus, IsPlatform, TagDesc, 
+      SortNo, IsSync, CreatorType, 
+      CreatorID, CreateTime, Memo
+      )
+    values (#{tagID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, 
+      #{tagCode,jdbcType=VARCHAR}, #{tagName,jdbcType=VARCHAR}, #{tagType,jdbcType=BIGINT}, 
+      #{tagStatus,jdbcType=BIGINT}, #{isPlatform,jdbcType=BIT}, #{tagDesc,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=INTEGER}, #{isSync,jdbcType=BIT}, #{creatorType,jdbcType=BIGINT}, 
+      #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MerchantTagInfoEntity">
+    insert into B_MerchantTagInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tagID != null">
+        TagID,
+      </if>
+      <if test="orgID != null">
+        OrgID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="tagCode != null">
+        TagCode,
+      </if>
+      <if test="tagName != null">
+        TagName,
+      </if>
+      <if test="tagType != null">
+        TagType,
+      </if>
+      <if test="tagStatus != null">
+        TagStatus,
+      </if>
+      <if test="isPlatform != null">
+        IsPlatform,
+      </if>
+      <if test="tagDesc != null">
+        TagDesc,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="creatorType != null">
+        CreatorType,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tagID != null">
+        #{tagID,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="tagCode != null">
+        #{tagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagType != null">
+        #{tagType,jdbcType=BIGINT},
+      </if>
+      <if test="tagStatus != null">
+        #{tagStatus,jdbcType=BIGINT},
+      </if>
+      <if test="isPlatform != null">
+        #{isPlatform,jdbcType=BIT},
+      </if>
+      <if test="tagDesc != null">
+        #{tagDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorType != null">
+        #{creatorType,jdbcType=BIGINT},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MerchantTagInfoEntity">
+    update B_MerchantTagInfo
+    <set>
+      <if test="orgID != null">
+        OrgID = #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="tagCode != null">
+        TagCode = #{tagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
+        TagName = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagType != null">
+        TagType = #{tagType,jdbcType=BIGINT},
+      </if>
+      <if test="tagStatus != null">
+        TagStatus = #{tagStatus,jdbcType=BIGINT},
+      </if>
+      <if test="isPlatform != null">
+        IsPlatform = #{isPlatform,jdbcType=BIT},
+      </if>
+      <if test="tagDesc != null">
+        TagDesc = #{tagDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorType != null">
+        CreatorType = #{creatorType,jdbcType=BIGINT},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TagID = #{tagID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MerchantTagInfoEntity">
+    update B_MerchantTagInfo
+    set OrgID = #{orgID,jdbcType=BIGINT},
+      ArchiveID = #{archiveID,jdbcType=BIGINT},
+      TagCode = #{tagCode,jdbcType=VARCHAR},
+      TagName = #{tagName,jdbcType=VARCHAR},
+      TagType = #{tagType,jdbcType=BIGINT},
+      TagStatus = #{tagStatus,jdbcType=BIGINT},
+      IsPlatform = #{isPlatform,jdbcType=BIT},
+      TagDesc = #{tagDesc,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      IsSync = #{isSync,jdbcType=BIT},
+      CreatorType = #{creatorType,jdbcType=BIGINT},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR}
+    where TagID = #{tagID,jdbcType=BIGINT}
+  </update>
+
+  <select id="getByTagCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from B_MerchantTagInfo
+    where TagCode = #{tagCode}
+  </select>
+
+  <select id="getTagNameByTargetID" resultType="string">
+    SELECT mt.tagName FROM B_MerchantTagMapping mtm
+    LEFT JOIN B_MerchantTagInfo mt ON mt.TagID=mtm.TagID
+    WHERE mtm.TargetID=#{targetID} AND mtm.TargetType=#{targetType} GROUP BY mtm.TagID
+  </select>
+
+  <select id="getTagNamesByTagIDs" resultType="map" parameterType="String">
+    SELECT GROUP_CONCAT(TagName) as tagNames  from B_MerchantTagInfo WHERE FIND_IN_SET(TagID,#{tagIDs});
+  </select>
+
+  <select id="getByTagByTagIDs" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from B_MerchantTagInfo
+    where TagID in <foreach collection="set" item="item" open="(" separator="," close=")">
+      #{item}
+  </foreach>
+  </select>
+</mapper>

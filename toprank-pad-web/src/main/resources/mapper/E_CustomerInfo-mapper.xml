@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.E_CustomerInfoDao">
+	<select id="getAll" parameterType="E_CustomerInfoEntity" resultType="E_CustomerInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetE_CustomerInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="E_CustomerInfoEntity" resultType="E_CustomerInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetE_CustomerInfoEntity(#{customerID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="E_CustomerInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteE_CustomerInfoEntity(#{customerID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="CustomerID" parameterType="E_CustomerInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertE_CustomerInfoEntity(#{birthday},#{briefIntro},#{cityID},#{countryID},#{createTime},#{customerDesc},#{customerID,jdbcType=INTEGER,mode=OUT},#{customerName},#{customerStatus},#{customerType},#{detailAddress},#{districtID},#{economicIncome},#{educationLevel},#{email},#{fax},#{firstLetter},#{firstName},#{gender},#{hashKey},#{iDCode},#{imageID},#{imagePath},#{lastName},#{latitude},#{logoUrl},#{longitude},#{maritalStatus},#{memberBonus},#{memberLevel},#{memberStar},#{memo},#{mobile},#{passportType},#{payPassword},#{phone},#{pointNumber},#{postCode},#{provinceID},#{refereeID},#{referralID},#{residence},#{residency},#{sourceDesc},#{sourceID},#{sourceType},#{streetID},#{updateTime},#{usePayPassword},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="E_CustomerInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateE_CustomerInfoEntity(#{birthday},#{briefIntro},#{cityID},#{countryID},#{createTime},#{customerDesc},#{customerID},#{customerName},#{customerStatus},#{customerType},#{detailAddress},#{districtID},#{economicIncome},#{educationLevel},#{email},#{fax},#{firstLetter},#{firstName},#{gender},#{hashKey},#{iDCode},#{imageID},#{imagePath},#{lastName},#{latitude},#{logoUrl},#{longitude},#{maritalStatus},#{memberBonus},#{memberLevel},#{memberStar},#{memo},#{mobile},#{passportType},#{payPassword},#{phone},#{pointNumber},#{postCode},#{provinceID},#{refereeID},#{referralID},#{residence},#{residency},#{sourceDesc},#{sourceID},#{sourceType},#{streetID},#{updateTime},#{usePayPassword})}
+		]]>
+	</update>
+
+  	<select id="getCustomerInfoByMobile" resultType="E_CustomerInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetE_CustomerInfoEntityByMobile(#{mobile})} 
+		]]>  
+	</select>
+
+	<!-- 修改会员的客户信息 -->
+	<update id="updateCustomerMember" parameterType="E_CustomerInfoEntity" statementType="CALLABLE">
+          update E_CustomerInfo SET CustomerName=#{customerName},PassportType=#{passportType},IDCode=#{IDCode},Birthday=#{birthday}
+                 ,Gender=#{gender},Email=#{email},Mobile=#{mobile},Memo=#{memo}
+          where CustomerID=#{customerID}
+	</update>
+
+	<!--   根据手机号获取客户信息 -->
+	<select id="getMobileNoByCustomerInfo" parameterType="hashmap" resultType="E_CustomerInfoEntity" statementType="CALLABLE">
+		SELECT * FROM E_CustomerInfo
+		WHERE Mobile = #{mobile}
+	</select>
+
+	<!--   根据手机号获取客户会员卡信息 -->
+	<select id="getMobileNoByMemberInfo" parameterType="hashmap" resultType="map" statementType="CALLABLE">
+		select a.customerID,d.MemberName,d.CardID,d.CardCode,d.MemberMobile,b.CanCashAmount,d.createtime
+		from  E_MerchantBonusInfo a INNER JOIN  F_AccountInfo b on a.customerID=b.customerID
+		INNER JOIN F_MemberCardInfo d on a.CardID=d.CardID
+		where d.MemberMobile=#{mobile}
+	</select>
+
+	<!--  更新会员的积分 -->
+	<update id="updateMemberBonus" parameterType="E_CustomerInfoEntity" statementType="CALLABLE">
+		update E_CustomerInfo SET MemberBonus=#{memberBonus}
+		where CustomerID=#{customerID}
+	</update>
+
+</mapper>

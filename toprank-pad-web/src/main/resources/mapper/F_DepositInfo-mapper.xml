@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.F_DepositInfoDao">
+  	<select id="getAll" parameterType="F_DepositInfoEntity" resultType="F_DepositInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_DepositInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="F_DepositInfoEntity" resultType="F_DepositInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_DepositInfoEntity(#{depositID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="F_DepositInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteF_DepositInfoEntity(#{depositID})} 
+		]]> 
+  	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="DepositID" parameterType="F_DepositInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertF_DepositInfoEntity(#{accountID},#{accountType},#{archiveID},#{cardCode},#{cardID},#{charge},#{createTime},#{currencyID},#{customerID},#{depositCode},#{depositDesc},#{depositID,jdbcType=INTEGER,mode=OUT},#{depositMoney},#{depositStatus},#{depositType},#{fundID},#{isQuickPay},#{isSync},#{loginID},#{memo},#{operatorID},#{payOrgID},#{payOrgSeqNo},#{presentBonus},#{presentMoney},#{realAmount},#{realName},#{ruleID},#{settingID},#{submitTime},#{supplyTime},#{validationCode},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="F_DepositInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateF_DepositInfoEntity(#{accountID},#{accountType},#{archiveID},#{cardCode},#{cardID},#{charge},#{createTime},#{currencyID},#{customerID},#{depositCode},#{depositDesc},#{depositID},#{depositMoney},#{depositStatus},#{depositType},#{fundID},#{isQuickPay},#{isSync},#{loginID},#{memo},#{operatorID},#{payOrgID},#{payOrgSeqNo},#{presentBonus},#{presentMoney},#{realAmount},#{realName},#{ruleID},#{settingID},#{submitTime},#{supplyTime},#{validationCode})}
+		]]>
+	</update>
+  	<!--<select id="list" parameterType="F_DepositInfo" resultType="F_DepositInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetF_DepositInfo_query_by_condition(#{accountID},#{accountType},#{charge},#{createTime},#{currencyID},#{customerID},#{depositCode},#{depositDesc},#{depositMoney},#{depositStatus},#{fundID},#{isQuickPay},#{loginID},#{memo},#{operatorID},#{payOrgID},#{payOrgSeqNo},#{presentBonus},#{presentMoney},#{realAmount},#{realName},#{ruleID},#{submitTime},#{supplyTime},#{validationCode})} 
+		]]>  
+  	</select>
+  	-->
+  	<select id="GetF_DepositInfoCollectionByMobile" resultType="F_DepositInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_DepositInfoCollectionByMobile(#{mobile},#{archiveID},#{startTime},#{endTime})} 
+		]]>  
+	</select>
+
+
+  </mapper>

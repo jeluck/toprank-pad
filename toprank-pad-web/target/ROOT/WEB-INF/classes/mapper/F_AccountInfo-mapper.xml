@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.F_AccountInfoDao">
+  	<select id="getAll" parameterType="F_AccountInfoEntity" resultType="F_AccountInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_AccountInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="F_AccountInfoEntity" resultType="F_AccountInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetF_AccountInfoEntity(#{accountID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="F_AccountInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteF_AccountInfoEntity(#{accountID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="AccountID" parameterType="F_AccountInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertF_AccountInfoEntity(#{accountCode},#{accountID,jdbcType=INTEGER,mode=OUT},#{borrowFundAmount},#{canCashAmount},#{canDrawal},#{createTime},#{currencyID},#{customerID},#{customerType},#{depositBalance},#{dueAmount},#{frozenAmount},#{fundAmount},#{isSync},#{latestChangeAmount},#{latestChangeMode},#{latestChangeTime},#{latestChangeType},#{latestOperatorID},#{memo},#{prepaymentBalance},#{realName},#{receivableAmount},#{standbyAmount},"")}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="F_AccountInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateF_AccountInfoEntity(#{accountCode},#{accountID},#{borrowFundAmount},#{canCashAmount},#{canDrawal},#{createTime},#{currencyID},#{customerID},#{customerType},#{depositBalance},#{dueAmount},#{frozenAmount},#{fundAmount},#{isSync},#{latestChangeAmount},#{latestChangeMode},#{latestChangeTime},#{latestChangeType},#{latestOperatorID},#{memo},#{prepaymentBalance},#{realName},#{receivableAmount},#{standbyAmount})}
+		]]>  
+  	</update>
+
+	<!-- 根据客户（商户）的编号	 取客户帐号	 -->
+	<select id="getAccountInfoByCustomerID" parameterType="hashMap" resultType="F_AccountInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetClientF_AccountInfoEntityByCustomerID(#{customerID},#{customerType})}
+		]]>
+	</select>
+
+	<!-- 查看账户金额   hcy -->
+	<select id="checkingAccount" parameterType="hashMap" resultType="F_AccountInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionF_AccountInfoEntityByCustomerIDAndCustomerType(#{customerID},#{customerType})}
+		]]>
+	</select>
+
+	<!-- 更新商家或平台账户金额	hcy -->
+	<update id="updateAccountFunds" parameterType="F_AccountInfoEntity">
+		Update
+			F_AccountInfo
+		Set
+			<if test="latestChangeType == 134">
+				<if test="customerType == 655">
+					ReceivableAmount = ReceivableAmount + fundAmount,
+				</if>
+				<if test="customerType == 656">
+					DueAmount = DueAmount + fundAmount,
+					FundAmount = FundAmount + fundAmount,
+				</if>
+			</if>
+			LatestChangeAmount = latestChangeAmount,
+			LatestChangeMode = latestChangeMode,
+			LatestChangeTime = latestChangeTime,
+			LatestChangeType = latestChangeType
+		WHERE
+			CustomerID = #{customerID}
+		AND
+			CustomerType = #{customerType};
+	</update>
+
+
+	<!-- 根据客户ID,帐户类型  取 客户帐号	 -->
+	<select id="getAccountViceFundInfoByCustomerID" parameterType="hashMap" resultType="F_AccountInfoEntity" statementType="CALLABLE">
+         select b.FundID,b.AccountType, a.* from  F_AccountInfo a
+         INNER JOIN F_ViceFundInfo b on a.AccountID=b.AccountID
+         where a.CustomerID=#{customerID} and b.AccountType=#{accountType}
+	</select>
+
+
+  </mapper>

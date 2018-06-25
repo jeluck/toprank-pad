@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.O_ShoppingCartDetailInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_ShoppingCartDetailInfoEntity">
+    <id column="DetailID" jdbcType="BIGINT" property="detailID" />
+    <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+    <result column="ProductID" jdbcType="BIGINT" property="productID" />
+    <result column="CartID" jdbcType="BIGINT" property="cartID" />
+    <result column="TableID" jdbcType="BIGINT" property="tableID" />
+    <result column="OptionID" jdbcType="BIGINT" property="optionID" />
+    <result column="ValueIDs" jdbcType="VARCHAR" property="valueIDs" />
+    <result column="DesignerID" jdbcType="BIGINT" property="designerID" />
+    <result column="MenuID" jdbcType="BIGINT" property="menuID" />
+    <result column="ProductUnit" jdbcType="BIGINT" property="productUnit" />
+    <result column="Quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="FloatQuantity" jdbcType="REAL" property="floatQuantity" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="ProduceCost" jdbcType="DECIMAL" property="produceCost" />
+    <result column="TotalAmount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="DetailDesc" jdbcType="VARCHAR" property="detailDesc" />
+    <result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="NeedWeigh" jdbcType="BIT" property="needWeigh" />
+    <result column="ExpectedWeight" jdbcType="REAL" property="expectedWeight" />
+    <result column="IsCombo" jdbcType="BIT" property="isCombo" />
+    <result column="DesignerPrice" jdbcType="DECIMAL" property="designerPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DetailID, VariantID, ProductID, CartID, TableID, OptionID, ValueIDs, DesignerID,
+    MenuID, ProductUnit, Quantity, FloatQuantity, Price, ProduceCost, TotalAmount, DetailDesc,
+    CreatorType, CreatorID, CreateTime, Memo, NeedWeigh, ExpectedWeight, IsCombo, DesignerPrice
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from O_ShoppingCartDetailInfo
+    where DetailID = #{detailID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from O_ShoppingCartDetailInfo
+    where DetailID = #{detailID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.O_ShoppingCartDetailInfoEntity">
+    insert into O_ShoppingCartDetailInfo (DetailID, VariantID, ProductID,
+    CartID, TableID, OptionID,
+    ValueIDs, DesignerID, MenuID,
+    ProductUnit, Quantity, FloatQuantity,
+    Price, ProduceCost, TotalAmount,
+    DetailDesc, CreatorType, CreatorID,
+    CreateTime, Memo, NeedWeigh,
+    ExpectedWeight, IsCombo, DesignerPrice
+    )
+    values (#{detailID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT}, #{productID,jdbcType=BIGINT},
+    #{cartID,jdbcType=BIGINT}, #{tableID,jdbcType=BIGINT}, #{optionID,jdbcType=BIGINT},
+    #{valueIDs,jdbcType=VARCHAR}, #{designerID,jdbcType=BIGINT}, #{menuID,jdbcType=BIGINT},
+    #{productUnit,jdbcType=BIGINT}, #{quantity,jdbcType=INTEGER}, #{floatQuantity,jdbcType=REAL},
+    #{price,jdbcType=DECIMAL}, #{produceCost,jdbcType=DECIMAL}, #{totalAmount,jdbcType=DECIMAL},
+    #{detailDesc,jdbcType=VARCHAR}, #{creatorType,jdbcType=BIGINT}, #{creatorID,jdbcType=BIGINT},
+    #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{needWeigh,jdbcType=BIT},
+    #{expectedWeight,jdbcType=REAL}, #{isCombo,jdbcType=BIT}, #{designerPrice,jdbcType=DECIMAL}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_ShoppingCartDetailInfoEntity">
+    insert into O_ShoppingCartDetailInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="detailID != null">
+        DetailID,
+      </if>
+      <if test="variantID != null">
+        VariantID,
+      </if>
+      <if test="productID != null">
+        ProductID,
+      </if>
+      <if test="cartID != null">
+        CartID,
+      </if>
+      <if test="tableID != null">
+        TableID,
+      </if>
+      <if test="optionID != null">
+        OptionID,
+      </if>
+      <if test="valueIDs != null">
+        ValueIDs,
+      </if>
+      <if test="designerID != null">
+        DesignerID,
+      </if>
+      <if test="menuID != null">
+        MenuID,
+      </if>
+      <if test="productUnit != null">
+        ProductUnit,
+      </if>
+      <if test="quantity != null">
+        Quantity,
+      </if>
+      <if test="floatQuantity != null">
+        FloatQuantity,
+      </if>
+      <if test="price != null">
+        Price,
+      </if>
+      <if test="produceCost != null">
+        ProduceCost,
+      </if>
+      <if test="totalAmount != null">
+        TotalAmount,
+      </if>
+      <if test="detailDesc != null">
+        DetailDesc,
+      </if>
+      <if test="creatorType != null">
+        CreatorType,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="needWeigh != null">
+        NeedWeigh,
+      </if>
+      <if test="expectedWeight != null">
+        ExpectedWeight,
+      </if>
+      <if test="isCombo != null">
+        IsCombo,
+      </if>
+      <if test="designerPrice != null">
+        DesignerPrice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="detailID != null">
+        #{detailID,jdbcType=BIGINT},
+      </if>
+      <if test="variantID != null">
+        #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="productID != null">
+        #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="cartID != null">
+        #{cartID,jdbcType=BIGINT},
+      </if>
+      <if test="tableID != null">
+        #{tableID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="valueIDs != null">
+        #{valueIDs,jdbcType=VARCHAR},
+      </if>
+      <if test="designerID != null">
+        #{designerID,jdbcType=BIGINT},
+      </if>
+      <if test="menuID != null">
+        #{menuID,jdbcType=BIGINT},
+      </if>
+      <if test="productUnit != null">
+        #{productUnit,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="floatQuantity != null">
+        #{floatQuantity,jdbcType=REAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="produceCost != null">
+        #{produceCost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="detailDesc != null">
+        #{detailDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorType != null">
+        #{creatorType,jdbcType=BIGINT},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="needWeigh != null">
+        #{needWeigh,jdbcType=BIT},
+      </if>
+      <if test="expectedWeight != null">
+        #{expectedWeight,jdbcType=REAL},
+      </if>
+      <if test="isCombo != null">
+        #{isCombo,jdbcType=BIT},
+      </if>
+      <if test="designerPrice != null">
+        #{designerPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_ShoppingCartDetailInfoEntity">
+    update O_ShoppingCartDetailInfo
+    <set>
+      <if test="variantID != null">
+        VariantID = #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="productID != null">
+        ProductID = #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="cartID != null">
+        CartID = #{cartID,jdbcType=BIGINT},
+      </if>
+      <if test="tableID != null">
+        TableID = #{tableID,jdbcType=BIGINT},
+      </if>
+      <if test="optionID != null">
+        OptionID = #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="valueIDs != null">
+        ValueIDs = #{valueIDs,jdbcType=VARCHAR},
+      </if>
+      <if test="designerID != null">
+        DesignerID = #{designerID,jdbcType=BIGINT},
+      </if>
+      <if test="menuID != null">
+        MenuID = #{menuID,jdbcType=BIGINT},
+      </if>
+      <if test="productUnit != null">
+        ProductUnit = #{productUnit,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        Quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="floatQuantity != null">
+        FloatQuantity = #{floatQuantity,jdbcType=REAL},
+      </if>
+      <if test="price != null">
+        Price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="produceCost != null">
+        ProduceCost = #{produceCost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="detailDesc != null">
+        DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorType != null">
+        CreatorType = #{creatorType,jdbcType=BIGINT},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="needWeigh != null">
+        NeedWeigh = #{needWeigh,jdbcType=BIT},
+      </if>
+      <if test="expectedWeight != null">
+        ExpectedWeight = #{expectedWeight,jdbcType=REAL},
+      </if>
+      <if test="isCombo != null">
+        IsCombo = #{isCombo,jdbcType=BIT},
+      </if>
+      <if test="designerPrice != null">
+        DesignerPrice = #{designerPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DetailID = #{detailID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_ShoppingCartDetailInfoEntity">
+    update O_ShoppingCartDetailInfo
+    set VariantID = #{variantID,jdbcType=BIGINT},
+      ProductID = #{productID,jdbcType=BIGINT},
+      CartID = #{cartID,jdbcType=BIGINT},
+      TableID = #{tableID,jdbcType=BIGINT},
+      OptionID = #{optionID,jdbcType=BIGINT},
+      ValueIDs = #{valueIDs,jdbcType=VARCHAR},
+      DesignerID = #{designerID,jdbcType=BIGINT},
+      MenuID = #{menuID,jdbcType=BIGINT},
+      ProductUnit = #{productUnit,jdbcType=BIGINT},
+      Quantity = #{quantity,jdbcType=INTEGER},
+      FloatQuantity = #{floatQuantity,jdbcType=REAL},
+      Price = #{price,jdbcType=DECIMAL},
+      ProduceCost = #{produceCost,jdbcType=DECIMAL},
+      TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+      DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+      CreatorType = #{creatorType,jdbcType=BIGINT},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      NeedWeigh = #{needWeigh,jdbcType=BIT},
+      ExpectedWeight = #{expectedWeight,jdbcType=REAL},
+      IsCombo = #{isCombo,jdbcType=BIT},
+      DesignerPrice = #{designerPrice,jdbcType=DECIMAL}
+    where DetailID = #{detailID,jdbcType=BIGINT}
+  </update>
+
+  <delete id="deleteByCartID" parameterType="java.lang.Long">
+    delete from O_ShoppingCartDetailInfo
+    where CartID = #{CartID}
+  </delete>
+
+  <select id="getShoppingCartsByTableID" resultType="map">
+    SELECT mm.productName,mm.isCombo,mm.menuID,scd.cartID,scd.detailID,scd.productID,scd.variantID,scd.optionID,scd.designerID,p.designerName,
+	scd.valueIDs,scd.needWeigh,scd.expectedWeight,scd.price,scd.produceCost,
+	(SELECT dictionaryName FROM C_DictionaryInfo WHERE DictionaryID=mm.UnitID) unitName,
+    CONCAT(IFNULL(scd.memo,''),' ',IFNULL(sc.memo,'')) as memo,scd.quantity,am.filePath
+    FROM O_ShoppingCartDetailInfo scd
+    LEFT JOIN O_ShoppingCartInfo sc on scd.cartID=sc.cartID
+    LEFT JOIN B_MerchantMenuInfo mm ON mm.MenuID=scd.MenuID
+	LEFT JOIN P_DesignerInfo p ON scd.DesignerID=p.DesignerID
+    LEFT JOIN P_AttachmentMapping am ON am.TargetID=scd.ProductID AND am.TargetType=624 AND am.AttachmentType=569
+    WHERE scd.tableID=#{tableID}
+  </select>
+
+  <select id="getByParam" resultType="cc.toprank.byd.entity.O_ShoppingCartDetailInfoEntity">
+    SELECT scd.*,sc.totalAmount as cartTotalAmount,sc.quantity as cartTotalQuantity FROM O_ShoppingCartDetailInfo scd
+    LEFT JOIN O_ShoppingCartInfo sc on sc.cartID = scd.cartID
+    WHERE scd.tableID=#{tableID}
+    <if test="menuID != null and menuID != 0">
+      AND scd.menuID = #{menuID}
+    </if>
+    <if test="productID != null and productID != 0">
+      AND scd.productID = #{productID}
+    </if>
+    <if test="variantID != null and variantID != 0">
+      AND scd.variantID = #{variantID}
+    </if>
+    <choose>
+      <when test="optionID != null and optionID != 0">
+        AND scd.optionID = #{optionID}
+      </when>
+      <otherwise>
+        AND scd.optionID IS NULL
+      </otherwise>
+    </choose>
+    <choose>
+      <when test="valueIDs != null and valueIDs != ''">
+        AND scd.valueIDs = #{valueIDs}
+      </when>
+      <otherwise>
+        AND scd.valueIDs IS NULL
+      </otherwise>
+    </choose>
+    <choose>
+      <when test="designerID != null and designerID != 0">
+        AND scd.designerID = #{designerID}
+      </when>
+      <otherwise>
+        AND scd.designerID IS NULL
+      </otherwise>
+    </choose>
+    <choose>
+      <when test="expectedWeight != null and expectedWeight != 0">
+        AND scd.expectedWeight = #{expectedWeight}
+      </when>
+      <otherwise>
+        AND scd.expectedWeight IS NULL
+      </otherwise>
+    </choose>
+    limit 1
+  </select>
+  <delete id="deleteByParam">
+    DELETE delete from O_ShoppingCartDetailInfo WHERE tableID=#{tableID}
+    <if test="menuID != null and menuID != 0">
+      AND scd.menuID = #{menuID}
+    </if>
+    <if test="productID != null and productID != 0">
+      AND scd.productID = #{productID}
+    </if>
+    <if test="variantID != null and variantID != 0">
+      AND scd.variantID = #{variantID}
+    </if>
+    <if test="optionID != null and optionID != 0">
+      AND scd.optionID = #{optionID}
+    </if>
+    <if test="valueIDs != null and valueIDs != 0">
+      AND scd.valueIDs = #{valueIDs}
+    </if>
+    <if test="designerID != null and designerID != 0">
+      AND scd.designerID = #{designerID}
+    </if>
+  </delete>
+</mapper>

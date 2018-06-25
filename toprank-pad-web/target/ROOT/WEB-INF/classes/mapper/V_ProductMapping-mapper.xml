@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.V_ProductMappingDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.V_ProductMappingEntity">
+    <result column="AvailableFloatQuantity" jdbcType="REAL" property="availableFloatQuantity" />
+    <result column="AvailableQuantity" jdbcType="INTEGER" property="availableQuantity" />
+    <result column="ChangeInitFloatQuantity" jdbcType="REAL" property="changeInitFloatQuantity" />
+    <result column="ChangeInitQuantity" jdbcType="INTEGER" property="changeInitQuantity" />
+    <result column="ConfigReason" jdbcType="BIGINT" property="configReason" />
+    <result column="ContainerID" jdbcType="BIGINT" property="containerID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="InitFloatQuantity" jdbcType="REAL" property="initFloatQuantity" />
+    <result column="InitQuantity" jdbcType="INTEGER" property="initQuantity" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="isTotal" jdbcType="BIT" property="isTotal" />
+    <result column="LockFloatQuantity" jdbcType="REAL" property="lockFloatQuantity" />
+    <result column="LockQuantity" jdbcType="INTEGER" property="lockQuantity" />
+    <result column="LossFloatQuantity" jdbcType="REAL" property="lossFloatQuantity" />
+    <result column="LossQuantity" jdbcType="INTEGER" property="lossQuantity" />
+    <result column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="OptionID" jdbcType="BIGINT" property="optionID" />
+    <result column="ProductID" jdbcType="BIGINT" property="productID" />
+    <result column="ReceiptID" jdbcType="BIGINT" property="receiptID" />
+    <result column="RemainingFloatQuantity" jdbcType="REAL" property="remainingFloatQuantity" />
+    <result column="RemainingQuantity" jdbcType="INTEGER" property="remainingQuantity" />
+    <result column="ShelfID" jdbcType="BIGINT" property="shelfID" />
+    <result column="UnitID" jdbcType="BIGINT" property="unitID" />
+    <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+    <result column="WarehouseID" jdbcType="BIGINT" property="warehouseID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="OrgID" jdbcType="BIGINT" property="orgID" />
+  </resultMap>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.V_ProductMappingEntity">
+    insert into V_ProductMapping (AvailableFloatQuantity, AvailableQuantity, 
+      ChangeInitFloatQuantity, ChangeInitQuantity, 
+      ConfigReason, ContainerID, CreateTime, 
+      CreatorID, InitFloatQuantity, InitQuantity, 
+      IsSync, isTotal, LockFloatQuantity, 
+      LockQuantity, LossFloatQuantity, LossQuantity, 
+      MappingID, Memo, OptionID, 
+      ProductID, ReceiptID, RemainingFloatQuantity, 
+      RemainingQuantity, ShelfID, UnitID, 
+      VariantID, WarehouseID, ArchiveID, 
+      OrgID)
+    values (#{availableFloatQuantity,jdbcType=REAL}, #{availableQuantity,jdbcType=INTEGER}, 
+      #{changeInitFloatQuantity,jdbcType=REAL}, #{changeInitQuantity,jdbcType=INTEGER}, 
+      #{configReason,jdbcType=BIGINT}, #{containerID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{creatorID,jdbcType=BIGINT}, #{initFloatQuantity,jdbcType=REAL}, #{initQuantity,jdbcType=INTEGER}, 
+      #{isSync,jdbcType=BIT}, #{isTotal,jdbcType=BIT}, #{lockFloatQuantity,jdbcType=REAL}, 
+      #{lockQuantity,jdbcType=INTEGER}, #{lossFloatQuantity,jdbcType=REAL}, #{lossQuantity,jdbcType=INTEGER}, 
+      #{mappingID,jdbcType=BIGINT}, #{memo,jdbcType=VARCHAR}, #{optionID,jdbcType=BIGINT}, 
+      #{productID,jdbcType=BIGINT}, #{receiptID,jdbcType=BIGINT}, #{remainingFloatQuantity,jdbcType=REAL}, 
+      #{remainingQuantity,jdbcType=INTEGER}, #{shelfID,jdbcType=BIGINT}, #{unitID,jdbcType=BIGINT}, 
+      #{variantID,jdbcType=BIGINT}, #{warehouseID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, 
+      #{orgID,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.V_ProductMappingEntity">
+    insert into V_ProductMapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="availableFloatQuantity != null">
+        AvailableFloatQuantity,
+      </if>
+      <if test="availableQuantity != null">
+        AvailableQuantity,
+      </if>
+      <if test="changeInitFloatQuantity != null">
+        ChangeInitFloatQuantity,
+      </if>
+      <if test="changeInitQuantity != null">
+        ChangeInitQuantity,
+      </if>
+      <if test="configReason != null">
+        ConfigReason,
+      </if>
+      <if test="containerID != null">
+        ContainerID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="initFloatQuantity != null">
+        InitFloatQuantity,
+      </if>
+      <if test="initQuantity != null">
+        InitQuantity,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="isTotal != null">
+        isTotal,
+      </if>
+      <if test="lockFloatQuantity != null">
+        LockFloatQuantity,
+      </if>
+      <if test="lockQuantity != null">
+        LockQuantity,
+      </if>
+      <if test="lossFloatQuantity != null">
+        LossFloatQuantity,
+      </if>
+      <if test="lossQuantity != null">
+        LossQuantity,
+      </if>
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="optionID != null">
+        OptionID,
+      </if>
+      <if test="productID != null">
+        ProductID,
+      </if>
+      <if test="receiptID != null">
+        ReceiptID,
+      </if>
+      <if test="remainingFloatQuantity != null">
+        RemainingFloatQuantity,
+      </if>
+      <if test="remainingQuantity != null">
+        RemainingQuantity,
+      </if>
+      <if test="shelfID != null">
+        ShelfID,
+      </if>
+      <if test="unitID != null">
+        UnitID,
+      </if>
+      <if test="variantID != null">
+        VariantID,
+      </if>
+      <if test="warehouseID != null">
+        WarehouseID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="orgID != null">
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="availableFloatQuantity != null">
+        #{availableFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="availableQuantity != null">
+        #{availableQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="changeInitFloatQuantity != null">
+        #{changeInitFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="changeInitQuantity != null">
+        #{changeInitQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="configReason != null">
+        #{configReason,jdbcType=BIGINT},
+      </if>
+      <if test="containerID != null">
+        #{containerID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="initFloatQuantity != null">
+        #{initFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="initQuantity != null">
+        #{initQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="isTotal != null">
+        #{isTotal,jdbcType=BIT},
+      </if>
+      <if test="lockFloatQuantity != null">
+        #{lockFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="lockQuantity != null">
+        #{lockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="lossFloatQuantity != null">
+        #{lossFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="lossQuantity != null">
+        #{lossQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="optionID != null">
+        #{optionID,jdbcType=BIGINT},
+      </if>
+      <if test="productID != null">
+        #{productID,jdbcType=BIGINT},
+      </if>
+      <if test="receiptID != null">
+        #{receiptID,jdbcType=BIGINT},
+      </if>
+      <if test="remainingFloatQuantity != null">
+        #{remainingFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="remainingQuantity != null">
+        #{remainingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="shelfID != null">
+        #{shelfID,jdbcType=BIGINT},
+      </if>
+      <if test="unitID != null">
+        #{unitID,jdbcType=BIGINT},
+      </if>
+      <if test="variantID != null">
+        #{variantID,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseID != null">
+        #{warehouseID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        #{orgID,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getAll" resultType="cc.toprank.byd.entity.V_ProductMappingEntity">
+    SELECT * FROM V_ProductMapping
+  </select>
+
+  <select id="selectByMappingID" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT * FROM V_ProductMapping
+    WHERE MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+</mapper>

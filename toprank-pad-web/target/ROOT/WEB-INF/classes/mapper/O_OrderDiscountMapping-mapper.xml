@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.O_OrderDiscountMappingDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		<id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+		<result column="OrderID" jdbcType="BIGINT" property="orderID" />
+		<result column="MappingOrderID" jdbcType="BIGINT" property="mappingOrderID" />
+		<result column="DiscountID" jdbcType="BIGINT" property="discountID" />
+		<result column="RecordID" jdbcType="BIGINT" property="recordID" />
+		<result column="LoginID" jdbcType="BIGINT" property="loginID" />
+		<result column="SubOrderID" jdbcType="BIGINT" property="subOrderID" />
+		<result column="IsRatio" jdbcType="BIT" property="isRatio" />
+		<result column="DiscountPercentage" jdbcType="REAL" property="discountPercentage" />
+		<result column="DiscountType" jdbcType="BIGINT" property="discountType" />
+		<result column="DiscountAmount" jdbcType="DECIMAL" property="discountAmount" />
+		<result column="PresentAmount" jdbcType="DECIMAL" property="presentAmount" />
+		<result column="PresentBonus" jdbcType="INTEGER" property="presentBonus" />
+		<result column="IsManualProcess" jdbcType="BIT" property="isManualProcess" />
+		<result column="CustomerMemo" jdbcType="VARCHAR" property="customerMemo" />
+		<result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Authorizer" jdbcType="BIGINT" property="authorizer" />
+		<result column="AuthorizeTime" jdbcType="TIMESTAMP" property="authorizeTime" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+		<result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		MappingID, OrderID, MappingOrderID, DiscountID, RecordID, LoginID, SubOrderID, IsRatio,
+		DiscountPercentage, DiscountType, DiscountAmount, PresentAmount, PresentBonus, IsManualProcess,
+		CustomerMemo, MappingDesc, SortNo, CreatorID, CreatorType, CreateTime, Authorizer,
+		AuthorizeTime, IsSync, Memo, SyncTime, SyncTimeResult
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_OrderDiscountMapping
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_OrderDiscountMapping
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		insert into O_OrderDiscountMapping (MappingID, OrderID, MappingOrderID,
+		DiscountID, RecordID, LoginID,
+		SubOrderID, IsRatio, DiscountPercentage,
+		DiscountType, DiscountAmount, PresentAmount,
+		PresentBonus, IsManualProcess, CustomerMemo,
+		MappingDesc, SortNo, CreatorID,
+		CreatorType, CreateTime, Authorizer,
+		AuthorizeTime, IsSync, Memo,
+		SyncTime, SyncTimeResult)
+		values (#{mappingID,jdbcType=BIGINT}, #{orderID,jdbcType=BIGINT}, #{mappingOrderID,jdbcType=BIGINT},
+		#{discountID,jdbcType=BIGINT}, #{recordID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT},
+		#{subOrderID,jdbcType=BIGINT}, #{isRatio,jdbcType=BIT}, #{discountPercentage,jdbcType=REAL},
+		#{discountType,jdbcType=BIGINT}, #{discountAmount,jdbcType=DECIMAL}, #{presentAmount,jdbcType=DECIMAL},
+		#{presentBonus,jdbcType=INTEGER}, #{isManualProcess,jdbcType=BIT}, #{customerMemo,jdbcType=VARCHAR},
+		#{mappingDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+		#{creatorType,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{authorizer,jdbcType=BIGINT},
+		#{authorizeTime,jdbcType=TIMESTAMP}, #{isSync,jdbcType=BIT}, #{memo,jdbcType=VARCHAR},
+		#{syncTime,jdbcType=TIMESTAMP}, #{syncTimeResult,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		insert into O_OrderDiscountMapping
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mappingID != null">
+				MappingID,
+			</if>
+			<if test="orderID != null">
+				OrderID,
+			</if>
+			<if test="mappingOrderID != null">
+				MappingOrderID,
+			</if>
+			<if test="discountID != null">
+				DiscountID,
+			</if>
+			<if test="recordID != null">
+				RecordID,
+			</if>
+			<if test="loginID != null">
+				LoginID,
+			</if>
+			<if test="subOrderID != null">
+				SubOrderID,
+			</if>
+			<if test="isRatio != null">
+				IsRatio,
+			</if>
+			<if test="discountPercentage != null">
+				DiscountPercentage,
+			</if>
+			<if test="discountType != null">
+				DiscountType,
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount,
+			</if>
+			<if test="presentAmount != null">
+				PresentAmount,
+			</if>
+			<if test="presentBonus != null">
+				PresentBonus,
+			</if>
+			<if test="isManualProcess != null">
+				IsManualProcess,
+			</if>
+			<if test="customerMemo != null">
+				CustomerMemo,
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="creatorType != null">
+				CreatorType,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="authorizer != null">
+				Authorizer,
+			</if>
+			<if test="authorizeTime != null">
+				AuthorizeTime,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="mappingID != null">
+				#{mappingID,jdbcType=BIGINT},
+			</if>
+			<if test="orderID != null">
+				#{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="mappingOrderID != null">
+				#{mappingOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="discountID != null">
+				#{discountID,jdbcType=BIGINT},
+			</if>
+			<if test="recordID != null">
+				#{recordID,jdbcType=BIGINT},
+			</if>
+			<if test="loginID != null">
+				#{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="subOrderID != null">
+				#{subOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="isRatio != null">
+				#{isRatio,jdbcType=BIT},
+			</if>
+			<if test="discountPercentage != null">
+				#{discountPercentage,jdbcType=REAL},
+			</if>
+			<if test="discountType != null">
+				#{discountType,jdbcType=BIGINT},
+			</if>
+			<if test="discountAmount != null">
+				#{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="presentAmount != null">
+				#{presentAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="presentBonus != null">
+				#{presentBonus,jdbcType=INTEGER},
+			</if>
+			<if test="isManualProcess != null">
+				#{isManualProcess,jdbcType=BIT},
+			</if>
+			<if test="customerMemo != null">
+				#{customerMemo,jdbcType=VARCHAR},
+			</if>
+			<if test="mappingDesc != null">
+				#{mappingDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				#{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="authorizer != null">
+				#{authorizer,jdbcType=BIGINT},
+			</if>
+			<if test="authorizeTime != null">
+				#{authorizeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		update O_OrderDiscountMapping
+		<set>
+			<if test="orderID != null">
+				OrderID = #{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="mappingOrderID != null">
+				MappingOrderID = #{mappingOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="discountID != null">
+				DiscountID = #{discountID,jdbcType=BIGINT},
+			</if>
+			<if test="recordID != null">
+				RecordID = #{recordID,jdbcType=BIGINT},
+			</if>
+			<if test="loginID != null">
+				LoginID = #{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="subOrderID != null">
+				SubOrderID = #{subOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="isRatio != null">
+				IsRatio = #{isRatio,jdbcType=BIT},
+			</if>
+			<if test="discountPercentage != null">
+				DiscountPercentage = #{discountPercentage,jdbcType=REAL},
+			</if>
+			<if test="discountType != null">
+				DiscountType = #{discountType,jdbcType=BIGINT},
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="presentAmount != null">
+				PresentAmount = #{presentAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="presentBonus != null">
+				PresentBonus = #{presentBonus,jdbcType=INTEGER},
+			</if>
+			<if test="isManualProcess != null">
+				IsManualProcess = #{isManualProcess,jdbcType=BIT},
+			</if>
+			<if test="customerMemo != null">
+				CustomerMemo = #{customerMemo,jdbcType=VARCHAR},
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				CreatorType = #{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="authorizer != null">
+				Authorizer = #{authorizer,jdbcType=BIGINT},
+			</if>
+			<if test="authorizeTime != null">
+				AuthorizeTime = #{authorizeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="syncTime != null">
+				SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimeResult != null">
+				SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		update O_OrderDiscountMapping
+		set OrderID = #{orderID,jdbcType=BIGINT},
+		MappingOrderID = #{mappingOrderID,jdbcType=BIGINT},
+		DiscountID = #{discountID,jdbcType=BIGINT},
+		RecordID = #{recordID,jdbcType=BIGINT},
+		LoginID = #{loginID,jdbcType=BIGINT},
+		SubOrderID = #{subOrderID,jdbcType=BIGINT},
+		IsRatio = #{isRatio,jdbcType=BIT},
+		DiscountPercentage = #{discountPercentage,jdbcType=REAL},
+		DiscountType = #{discountType,jdbcType=BIGINT},
+		DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+		PresentAmount = #{presentAmount,jdbcType=DECIMAL},
+		PresentBonus = #{presentBonus,jdbcType=INTEGER},
+		IsManualProcess = #{isManualProcess,jdbcType=BIT},
+		CustomerMemo = #{customerMemo,jdbcType=VARCHAR},
+		MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreatorType = #{creatorType,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Authorizer = #{authorizer,jdbcType=BIGINT},
+		AuthorizeTime = #{authorizeTime,jdbcType=TIMESTAMP},
+		IsSync = #{isSync,jdbcType=BIT},
+		Memo = #{memo,jdbcType=VARCHAR},
+		SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+		SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="O_OrderDiscountMappingEntity" resultType="O_OrderDiscountMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_OrderDiscountMappingCollection()}
+		]]>
+	</select>
+  	<select id="get" parameterType="O_OrderDiscountMappingEntity" resultType="O_OrderDiscountMappingEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_OrderDiscountMappingEntity(#{mappingID})}
+		]]>
+	</select>
+  	<delete id="delete" parameterType="O_OrderDiscountMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteO_OrderDiscountMappingEntity(#{mappingID})}
+		]]>
+  	</delete>
+
+  	<insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="O_OrderDiscountMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertO_OrderDiscountMappingEntity(#{authorizer},#{authorizeTime},#{createTime},#{creatorID},#{creatorType},#{customerMemo},#{discountAmount},#{discountID},#{discountPercentage},#{discountType},#{isManualProcess},#{isRatio},#{isSync},#{loginID},#{mappingDesc},#{mappingID,jdbcType=INTEGER,mode=OUT},#{memo},#{orderID},#{presentAmount},#{presentBonus},#{recordID},#{sortNo},#{subOrderID},#{loginAccount})}
+		]]>
+  	</insert>
+
+  	<update id="update" parameterType="O_OrderDiscountMappingEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateO_OrderDiscountMappingEntity(#{authorizer},#{authorizeTime},#{createTime},#{creatorID},#{creatorType},#{customerMemo},#{discountAmount},#{discountID},#{discountPercentage},#{discountType},#{isManualProcess},#{isRatio},#{isSync},#{loginID},#{mappingDesc},#{mappingID},#{memo},#{orderID},#{presentAmount},#{presentBonus},#{recordID},#{sortNo},#{subOrderID})}
+		]]>
+  	</update>
+  	<!--<select id="list" parameterType="O_OrderDiscountMapping" resultType="O_OrderDiscountMapping" statementType="CALLABLE">
+  		<![CDATA[
+			{call GetO_OrderDiscountMapping_query_by_condition(#{authorizer},#{authorizeTime},#{createTime},#{creatorID},#{creatorType},#{customerMemo},#{discountAmount},#{discountID},#{discountPercentage},#{discountType},#{isManualProcess},#{isRatio},#{isSync},#{loginID},#{mappingDesc},#{memo},#{orderID},#{presentAmount},#{presentBonus},#{recordID},#{sortNo},#{subOrderID})}
+		]]>
+  	</select>
+  	-->
+
+    <!-- 根据订单ID或关联ID查询订单折扣信息   hcy -->
+    <select id="queryDiscountInfoByOrderID" parameterType="cc.toprank.byd.web.dto.PaymentDTO" resultType="O_OrderDiscountMappingEntity">
+        Select
+            Authorizer, AuthorizeTime, CreateTime, CreatorID, CreatorType, CustomerMemo, DiscountAmount,
+            DiscountID, DiscountPercentage, DiscountType, IsManualProcess, IsRatio, IsSync, LoginID,
+            MappingDesc, MappingID, Memo, OrderID, PresentAmount, PresentBonus, RecordID,
+            SortNo, SubOrderID
+        FROM
+            O_OrderDiscountMapping
+        WHERE
+		<if test="businessType == 673">
+			MappingOrderID = #{orderID}
+		</if>
+		<if test="businessType == 635">
+			OrderID = #{orderID}
+		</if>
+    </select>
+
+	<!--
+	根据子订单ID和折扣类别查询订单折扣信息
+	chenkangyi
+	2017-6-6 14:20
+	-->
+	<select id="queryDiscountInfoBySubOrderIDAndDiscountType" parameterType="map" resultType="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		SELECT * FROM O_OrderDiscountMapping WHERE IsManualProcess = TRUE AND SubOrderID = #{subOrderID} AND DiscountType = #{discountType}
+	</select>
+
+	<!--
+	根据子订单ID和折扣类别删除订单折扣信息
+	chenkangyi
+	2017-6-8 10:59
+	-->
+	<delete id="deleteOrderDiscountMappingBySubOrderIDListAndDiscountType" parameterType="map">
+		DELETE FROM O_OrderDiscountMapping WHERE SubOrderID IN
+		<foreach collection="subOrderIDList" index="index" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+		AND DiscountType = #{discountType}
+	</delete>
+
+	<!--
+	根据子订单ID和折扣类别查询订单折扣信息
+	chenkangyi
+	2017-6-8 10:59
+	-->
+	<select id="selectOrderDiscountMappingBySubOrderIDListAndDiscountType" parameterType="map" resultType="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		SELECT * FROM O_OrderDiscountMapping WHERE SubOrderID IN
+		<foreach collection="subOrderIDList" index="index" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+		AND DiscountType = #{discountType}
+	</select>
+
+	<!--
+根据子订单ID和折扣类别查询订单折扣信息
+zhouwei
+2017-6-12 10:59
+-->
+	<select id="getOrderDisCountMappingBySubOrderID" parameterType="map" resultType="java.lang.String">
+		SELECT MappingDesc FROM O_OrderDiscountMapping WHERE 1=1
+		<if test="subOrderID != null and subOrderID != '' ">
+			AND SubOrderID = #{subOrderID}
+		</if>
+	</select>
+
+	<!--
+	根据订单ID和折扣类别查询订单折扣信息
+	chenkangyi
+	2017-6-14 16:59
+	-->
+	<select id="queryDiscountInfoByOrderIDAndDiscountType" parameterType="map" resultType="cc.toprank.byd.entity.O_OrderDiscountMappingEntity">
+		SELECT * FROM O_OrderDiscountMapping
+		WHERE
+		<if test="businessType == 673">
+			MappingOrderID = #{orderID}
+		</if>
+		<if test="businessType == 635">
+			OrderID = #{orderID}
+		</if>
+		AND IsManualProcess = TRUE
+		<if test="discountType != null">
+			AND DiscountType = #{discountType}
+		</if>
+		LIMIT 1
+	</select>
+
+	<!--
+	根据订单ID和折扣类别删除订单折扣信息
+	chenkangyi
+	2017-6-14 16:59
+	-->
+	<delete id="deleteOrderDiscountMappingByOrderIDAndDiscountType" parameterType="map">
+		DELETE FROM O_OrderDiscountMapping WHERE
+		<if test="businessType == 673">
+			MappingOrderID = #{orderID}
+		</if>
+		<if test="businessType == 635">
+			OrderID = #{orderID}
+		</if>
+		AND IsManualProcess = TRUE
+		<if test="discountType != null">
+		AND DiscountType = #{discountType}
+		</if>
+	</delete>
+
+	<!-- 根据支付订单ID改变订单折扣信息的金额 -->
+	<update id="updateDiscountAmountByOrderID" parameterType="O_OrderDiscountMappingEntity">
+		UPDATE
+			O_OrderDiscountMapping
+		SET
+			DiscountAmount = #{discountAmount}
+		WHERE
+			<if test="null != orderID">
+				OrderID = #{orderID}
+			</if>
+			<if test="null != MappingOrderID">
+				MappingOrderID = #{mappingOrderID}
+			</if>
+	</update>
+</mapper>

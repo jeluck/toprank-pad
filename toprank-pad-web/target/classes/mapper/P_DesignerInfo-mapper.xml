@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_DesignerInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_DesignerInfoEntity">
+		<id column="DesignerID" jdbcType="BIGINT" property="designerID" />
+		<result column="ProvinceID" jdbcType="BIGINT" property="provinceID" />
+		<result column="CountryID" jdbcType="BIGINT" property="countryID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="LoginID" jdbcType="BIGINT" property="loginID" />
+		<result column="EmployeeCode" jdbcType="VARCHAR" property="employeeCode" />
+		<result column="DesignerCode" jdbcType="VARCHAR" property="designerCode" />
+		<result column="DesignerName" jdbcType="VARCHAR" property="designerName" />
+		<result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter" />
+		<result column="Gender" jdbcType="BIGINT" property="gender" />
+		<result column="WorkExperience" jdbcType="REAL" property="workExperience" />
+		<result column="Expirence" jdbcType="VARCHAR" property="expirence" />
+		<result column="Picture" jdbcType="VARCHAR" property="picture" />
+		<result column="Birthday" jdbcType="TIMESTAMP" property="birthday" />
+		<result column="Intro" jdbcType="VARCHAR" property="intro" />
+		<result column="ResumeUrl" jdbcType="VARCHAR" property="resumeUrl" />
+		<result column="Mobile" jdbcType="VARCHAR" property="mobile" />
+		<result column="Email" jdbcType="VARCHAR" property="email" />
+		<result column="CompanyPhone" jdbcType="VARCHAR" property="companyPhone" />
+		<result column="CompanyAddress" jdbcType="VARCHAR" property="companyAddress" />
+		<result column="ComapnyPostCode" jdbcType="VARCHAR" property="comapnyPostCode" />
+		<result column="MajorWorks" jdbcType="VARCHAR" property="majorWorks" />
+		<result column="DesignerLevel" jdbcType="BIGINT" property="designerLevel" />
+		<result column="DesignerStatus" jdbcType="BIGINT" property="designerStatus" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+		<result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		DesignerID, ProvinceID, CountryID, ArchiveID, LoginID, EmployeeCode, DesignerCode,
+		DesignerName, FirstLetter, Gender, WorkExperience, Expirence, Picture, Birthday,
+		Intro, ResumeUrl, Mobile, Email, CompanyPhone, CompanyAddress, ComapnyPostCode, MajorWorks,
+		DesignerLevel, DesignerStatus, SortNo, CreatorID, CreateTime, Memo, SyncTime, SyncTimeResult
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from P_DesignerInfo
+		where DesignerID = #{designerID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from P_DesignerInfo
+		where DesignerID = #{designerID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.P_DesignerInfoEntity">
+		insert into P_DesignerInfo (DesignerID, ProvinceID, CountryID,
+		ArchiveID, LoginID, EmployeeCode,
+		DesignerCode, DesignerName, FirstLetter,
+		Gender, WorkExperience, Expirence,
+		Picture, Birthday, Intro,
+		ResumeUrl, Mobile, Email,
+		CompanyPhone, CompanyAddress, ComapnyPostCode,
+		MajorWorks, DesignerLevel, DesignerStatus,
+		SortNo, CreatorID, CreateTime,
+		Memo, SyncTime, SyncTimeResult
+		)
+		values (#{designerID,jdbcType=BIGINT}, #{provinceID,jdbcType=BIGINT}, #{countryID,jdbcType=BIGINT},
+		#{archiveID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT}, #{employeeCode,jdbcType=VARCHAR},
+		#{designerCode,jdbcType=VARCHAR}, #{designerName,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR},
+		#{gender,jdbcType=BIGINT}, #{workExperience,jdbcType=REAL}, #{expirence,jdbcType=VARCHAR},
+		#{picture,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{intro,jdbcType=VARCHAR},
+		#{resumeUrl,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{companyPhone,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, #{comapnyPostCode,jdbcType=VARCHAR},
+		#{majorWorks,jdbcType=VARCHAR}, #{designerLevel,jdbcType=BIGINT}, #{designerStatus,jdbcType=BIGINT},
+		#{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, #{syncTimeResult,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_DesignerInfoEntity">
+		insert into P_DesignerInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="designerID != null">
+				DesignerID,
+			</if>
+			<if test="provinceID != null">
+				ProvinceID,
+			</if>
+			<if test="countryID != null">
+				CountryID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="loginID != null">
+				LoginID,
+			</if>
+			<if test="employeeCode != null">
+				EmployeeCode,
+			</if>
+			<if test="designerCode != null">
+				DesignerCode,
+			</if>
+			<if test="designerName != null">
+				DesignerName,
+			</if>
+			<if test="firstLetter != null">
+				FirstLetter,
+			</if>
+			<if test="gender != null">
+				Gender,
+			</if>
+			<if test="workExperience != null">
+				WorkExperience,
+			</if>
+			<if test="expirence != null">
+				Expirence,
+			</if>
+			<if test="picture != null">
+				Picture,
+			</if>
+			<if test="birthday != null">
+				Birthday,
+			</if>
+			<if test="intro != null">
+				Intro,
+			</if>
+			<if test="resumeUrl != null">
+				ResumeUrl,
+			</if>
+			<if test="mobile != null">
+				Mobile,
+			</if>
+			<if test="email != null">
+				Email,
+			</if>
+			<if test="companyPhone != null">
+				CompanyPhone,
+			</if>
+			<if test="companyAddress != null">
+				CompanyAddress,
+			</if>
+			<if test="comapnyPostCode != null">
+				ComapnyPostCode,
+			</if>
+			<if test="majorWorks != null">
+				MajorWorks,
+			</if>
+			<if test="designerLevel != null">
+				DesignerLevel,
+			</if>
+			<if test="designerStatus != null">
+				DesignerStatus,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="syncTime != null">
+				SyncTime,
+			</if>
+			<if test="syncTimeResult != null">
+				SyncTimeResult,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="designerID != null">
+				#{designerID,jdbcType=BIGINT},
+			</if>
+			<if test="provinceID != null">
+				#{provinceID,jdbcType=BIGINT},
+			</if>
+			<if test="countryID != null">
+				#{countryID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="loginID != null">
+				#{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="employeeCode != null">
+				#{employeeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="designerCode != null">
+				#{designerCode,jdbcType=VARCHAR},
+			</if>
+			<if test="designerName != null">
+				#{designerName,jdbcType=VARCHAR},
+			</if>
+			<if test="firstLetter != null">
+				#{firstLetter,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=BIGINT},
+			</if>
+			<if test="workExperience != null">
+				#{workExperience,jdbcType=REAL},
+			</if>
+			<if test="expirence != null">
+				#{expirence,jdbcType=VARCHAR},
+			</if>
+			<if test="picture != null">
+				#{picture,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="intro != null">
+				#{intro,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeUrl != null">
+				#{resumeUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="companyPhone != null">
+				#{companyPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="companyAddress != null">
+				#{companyAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="comapnyPostCode != null">
+				#{comapnyPostCode,jdbcType=VARCHAR},
+			</if>
+			<if test="majorWorks != null">
+				#{majorWorks,jdbcType=VARCHAR},
+			</if>
+			<if test="designerLevel != null">
+				#{designerLevel,jdbcType=BIGINT},
+			</if>
+			<if test="designerStatus != null">
+				#{designerStatus,jdbcType=BIGINT},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="syncTime != null">
+				#{syncTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimeResult != null">
+				#{syncTimeResult,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_DesignerInfoEntity">
+		update P_DesignerInfo
+		<set>
+			<if test="provinceID != null">
+				ProvinceID = #{provinceID,jdbcType=BIGINT},
+			</if>
+			<if test="countryID != null">
+				CountryID = #{countryID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="loginID != null">
+				LoginID = #{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="employeeCode != null">
+				EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="designerCode != null">
+				DesignerCode = #{designerCode,jdbcType=VARCHAR},
+			</if>
+			<if test="designerName != null">
+				DesignerName = #{designerName,jdbcType=VARCHAR},
+			</if>
+			<if test="firstLetter != null">
+				FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				Gender = #{gender,jdbcType=BIGINT},
+			</if>
+			<if test="workExperience != null">
+				WorkExperience = #{workExperience,jdbcType=REAL},
+			</if>
+			<if test="expirence != null">
+				Expirence = #{expirence,jdbcType=VARCHAR},
+			</if>
+			<if test="picture != null">
+				Picture = #{picture,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				Birthday = #{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="intro != null">
+				Intro = #{intro,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeUrl != null">
+				ResumeUrl = #{resumeUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				Mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				Email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="companyPhone != null">
+				CompanyPhone = #{companyPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="companyAddress != null">
+				CompanyAddress = #{companyAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="comapnyPostCode != null">
+				ComapnyPostCode = #{comapnyPostCode,jdbcType=VARCHAR},
+			</if>
+			<if test="majorWorks != null">
+				MajorWorks = #{majorWorks,jdbcType=VARCHAR},
+			</if>
+			<if test="designerLevel != null">
+				DesignerLevel = #{designerLevel,jdbcType=BIGINT},
+			</if>
+			<if test="designerStatus != null">
+				DesignerStatus = #{designerStatus,jdbcType=BIGINT},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="syncTime != null">
+				SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimeResult != null">
+				SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where DesignerID = #{designerID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_DesignerInfoEntity">
+		update P_DesignerInfo
+		set ProvinceID = #{provinceID,jdbcType=BIGINT},
+		CountryID = #{countryID,jdbcType=BIGINT},
+		ArchiveID = #{archiveID,jdbcType=BIGINT},
+		LoginID = #{loginID,jdbcType=BIGINT},
+		EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+		DesignerCode = #{designerCode,jdbcType=VARCHAR},
+		DesignerName = #{designerName,jdbcType=VARCHAR},
+		FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+		Gender = #{gender,jdbcType=BIGINT},
+		WorkExperience = #{workExperience,jdbcType=REAL},
+		Expirence = #{expirence,jdbcType=VARCHAR},
+		Picture = #{picture,jdbcType=VARCHAR},
+		Birthday = #{birthday,jdbcType=TIMESTAMP},
+		Intro = #{intro,jdbcType=VARCHAR},
+		ResumeUrl = #{resumeUrl,jdbcType=VARCHAR},
+		Mobile = #{mobile,jdbcType=VARCHAR},
+		Email = #{email,jdbcType=VARCHAR},
+		CompanyPhone = #{companyPhone,jdbcType=VARCHAR},
+		CompanyAddress = #{companyAddress,jdbcType=VARCHAR},
+		ComapnyPostCode = #{comapnyPostCode,jdbcType=VARCHAR},
+		MajorWorks = #{majorWorks,jdbcType=VARCHAR},
+		DesignerLevel = #{designerLevel,jdbcType=BIGINT},
+		DesignerStatus = #{designerStatus,jdbcType=BIGINT},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+		SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+		where DesignerID = #{designerID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="P_DesignerInfoEntity" resultType="P_DesignerInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_DesignerInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_DesignerInfoEntity" resultType="P_DesignerInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_DesignerInfoEntity(#{designerID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_DesignerInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_DesignerInfoEntity(#{designerID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DesignerID" parameterType="P_DesignerInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_DesignerInfoEntity(#{archiveID},#{birthday},#{comapnyPostCode},#{companyAddress},#{companyPhone},#{countryID},#{createTime},#{creatorID},#{designerCode},#{designerID,jdbcType=INTEGER,mode=OUT},#{designerLevel},#{designerName},#{designerStatus},#{email},#{employeeCode},#{expirence},#{firstLetter},#{gender},#{intro},#{loginID},#{majorWorks},#{memo},#{mobile},#{picture},#{provinceID},#{resumeUrl},#{sortNo},#{workExperience},"admin")}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_DesignerInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_DesignerInfoEntity(#{archiveID},#{birthday},#{comapnyPostCode},#{companyAddress},#{companyPhone},#{countryID},#{createTime},#{creatorID},#{designerCode},#{designerID},#{designerLevel},#{designerName},#{designerStatus},#{email},#{employeeCode},#{expirence},#{firstLetter},#{gender},#{intro},#{loginID},#{majorWorks},#{memo},#{mobile},#{picture},#{provinceID},#{resumeUrl},#{sortNo},#{workExperience})} 
+		]]>  
+  	</update>
+  	<!--<select id="list" parameterType="P_DesignerInfo" resultType="P_DesignerInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetP_DesignerInfo_query_by_condition(#{archiveID},#{birthday},#{comapnyPostCode},#{companyAddress},#{companyPhone},#{countryID},#{createTime},#{creatorID},#{designerCode},#{designerLevel},#{designerName},#{designerStatus},#{email},#{employeeCode},#{expirence},#{firstLetter},#{gender},#{intro},#{loginID},#{majorWorks},#{memo},#{mobile},#{picture},#{provinceID},#{resumeUrl},#{sortNo},#{workExperience})} 
+		]]>  
+  	</select>
+  	-->
+
+	<!-- 查询会做某道菜的厨师信息 -->
+	<select id="queryDesignerByCondition" parameterType="map" resultType="cc.toprank.byd.web.vo.menu.DesignerInfoVO">
+		SELECT
+			b.MappingID ,
+			a.DesignerLevel ,
+			b.ProduceCost ,
+			a.DesignerName ,
+			a.DesignerID ,
+			a.Picture
+		FROM
+			P_DesignerInfo a
+		INNER JOIN
+			P_ProductDesignerMapping b
+		on
+			(a.DesignerID = b.DesignerID)
+		WHERE
+			a.ArchiveID = #{archiveID}
+		AND
+			(
+			b.VariantID =
+				(SELECT VariantID FROM B_MerchantMenuInfo WHERE MenuID = #{menuID})
+
+		OR
+			b.ProductID =
+				(SELECT ProductID FROM B_MerchantMenuInfo WHERE MenuID = #{menuID})
+			)
+	</select>
+
+
+	<!-- 查询会做某道菜的厨师信息 -->
+	<select id="getCurrentDesignerByProduct" parameterType="map" resultType="cc.toprank.byd.web.vo.menu.DesignerInfoVO">
+		SELECT
+			b.MappingID ,
+			a.DesignerLevel ,
+			b.ProduceCost ,
+			a.DesignerName ,
+			a.DesignerID ,
+			a.Picture,
+			(select sum(ckn.PraiseNum) from T_ClickNumDailyInfo ckn
+				where ckn.ArchiveID = #{archiveID} and ckn.TargetID = a.DesignerID and ckn.TargetType = 357) as PraiseNum
+		FROM P_DesignerInfo a
+			INNER JOIN P_ProductDesignerMapping b on a.DesignerID = b.DesignerID
+			LEFT JOIN U_LoginInfo u on a.LoginID = u.LoginID
+		WHERE a.ArchiveID = #{archiveID}
+			AND u.LoginStatus = 9
+			AND (b.VariantID = #{variantID} OR b.ProductID = #{productID})
+	</select>
+
+	<select id="getDesignerByParam" resultType="cc.toprank.byd.vo.DesignerVO">
+		SELECT d.designerID,d.designerName,d.picture,d.designerLevel,
+		ifnull(pdm.produceCost,0.00) produceCost,0 praiseNum FROM P_ProductDesignerMapping pdm
+		INNER JOIN P_DesignerInfo d ON d.DesignerID=pdm.DesignerID
+		LEFT JOIN U_LoginInfo u ON u.LoginID=d.LoginID
+		WHERE u.LoginStatus = 9 AND d.DesignerStatus=9
+		AND d.ArchiveID=#{archiveID} AND pdm.ProductID=#{productID}
+		<choose>
+			<when test="variantID != null">
+				AND pdm.VariantID=#{variantID}
+			</when>
+			<otherwise>
+				AND pdm.VariantID IS NULL
+			</otherwise>
+		</choose>
+	</select>
+
+  </mapper>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_StallProduceMappingDao">
+
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_StallProduceMappingEntity">
+        <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+        <result column="StallID" jdbcType="BIGINT" property="stallID" />
+        <result column="CategoryID" jdbcType="BIGINT" property="categoryID" />
+        <result column="ProductID" jdbcType="BIGINT" property="productID" />
+        <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+        <result column="NeedConfirm" jdbcType="BIT" property="needConfirm" />
+        <result column="DiffRate" jdbcType="INTEGER" property="diffRate" />
+        <result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+        <result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        MappingID, StallID, CategoryID, ProductID, VariantID, NeedConfirm, DiffRate, MappingStatus,
+        MappingDesc, SortNo, IsSync, CreatorID, CreateTime, Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_StallProduceMapping
+        where MappingID = #{mappingID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_StallProduceMapping
+        where MappingID = #{mappingID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity">
+        insert into B_StallProduceMapping (MappingID, StallID, CategoryID,
+        ProductID, VariantID, NeedConfirm,
+        DiffRate, MappingStatus, MappingDesc,
+        SortNo, IsSync, CreatorID,
+        CreateTime, Memo)
+        values (#{mappingID,jdbcType=BIGINT}, #{stallID,jdbcType=BIGINT}, #{categoryID,jdbcType=BIGINT},
+        #{productID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT}, #{needConfirm,jdbcType=BIT},
+        #{diffRate,jdbcType=INTEGER}, #{mappingStatus,jdbcType=BIGINT}, #{mappingDesc,jdbcType=VARCHAR},
+        #{sortNo,jdbcType=INTEGER}, #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity">
+        insert into B_StallProduceMapping
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mappingID != null">
+                MappingID,
+            </if>
+            <if test="stallID != null">
+                StallID,
+            </if>
+            <if test="categoryID != null">
+                CategoryID,
+            </if>
+            <if test="productID != null">
+                ProductID,
+            </if>
+            <if test="variantID != null">
+                VariantID,
+            </if>
+            <if test="needConfirm != null">
+                NeedConfirm,
+            </if>
+            <if test="diffRate != null">
+                DiffRate,
+            </if>
+            <if test="mappingStatus != null">
+                MappingStatus,
+            </if>
+            <if test="mappingDesc != null">
+                MappingDesc,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mappingID != null">
+                #{mappingID,jdbcType=BIGINT},
+            </if>
+            <if test="stallID != null">
+                #{stallID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryID != null">
+                #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="productID != null">
+                #{productID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="needConfirm != null">
+                #{needConfirm,jdbcType=BIT},
+            </if>
+            <if test="diffRate != null">
+                #{diffRate,jdbcType=INTEGER},
+            </if>
+            <if test="mappingStatus != null">
+                #{mappingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="mappingDesc != null">
+                #{mappingDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity">
+        update B_StallProduceMapping
+        <set>
+            <if test="stallID != null">
+                StallID = #{stallID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryID != null">
+                CategoryID = #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="productID != null">
+                ProductID = #{productID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                VariantID = #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="needConfirm != null">
+                NeedConfirm = #{needConfirm,jdbcType=BIT},
+            </if>
+            <if test="diffRate != null">
+                DiffRate = #{diffRate,jdbcType=INTEGER},
+            </if>
+            <if test="mappingStatus != null">
+                MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="mappingDesc != null">
+                MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where MappingID = #{mappingID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity">
+        update B_StallProduceMapping
+        set StallID = #{stallID,jdbcType=BIGINT},
+        CategoryID = #{categoryID,jdbcType=BIGINT},
+        ProductID = #{productID,jdbcType=BIGINT},
+        VariantID = #{variantID,jdbcType=BIGINT},
+        NeedConfirm = #{needConfirm,jdbcType=BIT},
+        DiffRate = #{diffRate,jdbcType=INTEGER},
+        MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+        MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        IsSync = #{isSync,jdbcType=BIT},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where MappingID = #{mappingID,jdbcType=BIGINT}
+    </update>
+
+
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from B_StallProduceMapping
+    </select>
+
+    <select id="get" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from
+        B_StallProduceMapping
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            MappingID = #{mappingID}
+        </trim>
+    </select>
+    <delete id="delete" parameterType="B_StallProduceMappingEntity">
+        delete from B_StallProduceMapping
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            MappingID = #{mappingID}
+        </trim>
+    </delete>
+    <insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity">
+        insert into B_StallProduceMapping
+        (
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (
+        #{categoryID},
+        #{createTime},
+        #{creatorID},
+        #{diffRate},
+        #{isSync},
+        #{mappingDesc},
+        #{mappingID},
+        #{mappingStatus},
+        #{memo},
+        #{needConfirm},
+        #{productID},
+        #{sortNo},
+        #{stallID},
+        #{variantID}
+        )
+    </insert>
+    <update id="update" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity">
+        update B_StallProduceMapping
+        <set>
+            <if test="CategoryID != null and CategoryID != ''">
+                CategoryID=#{categoryID},
+            </if>
+            <if test="CreateTime != null and CreateTime != ''">
+                CreateTime=#{createTime},
+            </if>
+            <if test="CreatorID != null and CreatorID != ''">
+                CreatorID=#{creatorID},
+            </if>
+            <if test="DiffRate != null and DiffRate != ''">
+                DiffRate=#{diffRate},
+            </if>
+            <if test="IsSync != null and IsSync != ''">
+                IsSync=#{isSync},
+            </if>
+            <if test="MappingDesc != null and MappingDesc != ''">
+                MappingDesc=#{mappingDesc},
+            </if>
+            <if test="MappingStatus != null and MappingStatus != ''">
+                MappingStatus=#{mappingStatus},
+            </if>
+            <if test="Memo != null and Memo != ''">
+                Memo=#{memo},
+            </if>
+            <if test="NeedConfirm != null and NeedConfirm != ''">
+                NeedConfirm=#{needConfirm},
+            </if>
+            <if test="ProductID != null and ProductID != ''">
+                ProductID=#{productID},
+            </if>
+            <if test="SortNo != null and SortNo != ''">
+                SortNo=#{sortNo},
+            </if>
+            <if test="StallID != null and StallID != ''">
+                StallID=#{stallID},
+            </if>
+            <if test="VariantID != null and VariantID != ''">
+                VariantID=#{variantID}
+            </if>
+        </set>
+        where
+        MappingID=#{mappingID}
+    </update>
+    <select id="list" parameterType="cc.toprank.byd.entity.B_StallProduceMappingEntity" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from
+        B_StallProduceMapping
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="CategoryID != null and CategoryID != ''">
+                CategoryID = #{categoryID}
+            </if>
+            <if test="CreateTime != null and CreateTime != ''">
+                and CreateTime = #{createTime}
+            </if>
+            <if test="CreatorID != null and CreatorID != ''">
+                and CreatorID = #{creatorID}
+            </if>
+            <if test="DiffRate != null and DiffRate != ''">
+                and DiffRate = #{diffRate}
+            </if>
+            <if test="IsSync != null and IsSync != ''">
+                and IsSync = #{isSync}
+            </if>
+            <if test="MappingDesc != null and MappingDesc != ''">
+                and MappingDesc like concat('%',#{mappingDesc},'%')
+            </if>
+            <if test="MappingID != null and MappingID != ''">
+                and MappingID = #{mappingID}
+            </if>
+            <if test="MappingStatus != null and MappingStatus != ''">
+                and MappingStatus = #{mappingStatus}
+            </if>
+            <if test="Memo != null and Memo != ''">
+                and Memo like concat('%',#{memo},'%')
+            </if>
+            <if test="NeedConfirm != null and NeedConfirm != ''">
+                and NeedConfirm = #{needConfirm}
+            </if>
+            <if test="ProductID != null and ProductID != ''">
+                and ProductID = #{productID}
+            </if>
+            <if test="SortNo != null and SortNo != ''">
+                and SortNo = #{sortNo}
+            </if>
+            <if test="StallID != null and StallID != ''">
+                and StallID = #{stallID}
+            </if>
+            <if test="VariantID != null and VariantID != ''">
+                and VariantID = #{variantID}
+            </if>
+        </trim>
+    </select>
+
+    <!--根据变体ID查询档口称重商品关联信息 lzy-->
+    <select id="getStallProduceMappingInfoByVariantID" parameterType="Long" resultMap="BaseResultMap">
+        SELECT `CategoryID`, `CreateTime`, `CreatorID`, `DiffRate`, `IsSync`, `MappingDesc`, `MappingID`,
+        `MappingStatus`, `Memo`, `NeedConfirm`, `ProductID`, `SortNo`, `StallID`, `VariantID`
+        FROM B_StallProduceMapping
+        WHERE VariantID = #{variantID}
+    </select>
+
+</mapper>

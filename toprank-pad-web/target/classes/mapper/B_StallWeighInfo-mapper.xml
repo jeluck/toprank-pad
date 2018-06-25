@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_StallWeighInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        <id column="WeighID" jdbcType="BIGINT" property="weighID" />
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+        <result column="StallID" jdbcType="BIGINT" property="stallID" />
+        <result column="OrderID" jdbcType="BIGINT" property="orderID" />
+        <result column="OrderCode" jdbcType="VARCHAR" property="orderCode" />
+        <result column="SubNumber" jdbcType="INTEGER" property="subNumber" />
+        <result column="SubOrderID" jdbcType="BIGINT" property="subOrderID" />
+        <result column="TableID" jdbcType="BIGINT" property="tableID" />
+        <result column="TableName" jdbcType="VARCHAR" property="tableName" />
+        <result column="TableCode" jdbcType="VARCHAR" property="tableCode" />
+        <result column="DetailID" jdbcType="BIGINT" property="detailID" />
+        <result column="VariantID" jdbcType="BIGINT" property="variantID" />
+        <result column="ProductName" jdbcType="VARCHAR" property="productName" />
+        <result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter" />
+        <result column="Gtin" jdbcType="VARCHAR" property="gtin" />
+        <result column="MenuID" jdbcType="BIGINT" property="menuID" />
+        <result column="UnitID" jdbcType="BIGINT" property="unitID" />
+        <result column="UnitName" jdbcType="VARCHAR" property="unitName" />
+        <result column="Price" jdbcType="DECIMAL" property="price" />
+        <result column="Quantity" jdbcType="INTEGER" property="quantity" />
+        <result column="ExpectedWeight" jdbcType="REAL" property="expectedWeight" />
+        <result column="RealWeight" jdbcType="REAL" property="realWeight" />
+        <result column="OptionID" jdbcType="BIGINT" property="optionID" />
+        <result column="OptionName" jdbcType="VARCHAR" property="optionName" />
+        <result column="PeopleNum" jdbcType="INTEGER" property="peopleNum" />
+        <result column="WeightStatus" jdbcType="BIGINT" property="weightStatus" />
+        <result column="DetailDesc" jdbcType="VARCHAR" property="detailDesc" />
+        <result column="NeedConfirm" jdbcType="BIT" property="needConfirm" />
+        <result column="Weigher" jdbcType="VARCHAR" property="weigher" />
+        <result column="WeigherID" jdbcType="BIGINT" property="weigherID" />
+        <result column="WeighTime" jdbcType="TIMESTAMP" property="weighTime" />
+        <result column="ConfirmorType" jdbcType="BIGINT" property="confirmorType" />
+        <result column="ConfirmorID" jdbcType="BIGINT" property="confirmorID" />
+        <result column="ConfirmTime" jdbcType="TIMESTAMP" property="confirmTime" />
+        <result column="AuditorID" jdbcType="BIGINT" property="auditorID" />
+        <result column="AuditTime" jdbcType="TIMESTAMP" property="auditTime" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+        <result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+        <result column="Creator" jdbcType="VARCHAR" property="creator" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        WeighID, ArchiveID, StallID, OrderID, OrderCode, SubNumber, SubOrderID, TableID,
+        TableName, TableCode, DetailID, VariantID, ProductName, FirstLetter, Gtin, MenuID,
+        UnitID, UnitName, Price, Quantity, ExpectedWeight, RealWeight, OptionID, OptionName,
+        PeopleNum, WeightStatus, DetailDesc, NeedConfirm, Weigher, WeigherID, WeighTime,
+        ConfirmorType, ConfirmorID, ConfirmTime, AuditorID, AuditTime, SortNo, CreatorType,
+        Creator, CreatorID, CreateTime, IsSync, Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_StallWeighInfo
+        where WeighID = #{weighID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_StallWeighInfo
+        where WeighID = #{weighID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        insert into B_StallWeighInfo (WeighID, ArchiveID, StallID,
+        OrderID, OrderCode, SubNumber,
+        SubOrderID, TableID, TableName,
+        TableCode, DetailID, VariantID,
+        ProductName, FirstLetter, Gtin,
+        MenuID, UnitID, UnitName,
+        Price, Quantity, ExpectedWeight,
+        RealWeight, OptionID, OptionName,
+        PeopleNum, WeightStatus, DetailDesc,
+        NeedConfirm, Weigher, WeigherID,
+        WeighTime, ConfirmorType, ConfirmorID,
+        ConfirmTime, AuditorID, AuditTime,
+        SortNo, CreatorType, Creator,
+        CreatorID, CreateTime, IsSync,
+        Memo)
+        values (#{weighID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{stallID,jdbcType=BIGINT},
+        #{orderID,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, #{subNumber,jdbcType=INTEGER},
+        #{subOrderID,jdbcType=BIGINT}, #{tableID,jdbcType=BIGINT}, #{tableName,jdbcType=VARCHAR},
+        #{tableCode,jdbcType=VARCHAR}, #{detailID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT},
+        #{productName,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, #{gtin,jdbcType=VARCHAR},
+        #{menuID,jdbcType=BIGINT}, #{unitID,jdbcType=BIGINT}, #{unitName,jdbcType=VARCHAR},
+        #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{expectedWeight,jdbcType=REAL},
+        #{realWeight,jdbcType=REAL}, #{optionID,jdbcType=BIGINT}, #{optionName,jdbcType=VARCHAR},
+        #{peopleNum,jdbcType=INTEGER}, #{weightStatus,jdbcType=BIGINT}, #{detailDesc,jdbcType=VARCHAR},
+        #{needConfirm,jdbcType=BIT}, #{weigher,jdbcType=VARCHAR}, #{weigherID,jdbcType=BIGINT},
+        #{weighTime,jdbcType=TIMESTAMP}, #{confirmorType,jdbcType=BIGINT}, #{confirmorID,jdbcType=BIGINT},
+        #{confirmTime,jdbcType=TIMESTAMP}, #{auditorID,jdbcType=BIGINT}, #{auditTime,jdbcType=TIMESTAMP},
+        #{sortNo,jdbcType=INTEGER}, #{creatorType,jdbcType=BIGINT}, #{creator,jdbcType=VARCHAR},
+        #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{isSync,jdbcType=BIT},
+        #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertBatch" parameterType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        insert into B_StallWeighInfo (WeighID, ArchiveID, StallID,
+        OrderID, OrderCode, SubNumber,
+        SubOrderID, TableID, TableName,
+        TableCode, DetailID, VariantID,
+        ProductName, FirstLetter, Gtin,
+        MenuID, UnitID, UnitName,
+        Price, Quantity, ExpectedWeight,
+        RealWeight, OptionID, OptionName,
+        PeopleNum, WeightStatus, DetailDesc,
+        NeedConfirm, Weigher, WeigherID,
+        WeighTime, ConfirmorType, ConfirmorID,
+        ConfirmTime, AuditorID, AuditTime,
+        SortNo, CreatorType, Creator,
+        CreatorID, CreateTime, IsSync,
+        Memo)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.weighID}, #{item.archiveID}, #{item.stallID},
+            #{item.orderID}, #{item.orderCode}, #{item.subNumber},
+            #{item.subOrderID}, #{item.tableID}, #{item.tableName},
+            #{item.tableCode}, #{item.detailID}, #{item.variantID},
+            #{item.productName}, #{item.firstLetter}, #{item.gtin},
+            #{item.menuID}, #{item.unitID}, #{item.unitName},
+            #{item.price}, #{item.quantity}, #{item.expectedWeight},
+            #{item.realWeight}, #{item.optionID}, #{item.optionName},
+            #{item.peopleNum}, #{item.weightStatus}, #{item.detailDesc},
+            #{item.needConfirm}, #{item.weigher}, #{item.weigherID},
+            #{item.weighTime}, #{item.confirmorType}, #{item.confirmorID},
+            #{item.confirmTime}, #{item.auditorID}, #{item.auditTime},
+            #{item.sortNo}, #{item.creatorType}, #{item.creator},
+            #{item.creatorID}, #{item.createTime}, #{item.isSync},
+            #{item.memo})
+        </foreach>
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        insert into B_StallWeighInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="weighID != null">
+                WeighID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="stallID != null">
+                StallID,
+            </if>
+            <if test="orderID != null">
+                OrderID,
+            </if>
+            <if test="orderCode != null">
+                OrderCode,
+            </if>
+            <if test="subNumber != null">
+                SubNumber,
+            </if>
+            <if test="subOrderID != null">
+                SubOrderID,
+            </if>
+            <if test="tableID != null">
+                TableID,
+            </if>
+            <if test="tableName != null">
+                TableName,
+            </if>
+            <if test="tableCode != null">
+                TableCode,
+            </if>
+            <if test="detailID != null">
+                DetailID,
+            </if>
+            <if test="variantID != null">
+                VariantID,
+            </if>
+            <if test="productName != null">
+                ProductName,
+            </if>
+            <if test="firstLetter != null">
+                FirstLetter,
+            </if>
+            <if test="gtin != null">
+                Gtin,
+            </if>
+            <if test="menuID != null">
+                MenuID,
+            </if>
+            <if test="unitID != null">
+                UnitID,
+            </if>
+            <if test="unitName != null">
+                UnitName,
+            </if>
+            <if test="price != null">
+                Price,
+            </if>
+            <if test="quantity != null">
+                Quantity,
+            </if>
+            <if test="expectedWeight != null">
+                ExpectedWeight,
+            </if>
+            <if test="realWeight != null">
+                RealWeight,
+            </if>
+            <if test="optionID != null">
+                OptionID,
+            </if>
+            <if test="optionName != null">
+                OptionName,
+            </if>
+            <if test="peopleNum != null">
+                PeopleNum,
+            </if>
+            <if test="weightStatus != null">
+                WeightStatus,
+            </if>
+            <if test="detailDesc != null">
+                DetailDesc,
+            </if>
+            <if test="needConfirm != null">
+                NeedConfirm,
+            </if>
+            <if test="weigher != null">
+                Weigher,
+            </if>
+            <if test="weigherID != null">
+                WeigherID,
+            </if>
+            <if test="weighTime != null">
+                WeighTime,
+            </if>
+            <if test="confirmorType != null">
+                ConfirmorType,
+            </if>
+            <if test="confirmorID != null">
+                ConfirmorID,
+            </if>
+            <if test="confirmTime != null">
+                ConfirmTime,
+            </if>
+            <if test="auditorID != null">
+                AuditorID,
+            </if>
+            <if test="auditTime != null">
+                AuditTime,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="creatorType != null">
+                CreatorType,
+            </if>
+            <if test="creator != null">
+                Creator,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="weighID != null">
+                #{weighID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="stallID != null">
+                #{stallID,jdbcType=BIGINT},
+            </if>
+            <if test="orderID != null">
+                #{orderID,jdbcType=BIGINT},
+            </if>
+            <if test="orderCode != null">
+                #{orderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="subNumber != null">
+                #{subNumber,jdbcType=INTEGER},
+            </if>
+            <if test="subOrderID != null">
+                #{subOrderID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableName != null">
+                #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="detailID != null">
+                #{detailID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="firstLetter != null">
+                #{firstLetter,jdbcType=VARCHAR},
+            </if>
+            <if test="gtin != null">
+                #{gtin,jdbcType=VARCHAR},
+            </if>
+            <if test="menuID != null">
+                #{menuID,jdbcType=BIGINT},
+            </if>
+            <if test="unitID != null">
+                #{unitID,jdbcType=BIGINT},
+            </if>
+            <if test="unitName != null">
+                #{unitName,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="expectedWeight != null">
+                #{expectedWeight,jdbcType=REAL},
+            </if>
+            <if test="realWeight != null">
+                #{realWeight,jdbcType=REAL},
+            </if>
+            <if test="optionID != null">
+                #{optionID,jdbcType=BIGINT},
+            </if>
+            <if test="optionName != null">
+                #{optionName,jdbcType=VARCHAR},
+            </if>
+            <if test="peopleNum != null">
+                #{peopleNum,jdbcType=INTEGER},
+            </if>
+            <if test="weightStatus != null">
+                #{weightStatus,jdbcType=BIGINT},
+            </if>
+            <if test="detailDesc != null">
+                #{detailDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="needConfirm != null">
+                #{needConfirm,jdbcType=BIT},
+            </if>
+            <if test="weigher != null">
+                #{weigher,jdbcType=VARCHAR},
+            </if>
+            <if test="weigherID != null">
+                #{weigherID,jdbcType=BIGINT},
+            </if>
+            <if test="weighTime != null">
+                #{weighTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confirmorType != null">
+                #{confirmorType,jdbcType=BIGINT},
+            </if>
+            <if test="confirmorID != null">
+                #{confirmorID,jdbcType=BIGINT},
+            </if>
+            <if test="confirmTime != null">
+                #{confirmTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditorID != null">
+                #{auditorID,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorType != null">
+                #{creatorType,jdbcType=BIGINT},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        update B_StallWeighInfo
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="stallID != null">
+                StallID = #{stallID,jdbcType=BIGINT},
+            </if>
+            <if test="orderID != null">
+                OrderID = #{orderID,jdbcType=BIGINT},
+            </if>
+            <if test="orderCode != null">
+                OrderCode = #{orderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="subNumber != null">
+                SubNumber = #{subNumber,jdbcType=INTEGER},
+            </if>
+            <if test="subOrderID != null">
+                SubOrderID = #{subOrderID,jdbcType=BIGINT},
+            </if>
+            <if test="tableID != null">
+                TableID = #{tableID,jdbcType=BIGINT},
+            </if>
+            <if test="tableName != null">
+                TableName = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                TableCode = #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="detailID != null">
+                DetailID = #{detailID,jdbcType=BIGINT},
+            </if>
+            <if test="variantID != null">
+                VariantID = #{variantID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                ProductName = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="firstLetter != null">
+                FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+            </if>
+            <if test="gtin != null">
+                Gtin = #{gtin,jdbcType=VARCHAR},
+            </if>
+            <if test="menuID != null">
+                MenuID = #{menuID,jdbcType=BIGINT},
+            </if>
+            <if test="unitID != null">
+                UnitID = #{unitID,jdbcType=BIGINT},
+            </if>
+            <if test="unitName != null">
+                UnitName = #{unitName,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                Price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="quantity != null">
+                Quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="expectedWeight != null">
+                ExpectedWeight = #{expectedWeight,jdbcType=REAL},
+            </if>
+            <if test="realWeight != null">
+                RealWeight = #{realWeight,jdbcType=REAL},
+            </if>
+            <if test="optionID != null">
+                OptionID = #{optionID,jdbcType=BIGINT},
+            </if>
+            <if test="optionName != null">
+                OptionName = #{optionName,jdbcType=VARCHAR},
+            </if>
+            <if test="peopleNum != null">
+                PeopleNum = #{peopleNum,jdbcType=INTEGER},
+            </if>
+            <if test="weightStatus != null">
+                WeightStatus = #{weightStatus,jdbcType=BIGINT},
+            </if>
+            <if test="detailDesc != null">
+                DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="needConfirm != null">
+                NeedConfirm = #{needConfirm,jdbcType=BIT},
+            </if>
+            <if test="weigher != null">
+                Weigher = #{weigher,jdbcType=VARCHAR},
+            </if>
+            <if test="weigherID != null">
+                WeigherID = #{weigherID,jdbcType=BIGINT},
+            </if>
+            <if test="weighTime != null">
+                WeighTime = #{weighTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confirmorType != null">
+                ConfirmorType = #{confirmorType,jdbcType=BIGINT},
+            </if>
+            <if test="confirmorID != null">
+                ConfirmorID = #{confirmorID,jdbcType=BIGINT},
+            </if>
+            <if test="confirmTime != null">
+                ConfirmTime = #{confirmTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditorID != null">
+                AuditorID = #{auditorID,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                AuditTime = #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorType != null">
+                CreatorType = #{creatorType,jdbcType=BIGINT},
+            </if>
+            <if test="creator != null">
+                Creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where WeighID = #{weighID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        update B_StallWeighInfo
+        set ArchiveID = #{archiveID,jdbcType=BIGINT},
+        StallID = #{stallID,jdbcType=BIGINT},
+        OrderID = #{orderID,jdbcType=BIGINT},
+        OrderCode = #{orderCode,jdbcType=VARCHAR},
+        SubNumber = #{subNumber,jdbcType=INTEGER},
+        SubOrderID = #{subOrderID,jdbcType=BIGINT},
+        TableID = #{tableID,jdbcType=BIGINT},
+        TableName = #{tableName,jdbcType=VARCHAR},
+        TableCode = #{tableCode,jdbcType=VARCHAR},
+        DetailID = #{detailID,jdbcType=BIGINT},
+        VariantID = #{variantID,jdbcType=BIGINT},
+        ProductName = #{productName,jdbcType=VARCHAR},
+        FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+        Gtin = #{gtin,jdbcType=VARCHAR},
+        MenuID = #{menuID,jdbcType=BIGINT},
+        UnitID = #{unitID,jdbcType=BIGINT},
+        UnitName = #{unitName,jdbcType=VARCHAR},
+        Price = #{price,jdbcType=DECIMAL},
+        Quantity = #{quantity,jdbcType=INTEGER},
+        ExpectedWeight = #{expectedWeight,jdbcType=REAL},
+        RealWeight = #{realWeight,jdbcType=REAL},
+        OptionID = #{optionID,jdbcType=BIGINT},
+        OptionName = #{optionName,jdbcType=VARCHAR},
+        PeopleNum = #{peopleNum,jdbcType=INTEGER},
+        WeightStatus = #{weightStatus,jdbcType=BIGINT},
+        DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+        NeedConfirm = #{needConfirm,jdbcType=BIT},
+        Weigher = #{weigher,jdbcType=VARCHAR},
+        WeigherID = #{weigherID,jdbcType=BIGINT},
+        WeighTime = #{weighTime,jdbcType=TIMESTAMP},
+        ConfirmorType = #{confirmorType,jdbcType=BIGINT},
+        ConfirmorID = #{confirmorID,jdbcType=BIGINT},
+        ConfirmTime = #{confirmTime,jdbcType=TIMESTAMP},
+        AuditorID = #{auditorID,jdbcType=BIGINT},
+        AuditTime = #{auditTime,jdbcType=TIMESTAMP},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        CreatorType = #{creatorType,jdbcType=BIGINT},
+        Creator = #{creator,jdbcType=VARCHAR},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        IsSync = #{isSync,jdbcType=BIT},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where WeighID = #{weighID,jdbcType=BIGINT}
+    </update>
+
+
+    <select id="getAll" parameterType="B_StallWeighInfoEntity" resultType="B_StallWeighInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_StallWeighInfoCollection()}
+		]]>
+    </select>
+    <select id="get" parameterType="B_StallWeighInfoEntity" resultType="B_StallWeighInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call GetB_StallWeighInfoEntity(#{weighID})}
+		]]>
+    </select>
+    <delete id="delete" parameterType="B_StallWeighInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call DeleteB_StallWeighInfoEntity(#{weighID})}
+		]]>
+    </delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="WeighID" parameterType="B_StallWeighInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call InsertB_StallWeighInfoEntity(#{archiveID},#{auditorID},#{auditTime},#{confirmorID},#{confirmorType},#{confirmTime},#{createTime},#{creator},#{creatorID},#{creatorType},#{detailDesc},#{detailID},#{expectedWeight},#{firstLetter},#{gtin},#{isSync},#{memo},#{menuID},#{needConfirm},#{optionID},#{optionName},#{orderCode},#{orderID},#{peopleNum},#{price},#{productName},#{quantity},#{realWeight},#{sortNo},#{stallID},#{subNumber},#{subOrderID},#{tableCode},#{tableID},#{tableName},#{unitID},#{unitName},#{variantID},#{weigher},#{weigherID},#{weighID,jdbcType=INTEGER,mode=OUT},#{weighTime},#{weightStatus},'admin')}
+		]]>
+    </insert>
+
+    <update id="update" parameterType="B_StallWeighInfoEntity" statementType="CALLABLE">
+        <![CDATA[
+			{call UpdateB_StallWeighInfoEntity(#{archiveID},#{auditorID},#{auditTime},#{confirmorID},#{confirmorType},#{confirmTime},#{createTime},#{creator},#{creatorID},#{creatorType},#{detailDesc},#{detailID},#{expectedWeight},#{firstLetter},#{gtin},#{isSync},#{memo},#{menuID},#{needConfirm},#{optionID},#{optionName},#{orderCode},#{orderID},#{peopleNum},#{price},#{productName},#{quantity},#{realWeight},#{sortNo},#{stallID},#{subNumber},#{subOrderID},#{tableCode},#{tableID},#{tableName},#{unitID},#{unitName},#{variantID},#{weigher},#{weigherID},#{weighID},#{weighTime},#{weightStatus})}
+		]]>
+    </update>
+
+    <!-- 根据条件查询称重商品列表 zlc -->
+    <select id="queryProductWeighingByCondition" parameterType="map" resultType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        select
+        WeighID,
+        StallID,
+        ArchiveID,
+        SubNumber,
+        Quantity,
+        DetailID,
+        ProductName,
+        TableName,
+        PeopleNum,
+        ExpectedWeight,
+        RealWeight,
+        Gtin,
+        VariantID,
+        OrderID,
+        OrderCode,
+        SubOrderID,
+        CreateTime,
+        TIMESTAMPDIFF(MINUTE ,CreateTime, UTC_TIMESTAMP()) as overTime,
+        Price,
+        `Creator`,
+        OptionName,
+        UnitID,
+        UnitName,
+        Memo
+        from B_StallWeighInfo
+
+        WHERE
+        ArchiveID = #{archiveID}
+        AND
+        StallID = #{stallID}
+        AND WeightStatus = #{weightStatus}
+        <if test="tableName != null">
+            and tableName LIKE '%${tableName}%'
+        </if>
+        ORDER BY
+        <choose>
+            <when test="sortType == 1">
+                CreateTime ASC
+            </when>
+            <when test="sortType == 2">
+                ProductName ASC,CreateTime ASC
+            </when>
+            <when test="sortType == 3">
+                TableName ASC,CreateTime ASC
+            </when>
+            <otherwise>
+                CreateTime ASC
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 根据条件查询改重记录 zlc  -->
+    <select id="queryWeighingRecordByCondition" parameterType="map" resultType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        select
+        b.ProductName,b.UnitName,a.BeforeNum,a.AfterNum,a.CerateTime weighTime, b.WeighID,b.Creator,b.Weigher,
+        b.WeighTime,b.Gtin,b.TableName,b.Quantity,b.CreateTime,a.Memo,b.PeopleNum,b.OptionName,b.OrderCode,b.OrderID
+        from B_WeighDealInfo a LEFT JOIN B_StallWeighInfo b on a.WeighID = b.WeighID
+        <where>
+            b.ArchiveID = #{archiveID}
+            AND
+            b.StallID = #{stallID}
+            <if test="orderID != null">
+                and b.OrderID = #{orderID}
+            </if>
+            <if test="orderCode != null">
+                and b.OrderCode = #{orderCode}
+            </if>
+            <if test="productName != null">
+                OR b.Gtin LIKE  CONCAT('%',#{productName},'%') OR b.FirstLetter LIKE  CONCAT('%',#{productName},'%') OR b.ProductName LIKE CONCAT('%',#{productName},'%')
+            </if>
+            <if test="tableName != null">
+                and b.TableNme LIKE CONCAT('%',#{tableName},'%')
+            </if>
+            <if test="startTime != null">
+                and a.CerateTime &gt;= #{startTime}
+            </if>
+            <if test="endTime != null">
+                and a.CerateTime &lt; #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据订单明细查询称重商品关联数据-->
+    <select id="getStallWeighInfoByDetailIDs" parameterType="String" resultType="cc.toprank.byd.entity.B_StallWeighInfoEntity">
+        SELECT  mm.ArchiveID,o.OrderID,o.OrderCode,so.SubOrderID,IFNULL(od.TableID,so.TableID) as tableID,bt.TableCode,
+				bt.TableName,od.DetailID,od.VariantID,od.ProductName,pv.FirstLetter,
+				IF(od.ProduceStatus = 694,od.ProduceStatus,984) as weightStatus,
+				pv.Gtin,od.MenuID,mm.UnitID,od.price,od.Quantity,od.ExpectedWeight,
+				so.PeopleNum,so.CreatorID,so.CreatorType,f.OptionID,f.OptionName,
+                (SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=mm.UnitID) unitName,
+                (SELECT CategoryName FROM P_ProductCategoryInfo WHERE CategoryID = mm.CategoryID) CategoryName,
+				(SELECT NickName FROM U_LoginInfo WHERE LoginID = so.CreatorID) Creator
+		FROM O_OrderDetailInfo od
+		LEFT JOIN O_SubOrderInfo so ON so.SubOrderID = od.SubOrderID
+		LEFT JOIN O_OrderInfo o ON od.OrderID = o.OrderID
+		LEFT JOIN B_DinningTableInfo bt ON so.TableID = bt.TableID
+		LEFT JOIN B_MerchantMenuInfo mm ON mm.MenuID = od.MenuID
+		LEFT JOIN P_ProductVariantInfo pv ON pv.VariantID = mm.VariantID
+		LEFT JOIN (
+                      SELECT cav.ValueID OptionID,cav.attributeName OptionName
+                            FROM P_CategoryAttributeInfo pai
+                            LEFT JOIN P_CategoryAttributeValueInfo cav ON cav.AttributeID = pai.AttributeID
+                            WHERE pai.GroupID = 820
+                    ) f ON FIND_IN_SET(f.optionID, od.ValueIDs)
+		WHERE
+				FIND_IN_SET(od.DetailID, #{detailIDs}) AND od.NeedWeigh = 1;
+    </select>
+    <delete id="deleteByDetailID" parameterType="java.lang.Long">
+        delete from B_StallWeighInfo
+        where DetailID = #{detailID,jdbcType=BIGINT}
+    </delete>
+</mapper>

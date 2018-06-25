@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.U_UserInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.U_UserInfoEntity">
+    <id column="UserID" jdbcType="BIGINT" property="userID" />
+    <result column="CountryID" jdbcType="BIGINT" property="countryID" />
+    <result column="FirstName" jdbcType="VARCHAR" property="firstName" />
+    <result column="LastName" jdbcType="VARCHAR" property="lastName" />
+    <result column="UserName" jdbcType="VARCHAR" property="userName" />
+    <result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter" />
+    <result column="ArchiveCode" jdbcType="VARCHAR" property="archiveCode" />
+    <result column="Title" jdbcType="VARCHAR" property="title" />
+    <result column="Responsibility" jdbcType="VARCHAR" property="responsibility" />
+    <result column="IDCode" jdbcType="VARCHAR" property="IDCode" />
+    <result column="BirthDay" jdbcType="TIMESTAMP" property="birthDay" />
+    <result column="Gender" jdbcType="BIGINT" property="gender" />
+    <result column="UserStatus" jdbcType="BIGINT" property="userStatus" />
+    <result column="OrgID" jdbcType="BIGINT" property="orgID" />
+    <result column="ProvinceID" jdbcType="BIGINT" property="provinceID" />
+    <result column="ProvinceName" jdbcType="VARCHAR" property="provinceName" />
+    <result column="CityID" jdbcType="BIGINT" property="cityID" />
+    <result column="CityName" jdbcType="VARCHAR" property="cityName" />
+    <result column="DistrictID" jdbcType="BIGINT" property="districtID" />
+    <result column="DistrictName" jdbcType="VARCHAR" property="districtName" />
+    <result column="StreetID" jdbcType="BIGINT" property="streetID" />
+    <result column="Street" jdbcType="VARCHAR" property="street" />
+    <result column="Longitude" jdbcType="DECIMAL" property="longitude" />
+    <result column="Latitude" jdbcType="DECIMAL" property="latitude" />
+    <result column="Phone" jdbcType="VARCHAR" property="phone" />
+    <result column="Mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="PostalAddress" jdbcType="VARCHAR" property="postalAddress" />
+    <result column="HomeAddress" jdbcType="VARCHAR" property="homeAddress" />
+    <result column="PostCode" jdbcType="VARCHAR" property="postCode" />
+    <result column="Fax" jdbcType="VARCHAR" property="fax" />
+    <result column="OtherPhone" jdbcType="VARCHAR" property="otherPhone" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="IsValid" jdbcType="BIT" property="isValid" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UserID, CountryID, FirstName, LastName, UserName, FirstLetter, ArchiveCode, Title, 
+    Responsibility, IDCode, BirthDay, Gender, UserStatus, OrgID, ProvinceID, ProvinceName, 
+    CityID, CityName, DistrictID, DistrictName, StreetID, Street, Longitude, Latitude, 
+    Phone, Mobile, Email, PostalAddress, HomeAddress, PostCode, Fax, OtherPhone, SortNo, 
+    IsValid, CreatorID, CreateTime, Memo, IsSync
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from U_UserInfo
+    where UserID = #{userID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from U_UserInfo
+    where UserID = #{userID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.U_UserInfoEntity">
+    insert into U_UserInfo (UserID, CountryID, FirstName, 
+      LastName, UserName, FirstLetter, 
+      ArchiveCode, Title, Responsibility, 
+      IDCode, BirthDay, Gender, 
+      UserStatus, OrgID, ProvinceID, 
+      ProvinceName, CityID, CityName, 
+      DistrictID, DistrictName, StreetID, 
+      Street, Longitude, Latitude, 
+      Phone, Mobile, Email, 
+      PostalAddress, HomeAddress, PostCode, 
+      Fax, OtherPhone, SortNo, 
+      IsValid, CreatorID, CreateTime, 
+      Memo, IsSync)
+    values (#{userID,jdbcType=BIGINT}, #{countryID,jdbcType=BIGINT}, #{firstName,jdbcType=VARCHAR}, 
+      #{lastName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, 
+      #{archiveCode,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{responsibility,jdbcType=VARCHAR}, 
+      #{IDCode,jdbcType=VARCHAR}, #{birthDay,jdbcType=TIMESTAMP}, #{gender,jdbcType=BIGINT}, 
+      #{userStatus,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT}, #{provinceID,jdbcType=BIGINT}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityID,jdbcType=BIGINT}, #{cityName,jdbcType=VARCHAR}, 
+      #{districtID,jdbcType=BIGINT}, #{districtName,jdbcType=VARCHAR}, #{streetID,jdbcType=BIGINT}, 
+      #{street,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, 
+      #{phone,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{postalAddress,jdbcType=VARCHAR}, #{homeAddress,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{otherPhone,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{isValid,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.U_UserInfoEntity">
+    insert into U_UserInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        UserID,
+      </if>
+      <if test="countryID != null">
+        CountryID,
+      </if>
+      <if test="firstName != null">
+        FirstName,
+      </if>
+      <if test="lastName != null">
+        LastName,
+      </if>
+      <if test="userName != null">
+        UserName,
+      </if>
+      <if test="firstLetter != null">
+        FirstLetter,
+      </if>
+      <if test="archiveCode != null">
+        ArchiveCode,
+      </if>
+      <if test="title != null">
+        Title,
+      </if>
+      <if test="responsibility != null">
+        Responsibility,
+      </if>
+      <if test="IDCode != null">
+        IDCode,
+      </if>
+      <if test="birthDay != null">
+        BirthDay,
+      </if>
+      <if test="gender != null">
+        Gender,
+      </if>
+      <if test="userStatus != null">
+        UserStatus,
+      </if>
+      <if test="orgID != null">
+        OrgID,
+      </if>
+      <if test="provinceID != null">
+        ProvinceID,
+      </if>
+      <if test="provinceName != null">
+        ProvinceName,
+      </if>
+      <if test="cityID != null">
+        CityID,
+      </if>
+      <if test="cityName != null">
+        CityName,
+      </if>
+      <if test="districtID != null">
+        DistrictID,
+      </if>
+      <if test="districtName != null">
+        DistrictName,
+      </if>
+      <if test="streetID != null">
+        StreetID,
+      </if>
+      <if test="street != null">
+        Street,
+      </if>
+      <if test="longitude != null">
+        Longitude,
+      </if>
+      <if test="latitude != null">
+        Latitude,
+      </if>
+      <if test="phone != null">
+        Phone,
+      </if>
+      <if test="mobile != null">
+        Mobile,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="postalAddress != null">
+        PostalAddress,
+      </if>
+      <if test="homeAddress != null">
+        HomeAddress,
+      </if>
+      <if test="postCode != null">
+        PostCode,
+      </if>
+      <if test="fax != null">
+        Fax,
+      </if>
+      <if test="otherPhone != null">
+        OtherPhone,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="isValid != null">
+        IsValid,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        #{userID,jdbcType=BIGINT},
+      </if>
+      <if test="countryID != null">
+        #{countryID,jdbcType=BIGINT},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null">
+        #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveCode != null">
+        #{archiveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibility != null">
+        #{responsibility,jdbcType=VARCHAR},
+      </if>
+      <if test="IDCode != null">
+        #{IDCode,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDay != null">
+        #{birthDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=BIGINT},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="provinceID != null">
+        #{provinceID,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityID != null">
+        #{cityID,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtID != null">
+        #{districtID,jdbcType=BIGINT},
+      </if>
+      <if test="districtName != null">
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetID != null">
+        #{streetID,jdbcType=BIGINT},
+      </if>
+      <if test="street != null">
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="postalAddress != null">
+        #{postalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPhone != null">
+        #{otherPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=BIT},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.U_UserInfoEntity">
+    update U_UserInfo
+    <set>
+      <if test="countryID != null">
+        CountryID = #{countryID,jdbcType=BIGINT},
+      </if>
+      <if test="firstName != null">
+        FirstName = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        LastName = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        UserName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null">
+        FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveCode != null">
+        ArchiveCode = #{archiveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibility != null">
+        Responsibility = #{responsibility,jdbcType=VARCHAR},
+      </if>
+      <if test="IDCode != null">
+        IDCode = #{IDCode,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDay != null">
+        BirthDay = #{birthDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gender != null">
+        Gender = #{gender,jdbcType=BIGINT},
+      </if>
+      <if test="userStatus != null">
+        UserStatus = #{userStatus,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        OrgID = #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="provinceID != null">
+        ProvinceID = #{provinceID,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null">
+        ProvinceName = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityID != null">
+        CityID = #{cityID,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null">
+        CityName = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtID != null">
+        DistrictID = #{districtID,jdbcType=BIGINT},
+      </if>
+      <if test="districtName != null">
+        DistrictName = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetID != null">
+        StreetID = #{streetID,jdbcType=BIGINT},
+      </if>
+      <if test="street != null">
+        Street = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        Longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        Latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="postalAddress != null">
+        PostalAddress = #{postalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        HomeAddress = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        PostCode = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        Fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPhone != null">
+        OtherPhone = #{otherPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null">
+        IsValid = #{isValid,jdbcType=BIT},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+    </set>
+    where UserID = #{userID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.U_UserInfoEntity">
+    update U_UserInfo
+    set CountryID = #{countryID,jdbcType=BIGINT},
+      FirstName = #{firstName,jdbcType=VARCHAR},
+      LastName = #{lastName,jdbcType=VARCHAR},
+      UserName = #{userName,jdbcType=VARCHAR},
+      FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+      ArchiveCode = #{archiveCode,jdbcType=VARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      Responsibility = #{responsibility,jdbcType=VARCHAR},
+      IDCode = #{IDCode,jdbcType=VARCHAR},
+      BirthDay = #{birthDay,jdbcType=TIMESTAMP},
+      Gender = #{gender,jdbcType=BIGINT},
+      UserStatus = #{userStatus,jdbcType=BIGINT},
+      OrgID = #{orgID,jdbcType=BIGINT},
+      ProvinceID = #{provinceID,jdbcType=BIGINT},
+      ProvinceName = #{provinceName,jdbcType=VARCHAR},
+      CityID = #{cityID,jdbcType=BIGINT},
+      CityName = #{cityName,jdbcType=VARCHAR},
+      DistrictID = #{districtID,jdbcType=BIGINT},
+      DistrictName = #{districtName,jdbcType=VARCHAR},
+      StreetID = #{streetID,jdbcType=BIGINT},
+      Street = #{street,jdbcType=VARCHAR},
+      Longitude = #{longitude,jdbcType=DECIMAL},
+      Latitude = #{latitude,jdbcType=DECIMAL},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      PostalAddress = #{postalAddress,jdbcType=VARCHAR},
+      HomeAddress = #{homeAddress,jdbcType=VARCHAR},
+      PostCode = #{postCode,jdbcType=VARCHAR},
+      Fax = #{fax,jdbcType=VARCHAR},
+      OtherPhone = #{otherPhone,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      IsValid = #{isValid,jdbcType=BIT},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT}
+    where UserID = #{userID,jdbcType=BIGINT}
+  </update>
+</mapper>

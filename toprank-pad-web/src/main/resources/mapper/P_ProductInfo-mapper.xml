@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.P_ProductInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_ProductInfoEntity">
+        <id column="ProductID" jdbcType="BIGINT" property="productID"/>
+        <result column="CategoryID" jdbcType="BIGINT" property="categoryID"/>
+        <result column="OrgID" jdbcType="BIGINT" property="orgID"/>
+        <result column="CurrencyID" jdbcType="BIGINT" property="currencyID"/>
+        <result column="ProductName" jdbcType="VARCHAR" property="productName"/>
+        <result column="FirstLetter" jdbcType="VARCHAR" property="firstLetter"/>
+        <result column="Gtin" jdbcType="VARCHAR" property="gtin"/>
+        <result column="BarCode" jdbcType="VARCHAR" property="barCode"/>
+        <result column="HighestPrice" jdbcType="DECIMAL" property="highestPrice"/>
+        <result column="LowestPrice" jdbcType="DECIMAL" property="lowestPrice"/>
+        <result column="IsCombo" jdbcType="BIT" property="isCombo"/>
+        <result column="OriginalPrice" jdbcType="DECIMAL" property="originalPrice"/>
+        <result column="ComboPrice" jdbcType="DECIMAL" property="comboPrice"/>
+        <result column="PriceType" jdbcType="BIGINT" property="priceType"/>
+        <result column="ShortDescription" jdbcType="VARCHAR" property="shortDescription"/>
+        <result column="FullDescUrl" jdbcType="VARCHAR" property="fullDescUrl"/>
+        <result column="AdminComment" jdbcType="VARCHAR" property="adminComment"/>
+        <result column="AttachmentNum" jdbcType="INTEGER" property="attachmentNum"/>
+        <result column="ShowOnHomePage" jdbcType="BIT" property="showOnHomePage"/>
+        <result column="AllowCustomerReview" jdbcType="BIT" property="allowCustomerReview"/>
+        <result column="StarLevel" jdbcType="INTEGER" property="starLevel"/>
+        <result column="ApprovedRatingSum" jdbcType="INTEGER" property="approvedRatingSum"/>
+        <result column="NotApprovedRatingSum" jdbcType="INTEGER" property="notApprovedRatingSum"/>
+        <result column="ApprovedTotalReview" jdbcType="INTEGER" property="approvedTotalReview"/>
+        <result column="NotApprovedTotalReview" jdbcType="INTEGER" property="notApprovedTotalReview"/>
+        <result column="ProductStatus" jdbcType="BIGINT" property="productStatus"/>
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo"/>
+        <result column="IsSync" jdbcType="BIT" property="isSync"/>
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID"/>
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="Memo" jdbcType="VARCHAR" property="memo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		ProductID, CategoryID, OrgID, CurrencyID, ProductName, FirstLetter, Gtin, BarCode,
+		HighestPrice, LowestPrice, IsCombo, OriginalPrice, ComboPrice, PriceType, ShortDescription,
+		FullDescUrl, AdminComment, AttachmentNum, ShowOnHomePage, AllowCustomerReview, StarLevel,
+		ApprovedRatingSum, NotApprovedRatingSum, ApprovedTotalReview, NotApprovedTotalReview,
+		ProductStatus, SortNo, IsSync, CreatorID, CreateTime, Memo
+	</sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from P_ProductInfo
+        where ProductID = #{productID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from P_ProductInfo
+		where ProductID = #{productID,jdbcType=BIGINT}
+	</delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.P_ProductInfoEntity">
+		insert into P_ProductInfo (ProductID, CategoryID, OrgID,
+		CurrencyID, ProductName, FirstLetter,
+		Gtin, BarCode, HighestPrice,
+		LowestPrice, IsCombo, OriginalPrice,
+		ComboPrice, PriceType, ShortDescription,
+		FullDescUrl, AdminComment, AttachmentNum,
+		ShowOnHomePage, AllowCustomerReview, StarLevel,
+		ApprovedRatingSum, NotApprovedRatingSum,
+		ApprovedTotalReview, NotApprovedTotalReview,
+		ProductStatus, SortNo, IsSync,
+		CreatorID, CreateTime, Memo
+		)
+		values (#{productID,jdbcType=BIGINT}, #{categoryID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT},
+		#{currencyID,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR},
+		#{gtin,jdbcType=VARCHAR}, #{barCode,jdbcType=VARCHAR}, #{highestPrice,jdbcType=DECIMAL},
+		#{lowestPrice,jdbcType=DECIMAL}, #{isCombo,jdbcType=BIT}, #{originalPrice,jdbcType=DECIMAL},
+		#{comboPrice,jdbcType=DECIMAL}, #{priceType,jdbcType=BIGINT}, #{shortDescription,jdbcType=VARCHAR},
+		#{fullDescUrl,jdbcType=VARCHAR}, #{adminComment,jdbcType=VARCHAR}, #{attachmentNum,jdbcType=INTEGER},
+		#{showOnHomePage,jdbcType=BIT}, #{allowCustomerReview,jdbcType=BIT}, #{starLevel,jdbcType=INTEGER},
+		#{approvedRatingSum,jdbcType=INTEGER}, #{notApprovedRatingSum,jdbcType=INTEGER},
+		#{approvedTotalReview,jdbcType=INTEGER}, #{notApprovedTotalReview,jdbcType=INTEGER},
+		#{productStatus,jdbcType=BIGINT}, #{sortNo,jdbcType=INTEGER}, #{isSync,jdbcType=BIT},
+		#{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_ProductInfoEntity">
+        insert into P_ProductInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productID != null">
+                ProductID,
+            </if>
+            <if test="categoryID != null">
+                CategoryID,
+            </if>
+            <if test="orgID != null">
+                OrgID,
+            </if>
+            <if test="currencyID != null">
+                CurrencyID,
+            </if>
+            <if test="productName != null">
+                ProductName,
+            </if>
+            <if test="firstLetter != null">
+                FirstLetter,
+            </if>
+            <if test="gtin != null">
+                Gtin,
+            </if>
+            <if test="barCode != null">
+                BarCode,
+            </if>
+            <if test="highestPrice != null">
+                HighestPrice,
+            </if>
+            <if test="lowestPrice != null">
+                LowestPrice,
+            </if>
+            <if test="isCombo != null">
+                IsCombo,
+            </if>
+            <if test="originalPrice != null">
+                OriginalPrice,
+            </if>
+            <if test="comboPrice != null">
+                ComboPrice,
+            </if>
+            <if test="priceType != null">
+                PriceType,
+            </if>
+            <if test="shortDescription != null">
+                ShortDescription,
+            </if>
+            <if test="fullDescUrl != null">
+                FullDescUrl,
+            </if>
+            <if test="adminComment != null">
+                AdminComment,
+            </if>
+            <if test="attachmentNum != null">
+                AttachmentNum,
+            </if>
+            <if test="showOnHomePage != null">
+                ShowOnHomePage,
+            </if>
+            <if test="allowCustomerReview != null">
+                AllowCustomerReview,
+            </if>
+            <if test="starLevel != null">
+                StarLevel,
+            </if>
+            <if test="approvedRatingSum != null">
+                ApprovedRatingSum,
+            </if>
+            <if test="notApprovedRatingSum != null">
+                NotApprovedRatingSum,
+            </if>
+            <if test="approvedTotalReview != null">
+                ApprovedTotalReview,
+            </if>
+            <if test="notApprovedTotalReview != null">
+                NotApprovedTotalReview,
+            </if>
+            <if test="productStatus != null">
+                ProductStatus,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productID != null">
+                #{productID,jdbcType=BIGINT},
+            </if>
+            <if test="categoryID != null">
+                #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="orgID != null">
+                #{orgID,jdbcType=BIGINT},
+            </if>
+            <if test="currencyID != null">
+                #{currencyID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="firstLetter != null">
+                #{firstLetter,jdbcType=VARCHAR},
+            </if>
+            <if test="gtin != null">
+                #{gtin,jdbcType=VARCHAR},
+            </if>
+            <if test="barCode != null">
+                #{barCode,jdbcType=VARCHAR},
+            </if>
+            <if test="highestPrice != null">
+                #{highestPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lowestPrice != null">
+                #{lowestPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="isCombo != null">
+                #{isCombo,jdbcType=BIT},
+            </if>
+            <if test="originalPrice != null">
+                #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="comboPrice != null">
+                #{comboPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="priceType != null">
+                #{priceType,jdbcType=BIGINT},
+            </if>
+            <if test="shortDescription != null">
+                #{shortDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="fullDescUrl != null">
+                #{fullDescUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="adminComment != null">
+                #{adminComment,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentNum != null">
+                #{attachmentNum,jdbcType=INTEGER},
+            </if>
+            <if test="showOnHomePage != null">
+                #{showOnHomePage,jdbcType=BIT},
+            </if>
+            <if test="allowCustomerReview != null">
+                #{allowCustomerReview,jdbcType=BIT},
+            </if>
+            <if test="starLevel != null">
+                #{starLevel,jdbcType=INTEGER},
+            </if>
+            <if test="approvedRatingSum != null">
+                #{approvedRatingSum,jdbcType=INTEGER},
+            </if>
+            <if test="notApprovedRatingSum != null">
+                #{notApprovedRatingSum,jdbcType=INTEGER},
+            </if>
+            <if test="approvedTotalReview != null">
+                #{approvedTotalReview,jdbcType=INTEGER},
+            </if>
+            <if test="notApprovedTotalReview != null">
+                #{notApprovedTotalReview,jdbcType=INTEGER},
+            </if>
+            <if test="productStatus != null">
+                #{productStatus,jdbcType=BIGINT},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_ProductInfoEntity">
+        update P_ProductInfo
+        <set>
+            <if test="categoryID != null">
+                CategoryID = #{categoryID,jdbcType=BIGINT},
+            </if>
+            <if test="orgID != null">
+                OrgID = #{orgID,jdbcType=BIGINT},
+            </if>
+            <if test="currencyID != null">
+                CurrencyID = #{currencyID,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                ProductName = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="firstLetter != null">
+                FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+            </if>
+            <if test="gtin != null">
+                Gtin = #{gtin,jdbcType=VARCHAR},
+            </if>
+            <if test="barCode != null">
+                BarCode = #{barCode,jdbcType=VARCHAR},
+            </if>
+            <if test="highestPrice != null">
+                HighestPrice = #{highestPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lowestPrice != null">
+                LowestPrice = #{lowestPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="isCombo != null">
+                IsCombo = #{isCombo,jdbcType=BIT},
+            </if>
+            <if test="originalPrice != null">
+                OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="comboPrice != null">
+                ComboPrice = #{comboPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="priceType != null">
+                PriceType = #{priceType,jdbcType=BIGINT},
+            </if>
+            <if test="shortDescription != null">
+                ShortDescription = #{shortDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="fullDescUrl != null">
+                FullDescUrl = #{fullDescUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="adminComment != null">
+                AdminComment = #{adminComment,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentNum != null">
+                AttachmentNum = #{attachmentNum,jdbcType=INTEGER},
+            </if>
+            <if test="showOnHomePage != null">
+                ShowOnHomePage = #{showOnHomePage,jdbcType=BIT},
+            </if>
+            <if test="allowCustomerReview != null">
+                AllowCustomerReview = #{allowCustomerReview,jdbcType=BIT},
+            </if>
+            <if test="starLevel != null">
+                StarLevel = #{starLevel,jdbcType=INTEGER},
+            </if>
+            <if test="approvedRatingSum != null">
+                ApprovedRatingSum = #{approvedRatingSum,jdbcType=INTEGER},
+            </if>
+            <if test="notApprovedRatingSum != null">
+                NotApprovedRatingSum = #{notApprovedRatingSum,jdbcType=INTEGER},
+            </if>
+            <if test="approvedTotalReview != null">
+                ApprovedTotalReview = #{approvedTotalReview,jdbcType=INTEGER},
+            </if>
+            <if test="notApprovedTotalReview != null">
+                NotApprovedTotalReview = #{notApprovedTotalReview,jdbcType=INTEGER},
+            </if>
+            <if test="productStatus != null">
+                ProductStatus = #{productStatus,jdbcType=BIGINT},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ProductID = #{productID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_ProductInfoEntity">
+		update P_ProductInfo
+		set CategoryID = #{categoryID,jdbcType=BIGINT},
+		OrgID = #{orgID,jdbcType=BIGINT},
+		CurrencyID = #{currencyID,jdbcType=BIGINT},
+		ProductName = #{productName,jdbcType=VARCHAR},
+		FirstLetter = #{firstLetter,jdbcType=VARCHAR},
+		Gtin = #{gtin,jdbcType=VARCHAR},
+		BarCode = #{barCode,jdbcType=VARCHAR},
+		HighestPrice = #{highestPrice,jdbcType=DECIMAL},
+		LowestPrice = #{lowestPrice,jdbcType=DECIMAL},
+		IsCombo = #{isCombo,jdbcType=BIT},
+		OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+		ComboPrice = #{comboPrice,jdbcType=DECIMAL},
+		PriceType = #{priceType,jdbcType=BIGINT},
+		ShortDescription = #{shortDescription,jdbcType=VARCHAR},
+		FullDescUrl = #{fullDescUrl,jdbcType=VARCHAR},
+		AdminComment = #{adminComment,jdbcType=VARCHAR},
+		AttachmentNum = #{attachmentNum,jdbcType=INTEGER},
+		ShowOnHomePage = #{showOnHomePage,jdbcType=BIT},
+		AllowCustomerReview = #{allowCustomerReview,jdbcType=BIT},
+		StarLevel = #{starLevel,jdbcType=INTEGER},
+		ApprovedRatingSum = #{approvedRatingSum,jdbcType=INTEGER},
+		NotApprovedRatingSum = #{notApprovedRatingSum,jdbcType=INTEGER},
+		ApprovedTotalReview = #{approvedTotalReview,jdbcType=INTEGER},
+		NotApprovedTotalReview = #{notApprovedTotalReview,jdbcType=INTEGER},
+		ProductStatus = #{productStatus,jdbcType=BIGINT},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where ProductID = #{productID,jdbcType=BIGINT}
+	</update>
+    <select id="getAll" parameterType="P_ProductInfoEntity" resultType="P_ProductInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetP_ProductInfoCollection()}
+        ]]>
+	</select>
+    <select id="get" parameterType="P_ProductInfoEntity" resultType="P_ProductInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetP_ProductInfoEntity(#{productID})}
+        ]]>
+	</select>
+    <delete id="delete" parameterType="P_ProductInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteP_ProductInfoEntity(#{productID})}
+        ]]>
+  	</delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="ProductID" parameterType="P_ProductInfoEntity"
+            statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertP_ProductInfoEntity(#{adminComment},#{allowCustomerReview},#{approvedRatingSum},#{approvedTotalReview},#{attachmentNum},#{barCode},#{categoryID},#{comboPrice},#{createTime},#{creatorID},#{currencyID},#{firstLetter},#{fullDescUrl},#{gtin},#{highestPrice},#{isCombo},#{isSync},#{lowestPrice},#{memo},#{notApprovedRatingSum},#{notApprovedTotalReview},#{orgID},#{originalPrice},#{priceType},#{productID,jdbcType=INTEGER,mode=OUT},#{productName},#{productStatus},#{shortDescription},#{showOnHomePage},#{sortNo},#{starLevel})}
+        ]]>
+  	</insert>
+
+    <update id="update" parameterType="P_ProductInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateP_ProductInfoEntity(#{adminComment},#{allowCustomerReview},#{approvedRatingSum},#{approvedTotalReview},#{attachmentNum},#{barCode},#{categoryID},#{comboPrice},#{createTime},#{creatorID},#{currencyID},#{firstLetter},#{fullDescUrl},#{gtin},#{highestPrice},#{isCombo},#{isSync},#{lowestPrice},#{memo},#{notApprovedRatingSum},#{notApprovedTotalReview},#{orgID},#{originalPrice},#{priceType},#{productID},#{productName},#{productStatus},#{shortDescription},#{showOnHomePage},#{sortNo},#{starLevel})}
+        ]]>
+	</update>
+
+    <!--根据areaID categoryID archiveID searchKey 搜索对应菜品-->
+    <select id="getProductsByParam" parameterType="map" resultType="map">
+        select
+        ifnull(scd.quantity,0) as quantity,scd.valueIDs,scd.optionID,scd.designerID,
+        menu.menuID,menu.categoryID,menu.variantID,menu.productID,menu.productName,menu.price,menu.memberPrice,menu.originalPrice,
+        menu.needWeigh,
+        (SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=menu.UnitID) unitName,
+        concat(ifnull(menu.IsCombo,0),"") isCombo,
+        am.filePath filePath,
+        ifnull(pv.ProduceMinute,10) produceMinute,
+        0 praiseNum,
+        ifnull((select  sum(od.Quantity) from O_OrderDetailInfo od where od.variantID = menu.variantID  and od.MenuID = menu.MenuID and MONTH(UTC_DATE()) = MONTH(od.CreateTime) AND YEAR(UTC_DATE()) = YEAR(od.CreateTime)),0) monthSellNum,
+        ifnull((select  sum(od.Quantity) from O_OrderDetailInfo od where od.variantID = menu.variantID  and od.MenuID = menu.MenuID),0) totalSellNum,
+        0 hasDesign,
+        (select GROUP_CONCAT(cavi.valueID,'=',cavi.AttributeName,'=',cavi.AttributeValue) from
+        P_VariantAttributeValueMapping valueMapping
+        left join P_CategoryAttributeValueInfo cavi on valueMapping.valueID = cavi.valueID and cavi.CanMulti = 0
+        where menu.variantID = valueMapping.variantID
+        group by valueMapping.variantID ) as valueList,
+        GROUP_CONCAT(ptm.tagID,'=',pti.tagName) tagList
+        from B_MerchantMenuInfo menu
+        <if test="areaID != null">
+            inner join (SELECT TypeID,typeStatus,
+            DATEDIFF(ExpireTime,EffectiveTime) AS dayNum FROM B_MerchantMenuTypeInfo where typeStatus=9 and
+            archiveID=#{archiveID} ORDER BY dayNum LIMIT 0,1) t on menu.typeID = t.typeID
+        </if>
+        left join P_ProductVariantInfo pv on menu.variantID = pv.variantID
+        left join P_AttachmentMapping am on am.targetID = IF(ISNULL(menu.variantID)>0,menu.productID,menu.variantID) AND IF(ISNULL(menu.variantID)>0,am.TargetType = 624 AND am.AttachmentType = 150,am.TargetType = 625 AND am.AttachmentType = 150)
+        left join P_ProductTagMapping ptm on ptm.targetID=IF(ISNULL(menu.variantID)>0,menu.productID,menu.variantID)
+        left join P_ProductTagInfo pti on ptm.tagID = pti.tagID
+        LEFT JOIN O_ShoppingCartDetailInfo scd ON scd.menuID=menu.menuID AND scd.tableID=#{tableID}
+        where 1=1 AND menu.archiveID = #{archiveID} AND menu.MenuStatus in(9,846)
+        <if test="areaID == null">
+            and menu.areaID is null
+            and menu.mealsID is null
+        </if>
+        <if test="areaID != null">
+            and menu.areaID = #{areaID}
+            and menu.mealsID = #{mealsID}
+        </if>
+        <if test="categoryID != null and categoryID !=0 ">
+            and menu.categoryID in (SELECT CategoryID FROM P_ProductCategoryInfo WHERE ParentID=#{categoryID} OR
+            CategoryID=#{categoryID} )
+        </if>
+        <if test="searchKey!=null and searchKey != '' ">
+            and (menu.productName like '%${searchKey}%' or menu.productCode like '%${searchKey}%' or menu.firstLetter
+            like '%${searchKey}%')
+        </if>
+        group by menu.menuID
+        <if test="tagID !=null and tagID !=0 ">
+            order by (case when ptm.tagID = #{tagID} then 1 else 0 end) desc,menu.createTime DESC
+        </if>
+        <if test="tagID ==0 or tagID == null">
+            order by menu.createTime DESC
+        </if>
+    </select>
+
+    <select id="getCommendProducts" resultType="cc.toprank.byd.pad.pojo.CommendProductDTO">
+        SELECT mm.menuID,mm.isCombo,mm.productName,IFNULL(am.filePath,'') as filePath,0 praiseNum,
+        ifnull((select  sum(od.Quantity) from O_OrderDetailInfo od where od.variantID = mm.variantID and od.MenuID = mm.MenuID),0) sales
+        FROM B_MerchantMenuInfo mm
+        left join P_AttachmentMapping am on (mm.variantID is null and am.targetID = mm.productID and
+        am.TargetType=624 and am.AttachmentType=150) or (mm.variantID is not null and am.targetID = mm.variantID and
+        am.TargetType=625 and am.AttachmentType=150)
+        WHERE mm.MenuStatus in(9,846)
+        <if test="areaID == null">
+            and mm.areaID is null
+            and mm.mealsID is null
+        </if>
+        <if test="areaID != null">
+            and mm.areaID = #{areaID}
+            and mm.mealsID = #{mealsID}
+        </if>
+        ORDER BY sales DESC
+    </select>
+
+    <!--根据archiveID查询所有标签列表-->
+    <select id="getTagListByArchiveID" parameterType="long" resultType="map">
+		select pt.tagID,pt.tagName from P_ProductTagMapping ptm
+		left join P_ProductTagInfo pt on ptm.tagID = pt.tagID
+		where pt.ArchiveID = #{archiveID} or pt.ArchiveID is null
+		group by pt.tagID
+	</select>
+
+
+    <!--获得查询分类的基础信息-->
+    <select id="getTableDetailByTabelID" resultType="map">
+        select archiveID,areaID from B_DinningTableInfo where tableID = #{tableID};
+        select 0 mealsID from dual;
+    </select>
+
+    <!--获取所有菜单分类(终极版)-->
+    <select id="getCategoryList" resultType="map">
+        select
+        p.categoryID,
+        p.parentID,
+        p.orgID,
+        p.categoryName,
+        p.categoryStatus
+        from B_MerchantMenuInfo m
+        left join P_ProductCategoryInfo p on p.categoryID = m.categoryID
+        <if test="areaID != null">
+            inner join (SELECT TypeID,typeStatus,
+            DATEDIFF(ExpireTime,EffectiveTime) AS dayNum FROM B_MerchantMenuTypeInfo where ISNULL(EffectiveTime)=0 AND typeStatus=9 and
+            archiveID=#{archiveID} ORDER BY dayNum LIMIT 0,1) t on m.typeID = t.typeID
+        </if>
+        <if test="areaID == null">
+            inner join (SELECT TypeID,typeStatus,
+            DATEDIFF(ExpireTime,EffectiveTime) AS dayNum FROM B_MerchantMenuTypeInfo where typeStatus=837 and
+            archiveID=#{archiveID} ORDER BY dayNum LIMIT 0,1) t on m.typeID = t.typeID
+        </if>
+        <where>
+            <if test="areaID == null">
+                AND m.areaID is null
+                AND m.mealsID is null
+            </if>
+            <if test="areaID != null">
+                AND m.areaID = #{areaID}
+                and m.mealsID = #{mealsID}
+            </if>
+            and m.archiveID = #{archiveID}
+            and p.categoryStatus=9
+            and (m.MenuStatus = 9 OR m.MenuStatus = 846)
+        </where>
+        group by m.categoryID
+    </select>
+
+    <!--查询菜品详情信息-->
+    <select id="getVariantDetails" parameterType="long" resultType="map">
+        SELECT mm.menuID,mm.productID,ifnull(mm.variantID,0) as
+        variantID,mm.productName,mm.price,mm.originalPrice,mm.memberPrice,mm.needWeigh,
+        (SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=mm.UnitID) unitName,
+        scd.memo,IFNULL(scd.quantity,0) as quantity,
+        pv.produceMinute,p.ShortDescription describes,sum(ri.PraiseNum) praiseNum,0 monthSellNum,0 totalSellNum,
+        (select GROUP_CONCAT(cavi.valueID,'=',cavi.AttributeName,'=',cavi.AttributeValue) from
+        P_VariantAttributeValueMapping valueMapping
+        left join P_CategoryAttributeValueInfo cavi on valueMapping.valueID = cavi.valueID and cavi.CanMulti = 0
+        where mm.variantID = valueMapping.variantID
+        group by valueMapping.variantID ) as valueList
+        FROM B_MerchantMenuInfo mm
+        LEFT JOIN P_ProductVariantInfo pv on pv.variantID = mm.variantID
+        LEFT JOIN P_ProductInfo p ON pv.productID = p.productID
+        LEFT JOIN P_ReviewInfo ri ON ri.VariantID = mm.variantID
+        LEFT JOIN O_ShoppingCartDetailInfo scd ON scd.MenuID=mm.MenuID AND scd.tableID=#{tableID}
+        WHERE mm.menuID=#{menuID}
+    </select>
+
+    <!--查询套餐详情信息-->
+    <select id="getProductDetails" parameterType="long" resultType="map">
+		SELECT mm.menuID,mm.productID,mm.productName,mm.price,mm.originalPrice,mm.memberPrice,mm.needWeigh,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=mm.UnitID) unitName,
+		p.ShortDescription describes,
+		sum(ifnull(ri.PraiseNum,0)) praiseNum,0 monthSellNum,0 totalSellNum,scd.memo,IFNULL(scd.quantity,0) as quantity,
+		(select GROUP_CONCAT(cavi.valueID,'=',cavi.AttributeName,'=',cavi.AttributeValue) from P_ProductAttributeValueMapping valueMapping
+		left join P_CategoryAttributeValueInfo cavi on valueMapping.valueID = cavi.valueID and cavi.CanMulti = 0
+		where mm.ProductID = valueMapping.ProductID
+		group by valueMapping.ProductID ) as valueList
+		FROM B_MerchantMenuInfo mm
+		LEFT JOIN P_ProductInfo p on p.productID = mm.productID
+		LEFT JOIN P_ReviewInfo ri ON ri.productID = mm.productID
+		LEFT JOIN O_ShoppingCartDetailInfo scd ON scd.MenuID=mm.MenuID AND scd.tableID=#{tableID}
+		WHERE mm.variantID is NULL AND mm.menuID=#{menuID}
+        <!--
+        <choose>
+            <when test="areaID != null">
+                AND mm.areaID=#{areaID}
+            </when>
+            <otherwise>
+                AND mm.areaID IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="mealsID != null">
+                AND mm.mealsID=#{mealsID}
+            </when>
+            <otherwise>
+                AND mm.mealsID IS NULL
+            </otherwise>
+        </choose>
+        -->
+	</select>
+
+    <!--根据areaID categoryID stallID searchKey 搜索对应菜品-->
+    <select id="getProductsByCondition" parameterType="map" resultType="map">
+        select p.productID,p.productName FROM B_StallProduceMapping s
+        left JOIN P_ProductInfo p on p.ProductID = s.ProductID
+        left JOIN P_ProductCategoryInfo pc on pc.CategoryID = p.CategoryID
+        where s.StallID = #{stallID}
+        <choose>
+            <when test="productID != null">
+                AND p.ProductID = #{productID}
+            </when>
+            <when test="categoryID != null">
+                AND (p.CategoryID = #{categoryID} or pc.ParentID = #{categoryID})
+            </when>
+        </choose>
+        <if test="searchKey != null">
+            and (p.ProductName like '%${searchKey}%' or p.Gtin like '%${searchKey}%' or p.FirstLetter like
+            '%${searchKey}%')
+        </if>
+    </select>
+
+    <!--
+    获取所有通用菜单分类
+    chenkangyi
+    2017-6-2 13:45
+    -->
+    <select id="getCategoryListForCommon" resultType="map">
+        SELECT
+        p.categoryID,
+        p.parentID,
+        p.orgID,
+        p.categoryName,
+        p.categoryStatus
+        FROM B_MerchantMenuInfo m
+        LEFT JOIN P_ProductCategoryInfo p ON p.categoryID = m.categoryID
+        WHERE
+            m.ArchiveID = #{archiveID}
+            AND areaID is null
+            AND mealsID is null
+            AND p.categoryStatus=9
+        group by m.categoryID
+    </select>
+</mapper>

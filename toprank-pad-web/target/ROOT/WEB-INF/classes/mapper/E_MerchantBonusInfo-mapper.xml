@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.E_MerchantBonusInfoDao">
+	<select id="getAll" parameterType="E_MerchantBonusInfoEntity" resultType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetE_MerchantBonusInfoCollection()} 
+		]]>  
+	</select>
+	<select id="get" parameterType="E_MerchantBonusInfoEntity" resultType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetE_MerchantBonusInfoEntity(#{bonusID})} 
+		]]>  
+	</select>
+	<delete id="delete" parameterType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteE_MerchantBonusInfoEntity(#{bonusID})} 
+		]]> 
+  	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="BonusID" parameterType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertE_MerchantBonusInfoEntity(#{archiveID},#{bonusID,jdbcType=INTEGER,mode=OUT},#{cardCode},#{cardID},#{createTime},#{creatorID},#{currentBonus},#{customerID},#{latestChangeAmount},#{latestChangeTime},#{latestChangeType},#{memo},#{totalBonus},'admin')}
+		]]>  
+  	</insert>
+
+	<update id="update" parameterType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateE_MerchantBonusInfoEntity(#{archiveID},#{bonusID},#{cardCode},#{cardID},#{createTime},#{creatorID},#{currentBonus},#{customerID},#{latestChangeAmount},#{latestChangeTime},#{latestChangeType},#{memo},#{totalBonus})} 
+		]]>  
+  	</update>
+
+	<select id="getEntity" parameterType="E_MerchantBonusInfoEntity" resultType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+         select * from E_MerchantBonusInfo where CustomerID=#{customerID}  and  ArchiveID=#{archiveID} and CardID=#{cardID}
+         limit 0,1
+	</select>
+
+	<update id="updateMemberBonus" parameterType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+          update E_MerchantBonusInfo set CurrentBonus=#{currentBonus},TotalBonus=#{totalBonus} where BonusID=#{bonusID}
+	</update>
+
+	<select id="getBonusInfoByCardID" parameterType="Long" resultType="E_MerchantBonusInfoEntity" statementType="CALLABLE">
+		select `ArchiveID`, `BonusID`, `CardCode`, `CardID`, `CreateTime`, `CreatorID`, `CurrentBonus`,
+        `CustomerID`, `LatestChangeAmount`, `LatestChangeTime`, `LatestChangeType`, `Memo`, `TotalBonus`
+         from E_MerchantBonusInfo where CardID=#{_parameter}   limit 0,1
+	</select>
+
+  </mapper>

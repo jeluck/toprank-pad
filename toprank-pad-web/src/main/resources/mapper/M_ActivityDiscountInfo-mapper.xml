@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.M_ActivityDiscountInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.M_ActivityDiscountInfoEntity">
+    <id column="DiscountID" jdbcType="BIGINT" property="discountID" />
+    <result column="RuleID" jdbcType="BIGINT" property="ruleID" />
+    <result column="DiscountName" jdbcType="VARCHAR" property="discountName" />
+    <result column="BaseAmount" jdbcType="DECIMAL" property="baseAmount" />
+    <result column="LowPrice" jdbcType="DECIMAL" property="lowPrice" />
+    <result column="HighPrice" jdbcType="DECIMAL" property="highPrice" />
+    <result column="DiscountPercentage" jdbcType="REAL" property="discountPercentage" />
+    <result column="DiscountAmount" jdbcType="DECIMAL" property="discountAmount" />
+    <result column="PresentAmount" jdbcType="DECIMAL" property="presentAmount" />
+    <result column="PresentBonus" jdbcType="INTEGER" property="presentBonus" />
+    <result column="BonusMultiply" jdbcType="REAL" property="bonusMultiply" />
+    <result column="CanAccumulative" jdbcType="BIT" property="canAccumulative" />
+    <result column="DiscountStatus" jdbcType="BIGINT" property="discountStatus" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="DiscounType" jdbcType="BIGINT" property="discounType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DiscountID, RuleID, DiscountName, BaseAmount, LowPrice, HighPrice, DiscountPercentage, 
+    DiscountAmount, PresentAmount, PresentBonus, BonusMultiply, CanAccumulative, DiscountStatus, 
+    SortNo, CreateTime, CreatorID, Memo, DiscounType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from M_ActivityDiscountInfo
+    where DiscountID = #{discountID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from M_ActivityDiscountInfo
+    where DiscountID = #{discountID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.M_ActivityDiscountInfoEntity">
+    insert into M_ActivityDiscountInfo (DiscountID, RuleID, DiscountName, 
+      BaseAmount, LowPrice, HighPrice, 
+      DiscountPercentage, DiscountAmount, PresentAmount, 
+      PresentBonus, BonusMultiply, CanAccumulative, 
+      DiscountStatus, SortNo, CreateTime, 
+      CreatorID, Memo, DiscounType
+      )
+    values (#{discountID,jdbcType=BIGINT}, #{ruleID,jdbcType=BIGINT}, #{discountName,jdbcType=VARCHAR}, 
+      #{baseAmount,jdbcType=DECIMAL}, #{lowPrice,jdbcType=DECIMAL}, #{highPrice,jdbcType=DECIMAL}, 
+      #{discountPercentage,jdbcType=REAL}, #{discountAmount,jdbcType=DECIMAL}, #{presentAmount,jdbcType=DECIMAL}, 
+      #{presentBonus,jdbcType=INTEGER}, #{bonusMultiply,jdbcType=REAL}, #{canAccumulative,jdbcType=BIT}, 
+      #{discountStatus,jdbcType=BIGINT}, #{sortNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{creatorID,jdbcType=BIGINT}, #{memo,jdbcType=VARCHAR}, #{discounType,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.M_ActivityDiscountInfoEntity">
+    insert into M_ActivityDiscountInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="discountID != null">
+        DiscountID,
+      </if>
+      <if test="ruleID != null">
+        RuleID,
+      </if>
+      <if test="discountName != null">
+        DiscountName,
+      </if>
+      <if test="baseAmount != null">
+        BaseAmount,
+      </if>
+      <if test="lowPrice != null">
+        LowPrice,
+      </if>
+      <if test="highPrice != null">
+        HighPrice,
+      </if>
+      <if test="discountPercentage != null">
+        DiscountPercentage,
+      </if>
+      <if test="discountAmount != null">
+        DiscountAmount,
+      </if>
+      <if test="presentAmount != null">
+        PresentAmount,
+      </if>
+      <if test="presentBonus != null">
+        PresentBonus,
+      </if>
+      <if test="bonusMultiply != null">
+        BonusMultiply,
+      </if>
+      <if test="canAccumulative != null">
+        CanAccumulative,
+      </if>
+      <if test="discountStatus != null">
+        DiscountStatus,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="discounType != null">
+        DiscounType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="discountID != null">
+        #{discountID,jdbcType=BIGINT},
+      </if>
+      <if test="ruleID != null">
+        #{ruleID,jdbcType=BIGINT},
+      </if>
+      <if test="discountName != null">
+        #{discountName,jdbcType=VARCHAR},
+      </if>
+      <if test="baseAmount != null">
+        #{baseAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPrice != null">
+        #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highPrice != null">
+        #{highPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPercentage != null">
+        #{discountPercentage,jdbcType=REAL},
+      </if>
+      <if test="discountAmount != null">
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="presentAmount != null">
+        #{presentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="presentBonus != null">
+        #{presentBonus,jdbcType=INTEGER},
+      </if>
+      <if test="bonusMultiply != null">
+        #{bonusMultiply,jdbcType=REAL},
+      </if>
+      <if test="canAccumulative != null">
+        #{canAccumulative,jdbcType=BIT},
+      </if>
+      <if test="discountStatus != null">
+        #{discountStatus,jdbcType=BIGINT},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="discounType != null">
+        #{discounType,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.M_ActivityDiscountInfoEntity">
+    update M_ActivityDiscountInfo
+    <set>
+      <if test="ruleID != null">
+        RuleID = #{ruleID,jdbcType=BIGINT},
+      </if>
+      <if test="discountName != null">
+        DiscountName = #{discountName,jdbcType=VARCHAR},
+      </if>
+      <if test="baseAmount != null">
+        BaseAmount = #{baseAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPrice != null">
+        LowPrice = #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highPrice != null">
+        HighPrice = #{highPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPercentage != null">
+        DiscountPercentage = #{discountPercentage,jdbcType=REAL},
+      </if>
+      <if test="discountAmount != null">
+        DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="presentAmount != null">
+        PresentAmount = #{presentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="presentBonus != null">
+        PresentBonus = #{presentBonus,jdbcType=INTEGER},
+      </if>
+      <if test="bonusMultiply != null">
+        BonusMultiply = #{bonusMultiply,jdbcType=REAL},
+      </if>
+      <if test="canAccumulative != null">
+        CanAccumulative = #{canAccumulative,jdbcType=BIT},
+      </if>
+      <if test="discountStatus != null">
+        DiscountStatus = #{discountStatus,jdbcType=BIGINT},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="discounType != null">
+        DiscounType = #{discounType,jdbcType=BIGINT},
+      </if>
+    </set>
+    where DiscountID = #{discountID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.M_ActivityDiscountInfoEntity">
+    update M_ActivityDiscountInfo
+    set RuleID = #{ruleID,jdbcType=BIGINT},
+      DiscountName = #{discountName,jdbcType=VARCHAR},
+      BaseAmount = #{baseAmount,jdbcType=DECIMAL},
+      LowPrice = #{lowPrice,jdbcType=DECIMAL},
+      HighPrice = #{highPrice,jdbcType=DECIMAL},
+      DiscountPercentage = #{discountPercentage,jdbcType=REAL},
+      DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+      PresentAmount = #{presentAmount,jdbcType=DECIMAL},
+      PresentBonus = #{presentBonus,jdbcType=INTEGER},
+      BonusMultiply = #{bonusMultiply,jdbcType=REAL},
+      CanAccumulative = #{canAccumulative,jdbcType=BIT},
+      DiscountStatus = #{discountStatus,jdbcType=BIGINT},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      Memo = #{memo,jdbcType=VARCHAR},
+      DiscounType = #{discounType,jdbcType=BIGINT}
+    where DiscountID = #{discountID,jdbcType=BIGINT}
+  </update>
+
+  <!--
+  根据ruleID查询活动折扣信息
+  chenkangyi
+  2017-6-1 16:45
+  -->
+  <select id="selectByRuleID" parameterType="long" resultType="cc.toprank.byd.entity.M_ActivityDiscountInfoEntity">
+    SELECT * FROM M_ActivityDiscountInfo WHERE DiscountStatus = 9 AND RuleID = #{ruleID} AND DiscounType = #{discounType} LIMIT 1
+  </select>
+</mapper>

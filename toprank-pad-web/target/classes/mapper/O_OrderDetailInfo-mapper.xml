@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.O_OrderDetailInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		<id column="DetailID" jdbcType="BIGINT" property="detailID" />
+		<result column="DetailCode" jdbcType="VARCHAR" property="detailCode" />
+		<result column="SubOrderID" jdbcType="BIGINT" property="subOrderID" />
+		<result column="OrderID" jdbcType="BIGINT" property="orderID" />
+		<result column="VariantID" jdbcType="BIGINT" property="variantID" />
+		<result column="LoginID" jdbcType="BIGINT" property="loginID" />
+		<result column="MappingDesc" property="mappingDesc" jdbcType="VARCHAR"/>
+		<result column="MappingReason" property="mappingReason" jdbcType="BIGINT"/>
+		<result column="ParentID" property="parentID" jdbcType="BIGINT"/>
+		<result column="TableID" property="tableID" jdbcType="BIGINT"/>
+		<result column="TableName" property="tableName" jdbcType="VARCHAR"/>
+		<result column="OptionID" jdbcType="BIGINT" property="optionID" />
+		<result column="ValueNames" jdbcType="VARCHAR" property="valueNames" />
+		<result column="ValueIDs" jdbcType="VARCHAR" property="valueIDs" />
+		<result column="SelectedMethod" jdbcType="BIGINT" property="selectedMethod" />
+		<result column="DesignerID" jdbcType="BIGINT" property="designerID" />
+		<result column="MenuID" jdbcType="BIGINT" property="menuID" />
+		<result column="ProductName" jdbcType="VARCHAR" property="productName" />
+		<result column="ImgPath" jdbcType="VARCHAR" property="imgPath" />
+		<result column="ALaCarteMethod" jdbcType="BIGINT" property="ALaCarteMethod" />
+		<result column="NeedWeigh" jdbcType="BIT" property="needWeigh" />
+		<result column="OriginalPrice" jdbcType="DECIMAL" property="originalPrice" />
+		<result column="Price" jdbcType="DECIMAL" property="price" />
+		<result column="FloatQuantity" jdbcType="REAL" property="floatQuantity" />
+		<result column="ExpectedWeight" jdbcType="REAL" property="expectedWeight" />
+		<result column="Quantity" jdbcType="INTEGER" property="quantity" />
+		<result column="IsCombo" jdbcType="BIT" property="isCombo" />
+		<result column="ComboProductNum" jdbcType="INTEGER" property="comboProductNum" />
+		<result column="ComboID" jdbcType="BIGINT" property="comboID" />
+		<result column="ComboName" jdbcType="VARCHAR" property="comboName" />
+		<result column="ComboPrice" jdbcType="DECIMAL" property="comboPrice" />
+		<result column="ProductUnit" jdbcType="BIGINT" property="productUnit" />
+		<result column="ProduceCost" jdbcType="DECIMAL" property="produceCost" />
+		<result column="DesignerPrice" jdbcType="DECIMAL" property="designerPrice" />
+		<result column="TotalAmount" jdbcType="DECIMAL" property="totalAmount" />
+		<result column="ProduceStatus" jdbcType="BIGINT" property="produceStatus" />
+		<result column="ProduceTime" jdbcType="TIMESTAMP" property="produceTime" />
+		<result column="ServedNum" jdbcType="INTEGER" property="servedNum" />
+		<result column="DetailDesc" jdbcType="VARCHAR" property="detailDesc" />
+		<result column="AdjustType" jdbcType="BIGINT" property="adjustType" />
+		<result column="AdjustAmount" jdbcType="DECIMAL" property="adjustAmount" />
+		<result column="AdjustDesc" jdbcType="VARCHAR" property="adjustDesc" />
+		<result column="AdjusterID" jdbcType="BIGINT" property="adjusterID" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		DetailID, DetailCode, SubOrderID, OrderID, VariantID, LoginID, MappingDesc,MappingReason, ParentID,TableID,
+  		TableName, OptionID, ValueNames, ValueIDs, SelectedMethod, DesignerID, MenuID, ProductName, ImgPath, ALaCarteMethod,
+		NeedWeigh, OriginalPrice, Price, FloatQuantity, ExpectedWeight, Quantity, IsCombo,
+		ComboProductNum, ComboID, ComboName, ComboPrice, ProductUnit, ProduceCost, DesignerPrice, TotalAmount,
+		ProduceStatus, ProduceTime, ServedNum, DetailDesc, AdjustType, AdjustAmount, AdjustDesc,
+		AdjusterID, SortNo, IsSync, CreatorID, CreatorType, CreateTime, Memo
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_OrderDetailInfo
+		where DetailID = #{detailID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_OrderDetailInfo
+		where DetailID = #{detailID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		insert into O_OrderDetailInfo (DetailID, DetailCode, SubOrderID,
+		OrderID, VariantID, LoginID,MappingDesc,MappingReason, ParentID,
+		TableID, TableName, OptionID, ValueNames, ValueIDs,
+		SelectedMethod, DesignerID, MenuID,
+		ProductName, ImgPath, ALaCarteMethod,
+		NeedWeigh, OriginalPrice, Price,
+		FloatQuantity, ExpectedWeight, Quantity,
+		IsCombo, ComboProductNum, ComboID,
+		ComboName, ComboPrice, ProductUnit,
+		ProduceCost, DesignerPrice, TotalAmount, ProduceStatus,
+		ProduceTime, ServedNum, DetailDesc,
+		AdjustType, AdjustAmount, AdjustDesc,
+		AdjusterID, SortNo, IsSync,
+		CreatorID, CreatorType, CreateTime,
+		Memo)
+		values (#{detailID,jdbcType=BIGINT}, #{detailCode,jdbcType=VARCHAR}, #{subOrderID,jdbcType=BIGINT},
+		#{orderID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT},
+		#{mappingDesc},#{mappingReason},#{parentID}, #{tableID}, #{tableName},
+		#{optionID,jdbcType=BIGINT}, #{valueNames,jdbcType=VARCHAR}, #{valueIDs,jdbcType=VARCHAR},
+		#{selectedMethod,jdbcType=BIGINT}, #{designerID,jdbcType=BIGINT}, #{menuID,jdbcType=BIGINT},
+		#{productName,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR}, #{ALaCarteMethod,jdbcType=BIGINT},
+		#{needWeigh,jdbcType=BIT}, #{originalPrice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL},
+		#{floatQuantity,jdbcType=REAL}, #{expectedWeight,jdbcType=REAL}, #{quantity,jdbcType=INTEGER},
+		#{isCombo,jdbcType=BIT}, #{comboProductNum,jdbcType=INTEGER}, #{comboID,jdbcType=BIGINT},
+		#{comboName,jdbcType=VARCHAR}, #{comboPrice,jdbcType=DECIMAL}, #{productUnit,jdbcType=BIGINT},
+		#{produceCost,jdbcType=DECIMAL}, #{designerPrice,jdbcType=DECIMAL},#{totalAmount,jdbcType=DECIMAL}, #{produceStatus,jdbcType=BIGINT},
+		#{produceTime,jdbcType=TIMESTAMP}, #{servedNum,jdbcType=INTEGER}, #{detailDesc,jdbcType=VARCHAR},
+		#{adjustType,jdbcType=BIGINT}, #{adjustAmount,jdbcType=DECIMAL}, #{adjustDesc,jdbcType=VARCHAR},
+		#{adjusterID,jdbcType=BIGINT}, #{sortNo,jdbcType=INTEGER}, #{isSync,jdbcType=BIT},
+		#{creatorID,jdbcType=BIGINT}, #{creatorType,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		insert into O_OrderDetailInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="detailID != null">
+				DetailID,
+			</if>
+			<if test="detailCode != null">
+				DetailCode,
+			</if>
+			<if test="subOrderID != null">
+				SubOrderID,
+			</if>
+			<if test="orderID != null">
+				OrderID,
+			</if>
+			<if test="variantID != null">
+				VariantID,
+			</if>
+			<if test="loginID != null">
+				LoginID,
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc,
+			</if>
+			<if test="mappingReason != null">
+				MappingReason,
+			</if>
+			<if test="parentID != null">
+				ParentID,
+			</if>
+			<if test="tableID != null">
+				TableID,
+			</if>
+			<if test="tableName != null">
+				TableName,
+			</if>
+			<if test="optionID != null">
+				OptionID,
+			</if>
+			<if test="valueNames != null">
+				ValueNames,
+			</if>
+			<if test="valueIDs != null">
+				ValueIDs,
+			</if>
+			<if test="selectedMethod != null">
+				SelectedMethod,
+			</if>
+			<if test="designerID != null">
+				DesignerID,
+			</if>
+			<if test="menuID != null">
+				MenuID,
+			</if>
+			<if test="productName != null">
+				ProductName,
+			</if>
+			<if test="imgPath != null">
+				ImgPath,
+			</if>
+			<if test="ALaCarteMethod != null">
+				ALaCarteMethod,
+			</if>
+			<if test="needWeigh != null">
+				NeedWeigh,
+			</if>
+			<if test="originalPrice != null">
+				OriginalPrice,
+			</if>
+			<if test="price != null">
+				Price,
+			</if>
+			<if test="floatQuantity != null">
+				FloatQuantity,
+			</if>
+			<if test="expectedWeight != null">
+				ExpectedWeight,
+			</if>
+			<if test="quantity != null">
+				Quantity,
+			</if>
+			<if test="isCombo != null">
+				IsCombo,
+			</if>
+			<if test="comboProductNum != null">
+				ComboProductNum,
+			</if>
+			<if test="comboID != null">
+				ComboID,
+			</if>
+			<if test="comboName != null">
+				ComboName,
+			</if>
+			<if test="comboPrice != null">
+				ComboPrice,
+			</if>
+			<if test="productUnit != null">
+				ProductUnit,
+			</if>
+			<if test="produceCost != null">
+				ProduceCost,
+			</if>
+			<if test="designerPrice != null">
+				DesignerPrice,
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount,
+			</if>
+			<if test="produceStatus != null">
+				ProduceStatus,
+			</if>
+			<if test="produceTime != null">
+				ProduceTime,
+			</if>
+			<if test="servedNum != null">
+				ServedNum,
+			</if>
+			<if test="detailDesc != null">
+				DetailDesc,
+			</if>
+			<if test="adjustType != null">
+				AdjustType,
+			</if>
+			<if test="adjustAmount != null">
+				AdjustAmount,
+			</if>
+			<if test="adjustDesc != null">
+				AdjustDesc,
+			</if>
+			<if test="adjusterID != null">
+				AdjusterID,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="creatorType != null">
+				CreatorType,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="detailID != null">
+				#{detailID,jdbcType=BIGINT},
+			</if>
+			<if test="detailCode != null">
+				#{detailCode,jdbcType=VARCHAR},
+			</if>
+			<if test="subOrderID != null">
+				#{subOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="orderID != null">
+				#{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="variantID != null">
+				#{variantID,jdbcType=BIGINT},
+			</if>
+			<if test="loginID != null">
+				#{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="mappingDesc != null">
+				#{mappingDesc},
+			</if>
+			<if test="mappingReason != null">
+				#{mappingReason},
+			</if>
+			<if test="parentID != null">
+				#{parentID,jdbcType=BIGINT},
+			</if>
+			<if test="tableID != null">
+				#{tableID,jdbcType=BIGINT},
+			</if>
+			<if test="tableName != null">
+				#{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="optionID != null">
+				#{optionID,jdbcType=BIGINT},
+			</if>
+			<if test="valueNames != null">
+				#{valueNames,jdbcType=VARCHAR},
+			</if>
+			<if test="valueIDs != null">
+				#{valueIDs,jdbcType=VARCHAR},
+			</if>
+			<if test="selectedMethod != null">
+				#{selectedMethod,jdbcType=BIGINT},
+			</if>
+			<if test="designerID != null">
+				#{designerID,jdbcType=BIGINT},
+			</if>
+			<if test="menuID != null">
+				#{menuID,jdbcType=BIGINT},
+			</if>
+			<if test="productName != null">
+				#{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="imgPath != null">
+				#{imgPath,jdbcType=VARCHAR},
+			</if>
+			<if test="ALaCarteMethod != null">
+				#{ALaCarteMethod,jdbcType=BIGINT},
+			</if>
+			<if test="needWeigh != null">
+				#{needWeigh,jdbcType=BIT},
+			</if>
+			<if test="originalPrice != null">
+				#{originalPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="floatQuantity != null">
+				#{floatQuantity,jdbcType=REAL},
+			</if>
+			<if test="expectedWeight != null">
+				#{expectedWeight,jdbcType=REAL},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="isCombo != null">
+				#{isCombo,jdbcType=BIT},
+			</if>
+			<if test="comboProductNum != null">
+				#{comboProductNum,jdbcType=INTEGER},
+			</if>
+			<if test="comboID != null">
+				#{comboID,jdbcType=BIGINT},
+			</if>
+			<if test="comboName != null">
+				#{comboName,jdbcType=VARCHAR},
+			</if>
+			<if test="comboPrice != null">
+				#{comboPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="productUnit != null">
+				#{productUnit,jdbcType=BIGINT},
+			</if>
+			<if test="produceCost != null">
+				#{produceCost,jdbcType=DECIMAL},
+			</if>
+			<if test="designerPrice != null">
+				#{designerPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="produceStatus != null">
+				#{produceStatus,jdbcType=BIGINT},
+			</if>
+			<if test="produceTime != null">
+				#{produceTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="servedNum != null">
+				#{servedNum,jdbcType=INTEGER},
+			</if>
+			<if test="detailDesc != null">
+				#{detailDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="adjustType != null">
+				#{adjustType,jdbcType=BIGINT},
+			</if>
+			<if test="adjustAmount != null">
+				#{adjustAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="adjustDesc != null">
+				#{adjustDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="adjusterID != null">
+				#{adjusterID,jdbcType=BIGINT},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				#{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="updateBatch" parameterType="map">
+		update O_OrderDetailInfo
+		<set>
+			<if test="produceStatus != null">
+				ProduceStatus = #{produceStatus},
+			</if>
+		</set>
+		where
+		DetailID in
+		<foreach collection="list" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</insert>
+
+	<insert id="updateBatch2" parameterType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update O_OrderDetailInfo
+			<set>
+				<if test="item.produceStatus != null">
+					ProduceStatus = #{item.produceStatus},
+				</if>
+				<if test="item.servedNum != null">
+					ServedNum = #{item.servedNum},
+				</if>
+			</set>
+			where
+			DetailID = #{item.detailID}
+		</foreach>
+	</insert>
+
+
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		update O_OrderDetailInfo
+		<set>
+			<if test="detailCode != null">
+				DetailCode = #{detailCode,jdbcType=VARCHAR},
+			</if>
+			<if test="subOrderID != null">
+				SubOrderID = #{subOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="orderID != null">
+				OrderID = #{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="variantID != null">
+				VariantID = #{variantID,jdbcType=BIGINT},
+			</if>
+			<if test="loginID != null">
+				LoginID = #{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc=#{mappingDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="mappingReason != null">
+				MappingReason=#{mappingReason,jdbcType=BIGINT},
+			</if>
+			<if test="parentID != null">
+				ParentID=#{parentID,jdbcType=BIGINT},
+			</if>
+			<if test="tableID != null">
+				TableID=#{tableID,jdbcType=BIGINT},
+			</if>
+			<if test="tableName != null">
+				TableName=#{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="optionID != null">
+				OptionID = #{optionID,jdbcType=BIGINT},
+			</if>
+			<if test="valueNames != null">
+				ValueNames = #{valueNames,jdbcType=VARCHAR},
+			</if>
+			<if test="valueIDs != null">
+				ValueIDs = #{valueIDs,jdbcType=VARCHAR},
+			</if>
+			<if test="selectedMethod != null">
+				SelectedMethod = #{selectedMethod,jdbcType=BIGINT},
+			</if>
+			<if test="designerID != null">
+				DesignerID = #{designerID,jdbcType=BIGINT},
+			</if>
+			<if test="menuID != null">
+				MenuID = #{menuID,jdbcType=BIGINT},
+			</if>
+			<if test="productName != null">
+				ProductName = #{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="imgPath != null">
+				ImgPath = #{imgPath,jdbcType=VARCHAR},
+			</if>
+			<if test="ALaCarteMethod != null">
+				ALaCarteMethod = #{ALaCarteMethod,jdbcType=BIGINT},
+			</if>
+			<if test="needWeigh != null">
+				NeedWeigh = #{needWeigh,jdbcType=BIT},
+			</if>
+			<if test="originalPrice != null">
+				OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				Price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="floatQuantity != null">
+				FloatQuantity = #{floatQuantity,jdbcType=REAL},
+			</if>
+			<if test="expectedWeight != null">
+				ExpectedWeight = #{expectedWeight,jdbcType=REAL},
+			</if>
+			<if test="quantity != null">
+				Quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="isCombo != null">
+				IsCombo = #{isCombo,jdbcType=BIT},
+			</if>
+			<if test="comboProductNum != null">
+				ComboProductNum = #{comboProductNum,jdbcType=INTEGER},
+			</if>
+			<if test="comboID != null">
+				ComboID = #{comboID,jdbcType=BIGINT},
+			</if>
+			<if test="comboName != null">
+				ComboName = #{comboName,jdbcType=VARCHAR},
+			</if>
+			<if test="comboPrice != null">
+				ComboPrice = #{comboPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="productUnit != null">
+				ProductUnit = #{productUnit,jdbcType=BIGINT},
+			</if>
+			<if test="produceCost != null">
+				ProduceCost = #{produceCost,jdbcType=DECIMAL},
+			</if>
+			<if test="designerPrice != null">
+				DesignerPrice = #{designerPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="produceStatus != null">
+				ProduceStatus = #{produceStatus,jdbcType=BIGINT},
+			</if>
+			<if test="produceTime != null">
+				ProduceTime = #{produceTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="servedNum != null">
+				ServedNum = #{servedNum,jdbcType=INTEGER},
+			</if>
+			<if test="detailDesc != null">
+				DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="adjustType != null">
+				AdjustType = #{adjustType,jdbcType=BIGINT},
+			</if>
+			<if test="adjustAmount != null">
+				AdjustAmount = #{adjustAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="adjustDesc != null">
+				AdjustDesc = #{adjustDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="adjusterID != null">
+				AdjusterID = #{adjusterID,jdbcType=BIGINT},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				CreatorType = #{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where DetailID = #{detailID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		update O_OrderDetailInfo
+		set DetailCode = #{detailCode,jdbcType=VARCHAR},
+		SubOrderID = #{subOrderID,jdbcType=BIGINT},
+		OrderID = #{orderID,jdbcType=BIGINT},
+		VariantID = #{variantID,jdbcType=BIGINT},
+		LoginID = #{loginID,jdbcType=BIGINT},
+		OptionID = #{optionID,jdbcType=BIGINT},
+		ValueNames = #{valueNames,jdbcType=VARCHAR},
+		ValueIDs = #{valueIDs,jdbcType=VARCHAR},
+		SelectedMethod = #{selectedMethod,jdbcType=BIGINT},
+		DesignerID = #{designerID,jdbcType=BIGINT},
+		MenuID = #{menuID,jdbcType=BIGINT},
+		ProductName = #{productName,jdbcType=VARCHAR},
+		ImgPath = #{imgPath,jdbcType=VARCHAR},
+		ALaCarteMethod = #{ALaCarteMethod,jdbcType=BIGINT},
+		NeedWeigh = #{needWeigh,jdbcType=BIT},
+		OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+		Price = #{price,jdbcType=DECIMAL},
+		FloatQuantity = #{floatQuantity,jdbcType=REAL},
+		ExpectedWeight = #{expectedWeight,jdbcType=REAL},
+		Quantity = #{quantity,jdbcType=INTEGER},
+		IsCombo = #{isCombo,jdbcType=BIT},
+		ComboProductNum = #{comboProductNum,jdbcType=INTEGER},
+		ComboID = #{comboID,jdbcType=BIGINT},
+		ComboName = #{comboName,jdbcType=VARCHAR},
+		ComboPrice = #{comboPrice,jdbcType=DECIMAL},
+		ProductUnit = #{productUnit,jdbcType=BIGINT},
+		ProduceCost = #{produceCost,jdbcType=DECIMAL},
+		DesignerPrice = #{designerPrice,jdbcType=DECIMAL},
+		TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+		ProduceStatus = #{produceStatus,jdbcType=BIGINT},
+		ProduceTime = #{produceTime,jdbcType=TIMESTAMP},
+		ServedNum = #{servedNum,jdbcType=INTEGER},
+		DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+		AdjustType = #{adjustType,jdbcType=BIGINT},
+		AdjustAmount = #{adjustAmount,jdbcType=DECIMAL},
+		AdjustDesc = #{adjustDesc,jdbcType=VARCHAR},
+		AdjusterID = #{adjusterID,jdbcType=BIGINT},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreatorType = #{creatorType,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where DetailID = #{detailID,jdbcType=BIGINT}
+	</update>
+	<select id="getAll" parameterType="O_OrderDetailInfoEntity" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_OrderDetailInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="O_OrderDetailInfoEntity" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_OrderDetailInfoEntity(#{detailID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteO_OrderDetailInfoEntity(#{detailID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="DetailID" parameterType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertO_OrderDetailInfoEntity(#{adjustAmount},#{adjustDesc},#{adjusterID},#{adjustType},#{aLaCarteMethod},#{comboID},#{comboName},#{comboPrice},#{comboProductNum},#{createTime},#{creatorID},#{creatorType},#{designerID},#{designerPrice},#{detailCode},#{detailDesc},#{detailID,jdbcType=INTEGER,mode=OUT},#{expectedWeight},#{floatQuantity},#{imgPath},#{isCombo},#{isSync},#{loginID},#{memo},#{menuID},#{needWeigh},#{optionID},#{orderID},#{originalPrice},#{price},#{produceCost},#{produceStatus},#{produceTime},#{productName},#{productUnit},#{quantity},#{selectedMethod},#{servedNum},#{sortNo},#{subOrderID},#{totalAmount},#{valueIDs},#{valueNames},#{variantID})}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateO_OrderDetailInfoEntity(#{adjustAmount},#{adjustDesc},#{adjusterID},#{adjustType},#{aLaCarteMethod},#{comboID},#{comboName},#{comboPrice},#{comboProductNum},#{createTime},#{creatorID},#{creatorType},#{designerID},#{designerPrice},#{detailCode},#{detailDesc},#{detailID},#{expectedWeight},#{floatQuantity},#{imgPath},#{isCombo},#{isSync},#{loginID},#{mappingDesc},#{mappingReason},#{memo},#{menuID},#{needWeigh},#{optionID},#{orderID},#{originalPrice},#{parentID},#{price},#{produceCost},#{produceStatus},#{produceTime},#{productName},#{productUnit},#{quantity},#{selectedMethod},#{servedNum},#{sortNo},#{subOrderID},#{tableID},#{tableName},#{totalAmount},#{valueIDs},#{valueNames},#{variantID})}
+		]]>
+	</update>
+
+
+	<!-- 根据子订单ID查询订单明细 zhangbo -->
+	<select id="getAllById" parameterType="Long" resultType="O_OrderDetailInfoEntity"
+			statementType="CALLABLE">
+  		<![CDATA[
+			{call Get_ReceptionO_OrderDetailInfoBySubId(#{subId})}
+		]]>
+	</select>
+
+
+
+	<!--根据子订单ID查询已下单的订单明细-->
+	<select id="getUnderOrderDetailListBySubOrderID" parameterType="java.lang.Long" resultType="cc.toprank.byd.web.vo.menu.UnderOrderDetailVO">
+		SELECT o.DetailID AS detailID,o.ProductName AS productName,
+				o.Quantity AS quantity,o.ServedNum as servingQuantity,
+				o.FloatQuantity AS floatQuantity,o.totalAmount AS totalAmount,o.DetailDesc AS memo,
+				o.IsCombo AS combo,o.NeedWeigh AS needWeigh,
+				o.ProduceStatus AS produceStatus,
+				o.ALaCarteMethod AS aLaCarteMethod,o.ParentID as parentID,
+				os.TotalAmount AS subTotalAmount,os.Quantity AS subTotalNumber,
+				o.MenuID AS menuID,cd.DictionaryName AS unit,
+				IFNULL(psm.OptionName,ppm.OptionName) AS optionName,
+				o.ValueNames AS valueNames,o.CreateTime,
+				(SELECT GROUP_CONCAT(ptm.tagID)
+					FROM B_MerchantTagMapping ptm
+					WHERE ptm.TargetType = 943 AND ptm.TargetID = o.DetailID
+					GROUP BY ptm.TargetID) as tagIDs,o.CreatorID
+		FROM O_OrderDetailInfo o
+		LEFT JOIN O_SubOrderInfo os ON os.SubOrderID = o.SubOrderID
+ 		LEFT JOIN P_ProductSpecificationMapping ppm ON o.ComboID = ppm.ProductID AND o.OptionID = ppm.OptionID
+		LEFT JOIN P_VariantSpecificationMapping psm ON o.VariantID = psm.VariantID AND o.OptionID = psm.OptionID
+		LEFT JOIN C_DictionaryInfo cd ON o.ProductUnit = cd.DictionaryID
+		WHERE o.SubOrderID = #{subOrderID}
+		ORDER BY
+				o.CreateTime DESC,o.SortNo ASC;
+	</select>
+
+	<!--根据子订单ID查询已下单的套餐明细-->
+	<select id="getUnderComboDetailListBySubOrderID" parameterType="java.lang.Long" resultType="cc.toprank.byd.web.vo.menu.UnderOrderDetailVO">
+		SELECT  c.RecordID,c.ProductName AS productName,
+				c.Quantity AS quantity,c.ServedNum as servingQuantity,
+				c.Price AS comboDetaPrice,c.DetailID,
+				c.ProduceStatus AS produceStatus,
+				cd.DictionaryName AS unit,
+				psm.OptionName AS optionName,
+				c.ValueNames AS valueNames,c.CreateTime,
+				(SELECT GROUP_CONCAT(ptm.tagID)
+					FROM B_MerchantTagMapping ptm
+					WHERE ptm.TargetType = 944 AND ptm.TargetID = c.RecordID
+					GROUP BY ptm.TargetID) as tagIDs
+		FROM O_ComboDetailInfo c
+		LEFT JOIN O_OrderDetailInfo o ON c.DetailID = o.DetailID
+		LEFT JOIN P_VariantSpecificationMapping psm ON c.VariantID = psm.VariantID AND o.OptionID = psm.OptionID
+		LEFT JOIN C_DictionaryInfo cd ON c.ProductUnit = cd.DictionaryID
+		WHERE o.SubOrderID = #{subOrderID}
+	</select>
+
+
+	<!--根据菜单编号修改称重信息  zhouwei-->
+	<update id="updateOrderDetailInfoByVariantID" parameterType="Map" statementType="CALLABLE">
+		<![CDATA[
+			{call Client_UpdateO_OrderDetailInfoByVariantID(#{floatQuantity},#{menuID},#{detailID})}
+		]]>
+	</update>
+
+	<!-- 根据订单明细ID更新制作状态 -->
+	<update id="updateProduceStatusByDetailID" parameterType="map">
+		UPDATE
+			O_OrderDetailInfo
+		SET
+		<if test="produceStatus == 694">
+			ProduceTime = #{produceTime},
+		</if>
+		<if test="produceStatus == 693">
+			ProduceTime = #{produceTime},
+		</if>
+			ProduceStatus = #{produceStatus}
+		WHERE
+			DetailID = #{detailID}
+	</update>
+
+	<!--根据子订单ID查询订单明细 zhouwei-->
+	<select id="getOrderDetailInfoBySubOrderID" parameterType="java.lang.Long" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call Get_ReceptionO_OrderDetailInfoBySubId(#{subOrderID})}
+		]]>
+	</select>
+
+
+	<!--根据子订单ID和点菜方式查询订单明细 hcy-->
+	<select id="queryOrderDetailByCondition" parameterType="O_OrderDetailInfoEntity" resultType="O_OrderDetailInfoEntity">
+		SELECT
+			AdjustAmount, AdjustDesc, AdjusterID, AdjustType, ALaCarteMethod, ComboID, ComboName,
+			ComboPrice, ComboProductNum, CreateTime, CreatorID, CreatorType, DesignerID, DetailCode,
+			DetailDesc, DetailID, FloatQuantity, ImgPath, IsCombo, IsSync, LoginID,
+			Memo, MenuID, NeedWeigh, OptionID, OrderID, OriginalPrice, Price,
+			ProduceCost, DesignerPrice, ProduceStatus, ProduceTime, ProductName, ProductUnit, Quantity, SelectedMethod,
+			ServedNum, SortNo, SubOrderID, TotalAmount, ValueIDs, VariantID, ParentID, TableID, TableName,
+			ValueNames
+		FROM
+			O_OrderDetailInfo
+		WHERE
+			SubOrderID = #{subOrderID}
+			<if test="aLaCarteMethod != null">
+				AND ALaCarteMethod = #{aLaCarteMethod}
+			</if>
+	</select>
+
+	<!--根据子订单ID和制作状态查询订单明细 hcy-->
+	<select id="queryBySubOrderIDAndProduceStatus" parameterType="O_OrderDetailInfoEntity" resultType="O_OrderDetailInfoEntity">
+		SELECT
+			AdjustAmount, AdjustDesc, AdjusterID, AdjustType, ALaCarteMethod, ComboID, ComboName,
+			ComboPrice, ComboProductNum, CreateTime, CreatorID, CreatorType, DesignerID, DetailCode,
+			DetailDesc, DetailID, FloatQuantity, ImgPath, IsCombo, IsSync, LoginID,
+			Memo, MenuID, NeedWeigh, OptionID, OrderID, OriginalPrice, Price,
+			ProduceCost, DesignerPrice, ProduceStatus, ProduceTime, ProductName, ProductUnit, Quantity, SelectedMethod,
+			ServedNum, SortNo, SubOrderID, TotalAmount, ValueIDs, VariantID, ParentID, TableID, TableName
+		FROM
+			O_OrderDetailInfo
+		WHERE
+			SubOrderID = #{subOrderID}
+		AND
+			ProduceStatus = #{produceStatus}
+		AND
+			AlaCarteMethod NOT IN (685,686,996)
+	</select>
+<!--根据订单号，取订单点菜明细 -->
+	<select id="getOrderFoodDetail" parameterType="java.lang.Long" resultType="O_OrderDetailInfoEntity" statementType="CALLABLE">
+		select a.OrderCode,c.*,d.DictionaryName as ALaCarteMethodName
+		from  O_OrderInfo a INNER JOIN O_SubOrderInfo b on a.orderID=b.orderID
+		INNER JOIN O_OrderDetailInfo c on b.subOrderID=c.subOrderID
+		LEFT JOIN  C_DictionaryInfo d on c.ALaCarteMethod=d.DictionaryID
+		where b.SubOrderID=#{subOrderID}
+		  order by c.VariantID,c.ALaCarteMethod
+	</select>
+
+	<!-- 查询待制作菜品 -->
+	<select id="selectWaitMakeProducts" resultType="map">
+		SELECT v.* FROM (SELECT so.tableID,dt.tableName,dt.shareNumber,so.tableName shareTableName,od.subOrderID,mm.archiveid,mm.CategoryID,
+		IFNULL(IFNULL(od.DesignerID,(SELECT odinfo.DesignerID FROM O_OrderDetailInfo odinfo WHERE odinfo.DesignerID in (
+		SELECT pdm.DesignerID FROM P_ProductDesignerMapping pdm WHERE pdm.VariantID=pv.VariantID OR (pdm.ProductID=pv.ProductID AND pdm.VariantID IS NULL)
+		) GROUP BY odinfo.DesignerID ORDER BY COUNT(odinfo.DesignerID) ASC LIMIT 1)),
+		(SELECT pdm.DesignerID FROM P_ProductDesignerMapping pdm WHERE pdm.VariantID=pv.VariantID OR (pdm.ProductID=pv.ProductID AND pdm.VariantID IS NULL) LIMIT 1)) as designerID,
+		od.memo,od.productName,od.quantity,od.isCombo,od.floatQuantity,(od.price+od.produceCost) as price,
+		od.createTime,od.produceTime,pv.produceMinute,od.produceStatus,d.designerName,sao.optionName,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ProductUnit) as unitName,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.produceStatus) as statusName,l.nickName as clerkName,
+		(SELECT group_concat(attributeName separator ' | ') FROM P_CategoryAttributeValueInfo WHERE ValueID in (od.valueIDs)) as attributeName
+		FROM O_OrderDetailInfo od
+		LEFT JOIN O_SubOrderInfo so ON so.SubOrderID=od.SubOrderID
+		LEFT JOIN B_MerchantMenuInfo mm ON mm.MenuID=od.MenuID
+		LEFT JOIN P_ProductVariantInfo pv ON pv.VariantID=mm.VariantID
+		LEFT JOIN P_DesignerInfo d ON d.DesignerID=od.DesignerID
+		LEFT JOIN P_SpecificationAttributeOptionInfo sao ON sao.optionID=od.optionID
+		LEFT JOIN U_LoginInfo l ON l.LoginID=od.CreatorID
+		LEFT JOIN B_DinningTableInfo dt ON dt.TableID=so.TableID
+		WHERE od.isCombo=0
+		UNION ALL
+		SELECT so.tableID,dt.tableName,dt.shareNumber,so.tableName shareTableName,so.subOrderID,mm.archiveid,p.CategoryID,
+		IFNULL(
+		(SELECT odinfo.DesignerID FROM O_OrderDetailInfo odinfo WHERE odinfo.DesignerID in (
+		SELECT pdm.DesignerID FROM P_ProductDesignerMapping pdm WHERE pdm.VariantID=pv.VariantID OR (pdm.ProductID=pv.ProductID AND pdm.VariantID IS NULL)
+		) GROUP BY odinfo.DesignerID ORDER BY COUNT(odinfo.DesignerID) ASC LIMIT 1),
+		(SELECT pdm.DesignerID FROM P_ProductDesignerMapping pdm WHERE pdm.VariantID=pv.VariantID OR (pdm.ProductID=pv.ProductID AND pdm.VariantID IS NULL) LIMIT 1)) as DesignerID,
+		cd.memo,CONCAT(cd.productName,'(套)') as productName,cd.quantity,od.isCombo,od.floatQuantity,cd.price,
+		cd.createTime,cd.produceTime,pv.produceMinute,cd.produceStatus,d.designerName,sao.optionName,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=cd.ProductUnit) as unitName,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=cd.produceStatus) as statusName,l.nickName as clerkName,
+		(SELECT group_concat(attributeName separator ' | ') FROM P_CategoryAttributeValueInfo WHERE ValueID in (od.valueIDs)) as attributeName
+		FROM O_ComboDetailInfo cd
+		LEFT JOIN O_OrderDetailInfo od ON od.DetailID=cd.DetailID
+		LEFT JOIN O_SubOrderInfo so ON so.SubOrderID=od.SubOrderID
+		LEFT JOIN B_MerchantMenuInfo mm ON mm.MenuID=od.MenuID
+		LEFT JOIN P_ProductVariantInfo pv ON pv.VariantID=cd.VariantID
+		LEFT JOIN P_ProductInfo p ON p.ProductID=pv.ProductID
+		LEFT JOIN P_DesignerInfo d ON d.DesignerID=od.DesignerID
+		LEFT JOIN P_SpecificationAttributeOptionInfo sao ON sao.optionID=od.optionID
+		LEFT JOIN U_LoginInfo l ON l.LoginID=od.CreatorID
+		LEFT JOIN B_DinningTableInfo dt ON dt.TableID=so.TableID
+		) v
+		WHERE v.produceStatus NOT IN (699,828) AND v.archiveid=#{archiveid}
+		<if test="showType == 814">
+			AND v.CategoryID in (${categoryID})
+		</if>
+		<if test="showType == 815">
+			AND v.CategoryID in (SELECT pdm.CategoryID FROM P_ProductDesignerMapping pdm WHERE pdm.DesignerID  in (${categoryID})
+			AND ProductID IS NULL GROUP BY pdm.CategoryID)
+		</if>
+		ORDER by v.createTime ASC
+	</select>
+
+	<!-- 统计海鲜池的销量 -->
+	<select id="queryStallSalesVolumeByCondition" parameterType="map" resultType="map">
+		select p.productID,od.price,od.floatQuantity,od.totalAmount,od.creatorID,l.nickName,od.CreateTime,p.productName,p.gtin,p.firstLetter,p.categoryID,pc.categoryName,pc.parentID,(select p1.CategoryName from P_ProductCategoryInfo p1 where p1.CategoryID = pc.ParentID) parentName
+		from O_OrderDetailInfo od left JOIN P_ProductVariantInfo pv on od.VariantID = pv.VariantID
+		left join O_SubOrderInfo so on so.SubOrderID = od.SubOrderID
+		left JOIN P_ProductInfo p on p.ProductID = pv.ProductID
+		left JOIN P_ProductCategoryInfo pc on pc.CategoryID = p.CategoryID
+		left join U_LoginInfo l on l.LoginID = od.CreatorID
+		where EXISTS (select 1 FROM B_StallProduceMapping s where s.ProductID =  p.ProductID ) and so.OrderStatus = 68
+		<choose>
+			<when test="productID != null">
+				AND p.ProductID = #{productID}
+			</when>
+			<when test="categoryID != null">
+				AND (p.CategoryID = #{categoryID} or pc.ParentID = #{categoryID})
+			</when>
+		</choose>
+		<if test="startTime != null">
+			and  <![CDATA[ od.CreateTime >= #{startTime} ]]>
+		</if>
+		<if test="endTime != null">
+			and <![CDATA[ od.CreateTime < #{endTime} ]]>
+		</if>
+		<if test="searchKey != null">
+			and (p.ProductName like '%${searchKey}%' or p.Gtin like '%${searchKey}%' or p.firstLetter like '%${searchKey}%' )
+		</if>
+		order by od.CreateTime desc
+	</select>
+
+	<select id = "getOrderDetailInfo" parameterType="map" resultType="O_OrderDetailInfoEntity">
+		select
+		 <include refid="Base_Column_List" />
+		from O_OrderDetailInfo WHERE aLaCarteMethod = #{aLaCarteMethod} AND menuID = #{menuID}
+	</select>
+
+	<!-- 根据点菜方式和parentID获取数量 -->
+	<select id="getIsOperationFood" parameterType="HashMap" resultType="Object">
+		<choose>
+			<when test="needWeigh == true">
+				SELECT sum(Quantity) FROM O_OrderDetailInfo WHERE 1=1
+			</when>
+			<when test="needWeigh == false">
+				SELECT sum(Quantity) FROM O_OrderDetailInfo WHERE 1=1
+			</when>
+		</choose>
+			AND ParentID = #{parentID}
+			AND ALaCarteMethod = #{aLaCarteMethod}
+	</select>
+	<!--
+		根据机构编号和订单明细编号查询订单明细信息
+		@author LinYN
+		@date 2017-5-16
+	 -->
+	<select id = "getOrderDetailInfoByIDsAndArchiveID" parameterType="map" resultType="O_OrderDetailInfoEntity">
+		select
+			dt.*
+		from
+		(select odt.* from O_OrderDetailInfo odt where FIND_IN_SET(odt.DetailID, #{orderDetailIDs})) dt
+		left join O_OrderInfo o on dt.OrderID = o.OrderID
+		where o.ArchiveID = #{archiveID};
+	</select>
+
+	<!--
+		复制菜：查询当前桌台可以复制的菜品
+		@author LinYN
+		@date 2017-6-15
+	 -->
+	<select id = "getOrderDetailInfoForCopy" parameterType="map" resultType="cc.toprank.byd.web.vo.product.ProductDisplayVO">
+		select dt.DetailID as detailID
+			, dt.ProductName as productName
+			, dt.IsCombo as isCombo
+			, dt.SubOrderID as subOrderID
+			, dt.Quantity as quantity
+			, dt.FloatQuantity as weight
+			, dic.DictionaryName as unit
+		from O_OrderDetailInfo dt
+		left join C_DictionaryInfo dic on dt.ProductUnit = dic.DictionaryID
+		left join O_OrderInfo o on dt.OrderID = o.OrderID
+		where o.ArchiveID = #{archiveID}
+			  and dt.SubOrderID = #{subOrderID}
+			  and dt.ALaCarteMethod in (684, 686, 687)
+	</select>
+
+	<!-- 根据菜单编号查询当天订单明细
+		@author LiuXJ
+		@date 2017-5-16
+	-->
+	<select id = "getOrderDetailInfoByMenuID" parameterType="map" resultType="O_OrderDetailInfoEntity">
+		SELECT d.DetailID, d.NeedWeigh, d.Quantity, d.FloatQuantity, d.MenuID, d.OptionID, d.IsCombo
+		FROM O_OrderDetailInfo d
+		LEFT JOIN O_BookingInfo b ON (d.OrderID = b.OrderID)
+		WHERE d.MenuID = #{menuID} AND b.BookingTime LIKE CONCAT(#{storeDay},'%') AND b.BookingStatus = #{bookingStatus} AND b.ArchiveID = #{archiveID}
+	</select>
+
+	<!--
+	根据菜品id和档案id盒optionid查询预定数量
+	-->
+	<select id = "getBookingSumByMenuIDOptionIDArchiveID" parameterType="map" resultType="Integer">
+		SELECT IFNULL(SUM(1),0) AS bookingSum FROM O_OrderDetailInfo odi
+		INNER JOIN O_BookingInfo booking ON booking.OrderID = odi.OrderID AND booking.BookingStatus = 618
+		WHERE booking.ArchiveID = #{archiveID}
+		AND odi.MenuID = #{menuID}
+		<if test="optionID != null">
+			AND odi.OptionID = #{optionID}
+		</if>
+		<if test="optionID == null">
+			AND odi.OptionID IS NULL
+		</if>
+	</select>
+
+	<select id="getDetailIDByOrderID" resultType="long">
+		SELECT DetailID FROM O_OrderDetailInfo WHERE OrderID=#{orderID}
+	</select>
+
+	<select id="getDetailIDBySubOrderID" resultType="long">
+		SELECT DetailID FROM O_OrderDetailInfo WHERE SubOrderID=#{subOrderID}
+	</select>
+
+	<select id="getOrderDetailsBySubOrderID" resultType="cc.toprank.byd.pad.pojo.OrderDetailsDTO">
+	  SELECT o.orderCode,dtu.StartTime openTableTime,sub.peopleNum,
+	  	ifnull(sub.totalAmount,0) totalAmount,ifnull(sub.actualAmount,0) actualAmount,
+	  	ifnull(sub.pendingAmount,0) pendingAmount,ifnull(ob.bookingAmount,0) bookingAmount,
+		o.memo,dt.tableCode,dt.tableName,dt.tableStatus,
+		(SELECT DictionaryName FROM C_DictionaryInfo WHERE DictionaryID=dt.tableStatus) tableStatusName,
+		ifnull((SELECT discountAmount FROM O_OrderDiscountMapping WHERE SubOrderID=sub.SubOrderID AND DiscountType=795),0) discountAmount,
+		ifnull((SELECT discountAmount FROM O_OrderDiscountMapping WHERE SubOrderID=sub.SubOrderID AND DiscountType=797),0) cutAmount,
+		ifnull((SELECT discountAmount FROM O_OrderDiscountMapping WHERE SubOrderID=sub.SubOrderID AND DiscountType=798),0) zeroAmount,
+		ifnull((SELECT discountAmount FROM O_OrderDiscountMapping WHERE SubOrderID=sub.SubOrderID AND DiscountType=931),0) giveAmount,
+		(SELECT loginName FROM U_LoginInfo WHERE LoginID=o.CreatorID) openTablePeople,
+		(SELECT loginName FROM U_LoginInfo WHERE LoginID=tm.LoginID) waiter
+		 FROM O_SubOrderInfo sub
+		LEFT JOIN O_OrderInfo o ON o.OrderID=sub.OrderID
+		LEFT JOIN O_BookingInfo ob ON ob.OrderID=sub.OrderID AND ob.BookingStatus=9
+		LEFT JOIN B_DinningTableInfo dt ON dt.TableID=sub.TableID
+		INNER JOIN B_DinningTableUseInfo dtu ON dtu.TableID=dt.TableID AND dtu.EndTime IS NULL
+		LEFT JOIN B_TableManagerInfo tm ON tm.TableID=sub.TableID AND tm.mealsID=#{mealsID}
+		WHERE sub.SubOrderID=#{subOrderID} limit 1
+	</select>
+
+	<select id="getDetailListBySubOrderID" resultType="cc.toprank.byd.pad.pojo.ConsumerDetailsDTO">
+		SELECT '' recordID,od.detailID,od.productName,od.quantity,od.price,od.produceCost,od.memo,od.produceStatus,od.valueIDs,
+		od.valueNames attributeValue,sao.optionName,od.aLaCarteMethod,IFNULL(od.FloatQuantity,od.ExpectedWeight) expectedWeight,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ProductUnit) productUnit,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ProduceStatus) produceStatusName,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ALaCarteMethod) aLaCarteName
+		FROM O_OrderDetailInfo od
+		LEFT JOIN P_SpecificationAttributeOptionInfo sao ON sao.OptionID=od.OptionID
+		WHERE od.SubOrderID=#{subOrderID}
+		<!--
+		UNION ALL
+		SELECT cd.recordID,cd.detailID,cd.productName,cd.quantity,cd.price,od.produceCost,cd.memo,cd.produceStatus,cd.valueIDs,
+		od.valueNames attributeValue,'' as optionName,od.aLaCarteMethod,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ProductUnit) productUnit,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=cd.ProduceStatus) produceStatusName,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ALaCarteMethod) aLaCarteName
+		FROM O_ComboDetailInfo cd
+		LEFT JOIN O_OrderDetailInfo od ON od.detailID=cd.detailID
+		WHERE od.SubOrderID=#{subOrderID}
+		-->
+	</select>
+
+	<select id="getDishesListByDetailIDs" resultType="cc.toprank.byd.pad.pojo.OrderDishesDTO$Dishes">
+		SELECT mm.menuID,mm.productID,mm.variantID,od.Quantity,od.Memo,od.ProduceCost addPrice,od.OptionID,od.ValueIDs,od.DesignerID,od.IsCombo,od.DesignerPrice,od.ExpectedWeight
+		FROM O_OrderDetailInfo od
+		LEFT JOIN B_MerchantMenuInfo mm ON od.MenuID=mm.MenuID
+		WHERE od.DetailID in (#{detailIDs});
+	</select>
+
+	<select id="getDetailListBySubOrderID_bak" resultType="cc.toprank.byd.pad.pojo.ConsumerDetailsDTO">
+	  SELECT od.detailID,od.productName,od.quantity,od.TotalAmount price,od.produceCost,od.memo,od.produceStatus,od.ValueIDs,
+		od.ValueNames attributeValue,sao.OptionName,aLaCarteMethod,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ProductUnit) productUnit,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ProduceStatus) produceStatusName,
+		(SELECT dictionaryName FROM C_DictionaryInfo WHERE dictionaryID=od.ALaCarteMethod) aLaCarteName
+		 FROM O_OrderDetailInfo od
+		LEFT JOIN P_SpecificationAttributeOptionInfo sao ON sao.OptionID=od.OptionID
+		WHERE od.SubOrderID=#{subOrderID}
+	</select>
+
+	<update id="batchUpdateStatusByDetailIDs" parameterType="map">
+		UPDATE O_OrderDetailInfo SET produceStatus=#{produceStatus}
+		 <if test="now != null">
+			 ,ProduceTime = #{now}
+		 </if>
+		 WHERE detailID IN (${detailIDs})
+		AND produceStatus NOT IN (699,868,870)
+	</update>
+
+	<!--
+	根据subOrderID查询能打折的菜品
+	chenkangyi
+	2017-5-21 17:12
+	-->
+	<select id="selectAllowDiscountBySubOrderID" parameterType="long" resultType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		SELECT oDeInfo.* FROM O_OrderDetailInfo oDeInfo
+		LEFT JOIN B_MerchantMenuInfo ommi ON oDeInfo.MenuID = ommi.MenuID
+		WHERE oDeInfo.SubOrderID = #{subOrderID}
+		AND ommi.AllowDiscount = TRUE
+	</select>
+
+	<!--
+	根据subOrderID列表查询获取所有子订单下的所有能打折的菜品
+	chenkangyi
+	2017-6-17 18:33
+	-->
+	<select id="selectAllowDiscountBySubOrderIDList" parameterType="map" resultType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		SELECT oDeInfo.* FROM O_OrderDetailInfo oDeInfo
+		LEFT JOIN B_MerchantMenuInfo ommi ON oDeInfo.MenuID = ommi.MenuID
+		WHERE oDeInfo.SubOrderID IN
+		<foreach collection="subOrderIDList" index="index" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+		AND ommi.AllowDiscount = TRUE
+	</select>
+
+	<!-- 根据明细ID和制作状态查询订单明细  hcy -->
+	<select id="getOrderDetailByIDAndStatus" parameterType="O_OrderDetailInfoEntity" resultType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		SELECT
+			AdjustAmount, AdjustDesc, AdjusterID, AdjustType, ALaCarteMethod, ComboID, ComboName,
+			ComboPrice, ComboProductNum, CreateTime, CreatorID, CreatorType, DesignerID, DetailCode,
+			DetailDesc, DetailID, FloatQuantity, ImgPath, IsCombo, IsSync, LoginID,
+			Memo, MenuID, NeedWeigh, OptionID, OrderID, OriginalPrice, Price,
+			ProduceCost, DesignerPrice, ProduceStatus, ProduceTime, ProductName, ProductUnit, Quantity, SelectedMethod,
+			ServedNum, SortNo, SubOrderID, TotalAmount, ValueIDs, VariantID
+		FROM
+			O_OrderDetailInfo
+		WHERE
+			DetailID = #{detailID}
+		AND
+			ProduceStatus = #{produceStatus}
+	</select>
+
+    <select id="getProductBySubOrderAndTag" parameterType="map" resultType="map">
+        <![CDATA[
+        SELECT o.`ProductName` productName,o.`Quantity` quantity,o.`DetailID` detailID,o.`OrderID` orderID FROM `O_OrderDetailInfo` o
+		LEFT JOIN `B_MerchantTagMapping` mtm ON o.detailID=mtm.`TargetID`
+		LEFT JOIN B_MerchantTagInfo mti ON mti.`TagID`=mtm.`TagID`
+		AND mtm.`TargetType` IN (943， 944) AND mti.TagCode <> #{tagCode} AND o.`SubOrderID`=#{subOrderId}
+		]]>
+    </select>
+    <select id="getProductBySubOrderAndProStatus" parameterType="map" resultType="map">
+        SELECT o.`ProductName` productName,o.`Quantity` quantity,o.`DetailID` detailID,o.`OrderID` orderID FROM `O_OrderDetailInfo` o
+        WHERE o.`SubOrderID`=#{subOrderId} AND o.`ProduceStatus`=#{productStatus}
+    </select>
+
+	<!-- 可以划单的菜单 -->
+	<select id="getProductCancel" parameterType="java.lang.Long" resultType="map">
+		SELECT o.`ProductName` productName,o.`Quantity` quantity,o.`DetailID` detailID,o.`OrderID` orderID,o.IsCombo isCombo FROM `O_OrderDetailInfo` o
+		WHERE o.`SubOrderID`=#{subOrderId} AND o.`ProduceStatus` IN (981,693)
+	</select>
+
+	<!-- 可以退菜操作的菜单 -->
+	<select id="getProductBack" parameterType="java.lang.Long" resultType="map">
+		SELECT o.`ProductName` productName,o.`Quantity` quantity,o.`DetailID` detailID,o.`OrderID` orderID,o.IsCombo isCombo FROM `O_OrderDetailInfo` o
+		WHERE o.`SubOrderID`=#{subOrderId} AND o.`ProduceStatus` NOT IN (981,982) AND o.`Quantity`&gt; 0
+	</select>
+
+	<!-- 可以转菜的菜单 -->
+	<select id="getProductTransfer" parameterType="java.lang.Long" resultType="map">
+		SELECT o.`ProductName` productName,o.`Quantity` quantity,o.`DetailID` detailID,o.`OrderID` orderID,o.IsCombo isCombo FROM `O_OrderDetailInfo` o
+		WHERE o.`SubOrderID`=#{subOrderId} AND o.`ProduceStatus` != 982
+	</select>
+
+
+	<!-- 根据子订单ID查询订单明细 -->
+	<select id="getOrderDetailInfoListBySubOrderID" parameterType="Long" resultType="cc.toprank.byd.entity.O_OrderDetailInfoEntity">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			O_OrderDetailInfo
+		WHERE
+			SubOrderID = #{subOrderID}
+	</select>
+
+	<!--
+	获取所有子订单下的所有菜品的会员价的总额
+	chenkangyi
+	2017-6-16 13:50
+	-->
+	<select id="getSubOrderlistAllDetailMemberPriceTotal" parameterType="map" resultType="java.math.BigDecimal">
+		SELECT SUM(bmmi.MemberPrice) FROM O_OrderDetailInfo ooodi
+		LEFT JOIN B_MerchantMenuInfo bmmi ON bmmi.MenuID = ooodi.MenuID
+		WHERE ooodi.SubOrderID IN
+		<foreach collection="subOrderIDList" index="index" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+		AND bmmi.MemberPrice > 0
+	</select>
+</mapper>

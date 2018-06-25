@@ -1,0 +1,23 @@
+ <div class="header">
+      <div class="content"><a class="logo" href="javascript:;"><img src="${basePath}/static/images/common/logo.png"></a>
+        <div class="header-sub-title">商家后台</div>
+        <ul class="nav">
+          <li mode-type="mindex"><a href="${basePath}/merchant/index.shtml?modeType=mindex">首页</a></li>
+	      <li mode-type="sale"><a href="javascript:;">销售</a></li>
+	      <li mode-type="shop"><a href="${basePath}/shop/index.shtml?type=b&modeType=shop">店铺</a></li>
+	      <li mode-type="money"><a href="javascript:;">资金</a></li>
+	      <li mode-type="buy"><a href="javascript:;">采购</a></li>
+        </ul>
+        <div class="header-user-info">
+        	<a class="user-info-msg" href="javascript:;">消息
+            	<div class="dot"></div>
+           </a>
+          <div class="user-info-name"><a href="${basePath}/account/myAccount.shtml">
+          <%if(member!=null){%>
+           ${member.username}
+           <%}%>
+           </a></div>
+          <div class="user-logout">，<a href="${basePath}/logout.shtml">退出</a></div>
+        </div>
+      </div>
+    </div>

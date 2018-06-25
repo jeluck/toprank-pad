@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.B_PadInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_PadInfoEntity">
+        <id column="PadID" jdbcType="BIGINT" property="padID"/>
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID"/>
+        <result column="PadCode" jdbcType="VARCHAR" property="padCode"/>
+        <result column="PadName" jdbcType="VARCHAR" property="padName"/>
+        <result column="IMEICode" jdbcType="VARCHAR" property="IMEICode"/>
+        <result column="PadIP" jdbcType="VARCHAR" property="padIP"/>
+        <result column="ServerIP" jdbcType="VARCHAR" property="serverIP"/>
+        <result column="ServerPort" jdbcType="INTEGER" property="serverPort"/>
+        <result column="PadStatus" jdbcType="BIGINT" property="padStatus"/>
+        <result column="PadDesc" jdbcType="VARCHAR" property="padDesc"/>
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID"/>
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="Memo" jdbcType="VARCHAR" property="memo"/>
+        <result column="IsSync" jdbcType="BIT" property="isSync"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        PadID, ArchiveID, PadCode, PadName, IMEICode, PadIP, ServerIP, ServerPort, PadStatus,
+        PadDesc, CreatorID, CreateTime, Memo, IsSync
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from B_PadInfo
+        where PadID = #{padID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_PadInfo
+        where PadID = #{padID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        insert into B_PadInfo (PadID, ArchiveID, PadCode,
+        PadName, IMEICode, PadIP,
+        ServerIP, ServerPort, PadStatus,
+        PadDesc, CreatorID, CreateTime,
+        Memo, IsSync)
+        values (#{padID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{padCode,jdbcType=VARCHAR},
+        #{padName,jdbcType=VARCHAR}, #{IMEICode,jdbcType=VARCHAR}, #{padIP,jdbcType=VARCHAR},
+        #{serverIP,jdbcType=VARCHAR}, #{serverPort,jdbcType=INTEGER}, #{padStatus,jdbcType=BIGINT},
+        #{padDesc,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        insert into B_PadInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="padID != null">
+                PadID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="padCode != null">
+                PadCode,
+            </if>
+            <if test="padName != null">
+                PadName,
+            </if>
+            <if test="IMEICode != null">
+                IMEICode,
+            </if>
+            <if test="padIP != null">
+                PadIP,
+            </if>
+            <if test="serverIP != null">
+                ServerIP,
+            </if>
+            <if test="serverPort != null">
+                ServerPort,
+            </if>
+            <if test="padStatus != null">
+                PadStatus,
+            </if>
+            <if test="padDesc != null">
+                PadDesc,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="padID != null">
+                #{padID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="padCode != null">
+                #{padCode,jdbcType=VARCHAR},
+            </if>
+            <if test="padName != null">
+                #{padName,jdbcType=VARCHAR},
+            </if>
+            <if test="IMEICode != null">
+                #{IMEICode,jdbcType=VARCHAR},
+            </if>
+            <if test="padIP != null">
+                #{padIP,jdbcType=VARCHAR},
+            </if>
+            <if test="serverIP != null">
+                #{serverIP,jdbcType=VARCHAR},
+            </if>
+            <if test="serverPort != null">
+                #{serverPort,jdbcType=INTEGER},
+            </if>
+            <if test="padStatus != null">
+                #{padStatus,jdbcType=BIGINT},
+            </if>
+            <if test="padDesc != null">
+                #{padDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        update B_PadInfo
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="padCode != null">
+                PadCode = #{padCode,jdbcType=VARCHAR},
+            </if>
+            <if test="padName != null">
+                PadName = #{padName,jdbcType=VARCHAR},
+            </if>
+            <if test="IMEICode != null">
+                IMEICode = #{IMEICode,jdbcType=VARCHAR},
+            </if>
+            <if test="padIP != null">
+                PadIP = #{padIP,jdbcType=VARCHAR},
+            </if>
+            <if test="serverIP != null">
+                ServerIP = #{serverIP,jdbcType=VARCHAR},
+            </if>
+            <if test="serverPort != null">
+                ServerPort = #{serverPort,jdbcType=INTEGER},
+            </if>
+            <if test="padStatus != null">
+                PadStatus = #{padStatus,jdbcType=BIGINT},
+            </if>
+            <if test="padDesc != null">
+                PadDesc = #{padDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+        </set>
+        where PadID = #{padID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_PadDealInfoEntity">
+        update B_PadInfo
+        set ArchiveID = #{archiveID,jdbcType=BIGINT},
+        PadCode = #{padCode,jdbcType=VARCHAR},
+        PadName = #{padName,jdbcType=VARCHAR},
+        IMEICode = #{IMEICode,jdbcType=VARCHAR},
+        PadIP = #{padIP,jdbcType=VARCHAR},
+        ServerIP = #{serverIP,jdbcType=VARCHAR},
+        ServerPort = #{serverPort,jdbcType=INTEGER},
+        PadStatus = #{padStatus,jdbcType=BIGINT},
+        PadDesc = #{padDesc,jdbcType=VARCHAR},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        Memo = #{memo,jdbcType=VARCHAR},
+        IsSync = #{isSync,jdbcType=BIT}
+        where PadID = #{padID,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectByImei" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM B_PadInfo WHERE ArchiveID = #{archiveID} AND IMEICode = #{imeiCode}
+    </select>
+</mapper>

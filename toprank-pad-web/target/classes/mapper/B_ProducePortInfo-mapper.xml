@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.B_ProducePortInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_ProducePortInfoEntity">
+    <id column="PortID" jdbcType="BIGINT" property="portID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="AreaID" jdbcType="BIGINT" property="areaID" />
+    <result column="PortCode" jdbcType="VARCHAR" property="portCode" />
+    <result column="PortName" jdbcType="VARCHAR" property="portName" />
+    <result column="PortStatus" jdbcType="BIGINT" property="portStatus" />
+    <result column="PortDesc" jdbcType="VARCHAR" property="portDesc" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+    <result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PortID, ArchiveID, AreaID, PortCode, PortName, PortStatus, PortDesc, CreatorID, CreateTime, 
+    Memo, IsSync, SyncTime, SyncTimeResult
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from B_ProducePortInfo
+    where PortID = #{portID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from B_ProducePortInfo
+    where PortID = #{portID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.B_ProducePortInfoEntity">
+    insert into B_ProducePortInfo (PortID, ArchiveID, AreaID, 
+      PortCode, PortName, PortStatus, 
+      PortDesc, CreatorID, CreateTime, 
+      Memo, IsSync, SyncTime, 
+      SyncTimeResult)
+    values (#{portID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{areaID,jdbcType=BIGINT}, 
+      #{portCode,jdbcType=VARCHAR}, #{portName,jdbcType=VARCHAR}, #{portStatus,jdbcType=BIGINT}, 
+      #{portDesc,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}, #{syncTime,jdbcType=TIMESTAMP}, 
+      #{syncTimeResult,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_ProducePortInfoEntity">
+    insert into B_ProducePortInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="portID != null">
+        PortID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="areaID != null">
+        AreaID,
+      </if>
+      <if test="portCode != null">
+        PortCode,
+      </if>
+      <if test="portName != null">
+        PortName,
+      </if>
+      <if test="portStatus != null">
+        PortStatus,
+      </if>
+      <if test="portDesc != null">
+        PortDesc,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="syncTime != null">
+        SyncTime,
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="portID != null">
+        #{portID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="areaID != null">
+        #{areaID,jdbcType=BIGINT},
+      </if>
+      <if test="portCode != null">
+        #{portCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portName != null">
+        #{portName,jdbcType=VARCHAR},
+      </if>
+      <if test="portStatus != null">
+        #{portStatus,jdbcType=BIGINT},
+      </if>
+      <if test="portDesc != null">
+        #{portDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="syncTime != null">
+        #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_ProducePortInfoEntity">
+    update B_ProducePortInfo
+    <set>
+      <if test="archiveID != null">
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="areaID != null">
+        AreaID = #{areaID,jdbcType=BIGINT},
+      </if>
+      <if test="portCode != null">
+        PortCode = #{portCode,jdbcType=VARCHAR},
+      </if>
+      <if test="portName != null">
+        PortName = #{portName,jdbcType=VARCHAR},
+      </if>
+      <if test="portStatus != null">
+        PortStatus = #{portStatus,jdbcType=BIGINT},
+      </if>
+      <if test="portDesc != null">
+        PortDesc = #{portDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+      <if test="syncTime != null">
+        SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PortID = #{portID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_ProducePortInfoEntity">
+    update B_ProducePortInfo
+    set ArchiveID = #{archiveID,jdbcType=BIGINT},
+      AreaID = #{areaID,jdbcType=BIGINT},
+      PortCode = #{portCode,jdbcType=VARCHAR},
+      PortName = #{portName,jdbcType=VARCHAR},
+      PortStatus = #{portStatus,jdbcType=BIGINT},
+      PortDesc = #{portDesc,jdbcType=VARCHAR},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT},
+      SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+    where PortID = #{portID,jdbcType=BIGINT}
+  </update>
+
+  <select id="getProducePortByArchiveID" resultType="cc.toprank.byd.entity.B_ProducePortInfoEntity">
+    select portID, areaID, portCode, portName from B_ProducePortInfo WHERE PortStatus=9
+    AND ArchiveID=#{archiveID}
+  </select>
+</mapper>

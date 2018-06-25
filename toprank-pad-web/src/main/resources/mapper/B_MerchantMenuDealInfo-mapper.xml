@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_MerchantMenuDealInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MerchantMenuDealInfoEntity">
+        <id column="DealID" jdbcType="BIGINT" property="dealID" />
+        <result column="MenuID" jdbcType="BIGINT" property="menuID" />
+        <result column="DealCode" jdbcType="VARCHAR" property="dealCode" />
+        <result column="BeforeStatus" jdbcType="BIGINT" property="beforeStatus" />
+        <result column="AfterStatus" jdbcType="BIGINT" property="afterStatus" />
+        <result column="ChangeNum" jdbcType="DECIMAL" property="changeNum" />
+        <result column="BeforePrice" jdbcType="DECIMAL" property="beforePrice" />
+        <result column="AfterPrice" jdbcType="DECIMAL" property="afterPrice" />
+        <result column="ChangeDetail" jdbcType="VARCHAR" property="changeDetail" />
+        <result column="DealDesc" jdbcType="VARCHAR" property="dealDesc" />
+        <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="AuditorID" jdbcType="BIGINT" property="auditorID" />
+        <result column="AuditTime" jdbcType="TIMESTAMP" property="auditTime" />
+        <result column="AuditDesc" jdbcType="VARCHAR" property="auditDesc" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        DealID, MenuID, DealCode, BeforeStatus, AfterStatus, ChangeNum, BeforePrice, AfterPrice,
+        ChangeDetail, DealDesc, SortNo, CreatorID, CreateTime, AuditorID, AuditTime, AuditDesc,
+        Memo
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_MerchantMenuDealInfo
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_MerchantMenuDealInfo
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_MerchantMenuDealInfoEntity">
+        insert into B_MerchantMenuDealInfo (DealID, MenuID, DealCode,
+        BeforeStatus, AfterStatus, ChangeNum,
+        BeforePrice, AfterPrice, ChangeDetail,
+        DealDesc, SortNo, CreatorID,
+        CreateTime, AuditorID, AuditTime,
+        AuditDesc, Memo)
+        values (#{dealID,jdbcType=BIGINT}, #{menuID,jdbcType=BIGINT}, #{dealCode,jdbcType=VARCHAR},
+        #{beforeStatus,jdbcType=BIGINT}, #{afterStatus,jdbcType=BIGINT}, #{changeNum,jdbcType=DECIMAL},
+        #{beforePrice,jdbcType=DECIMAL}, #{afterPrice,jdbcType=DECIMAL}, #{changeDetail,jdbcType=VARCHAR},
+        #{dealDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{auditorID,jdbcType=BIGINT}, #{auditTime,jdbcType=TIMESTAMP},
+        #{auditDesc,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MerchantMenuDealInfoEntity">
+        insert into B_MerchantMenuDealInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dealID != null">
+                DealID,
+            </if>
+            <if test="menuID != null">
+                MenuID,
+            </if>
+            <if test="dealCode != null">
+                DealCode,
+            </if>
+            <if test="beforeStatus != null">
+                BeforeStatus,
+            </if>
+            <if test="afterStatus != null">
+                AfterStatus,
+            </if>
+            <if test="changeNum != null">
+                ChangeNum,
+            </if>
+            <if test="beforePrice != null">
+                BeforePrice,
+            </if>
+            <if test="afterPrice != null">
+                AfterPrice,
+            </if>
+            <if test="changeDetail != null">
+                ChangeDetail,
+            </if>
+            <if test="dealDesc != null">
+                DealDesc,
+            </if>
+            <if test="sortNo != null">
+                SortNo,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="auditorID != null">
+                AuditorID,
+            </if>
+            <if test="auditTime != null">
+                AuditTime,
+            </if>
+            <if test="auditDesc != null">
+                AuditDesc,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dealID != null">
+                #{dealID,jdbcType=BIGINT},
+            </if>
+            <if test="menuID != null">
+                #{menuID,jdbcType=BIGINT},
+            </if>
+            <if test="dealCode != null">
+                #{dealCode,jdbcType=VARCHAR},
+            </if>
+            <if test="beforeStatus != null">
+                #{beforeStatus,jdbcType=BIGINT},
+            </if>
+            <if test="afterStatus != null">
+                #{afterStatus,jdbcType=BIGINT},
+            </if>
+            <if test="changeNum != null">
+                #{changeNum,jdbcType=DECIMAL},
+            </if>
+            <if test="beforePrice != null">
+                #{beforePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="afterPrice != null">
+                #{afterPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="changeDetail != null">
+                #{changeDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="dealDesc != null">
+                #{dealDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditorID != null">
+                #{auditorID,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditDesc != null">
+                #{auditDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MerchantMenuDealInfoEntity">
+        update B_MerchantMenuDealInfo
+        <set>
+            <if test="menuID != null">
+                MenuID = #{menuID,jdbcType=BIGINT},
+            </if>
+            <if test="dealCode != null">
+                DealCode = #{dealCode,jdbcType=VARCHAR},
+            </if>
+            <if test="beforeStatus != null">
+                BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+            </if>
+            <if test="afterStatus != null">
+                AfterStatus = #{afterStatus,jdbcType=BIGINT},
+            </if>
+            <if test="changeNum != null">
+                ChangeNum = #{changeNum,jdbcType=DECIMAL},
+            </if>
+            <if test="beforePrice != null">
+                BeforePrice = #{beforePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="afterPrice != null">
+                AfterPrice = #{afterPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="changeDetail != null">
+                ChangeDetail = #{changeDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="dealDesc != null">
+                DealDesc = #{dealDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                SortNo = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditorID != null">
+                AuditorID = #{auditorID,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                AuditTime = #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="auditDesc != null">
+                AuditDesc = #{auditDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MerchantMenuDealInfoEntity">
+        update B_MerchantMenuDealInfo
+        set MenuID = #{menuID,jdbcType=BIGINT},
+        DealCode = #{dealCode,jdbcType=VARCHAR},
+        BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+        AfterStatus = #{afterStatus,jdbcType=BIGINT},
+        ChangeNum = #{changeNum,jdbcType=DECIMAL},
+        BeforePrice = #{beforePrice,jdbcType=DECIMAL},
+        AfterPrice = #{afterPrice,jdbcType=DECIMAL},
+        ChangeDetail = #{changeDetail,jdbcType=VARCHAR},
+        DealDesc = #{dealDesc,jdbcType=VARCHAR},
+        SortNo = #{sortNo,jdbcType=INTEGER},
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+        AuditorID = #{auditorID,jdbcType=BIGINT},
+        AuditTime = #{auditTime,jdbcType=TIMESTAMP},
+        AuditDesc = #{auditDesc,jdbcType=VARCHAR},
+        Memo = #{memo,jdbcType=VARCHAR}
+        where DealID = #{dealID,jdbcType=BIGINT}
+    </update>
+
+    <!--调价记录查询-->
+    <select id="queryMerchantMenuDealByCondition" parameterType="map" resultType="map">
+        select mt.menuName,mm.areaID,md.afterPrice,md.beforePrice,md.creatorID,md.createTime,l.nickName,l.loginName,p.productID,p.ProductName,p.gtin,p.firstLetter,p.categoryID,p.firstLetter,pc.categoryName,pc.parentID,(select p1.CategoryName from P_ProductCategoryInfo p1 where p1.CategoryID = pc.ParentID) parentName
+        from B_MerchantMenuDealInfo md LEFT JOIN B_MerchantMenuInfo mm on md.MenuID = mm.MenuID
+        LEFT JOIN B_MerchantMenuTypeInfo mt on mt.TypeID = mm.TypeID
+        left JOIN P_ProductInfo p on p.ProductID = mm.ProductID
+        left JOIN P_ProductCategoryInfo pc on pc.CategoryID = p.CategoryID
+        left join U_LoginInfo l on l.LoginID = md.CreatorID
+        where EXISTS (select 1 FROM B_StallProduceMapping s where s.StallID = #{stallID} and s.ProductID =  mm.ProductID )
+        <choose>
+            <when test="productID != null">
+                AND p.ProductID = #{productID}
+            </when>
+            <when test="categoryID != null">
+                AND (p.CategoryID = #{categoryID} or pc.ParentID = #{categoryID})
+            </when>
+        </choose>
+        <if test="startTime != null">
+            and  <![CDATA[ md.CreateTime >= #{startTime} ]]>
+        </if>
+        <if test="endTime != null">
+            and <![CDATA[ md.CreateTime < #{endTime} ]]>
+        </if>
+        <if test="searchKey != null">
+            and (p.ProductName like '%${searchKey}%' or p.Gtin like '%${searchKey}%' or p.firstLetter like '%${searchKey}%')
+        </if>
+        and md.BeforePrice > 0
+        order by md.CreateTime desc
+    </select>
+
+    <!--
+    根据menuid和AfterStatus查询设置停售的菜单
+    chenkangyi
+    2017-6-5 17:22
+    -->
+    <select id="selectNewItemByMenuID" parameterType="map" resultType="cc.toprank.byd.web.vo.haltsales.HaltsSalesHistoryInfoVO">
+        SELECT a.CreatorID,a.CreateTime FROM B_MerchantMenuDealInfo a
+        INNER JOIN (SELECT MenuID,MAX(CreateTime) AS CreateTime FROM B_MerchantMenuDealInfo WHERE (AfterStatus = 9 AND BeforeStatus = 846) OR (AfterStatus = 846 AND BeforeStatus = 9) GROUP BY MenuID) b ON a.MenuID = b.MenuID AND a.CreateTime = b.CreateTime
+        WHERE a.MenuID = #{menuID}
+        AND a.AfterStatus = #{afterStatus}
+        ORDER BY a.MenuID
+    </select>
+
+</mapper>

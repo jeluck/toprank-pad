@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.O_OrderDetailValueMappingDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_OrderDetailValueMappingEntity">
+		<id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+		<result column="DetailID" jdbcType="BIGINT" property="detailID" />
+		<result column="ValueID" jdbcType="BIGINT" property="valueID" />
+		<result column="AttributeValue" jdbcType="VARCHAR" property="attributeValue" />
+		<result column="AddedPrice" jdbcType="DECIMAL" property="addedPrice" />
+		<result column="ProduceMinute" jdbcType="INTEGER" property="produceMinute" />
+		<result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+		<result column="MappingDesc" jdbcType="VARCHAR" property="mappingDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+		<result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		MappingID, DetailID, ValueID, AttributeValue, AddedPrice, ProduceMinute, MappingStatus,
+		MappingDesc, SortNo, IsSync, CreatorID, CreateTime, Memo, SyncTime, SyncTimeResult
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_OrderDetailValueMapping
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_OrderDetailValueMapping
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_OrderDetailValueMappingEntity">
+		insert into O_OrderDetailValueMapping (MappingID, DetailID, ValueID,
+		AttributeValue, AddedPrice, ProduceMinute,
+		MappingStatus, MappingDesc, SortNo,
+		IsSync, CreatorID, CreateTime,
+		Memo, SyncTime, SyncTimeResult
+		)
+		values (#{mappingID,jdbcType=BIGINT}, #{detailID,jdbcType=BIGINT}, #{valueID,jdbcType=BIGINT},
+		#{attributeValue,jdbcType=VARCHAR}, #{addedPrice,jdbcType=DECIMAL}, #{produceMinute,jdbcType=INTEGER},
+		#{mappingStatus,jdbcType=BIGINT}, #{mappingDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER},
+		#{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, #{syncTimeResult,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_OrderDetailValueMappingEntity">
+		insert into O_OrderDetailValueMapping
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mappingID != null">
+				MappingID,
+			</if>
+			<if test="detailID != null">
+				DetailID,
+			</if>
+			<if test="valueID != null">
+				ValueID,
+			</if>
+			<if test="attributeValue != null">
+				AttributeValue,
+			</if>
+			<if test="addedPrice != null">
+				AddedPrice,
+			</if>
+			<if test="produceMinute != null">
+				ProduceMinute,
+			</if>
+			<if test="mappingStatus != null">
+				MappingStatus,
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="syncTime != null">
+				SyncTime,
+			</if>
+			<if test="syncTimeResult != null">
+				SyncTimeResult,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="mappingID != null">
+				#{mappingID,jdbcType=BIGINT},
+			</if>
+			<if test="detailID != null">
+				#{detailID,jdbcType=BIGINT},
+			</if>
+			<if test="valueID != null">
+				#{valueID,jdbcType=BIGINT},
+			</if>
+			<if test="attributeValue != null">
+				#{attributeValue,jdbcType=VARCHAR},
+			</if>
+			<if test="addedPrice != null">
+				#{addedPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="produceMinute != null">
+				#{produceMinute,jdbcType=INTEGER},
+			</if>
+			<if test="mappingStatus != null">
+				#{mappingStatus,jdbcType=BIGINT},
+			</if>
+			<if test="mappingDesc != null">
+				#{mappingDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="syncTime != null">
+				#{syncTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimeResult != null">
+				#{syncTimeResult,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_OrderDetailValueMappingEntity">
+		update O_OrderDetailValueMapping
+		<set>
+			<if test="detailID != null">
+				DetailID = #{detailID,jdbcType=BIGINT},
+			</if>
+			<if test="valueID != null">
+				ValueID = #{valueID,jdbcType=BIGINT},
+			</if>
+			<if test="attributeValue != null">
+				AttributeValue = #{attributeValue,jdbcType=VARCHAR},
+			</if>
+			<if test="addedPrice != null">
+				AddedPrice = #{addedPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="produceMinute != null">
+				ProduceMinute = #{produceMinute,jdbcType=INTEGER},
+			</if>
+			<if test="mappingStatus != null">
+				MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+			</if>
+			<if test="mappingDesc != null">
+				MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="syncTime != null">
+				SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimeResult != null">
+				SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_OrderDetailValueMappingEntity">
+		update O_OrderDetailValueMapping
+		set DetailID = #{detailID,jdbcType=BIGINT},
+		ValueID = #{valueID,jdbcType=BIGINT},
+		AttributeValue = #{attributeValue,jdbcType=VARCHAR},
+		AddedPrice = #{addedPrice,jdbcType=DECIMAL},
+		ProduceMinute = #{produceMinute,jdbcType=INTEGER},
+		MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+		MappingDesc = #{mappingDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+		SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+		where MappingID = #{mappingID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="O_OrderDetailValueMappingEntity" resultType="O_OrderDetailValueMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_OrderDetailValueMappingCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="O_OrderDetailValueMappingEntity" resultType="O_OrderDetailValueMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_OrderDetailValueMappingEntity(#{mappingID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="O_OrderDetailValueMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteO_OrderDetailValueMappingEntity(#{mappingID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="O_OrderDetailValueMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertO_OrderDetailValueMappingEntity(#{addedPrice},#{attributeValue},#{createTime},#{creatorID},#{detailID},#{isSync},#{mappingDesc},#{mappingID,jdbcType=INTEGER,mode=OUT},#{mappingStatus},#{memo},#{produceMinute},#{sortNo},#{valueID},'admin')}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="O_OrderDetailValueMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateO_OrderDetailValueMappingEntity(#{addedPrice},#{attributeValue},#{createTime},#{creatorID},#{detailID},#{isSync},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{produceMinute},#{sortNo},#{valueID})} 
+		]]>  
+  	</update>
+
+	<select id="getAttributeValueByOrderIDAndValueID" parameterType="map" resultType="O_OrderDetailValueMappingEntity" statementType="CALLABLE">
+		SELECT a.DetailID,b.OptionName as AttributeValue,b.AddedPrice
+		from O_OrderDetailInfo a INNER JOIN P_SpecificationAttributeOptionInfo b on a.OptionID=b.OptionID
+		where a.OrderID=#{orderID}
+		UNION
+		select a.DetailID,a.AttributeValue,a.AddedPrice from O_OrderDetailValueMapping a
+		where a.DetailID in ( #{detailIDs} ) and a.ValueID  in (#{valueIDs})
+	</select>
+
+  </mapper>

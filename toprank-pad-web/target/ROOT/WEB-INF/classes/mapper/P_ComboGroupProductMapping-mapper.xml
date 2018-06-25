@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_ComboGroupProductMappingDao">
+  	<select id="getAll" parameterType="P_ComboGroupProductMappingEntity" resultType="P_ComboGroupProductMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ComboGroupProductMappingCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_ComboGroupProductMappingEntity" resultType="P_ComboGroupProductMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_ComboGroupProductMappingEntity(#{mappingID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_ComboGroupProductMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_ComboGroupProductMappingEntity(#{mappingID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="P_ComboGroupProductMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_ComboGroupProductMappingEntity(#{aliasName},#{createTime},#{creatorID},#{firstLetter},#{floatQuantity},#{groupID},#{isSync},#{mappingDesc},#{mappingID,jdbcType=INTEGER,mode=OUT},#{mappingStatus},#{memo},#{optionID},#{originalPrice},#{price},#{quantity},#{shortName},#{sortNo},#{unitID},#{variantID},#{variantName})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_ComboGroupProductMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_ComboGroupProductMappingEntity(#{aliasName},#{createTime},#{creatorID},#{firstLetter},#{floatQuantity},#{groupID},#{isSync},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{optionID},#{originalPrice},#{price},#{quantity},#{shortName},#{sortNo},#{unitID},#{variantID},#{variantName})} 
+		]]>  
+  	</update>
+
+
+  </mapper>

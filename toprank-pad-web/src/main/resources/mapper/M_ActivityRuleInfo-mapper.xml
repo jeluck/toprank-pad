@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.M_ActivityRuleInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.M_ActivityRuleInfoEntity">
+    <id column="RuleID" jdbcType="BIGINT" property="ruleID" />
+    <result column="ActivityID" jdbcType="BIGINT" property="activityID" />
+    <result column="RoleID" jdbcType="BIGINT" property="roleID" />
+    <result column="DiscountType" jdbcType="BIGINT" property="discountType" />
+    <result column="RuleName" jdbcType="VARCHAR" property="ruleName" />
+    <result column="SpentAmount" jdbcType="DECIMAL" property="spentAmount" />
+    <result column="ProductQuantity" jdbcType="INTEGER" property="productQuantity" />
+    <result column="IsAmount" jdbcType="BIT" property="isAmount" />
+    <result column="Priority" jdbcType="INTEGER" property="priority" />
+    <result column="TotalQuantity" jdbcType="INTEGER" property="totalQuantity" />
+    <result column="RemainQuqntity" jdbcType="INTEGER" property="remainQuqntity" />
+    <result column="LogoUrl" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="ActiviryRuleStatus" jdbcType="BIGINT" property="activiryRuleStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RuleID, ActivityID, RoleID, DiscountType, RuleName, SpentAmount, ProductQuantity, 
+    IsAmount, Priority, TotalQuantity, RemainQuqntity, LogoUrl, SortNo, CreateTime, CreatorID, 
+    Memo, ActiviryRuleStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from M_ActivityRuleInfo
+    where RuleID = #{ruleID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from M_ActivityRuleInfo
+    where RuleID = #{ruleID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.M_ActivityRuleInfoEntity">
+    insert into M_ActivityRuleInfo (RuleID, ActivityID, RoleID, 
+      DiscountType, RuleName, SpentAmount, 
+      ProductQuantity, IsAmount, Priority, 
+      TotalQuantity, RemainQuqntity, LogoUrl, 
+      SortNo, CreateTime, CreatorID, 
+      Memo, ActiviryRuleStatus)
+    values (#{ruleID,jdbcType=BIGINT}, #{activityID,jdbcType=BIGINT}, #{roleID,jdbcType=BIGINT}, 
+      #{discountType,jdbcType=BIGINT}, #{ruleName,jdbcType=VARCHAR}, #{spentAmount,jdbcType=DECIMAL}, 
+      #{productQuantity,jdbcType=INTEGER}, #{isAmount,jdbcType=BIT}, #{priority,jdbcType=INTEGER}, 
+      #{totalQuantity,jdbcType=INTEGER}, #{remainQuqntity,jdbcType=INTEGER}, #{logoUrl,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{creatorID,jdbcType=BIGINT}, 
+      #{memo,jdbcType=VARCHAR}, #{activiryRuleStatus,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.M_ActivityRuleInfoEntity">
+    insert into M_ActivityRuleInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ruleID != null">
+        RuleID,
+      </if>
+      <if test="activityID != null">
+        ActivityID,
+      </if>
+      <if test="roleID != null">
+        RoleID,
+      </if>
+      <if test="discountType != null">
+        DiscountType,
+      </if>
+      <if test="ruleName != null">
+        RuleName,
+      </if>
+      <if test="spentAmount != null">
+        SpentAmount,
+      </if>
+      <if test="productQuantity != null">
+        ProductQuantity,
+      </if>
+      <if test="isAmount != null">
+        IsAmount,
+      </if>
+      <if test="priority != null">
+        Priority,
+      </if>
+      <if test="totalQuantity != null">
+        TotalQuantity,
+      </if>
+      <if test="remainQuqntity != null">
+        RemainQuqntity,
+      </if>
+      <if test="logoUrl != null">
+        LogoUrl,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="activiryRuleStatus != null">
+        ActiviryRuleStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ruleID != null">
+        #{ruleID,jdbcType=BIGINT},
+      </if>
+      <if test="activityID != null">
+        #{activityID,jdbcType=BIGINT},
+      </if>
+      <if test="roleID != null">
+        #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="discountType != null">
+        #{discountType,jdbcType=BIGINT},
+      </if>
+      <if test="ruleName != null">
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="spentAmount != null">
+        #{spentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productQuantity != null">
+        #{productQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="isAmount != null">
+        #{isAmount,jdbcType=BIT},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuantity != null">
+        #{totalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="remainQuqntity != null">
+        #{remainQuqntity,jdbcType=INTEGER},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="activiryRuleStatus != null">
+        #{activiryRuleStatus,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.M_ActivityRuleInfoEntity">
+    update M_ActivityRuleInfo
+    <set>
+      <if test="activityID != null">
+        ActivityID = #{activityID,jdbcType=BIGINT},
+      </if>
+      <if test="roleID != null">
+        RoleID = #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="discountType != null">
+        DiscountType = #{discountType,jdbcType=BIGINT},
+      </if>
+      <if test="ruleName != null">
+        RuleName = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="spentAmount != null">
+        SpentAmount = #{spentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productQuantity != null">
+        ProductQuantity = #{productQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="isAmount != null">
+        IsAmount = #{isAmount,jdbcType=BIT},
+      </if>
+      <if test="priority != null">
+        Priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuantity != null">
+        TotalQuantity = #{totalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="remainQuqntity != null">
+        RemainQuqntity = #{remainQuqntity,jdbcType=INTEGER},
+      </if>
+      <if test="logoUrl != null">
+        LogoUrl = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="activiryRuleStatus != null">
+        ActiviryRuleStatus = #{activiryRuleStatus,jdbcType=BIGINT},
+      </if>
+    </set>
+    where RuleID = #{ruleID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.M_ActivityRuleInfoEntity">
+    update M_ActivityRuleInfo
+    set ActivityID = #{activityID,jdbcType=BIGINT},
+      RoleID = #{roleID,jdbcType=BIGINT},
+      DiscountType = #{discountType,jdbcType=BIGINT},
+      RuleName = #{ruleName,jdbcType=VARCHAR},
+      SpentAmount = #{spentAmount,jdbcType=DECIMAL},
+      ProductQuantity = #{productQuantity,jdbcType=INTEGER},
+      IsAmount = #{isAmount,jdbcType=BIT},
+      Priority = #{priority,jdbcType=INTEGER},
+      TotalQuantity = #{totalQuantity,jdbcType=INTEGER},
+      RemainQuqntity = #{remainQuqntity,jdbcType=INTEGER},
+      LogoUrl = #{logoUrl,jdbcType=VARCHAR},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      Memo = #{memo,jdbcType=VARCHAR},
+      ActiviryRuleStatus = #{activiryRuleStatus,jdbcType=BIGINT}
+    where RuleID = #{ruleID,jdbcType=BIGINT}
+  </update>
+
+  <!--
+  根据roleID查询活动规则信息
+  chenkangyi
+  2017-5-25 16:35
+  -->
+  <select id="selectByRoleID" parameterType="long" resultType="cc.toprank.byd.entity.M_ActivityRuleInfoEntity">
+    SELECT * FROM M_ActivityRuleInfo WHERE RoleID = #{roleID} AND DiscountType = #{discountType} AND ActiviryRuleStatus = 9 LIMIT 1;
+  </select>
+</mapper>

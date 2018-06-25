@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.O_OrderDealInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_OrderDealInfoEntity">
+		<id column="DealID" jdbcType="BIGINT" property="dealID" />
+		<result column="SubOrderID" jdbcType="BIGINT" property="subOrderID" />
+		<result column="OrderID" jdbcType="BIGINT" property="orderID" />
+		<result column="DealCode" jdbcType="VARCHAR" property="dealCode" />
+		<result column="BeforeStatus" jdbcType="BIGINT" property="beforeStatus" />
+		<result column="AfterStatus" jdbcType="BIGINT" property="afterStatus" />
+		<result column="ChangeAmount" jdbcType="DECIMAL" property="changeAmount" />
+		<result column="BeforeAmount" jdbcType="DECIMAL" property="beforeAmount" />
+		<result column="AfterAmount" jdbcType="DECIMAL" property="afterAmount" />
+		<result column="DealDesc" jdbcType="VARCHAR" property="dealDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		DealID, SubOrderID, OrderID, DealCode, BeforeStatus, AfterStatus, ChangeAmount, BeforeAmount,
+		AfterAmount, DealDesc, SortNo, CreatorID, CreatorType, CreateTime, Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_OrderDealInfo
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_OrderDealInfo
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_OrderDealInfoEntity">
+		insert into O_OrderDealInfo (DealID, SubOrderID, OrderID,
+		DealCode, BeforeStatus, AfterStatus,
+		ChangeAmount, BeforeAmount, AfterAmount,
+		DealDesc, SortNo, CreatorID,
+		CreatorType, CreateTime, Memo,
+		IsSync)
+		values (#{dealID,jdbcType=BIGINT}, #{subOrderID,jdbcType=BIGINT}, #{orderID,jdbcType=BIGINT},
+		#{dealCode,jdbcType=VARCHAR}, #{beforeStatus,jdbcType=BIGINT}, #{afterStatus,jdbcType=BIGINT},
+		#{changeAmount,jdbcType=DECIMAL}, #{beforeAmount,jdbcType=DECIMAL}, #{afterAmount,jdbcType=DECIMAL},
+		#{dealDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+		#{creatorType,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR},
+		#{isSync,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_OrderDealInfoEntity">
+		insert into O_OrderDealInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dealID != null">
+				DealID,
+			</if>
+			<if test="subOrderID != null">
+				SubOrderID,
+			</if>
+			<if test="orderID != null">
+				OrderID,
+			</if>
+			<if test="dealCode != null">
+				DealCode,
+			</if>
+			<if test="beforeStatus != null">
+				BeforeStatus,
+			</if>
+			<if test="afterStatus != null">
+				AfterStatus,
+			</if>
+			<if test="changeAmount != null">
+				ChangeAmount,
+			</if>
+			<if test="beforeAmount != null">
+				BeforeAmount,
+			</if>
+			<if test="afterAmount != null">
+				AfterAmount,
+			</if>
+			<if test="dealDesc != null">
+				DealDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="creatorType != null">
+				CreatorType,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="dealID != null">
+				#{dealID,jdbcType=BIGINT},
+			</if>
+			<if test="subOrderID != null">
+				#{subOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="orderID != null">
+				#{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="dealCode != null">
+				#{dealCode,jdbcType=VARCHAR},
+			</if>
+			<if test="beforeStatus != null">
+				#{beforeStatus,jdbcType=BIGINT},
+			</if>
+			<if test="afterStatus != null">
+				#{afterStatus,jdbcType=BIGINT},
+			</if>
+			<if test="changeAmount != null">
+				#{changeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="beforeAmount != null">
+				#{beforeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="afterAmount != null">
+				#{afterAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="dealDesc != null">
+				#{dealDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				#{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_OrderDealInfoEntity">
+		update O_OrderDealInfo
+		<set>
+			<if test="subOrderID != null">
+				SubOrderID = #{subOrderID,jdbcType=BIGINT},
+			</if>
+			<if test="orderID != null">
+				OrderID = #{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="dealCode != null">
+				DealCode = #{dealCode,jdbcType=VARCHAR},
+			</if>
+			<if test="beforeStatus != null">
+				BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+			</if>
+			<if test="afterStatus != null">
+				AfterStatus = #{afterStatus,jdbcType=BIGINT},
+			</if>
+			<if test="changeAmount != null">
+				ChangeAmount = #{changeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="beforeAmount != null">
+				BeforeAmount = #{beforeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="afterAmount != null">
+				AfterAmount = #{afterAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="dealDesc != null">
+				DealDesc = #{dealDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				CreatorType = #{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_OrderDealInfoEntity">
+		update O_OrderDealInfo
+		set SubOrderID = #{subOrderID,jdbcType=BIGINT},
+		OrderID = #{orderID,jdbcType=BIGINT},
+		DealCode = #{dealCode,jdbcType=VARCHAR},
+		BeforeStatus = #{beforeStatus,jdbcType=BIGINT},
+		AfterStatus = #{afterStatus,jdbcType=BIGINT},
+		ChangeAmount = #{changeAmount,jdbcType=DECIMAL},
+		BeforeAmount = #{beforeAmount,jdbcType=DECIMAL},
+		AfterAmount = #{afterAmount,jdbcType=DECIMAL},
+		DealDesc = #{dealDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreatorType = #{creatorType,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where DealID = #{dealID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="O_OrderDealInfoEntity" resultType="O_OrderDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_OrderDealInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="O_OrderDealInfoEntity" resultType="O_OrderDealInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_OrderDealInfoEntity(#{dealID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="O_OrderDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteO_OrderDealInfoEntity(#{dealID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="DealID" parameterType="O_OrderDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertO_OrderDealInfoEntity(#{afterAmount},#{afterStatus},#{beforeAmount},#{beforeStatus},#{changeAmount},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{dealID,jdbcType=INTEGER,mode=OUT},#{isSync},#{memo},#{orderID},#{sortNo},#{subOrderID})}
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="O_OrderDealInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateO_OrderDealInfoEntity(#{afterAmount},#{afterStatus},#{beforeAmount},#{beforeStatus},#{changeAmount},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{dealID},#{isSync},#{memo},#{orderID},#{sortNo},#{subOrderID})} 
+		]]>  
+  	</update>
+  	<!--<select id="list" parameterType="O_OrderDealInfo" resultType="O_OrderDealInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetO_OrderDealInfo_query_by_condition(#{afterAmount},#{afterStatus},#{beforeAmount},#{beforeStatus},#{changeAmount},#{createTime},#{creatorID},#{creatorType},#{dealCode},#{dealDesc},#{memo},#{orderID},#{sortNo},#{subOrderID})} 
+		]]>  
+  	</select>
+  	-->
+
+
+  </mapper>

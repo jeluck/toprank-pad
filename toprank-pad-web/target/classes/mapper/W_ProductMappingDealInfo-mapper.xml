@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.W_ProductMappingDealInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.W_ProductMappingDealInfoEntity">
+    <id column="DealID" jdbcType="BIGINT" property="dealID" />
+    <result column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="BeforRemainingQuantity" jdbcType="INTEGER" property="beforRemainingQuantity" />
+    <result column="AfterRemainingQuantity" jdbcType="INTEGER" property="afterRemainingQuantity" />
+    <result column="BeforeAvailableQuantity" jdbcType="INTEGER" property="beforeAvailableQuantity" />
+    <result column="AfterAvailableQuantity" jdbcType="INTEGER" property="afterAvailableQuantity" />
+    <result column="BeforeLockQuantity" jdbcType="INTEGER" property="beforeLockQuantity" />
+    <result column="AfterLockQuantity" jdbcType="INTEGER" property="afterLockQuantity" />
+    <result column="ChangeQuantity" jdbcType="INTEGER" property="changeQuantity" />
+    <result column="ChangeType" jdbcType="BIGINT" property="changeType" />
+    <result column="ChangeReason" jdbcType="VARCHAR" property="changeReason" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="BeforRemainingFloatQuantity" jdbcType="REAL" property="beforRemainingFloatQuantity" />
+    <result column="AfterRemainingFloatQuantity" jdbcType="REAL" property="afterRemainingFloatQuantity" />
+    <result column="BeforeAvailableFloatQuantity" jdbcType="REAL" property="beforeAvailableFloatQuantity" />
+    <result column="AfterAvailableFloatQuantity" jdbcType="REAL" property="afterAvailableFloatQuantity" />
+    <result column="BeforeLockFloatQuantity" jdbcType="REAL" property="beforeLockFloatQuantity" />
+    <result column="AfterLockFloatQuantity" jdbcType="REAL" property="afterLockFloatQuantity" />
+    <result column="ChangeFloatQuantity" jdbcType="REAL" property="changeFloatQuantity" />
+    <result column="ChangeDesc" jdbcType="VARCHAR" property="changeDesc" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DealID, MappingID, BeforRemainingQuantity, AfterRemainingQuantity, BeforeAvailableQuantity,
+    AfterAvailableQuantity, BeforeLockQuantity, AfterLockQuantity, ChangeQuantity, ChangeType,
+    ChangeReason, CreatorID, CreateTime, Memo, BeforRemainingFloatQuantity, AfterRemainingFloatQuantity,
+    BeforeAvailableFloatQuantity, AfterAvailableFloatQuantity, BeforeLockFloatQuantity,
+    AfterLockFloatQuantity, ChangeFloatQuantity, ChangeDesc, IsSync
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from W_ProductMappingDealInfo
+    where DealID = #{dealID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from W_ProductMappingDealInfo
+    where DealID = #{dealID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.W_ProductMappingDealInfoEntity">
+    insert into W_ProductMappingDealInfo (DealID, MappingID, BeforRemainingQuantity,
+    AfterRemainingQuantity, BeforeAvailableQuantity,
+    AfterAvailableQuantity, BeforeLockQuantity,
+    AfterLockQuantity, ChangeQuantity, ChangeType,
+    ChangeReason, CreatorID, CreateTime,
+    Memo, BeforRemainingFloatQuantity, AfterRemainingFloatQuantity,
+    BeforeAvailableFloatQuantity, AfterAvailableFloatQuantity,
+    BeforeLockFloatQuantity, AfterLockFloatQuantity,
+    ChangeFloatQuantity, ChangeDesc, IsSync
+    )
+    values (#{dealID,jdbcType=BIGINT}, #{mappingID,jdbcType=BIGINT}, #{beforRemainingQuantity,jdbcType=INTEGER},
+    #{afterRemainingQuantity,jdbcType=INTEGER}, #{beforeAvailableQuantity,jdbcType=INTEGER},
+    #{afterAvailableQuantity,jdbcType=INTEGER}, #{beforeLockQuantity,jdbcType=INTEGER},
+    #{afterLockQuantity,jdbcType=INTEGER}, #{changeQuantity,jdbcType=INTEGER}, #{changeType,jdbcType=BIGINT},
+    #{changeReason,jdbcType=VARCHAR}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+    #{memo,jdbcType=VARCHAR}, #{beforRemainingFloatQuantity,jdbcType=REAL}, #{afterRemainingFloatQuantity,jdbcType=REAL},
+    #{beforeAvailableFloatQuantity,jdbcType=REAL}, #{afterAvailableFloatQuantity,jdbcType=REAL},
+    #{beforeLockFloatQuantity,jdbcType=REAL}, #{afterLockFloatQuantity,jdbcType=REAL},
+    #{changeFloatQuantity,jdbcType=REAL}, #{changeDesc,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.W_ProductMappingDealInfoEntity">
+    insert into W_ProductMappingDealInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dealID != null">
+        DealID,
+      </if>
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="beforRemainingQuantity != null">
+        BeforRemainingQuantity,
+      </if>
+      <if test="afterRemainingQuantity != null">
+        AfterRemainingQuantity,
+      </if>
+      <if test="beforeAvailableQuantity != null">
+        BeforeAvailableQuantity,
+      </if>
+      <if test="afterAvailableQuantity != null">
+        AfterAvailableQuantity,
+      </if>
+      <if test="beforeLockQuantity != null">
+        BeforeLockQuantity,
+      </if>
+      <if test="afterLockQuantity != null">
+        AfterLockQuantity,
+      </if>
+      <if test="changeQuantity != null">
+        ChangeQuantity,
+      </if>
+      <if test="changeType != null">
+        ChangeType,
+      </if>
+      <if test="changeReason != null">
+        ChangeReason,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="beforRemainingFloatQuantity != null">
+        BeforRemainingFloatQuantity,
+      </if>
+      <if test="afterRemainingFloatQuantity != null">
+        AfterRemainingFloatQuantity,
+      </if>
+      <if test="beforeAvailableFloatQuantity != null">
+        BeforeAvailableFloatQuantity,
+      </if>
+      <if test="afterAvailableFloatQuantity != null">
+        AfterAvailableFloatQuantity,
+      </if>
+      <if test="beforeLockFloatQuantity != null">
+        BeforeLockFloatQuantity,
+      </if>
+      <if test="afterLockFloatQuantity != null">
+        AfterLockFloatQuantity,
+      </if>
+      <if test="changeFloatQuantity != null">
+        ChangeFloatQuantity,
+      </if>
+      <if test="changeDesc != null">
+        ChangeDesc,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dealID != null">
+        #{dealID,jdbcType=BIGINT},
+      </if>
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="beforRemainingQuantity != null">
+        #{beforRemainingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="afterRemainingQuantity != null">
+        #{afterRemainingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beforeAvailableQuantity != null">
+        #{beforeAvailableQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="afterAvailableQuantity != null">
+        #{afterAvailableQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beforeLockQuantity != null">
+        #{beforeLockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="afterLockQuantity != null">
+        #{afterLockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="changeQuantity != null">
+        #{changeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="changeType != null">
+        #{changeType,jdbcType=BIGINT},
+      </if>
+      <if test="changeReason != null">
+        #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="beforRemainingFloatQuantity != null">
+        #{beforRemainingFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="afterRemainingFloatQuantity != null">
+        #{afterRemainingFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="beforeAvailableFloatQuantity != null">
+        #{beforeAvailableFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="afterAvailableFloatQuantity != null">
+        #{afterAvailableFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="beforeLockFloatQuantity != null">
+        #{beforeLockFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="afterLockFloatQuantity != null">
+        #{afterLockFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="changeFloatQuantity != null">
+        #{changeFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="changeDesc != null">
+        #{changeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.W_ProductMappingDealInfoEntity">
+    update W_ProductMappingDealInfo
+    <set>
+      <if test="mappingID != null">
+        MappingID = #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="beforRemainingQuantity != null">
+        BeforRemainingQuantity = #{beforRemainingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="afterRemainingQuantity != null">
+        AfterRemainingQuantity = #{afterRemainingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beforeAvailableQuantity != null">
+        BeforeAvailableQuantity = #{beforeAvailableQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="afterAvailableQuantity != null">
+        AfterAvailableQuantity = #{afterAvailableQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beforeLockQuantity != null">
+        BeforeLockQuantity = #{beforeLockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="afterLockQuantity != null">
+        AfterLockQuantity = #{afterLockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="changeQuantity != null">
+        ChangeQuantity = #{changeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="changeType != null">
+        ChangeType = #{changeType,jdbcType=BIGINT},
+      </if>
+      <if test="changeReason != null">
+        ChangeReason = #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="beforRemainingFloatQuantity != null">
+        BeforRemainingFloatQuantity = #{beforRemainingFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="afterRemainingFloatQuantity != null">
+        AfterRemainingFloatQuantity = #{afterRemainingFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="beforeAvailableFloatQuantity != null">
+        BeforeAvailableFloatQuantity = #{beforeAvailableFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="afterAvailableFloatQuantity != null">
+        AfterAvailableFloatQuantity = #{afterAvailableFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="beforeLockFloatQuantity != null">
+        BeforeLockFloatQuantity = #{beforeLockFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="afterLockFloatQuantity != null">
+        AfterLockFloatQuantity = #{afterLockFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="changeFloatQuantity != null">
+        ChangeFloatQuantity = #{changeFloatQuantity,jdbcType=REAL},
+      </if>
+      <if test="changeDesc != null">
+        ChangeDesc = #{changeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+    </set>
+    where DealID = #{dealID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.W_ProductMappingDealInfoEntity">
+    update W_ProductMappingDealInfo
+    set MappingID = #{mappingID,jdbcType=BIGINT},
+    BeforRemainingQuantity = #{beforRemainingQuantity,jdbcType=INTEGER},
+    AfterRemainingQuantity = #{afterRemainingQuantity,jdbcType=INTEGER},
+    BeforeAvailableQuantity = #{beforeAvailableQuantity,jdbcType=INTEGER},
+    AfterAvailableQuantity = #{afterAvailableQuantity,jdbcType=INTEGER},
+    BeforeLockQuantity = #{beforeLockQuantity,jdbcType=INTEGER},
+    AfterLockQuantity = #{afterLockQuantity,jdbcType=INTEGER},
+    ChangeQuantity = #{changeQuantity,jdbcType=INTEGER},
+    ChangeType = #{changeType,jdbcType=BIGINT},
+    ChangeReason = #{changeReason,jdbcType=VARCHAR},
+    CreatorID = #{creatorID,jdbcType=BIGINT},
+    CreateTime = #{createTime,jdbcType=TIMESTAMP},
+    Memo = #{memo,jdbcType=VARCHAR},
+    BeforRemainingFloatQuantity = #{beforRemainingFloatQuantity,jdbcType=REAL},
+    AfterRemainingFloatQuantity = #{afterRemainingFloatQuantity,jdbcType=REAL},
+    BeforeAvailableFloatQuantity = #{beforeAvailableFloatQuantity,jdbcType=REAL},
+    AfterAvailableFloatQuantity = #{afterAvailableFloatQuantity,jdbcType=REAL},
+    BeforeLockFloatQuantity = #{beforeLockFloatQuantity,jdbcType=REAL},
+    AfterLockFloatQuantity = #{afterLockFloatQuantity,jdbcType=REAL},
+    ChangeFloatQuantity = #{changeFloatQuantity,jdbcType=REAL},
+    ChangeDesc = #{changeDesc,jdbcType=VARCHAR},
+    IsSync = #{isSync,jdbcType=BIT}
+    where DealID = #{dealID,jdbcType=BIGINT}
+  </update>
+
+  <!--
+  根据mappingid删除沽清历史记录
+  chenkangyi
+  2017-5-27 19:30
+  -->
+  <delete id="deleteByMappingID" parameterType="long">
+    delete from W_ProductMappingDealInfo
+    where MappingID = #{mappingID}
+  </delete>
+</mapper>

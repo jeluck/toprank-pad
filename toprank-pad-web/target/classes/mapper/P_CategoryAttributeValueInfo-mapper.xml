@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_CategoryAttributeValueInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_CategoryAttributeValueInfoEntity">
+		<id column="ValueID" jdbcType="BIGINT" property="valueID" />
+		<result column="AttributeID" jdbcType="BIGINT" property="attributeID" />
+		<result column="ValueCode" jdbcType="VARCHAR" property="valueCode" />
+		<result column="AttributeName" jdbcType="VARCHAR" property="attributeName" />
+		<result column="AttributeDesc" jdbcType="VARCHAR" property="attributeDesc" />
+		<result column="AttributeValue" jdbcType="VARCHAR" property="attributeValue" />
+		<result column="AddedPrice" jdbcType="DECIMAL" property="addedPrice" />
+		<result column="CanMulti" jdbcType="BIT" property="canMulti" />
+		<result column="AttributeValueStatus" jdbcType="BIGINT" property="attributeValueStatus" />
+		<result column="ValueDesc" jdbcType="VARCHAR" property="valueDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ValueID, AttributeID, ValueCode, AttributeName, AttributeDesc, AttributeValue, AddedPrice,
+		CanMulti, AttributeValueStatus, ValueDesc, SortNo, CreatorID, CreateTime, Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from P_CategoryAttributeValueInfo
+		where ValueID = #{valueID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from P_CategoryAttributeValueInfo
+		where ValueID = #{valueID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.P_CategoryAttributeValueInfoEntity">
+		insert into P_CategoryAttributeValueInfo (ValueID, AttributeID, ValueCode,
+		AttributeName, AttributeDesc, AttributeValue,
+		AddedPrice, CanMulti, AttributeValueStatus,
+		ValueDesc, SortNo, CreatorID,
+		CreateTime, Memo, IsSync
+		)
+		values (#{valueID,jdbcType=BIGINT}, #{attributeID,jdbcType=BIGINT}, #{valueCode,jdbcType=VARCHAR},
+		#{attributeName,jdbcType=VARCHAR}, #{attributeDesc,jdbcType=VARCHAR}, #{attributeValue,jdbcType=VARCHAR},
+		#{addedPrice,jdbcType=DECIMAL}, #{canMulti,jdbcType=BIT}, #{attributeValueStatus,jdbcType=BIGINT},
+		#{valueDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_CategoryAttributeValueInfoEntity">
+		insert into P_CategoryAttributeValueInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="valueID != null">
+				ValueID,
+			</if>
+			<if test="attributeID != null">
+				AttributeID,
+			</if>
+			<if test="valueCode != null">
+				ValueCode,
+			</if>
+			<if test="attributeName != null">
+				AttributeName,
+			</if>
+			<if test="attributeDesc != null">
+				AttributeDesc,
+			</if>
+			<if test="attributeValue != null">
+				AttributeValue,
+			</if>
+			<if test="addedPrice != null">
+				AddedPrice,
+			</if>
+			<if test="canMulti != null">
+				CanMulti,
+			</if>
+			<if test="attributeValueStatus != null">
+				AttributeValueStatus,
+			</if>
+			<if test="valueDesc != null">
+				ValueDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="valueID != null">
+				#{valueID,jdbcType=BIGINT},
+			</if>
+			<if test="attributeID != null">
+				#{attributeID,jdbcType=BIGINT},
+			</if>
+			<if test="valueCode != null">
+				#{valueCode,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeName != null">
+				#{attributeName,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeDesc != null">
+				#{attributeDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeValue != null">
+				#{attributeValue,jdbcType=VARCHAR},
+			</if>
+			<if test="addedPrice != null">
+				#{addedPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="canMulti != null">
+				#{canMulti,jdbcType=BIT},
+			</if>
+			<if test="attributeValueStatus != null">
+				#{attributeValueStatus,jdbcType=BIGINT},
+			</if>
+			<if test="valueDesc != null">
+				#{valueDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_CategoryAttributeValueInfoEntity">
+		update P_CategoryAttributeValueInfo
+		<set>
+			<if test="attributeID != null">
+				AttributeID = #{attributeID,jdbcType=BIGINT},
+			</if>
+			<if test="valueCode != null">
+				ValueCode = #{valueCode,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeName != null">
+				AttributeName = #{attributeName,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeDesc != null">
+				AttributeDesc = #{attributeDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeValue != null">
+				AttributeValue = #{attributeValue,jdbcType=VARCHAR},
+			</if>
+			<if test="addedPrice != null">
+				AddedPrice = #{addedPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="canMulti != null">
+				CanMulti = #{canMulti,jdbcType=BIT},
+			</if>
+			<if test="attributeValueStatus != null">
+				AttributeValueStatus = #{attributeValueStatus,jdbcType=BIGINT},
+			</if>
+			<if test="valueDesc != null">
+				ValueDesc = #{valueDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where ValueID = #{valueID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_CategoryAttributeValueInfoEntity">
+		update P_CategoryAttributeValueInfo
+		set AttributeID = #{attributeID,jdbcType=BIGINT},
+		ValueCode = #{valueCode,jdbcType=VARCHAR},
+		AttributeName = #{attributeName,jdbcType=VARCHAR},
+		AttributeDesc = #{attributeDesc,jdbcType=VARCHAR},
+		AttributeValue = #{attributeValue,jdbcType=VARCHAR},
+		AddedPrice = #{addedPrice,jdbcType=DECIMAL},
+		CanMulti = #{canMulti,jdbcType=BIT},
+		AttributeValueStatus = #{attributeValueStatus,jdbcType=BIGINT},
+		ValueDesc = #{valueDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where ValueID = #{valueID,jdbcType=BIGINT}
+	</update>
+
+	<!--
+		根据多个属性ID查询
+  	-->
+	<select id="getCategoryAttributeValuesByIDs" parameterType="string" resultType="P_CategoryAttributeValueInfoEntity">
+			select *
+			from P_CategoryAttributeValueInfo
+    		where FIND_IN_SET(ValueID, #{valueIDs})
+	</select>
+
+	<select id="getAttributeByValueIDs" parameterType="string" resultType="string">
+		select GROUP_CONCAT(AttributeName)
+		from P_CategoryAttributeValueInfo where FIND_IN_SET(ValueID, #{valueIDs})
+	</select>
+
+	<!-- 查询单品分类属性 -->
+	<select id="getProductAttributeByVariantID" parameterType="java.lang.Long" resultType="map">
+		SELECT pav.variantID,cav.valueID,pai.GroupID as groupID, if(pai.GroupID = 820, 1, 0) as method,pai.attributeID,pai.attributeName as categoryName,cav.attributeName,cav.attributeValue,cav.addedPrice
+		FROM P_CategoryAttributeInfo pai
+		LEFT JOIN P_CategoryAttributeValueInfo cav ON cav.AttributeID = pai.AttributeID
+		LEFT JOIN P_VariantAttributeValueMapping pav ON pav.ValueID = cav.ValueID AND pav.MappingStatus=9
+		WHERE pav.VariantID = #{variantID}
+	</select>
+	<!-- 查询套餐分类属性 -->
+	<select id="getProductAttributeByProductID" parameterType="java.lang.Long" resultType="map">
+		SELECT pav.productID,cav.valueID,pai.GroupID as groupID, if(pai.GroupID = 820, 1, 0) as method,pai.attributeID,pai.attributeName as categoryName,cav.attributeName,cav.attributeValue,cav.addedPrice
+		FROM P_CategoryAttributeInfo pai
+		LEFT JOIN P_CategoryAttributeValueInfo cav ON cav.AttributeID = pai.AttributeID
+		LEFT JOIN P_ProductAttributeValueMapping pav ON pav.ValueID = cav.ValueID AND pav.MappingStatus=9
+		WHERE pav.ProductID=#{productID}
+	</select>
+
+	<select id="getCategoryAttributeByValueIDs" resultType="map">
+		SELECT valueID,attributeName,attributeValue FROM P_CategoryAttributeValueInfo WHERE ValueID in (${valueIDs})
+	</select>
+
+	<select id="getAttributeValueByVariantID" resultType="string">
+		SELECT cav.attributeValue FROM P_VariantAttributeValueMapping vav
+		LEFT JOIN P_CategoryAttributeValueInfo cav ON cav.ValueID=vav.ValueID
+		LEFT JOIN P_CategoryAttributeInfo ca ON ca.AttributeID=cav.AttributeID
+		WHERE vav.VariantID=#{variantID} AND ca.GroupID=#{groupID}
+	</select>
+
+	<select id="getAddedPriceByValueIDs" resultType="double">
+		SELECT ifnull(SUM(AddedPrice),0.0) addedPrice FROM P_CategoryAttributeValueInfo WHERE ValueID in (${valueIDs})
+	</select>
+
+  </mapper>

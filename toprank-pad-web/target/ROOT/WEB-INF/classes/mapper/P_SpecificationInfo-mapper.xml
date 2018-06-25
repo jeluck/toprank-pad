@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_SpecificationInfoDao">
+  	<select id="getAll" parameterType="P_SpecificationInfoEntity" resultType="P_SpecificationInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_SpecificationInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_SpecificationInfoEntity" resultType="P_SpecificationInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_SpecificationInfoEntity(#{specificationID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_SpecificationInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_SpecificationInfoEntity(#{specificationID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="SpecificationID" parameterType="P_SpecificationInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_SpecificationInfoEntity(#{archiveID},#{createTime},#{creatorID},#{displayOrder},#{memo},#{orgID},#{specificationCode},#{specificationDesc},#{specificationID,jdbcType=INTEGER,mode=OUT},#{specificationName},#{specificationStatus})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_SpecificationInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_SpecificationInfoEntity(#{archiveID},#{createTime},#{creatorID},#{displayOrder},#{memo},#{orgID},#{specificationCode},#{specificationDesc},#{specificationID},#{specificationName},#{specificationStatus})} 
+		]]>  
+  	</update>
+  </mapper>

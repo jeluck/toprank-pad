@@ -1,0 +1,47 @@
+/* Authentication screens styles */
+#SPLASH {
+	position: fixed;
+	top: 80px;
+	left: 50%;
+	margin-left: -486px;
+	width: 973px;
+	height: 275px;
+	background-image: url("");
+}
+
+#SPLASH #CONTENT {
+	position: relative;
+	width: 242px;
+	height: 161px;
+	top: 76px;
+	left: 4px;
+	padding: 15px;
+}
+
+#SPLASH #CONTENT p, #SPLASH #CONTENT label {
+	font-weight: bold;
+	color: #000000;
+}
+
+#SPLASH #CONTENT label {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 8pt;
+}
+
+#SPLASH #CONTENT button {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 8pt;
+}
+
+#SPLASH #CONTENT p a {
+	text-decoration: underline;
+	color: #9cddd1;
+}
+
+#SPLASH #CONTENT p a.active {
+	color: #fff;
+}
+
+#SPLASH #CONTENT p a:hover {
+	color: #fff;
+}

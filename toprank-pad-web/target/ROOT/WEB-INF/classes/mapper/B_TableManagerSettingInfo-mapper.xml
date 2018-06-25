@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.B_TableManagerSettingInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_TableManagerSettingInfoEntity">
+    <id column="ConfigID" jdbcType="BIGINT" property="configID" />
+    <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+    <result column="LoginID" jdbcType="BIGINT" property="loginID" />
+    <result column="MealsID" jdbcType="BIGINT" property="mealsID" />
+    <result column="AreaID" jdbcType="BIGINT" property="areaID" />
+    <result column="SettingID" jdbcType="BIGINT" property="settingID" />
+    <result column="TableID" jdbcType="BIGINT" property="tableID" />
+    <result column="DutyID" jdbcType="BIGINT" property="dutyID" />
+    <result column="TableCode" jdbcType="VARCHAR" property="tableCode" />
+    <result column="TableName" jdbcType="VARCHAR" property="tableName" />
+    <result column="ManageType" jdbcType="BIGINT" property="manageType" />
+    <result column="ServiceAnswerType" jdbcType="BIGINT" property="serviceAnswerType" />
+    <result column="MappingStatus" jdbcType="BIGINT" property="mappingStatus" />
+    <result column="StartTime" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="EndTime" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="ManageDesc" jdbcType="VARCHAR" property="manageDesc" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+    <result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ConfigID, ArchiveID, LoginID, MealsID, AreaID, SettingID, TableID, DutyID, TableCode, 
+    TableName, ManageType, ServiceAnswerType, MappingStatus, StartTime, EndTime, ManageDesc, 
+    IsSync, CreatorID, CreateTime, Memo, SyncTime, SyncTimeResult
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from B_TableManagerSettingInfo
+    where ConfigID = #{configID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from B_TableManagerSettingInfo
+    where ConfigID = #{configID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.B_TableManagerSettingInfoEntity">
+    insert into B_TableManagerSettingInfo (ConfigID, ArchiveID, LoginID, 
+      MealsID, AreaID, SettingID, 
+      TableID, DutyID, TableCode, 
+      TableName, ManageType, ServiceAnswerType, 
+      MappingStatus, StartTime, EndTime, 
+      ManageDesc, IsSync, CreatorID, 
+      CreateTime, Memo, SyncTime, 
+      SyncTimeResult)
+    values (#{configID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT}, 
+      #{mealsID,jdbcType=BIGINT}, #{areaID,jdbcType=BIGINT}, #{settingID,jdbcType=BIGINT}, 
+      #{tableID,jdbcType=BIGINT}, #{dutyID,jdbcType=BIGINT}, #{tableCode,jdbcType=VARCHAR}, 
+      #{tableName,jdbcType=VARCHAR}, #{manageType,jdbcType=BIGINT}, #{serviceAnswerType,jdbcType=BIGINT}, 
+      #{mappingStatus,jdbcType=BIGINT}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{manageDesc,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, 
+      #{syncTimeResult,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_TableManagerSettingInfoEntity">
+    insert into B_TableManagerSettingInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configID != null">
+        ConfigID,
+      </if>
+      <if test="archiveID != null">
+        ArchiveID,
+      </if>
+      <if test="loginID != null">
+        LoginID,
+      </if>
+      <if test="mealsID != null">
+        MealsID,
+      </if>
+      <if test="areaID != null">
+        AreaID,
+      </if>
+      <if test="settingID != null">
+        SettingID,
+      </if>
+      <if test="tableID != null">
+        TableID,
+      </if>
+      <if test="dutyID != null">
+        DutyID,
+      </if>
+      <if test="tableCode != null">
+        TableCode,
+      </if>
+      <if test="tableName != null">
+        TableName,
+      </if>
+      <if test="manageType != null">
+        ManageType,
+      </if>
+      <if test="serviceAnswerType != null">
+        ServiceAnswerType,
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus,
+      </if>
+      <if test="startTime != null">
+        StartTime,
+      </if>
+      <if test="endTime != null">
+        EndTime,
+      </if>
+      <if test="manageDesc != null">
+        ManageDesc,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="syncTime != null">
+        SyncTime,
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configID != null">
+        #{configID,jdbcType=BIGINT},
+      </if>
+      <if test="archiveID != null">
+        #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="loginID != null">
+        #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="mealsID != null">
+        #{mealsID,jdbcType=BIGINT},
+      </if>
+      <if test="areaID != null">
+        #{areaID,jdbcType=BIGINT},
+      </if>
+      <if test="settingID != null">
+        #{settingID,jdbcType=BIGINT},
+      </if>
+      <if test="tableID != null">
+        #{tableID,jdbcType=BIGINT},
+      </if>
+      <if test="dutyID != null">
+        #{dutyID,jdbcType=BIGINT},
+      </if>
+      <if test="tableCode != null">
+        #{tableCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageType != null">
+        #{manageType,jdbcType=BIGINT},
+      </if>
+      <if test="serviceAnswerType != null">
+        #{serviceAnswerType,jdbcType=BIGINT},
+      </if>
+      <if test="mappingStatus != null">
+        #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageDesc != null">
+        #{manageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_TableManagerSettingInfoEntity">
+    update B_TableManagerSettingInfo
+    <set>
+      <if test="archiveID != null">
+        ArchiveID = #{archiveID,jdbcType=BIGINT},
+      </if>
+      <if test="loginID != null">
+        LoginID = #{loginID,jdbcType=BIGINT},
+      </if>
+      <if test="mealsID != null">
+        MealsID = #{mealsID,jdbcType=BIGINT},
+      </if>
+      <if test="areaID != null">
+        AreaID = #{areaID,jdbcType=BIGINT},
+      </if>
+      <if test="settingID != null">
+        SettingID = #{settingID,jdbcType=BIGINT},
+      </if>
+      <if test="tableID != null">
+        TableID = #{tableID,jdbcType=BIGINT},
+      </if>
+      <if test="dutyID != null">
+        DutyID = #{dutyID,jdbcType=BIGINT},
+      </if>
+      <if test="tableCode != null">
+        TableCode = #{tableCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        TableName = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageType != null">
+        ManageType = #{manageType,jdbcType=BIGINT},
+      </if>
+      <if test="serviceAnswerType != null">
+        ServiceAnswerType = #{serviceAnswerType,jdbcType=BIGINT},
+      </if>
+      <if test="mappingStatus != null">
+        MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        StartTime = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        EndTime = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageDesc != null">
+        ManageDesc = #{manageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncTimeResult != null">
+        SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ConfigID = #{configID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_TableManagerSettingInfoEntity">
+    update B_TableManagerSettingInfo
+    set ArchiveID = #{archiveID,jdbcType=BIGINT},
+      LoginID = #{loginID,jdbcType=BIGINT},
+      MealsID = #{mealsID,jdbcType=BIGINT},
+      AreaID = #{areaID,jdbcType=BIGINT},
+      SettingID = #{settingID,jdbcType=BIGINT},
+      TableID = #{tableID,jdbcType=BIGINT},
+      DutyID = #{dutyID,jdbcType=BIGINT},
+      TableCode = #{tableCode,jdbcType=VARCHAR},
+      TableName = #{tableName,jdbcType=VARCHAR},
+      ManageType = #{manageType,jdbcType=BIGINT},
+      ServiceAnswerType = #{serviceAnswerType,jdbcType=BIGINT},
+      MappingStatus = #{mappingStatus,jdbcType=BIGINT},
+      StartTime = #{startTime,jdbcType=TIMESTAMP},
+      EndTime = #{endTime,jdbcType=TIMESTAMP},
+      ManageDesc = #{manageDesc,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+    where ConfigID = #{configID,jdbcType=BIGINT}
+  </update>
+
+  <select id="getTableManagerSettingInfoByArchiveID" parameterType="java.lang.Long" resultType="cc.toprank.byd.web.vo.tablevo.TableManagerSettingVO">
+    SELECT t.ConfigID
+    , t.ArchiveID
+    , t.LoginID
+    , t.AreaID
+    , t.SettingID
+    , t.TableID
+    , t.TableCode
+    , t.TableName
+    , t.ManageType
+    , t.ServiceAnswerType
+    , t.MappingStatus
+    , t.ManageDesc
+    , t.CreatorID
+    , t.Memo
+    , d.DutyID
+    , d.DutyCode
+    , d.MealsID
+    , m.StartTime
+    , m.EndTime
+    , d.RoleID
+    , d.RoleName
+    , d.CycleType
+    , d.DutyDay
+    FROM B_TableManagerSettingInfo t
+    INNER JOIN B_DutyInfo d ON t.LoginID = d.LoginID
+    LEFT JOIN B_MealsInfo m ON d.MealsID = m.MealsID
+    WHERE t.ArchiveID = #{archiveID}
+    AND t.MappingStatus = 9
+  </select>
+
+</mapper>

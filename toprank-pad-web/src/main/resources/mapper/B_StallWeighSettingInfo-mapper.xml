@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_StallWeighSettingInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_StallWeighSettingInfoEntity" >
+        <id column="StallID" property="stallID" jdbcType="BIGINT" />
+        <result column="AlreadyColor" property="alreadyColor" jdbcType="VARCHAR"/>
+        <result column="ArchiveID" property="archiveID" jdbcType="BIGINT"/>
+        <result column="COMPort" property="cOMPort" jdbcType="BIGINT"/>
+        <result column="CreateTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="CreatorID" property="creatorID" jdbcType="BIGINT"/>
+        <result column="DiffRate" property="diffRate" jdbcType="INTEGER"/>
+        <result column="FirstLetter" property="firstLetter" jdbcType="VARCHAR"/>
+        <result column="HandleColor" property="handleColor" jdbcType="VARCHAR"/>
+        <result column="IsSync" property="isSync" jdbcType="BIT"/>
+        <result column="Memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="NeedConfirm" property="needConfirm" jdbcType="BIT"/>
+        <result column="SortNo" property="sortNo" jdbcType="INTEGER"/>
+        <result column="StallCode" property="stallCode" jdbcType="VARCHAR"/>
+        <result column="StallDesc" property="stallDesc" jdbcType="VARCHAR"/>
+        <result column="StallName" property="stallName" jdbcType="VARCHAR"/>
+        <result column="StallStatus" property="stallStatus" jdbcType="BIGINT"/>
+        <result column="UnitID" property="unitID" jdbcType="BIGINT"/>
+        <result column="WaitColor" property="waitColor" jdbcType="VARCHAR"/>
+        <result column="WeightType" property="weightType" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <!--公用所有字段的sql-->
+    <sql id="Base_Column_List">
+        AlreadyColor,
+        ArchiveID,
+        COMPort,
+        CreateTime,
+        CreatorID,
+        DiffRate,
+        FirstLetter,
+        HandleColor,
+        IsSync,
+        Memo,
+        NeedConfirm,
+        SortNo,
+        StallCode,
+        StallDesc,
+        StallID,
+        StallName,
+        StallStatus,
+        UnitID,
+        WaitColor,
+        WeightType
+    </sql>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from B_StallWeighSettingInfo
+    </select>
+
+    <select id="get" parameterType="cc.toprank.byd.entity.B_StallWeighSettingInfoEntity" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from
+        B_StallWeighSettingInfo
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            StallID = #{stallID}
+        </trim>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="Long" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from
+           B_StallWeighSettingInfo
+           where  StallID = #{_parameter}
+    </select>
+    <delete id="delete" parameterType="cc.toprank.byd.entity.B_StallWeighSettingInfoEntity">
+        delete from B_StallWeighSettingInfo
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            StallID = #{stallID}
+        </trim>
+    </delete>
+    <insert id="save" useGeneratedKeys="true" keyProperty="StallID" parameterType="cc.toprank.byd.entity.B_StallWeighSettingInfoEntity">
+        insert into B_StallWeighSettingInfo
+        (
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (
+        #{alreadyColor},
+        #{archiveID},
+        #{cOMPort},
+        #{createTime},
+        #{creatorID},
+        #{diffRate},
+        #{firstLetter},
+        #{handleColor},
+        #{isSync},
+        #{memo},
+        #{needConfirm},
+        #{sortNo},
+        #{stallCode},
+        #{stallDesc},
+        #{stallID},
+        #{stallName},
+        #{stallStatus},
+        #{unitID},
+        #{waitColor},
+        #{weightType}
+        )
+    </insert>
+    <update id="update" parameterType="cc.toprank.byd.entity.B_StallWeighSettingInfoEntity">
+        update B_StallWeighSettingInfo
+        <set>
+            <if test="AlreadyColor != null and AlreadyColor != ''">
+                AlreadyColor=#{alreadyColor},
+            </if>
+            <if test="ArchiveID != null and ArchiveID != ''">
+                ArchiveID=#{archiveID},
+            </if>
+            <if test="COMPort != null and COMPort != ''">
+                COMPort=#{cOMPort},
+            </if>
+            <if test="CreateTime != null and CreateTime != ''">
+                CreateTime=#{createTime},
+            </if>
+            <if test="CreatorID != null and CreatorID != ''">
+                CreatorID=#{creatorID},
+            </if>
+            <if test="DiffRate != null and DiffRate != ''">
+                DiffRate=#{diffRate},
+            </if>
+            <if test="FirstLetter != null and FirstLetter != ''">
+                FirstLetter=#{firstLetter},
+            </if>
+            <if test="HandleColor != null and HandleColor != ''">
+                HandleColor=#{handleColor},
+            </if>
+            <if test="IsSync != null and IsSync != ''">
+                IsSync=#{isSync},
+            </if>
+            <if test="Memo != null and Memo != ''">
+                Memo=#{memo},
+            </if>
+            <if test="NeedConfirm != null and NeedConfirm != ''">
+                NeedConfirm=#{needConfirm},
+            </if>
+            <if test="SortNo != null and SortNo != ''">
+                SortNo=#{sortNo},
+            </if>
+            <if test="StallCode != null and StallCode != ''">
+                StallCode=#{stallCode},
+            </if>
+            <if test="StallDesc != null and StallDesc != ''">
+                StallDesc=#{stallDesc},
+            </if>
+            <if test="StallName != null and StallName != ''">
+                StallName=#{stallName},
+            </if>
+            <if test="StallStatus != null and StallStatus != ''">
+                StallStatus=#{stallStatus},
+            </if>
+            <if test="UnitID != null and UnitID != ''">
+                UnitID=#{unitID},
+            </if>
+            <if test="WaitColor != null and WaitColor != ''">
+                WaitColor=#{waitColor},
+            </if>
+            <if test="WeightType != null and WeightType != ''">
+                WeightType=#{weightType}
+            </if>
+        </set>
+        where
+        StallID=#{StallID}
+    </update>
+    <select id="list" parameterType="cc.toprank.byd.entity.B_StallWeighSettingInfoEntity" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from
+        B_StallWeighSettingInfo
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="AlreadyColor != null and AlreadyColor != ''">
+                AlreadyColor like concat('%',#{alreadyColor},'%')
+            </if>
+            <if test="ArchiveID != null and ArchiveID != ''">
+                and ArchiveID = #{archiveID}
+            </if>
+            <if test="COMPort != null and COMPort != ''">
+                and COMPort = #{cOMPort}
+            </if>
+            <if test="CreateTime != null and CreateTime != ''">
+                and CreateTime = #{createTime}
+            </if>
+            <if test="CreatorID != null and CreatorID != ''">
+                and CreatorID = #{creatorID}
+            </if>
+            <if test="DiffRate != null and DiffRate != ''">
+                and DiffRate = #{diffRate}
+            </if>
+            <if test="FirstLetter != null and FirstLetter != ''">
+                and FirstLetter like concat('%',#{firstLetter},'%')
+            </if>
+            <if test="HandleColor != null and HandleColor != ''">
+                and HandleColor like concat('%',#{handleColor},'%')
+            </if>
+            <if test="IsSync != null and IsSync != ''">
+                and IsSync = #{isSync}
+            </if>
+            <if test="Memo != null and Memo != ''">
+                and Memo like concat('%',#{memo},'%')
+            </if>
+            <if test="NeedConfirm != null and NeedConfirm != ''">
+                and NeedConfirm = #{needConfirm}
+            </if>
+            <if test="SortNo != null and SortNo != ''">
+                and SortNo = #{sortNo}
+            </if>
+            <if test="StallCode != null and StallCode != ''">
+                and StallCode like concat('%',#{stallCode},'%')
+            </if>
+            <if test="StallDesc != null and StallDesc != ''">
+                and StallDesc like concat('%',#{stallDesc},'%')
+            </if>
+            <if test="StallID != null and StallID != ''">
+                and StallID = #{stallID}
+            </if>
+            <if test="StallName != null and StallName != ''">
+                and StallName like concat('%',#{stallName},'%')
+            </if>
+            <if test="StallStatus != null and StallStatus != ''">
+                and StallStatus = #{stallStatus}
+            </if>
+            <if test="UnitID != null and UnitID != ''">
+                and UnitID = #{unitID}
+            </if>
+            <if test="WaitColor != null and WaitColor != ''">
+                and WaitColor like concat('%',#{waitColor},'%')
+            </if>
+            <if test="WeightType != null and WeightType != ''">
+                and WeightType = #{weightType}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 根据档案ID和状态查询称重档口配置信息 lzy-->
+    <select id="getStallWeighSettingListByArchiveIDAndStallStatus" parameterType="cc.toprank.byd.entity.B_StallWeighSettingInfoEntity" resultMap="BaseResultMap">
+        SELECT  `AlreadyColor`, `ArchiveID`, `COMPort`, `CreateTime`, `CreatorID`, `DiffRate`, `FirstLetter`,
+        `HandleColor`, `IsSync`, `Memo`, `NeedConfirm`, `SortNo`, `StallCode`, `StallDesc`,
+        `StallID`, `StallName`, `UnitID`, `WaitColor`, `WeightType`
+        FROM B_StallWeighSettingInfo
+        WHERE
+            ArchiveID = #{archiveID} AND StallStatus = #{stallStatus}
+    </select>
+
+
+
+    <!--查询所有档口信息-->
+    <select id="selectStallWeighSettingInfoAll" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_StallWeighSettingInfo
+        <where>
+            <if test="_parameter != null and _parameter > 0">
+                ArchiveID = #{_parameter,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
+
+</mapper>

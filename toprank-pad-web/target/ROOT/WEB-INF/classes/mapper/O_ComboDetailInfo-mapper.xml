@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.O_ComboDetailInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_ComboDetailInfoEntity">
+		<id column="RecordID" jdbcType="BIGINT" property="recordID" />
+		<result column="DetailID" jdbcType="BIGINT" property="detailID" />
+		<result column="VariantID" jdbcType="BIGINT" property="variantID" />
+		<result column="ProductName" jdbcType="VARCHAR" property="productName" />
+		<result column="ComboID" jdbcType="BIGINT" property="comboID" />
+		<result column="ComboName" jdbcType="VARCHAR" property="comboName" />
+		<result column="ValueIDs" jdbcType="VARCHAR" property="valueIDs" />
+		<result column="ValueNames" jdbcType="VARCHAR" property="valueNames" />
+		<result column="ImgPath" jdbcType="VARCHAR" property="imgPath" />
+		<result column="OriginalPrice" jdbcType="DECIMAL" property="originalPrice" />
+		<result column="Price" jdbcType="DECIMAL" property="price" />
+		<result column="Quantity" jdbcType="INTEGER" property="quantity" />
+		<result column="ProductUnit" jdbcType="BIGINT" property="productUnit" />
+		<result column="ProduceStatus" jdbcType="BIGINT" property="produceStatus" />
+		<result column="ProduceTime" jdbcType="TIMESTAMP" property="produceTime" />
+		<result column="ServedNum" jdbcType="INTEGER" property="servedNum" />
+		<result column="DetailDesc" jdbcType="VARCHAR" property="detailDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		RecordID, DetailID, VariantID, ProductName, ComboID, ComboName, ValueIDs, ValueNames,
+		ImgPath, OriginalPrice, Price, Quantity, ProductUnit, ProduceStatus, ProduceTime,
+		ServedNum, DetailDesc, SortNo, CreateTime, Memo
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_ComboDetailInfo
+		where RecordID = #{recordID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_ComboDetailInfo
+		where RecordID = #{recordID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_ComboDetailInfoEntity">
+		insert into O_ComboDetailInfo (RecordID, DetailID, VariantID,
+		ProductName, ComboID, ComboName,
+		ValueIDs, ValueNames, ImgPath,
+		OriginalPrice, Price, Quantity,
+		ProductUnit, ProduceStatus, ProduceTime,
+		ServedNum, DetailDesc, SortNo,
+		CreateTime, Memo)
+		values (#{recordID,jdbcType=BIGINT}, #{detailID,jdbcType=BIGINT}, #{variantID,jdbcType=BIGINT},
+		#{productName,jdbcType=VARCHAR}, #{comboID,jdbcType=BIGINT}, #{comboName,jdbcType=VARCHAR},
+		#{valueIDs,jdbcType=VARCHAR}, #{valueNames,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR},
+		#{originalPrice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER},
+		#{productUnit,jdbcType=BIGINT}, #{produceStatus,jdbcType=BIGINT}, #{produceTime,jdbcType=TIMESTAMP},
+		#{servedNum,jdbcType=INTEGER}, #{detailDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_ComboDetailInfoEntity">
+		insert into O_ComboDetailInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="recordID != null">
+				RecordID,
+			</if>
+			<if test="detailID != null">
+				DetailID,
+			</if>
+			<if test="variantID != null">
+				VariantID,
+			</if>
+			<if test="productName != null">
+				ProductName,
+			</if>
+			<if test="comboID != null">
+				ComboID,
+			</if>
+			<if test="comboName != null">
+				ComboName,
+			</if>
+			<if test="valueIDs != null">
+				ValueIDs,
+			</if>
+			<if test="valueNames != null">
+				ValueNames,
+			</if>
+			<if test="imgPath != null">
+				ImgPath,
+			</if>
+			<if test="originalPrice != null">
+				OriginalPrice,
+			</if>
+			<if test="price != null">
+				Price,
+			</if>
+			<if test="quantity != null">
+				Quantity,
+			</if>
+			<if test="productUnit != null">
+				ProductUnit,
+			</if>
+			<if test="produceStatus != null">
+				ProduceStatus,
+			</if>
+			<if test="produceTime != null">
+				ProduceTime,
+			</if>
+			<if test="servedNum != null">
+				ServedNum,
+			</if>
+			<if test="detailDesc != null">
+				DetailDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="recordID != null">
+				#{recordID,jdbcType=BIGINT},
+			</if>
+			<if test="detailID != null">
+				#{detailID,jdbcType=BIGINT},
+			</if>
+			<if test="variantID != null">
+				#{variantID,jdbcType=BIGINT},
+			</if>
+			<if test="productName != null">
+				#{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="comboID != null">
+				#{comboID,jdbcType=BIGINT},
+			</if>
+			<if test="comboName != null">
+				#{comboName,jdbcType=VARCHAR},
+			</if>
+			<if test="valueIDs != null">
+				#{valueIDs,jdbcType=VARCHAR},
+			</if>
+			<if test="valueNames != null">
+				#{valueNames,jdbcType=VARCHAR},
+			</if>
+			<if test="imgPath != null">
+				#{imgPath,jdbcType=VARCHAR},
+			</if>
+			<if test="originalPrice != null">
+				#{originalPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="productUnit != null">
+				#{productUnit,jdbcType=BIGINT},
+			</if>
+			<if test="produceStatus != null">
+				#{produceStatus,jdbcType=BIGINT},
+			</if>
+			<if test="produceTime != null">
+				#{produceTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="servedNum != null">
+				#{servedNum,jdbcType=INTEGER},
+			</if>
+			<if test="detailDesc != null">
+				#{detailDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<insert id="updateBatch" parameterType="map">
+		update O_ComboDetailInfo
+		<set>
+			<if test="produceStatus != null">
+				ProduceStatus = #{produceStatus},
+			</if>
+		</set>
+		where
+		 RecordID in
+		<foreach collection="list" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</insert>
+
+	<insert id="updateBatch2" parameterType="cc.toprank.byd.entity.O_ComboDetailInfoEntity">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update O_ComboDetailInfo
+			<set>
+				<if test="item.produceStatus != null">
+					ProduceStatus = #{item.produceStatus},
+				</if>
+				<if test="item.servedNum != null">
+					ServedNum = #{item.servedNum},
+				</if>
+			</set>
+			where
+			RecordID = #{item.recordID}
+		</foreach>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_ComboDetailInfoEntity">
+		update O_ComboDetailInfo
+		<set>
+			<if test="detailID != null">
+				DetailID = #{detailID,jdbcType=BIGINT},
+			</if>
+			<if test="variantID != null">
+				VariantID = #{variantID,jdbcType=BIGINT},
+			</if>
+			<if test="productName != null">
+				ProductName = #{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="comboID != null">
+				ComboID = #{comboID,jdbcType=BIGINT},
+			</if>
+			<if test="comboName != null">
+				ComboName = #{comboName,jdbcType=VARCHAR},
+			</if>
+			<if test="valueIDs != null">
+				ValueIDs = #{valueIDs,jdbcType=VARCHAR},
+			</if>
+			<if test="valueNames != null">
+				ValueNames = #{valueNames,jdbcType=VARCHAR},
+			</if>
+			<if test="imgPath != null">
+				ImgPath = #{imgPath,jdbcType=VARCHAR},
+			</if>
+			<if test="originalPrice != null">
+				OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				Price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="quantity != null">
+				Quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="productUnit != null">
+				ProductUnit = #{productUnit,jdbcType=BIGINT},
+			</if>
+			<if test="produceStatus != null">
+				ProduceStatus = #{produceStatus,jdbcType=BIGINT},
+			</if>
+			<if test="produceTime != null">
+				ProduceTime = #{produceTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="servedNum != null">
+				ServedNum = #{servedNum,jdbcType=INTEGER},
+			</if>
+			<if test="detailDesc != null">
+				DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where RecordID = #{recordID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_ComboDetailInfoEntity">
+		update O_ComboDetailInfo
+		set DetailID = #{detailID,jdbcType=BIGINT},
+		VariantID = #{variantID,jdbcType=BIGINT},
+		ProductName = #{productName,jdbcType=VARCHAR},
+		ComboID = #{comboID,jdbcType=BIGINT},
+		ComboName = #{comboName,jdbcType=VARCHAR},
+		ValueIDs = #{valueIDs,jdbcType=VARCHAR},
+		ValueNames = #{valueNames,jdbcType=VARCHAR},
+		ImgPath = #{imgPath,jdbcType=VARCHAR},
+		OriginalPrice = #{originalPrice,jdbcType=DECIMAL},
+		Price = #{price,jdbcType=DECIMAL},
+		Quantity = #{quantity,jdbcType=INTEGER},
+		ProductUnit = #{productUnit,jdbcType=BIGINT},
+		ProduceStatus = #{produceStatus,jdbcType=BIGINT},
+		ProduceTime = #{produceTime,jdbcType=TIMESTAMP},
+		ServedNum = #{servedNum,jdbcType=INTEGER},
+		DetailDesc = #{detailDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where RecordID = #{recordID,jdbcType=BIGINT}
+	</update>
+	<select id="getAll" parameterType="O_ComboDetailInfoEntity" resultType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_ComboDetailInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="O_ComboDetailInfoEntity" resultType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_ComboDetailInfoEntity(#{recordID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteO_ComboDetailInfoEntity(#{recordID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="RecordID" parameterType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertO_ComboDetailInfoEntity(#{comboID},#{comboName},#{createTime},#{detailDesc},#{detailID},#{imgPath},#{memo},#{originalPrice},#{price},#{produceStatus},#{produceTime},#{productName},#{productUnit},#{quantity},#{recordID,jdbcType=INTEGER,mode=OUT},#{servedNum},#{sortNo},#{valueIDs},#{valueNames},#{variantID},'admin')}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateO_ComboDetailInfoEntity(#{comboID},#{comboName},#{createTime},#{detailDesc},#{detailID},#{imgPath},#{memo},#{originalPrice},#{price},#{produceStatus},#{produceTime},#{productName},#{productUnit},#{quantity},#{recordID},#{servedNum},#{sortNo},#{valueIDs},#{valueNames},#{variantID})}
+		]]>
+	</update>
+  	<!--<select id="list" parameterType="O_ComboDetailInfo" resultType="O_ComboDetailInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetO_ComboDetailInfo_query_by_condition(#{comboID},#{comboName},#{createTime},#{detailDesc},#{detailID},#{imgPath},#{memo},#{originalPrice},#{price},#{produceStatus},#{produceTime},#{productName},#{productUnit},#{quantity},#{servedNum},#{sortNo},#{variantID})} 
+		]]>  
+  	</select>
+  	-->
+  	
+  	<!--   
+		根据明细编号和状态查询套餐信息
+		lanziyao	
+	-->
+  	<select id="getComboDetailInfoByDetailIDAndStatus" parameterType="O_ComboDetailInfoEntity" resultType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+		SELECT `ComboID`, `ComboName`, `CreateTime`, `DetailDesc`, `DetailID`, `ImgPath`, `Memo`,
+		`OriginalPrice`, `Price`, `ProduceStatus`, `ProduceTime`, `ProductName`, `ProductUnit`, `Quantity`,
+		`RecordID`, `ServedNum`, `SortNo`, `VariantID`
+		FROM O_ComboDetailInfo
+		WHERE DetailID = #{detailID}
+		<if test="produceStatus != null">
+			AND ProduceStatus =#{produceStatus}
+		</if>
+	</select>
+
+	<!--
+		根据明细编号查询套餐明细ID字符串
+		lanziyao
+	-->
+	<select id="getRecordIDStrByDetailID" parameterType="Long" resultType="map" >
+		SELECT GROUP_CONCAT(RecordID) FROM O_ComboDetailInfo WHERE DetailID = #{detailID}
+	</select>
+
+	
+	<!--   
+		根据套餐订单明细编号修改套餐明细数量
+		lanziyao	
+	-->
+	<update id="updateComboDetailInfoByDetailID" parameterType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call Update_ReceptionO_ComboDetailInfoByDetailID(#{detailID},#{quantity})} 
+		]]>  
+  	</update>
+
+	<!-- 根据明细ID删除套餐信息 hcy -->
+	<delete id="deleteByDetailID" parameterType="O_ComboDetailInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteO_ComboDetailInfoEntityByDetailID(#{detailID})}
+		]]>
+	</delete>
+
+	<update id="batchStatusByDetailIDs">
+		UPDATE O_ComboDetailInfo SET produceStatus=#{produceStatus}
+		<if test="now != null">
+			,ProduceTime = #{now}
+		</if>
+		 WHERE detailID IN (${recordIDs})
+		AND produceStatus NOT IN (699,868,870)
+	</update>
+
+	<select id="getComboRecordIDByDetailIDs" resultType="long">
+		SELECT recordID FROM O_ComboDetailInfo WHERE DetailID IN
+		<foreach collection="list" open="(" close=")" separator="," item="item">
+			${item}
+		</foreach>
+	</select>
+
+	<!-- 根据明细ID查询套餐明细 -->
+	<select id="getComboDetailByDetailID" parameterType="Long" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from
+			O_ComboDetailInfo
+		where
+			DetailID = #{detailID}
+	</select>
+
+	<!-- 根据记录ID和制作状态查询套餐明细	hcy -->
+	<select id="getComboDetailByRecordIDAndStatus" parameterType="O_ComboDetailInfoEntity" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from
+			O_ComboDetailInfo
+		where
+			RecordID = #{recordID}
+		AND
+			ProduceStatus = #{produceStatus}
+	</select>
+
+	<!-- 根据套餐明细ID修改套餐的状态和制作时间		hcy -->
+	<insert id="updateComboByRecordID" parameterType="O_ComboDetailInfoEntity">
+		update O_ComboDetailInfo
+		<set>
+			<if test="produceStatus != null">
+				ProduceStatus = #{produceStatus},
+			</if>
+				ProduceTime = #{produceTime}
+		</set>
+		where
+			RecordID = #{recordID}
+	</insert>
+  </mapper>

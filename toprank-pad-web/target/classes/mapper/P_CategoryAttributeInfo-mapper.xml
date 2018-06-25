@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.P_CategoryAttributeInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.P_CategoryAttributeInfoEntity">
+		<id column="AttributeID" jdbcType="BIGINT" property="attributeID" />
+		<result column="CategoryID" jdbcType="BIGINT" property="categoryID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="OrgID" jdbcType="BIGINT" property="orgID" />
+		<result column="GroupID" jdbcType="BIGINT" property="groupID" />
+		<result column="AttributeCode" jdbcType="VARCHAR" property="attributeCode" />
+		<result column="AttributeName" jdbcType="VARCHAR" property="attributeName" />
+		<result column="AttributeStatus" jdbcType="BIGINT" property="attributeStatus" />
+		<result column="AttributeDesc" jdbcType="VARCHAR" property="attributeDesc" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		AttributeID, CategoryID, ArchiveID, OrgID, GroupID, AttributeCode, AttributeName,
+		AttributeStatus, AttributeDesc, SortNo, CreatorID, CreateTime, Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from P_CategoryAttributeInfo
+		where AttributeID = #{attributeID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from P_CategoryAttributeInfo
+		where AttributeID = #{attributeID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.P_CategoryAttributeInfoEntity">
+		insert into P_CategoryAttributeInfo (AttributeID, CategoryID, ArchiveID,
+		OrgID, GroupID, AttributeCode,
+		AttributeName, AttributeStatus, AttributeDesc,
+		SortNo, CreatorID, CreateTime,
+		Memo, IsSync)
+		values (#{attributeID,jdbcType=BIGINT}, #{categoryID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT},
+		#{orgID,jdbcType=BIGINT}, #{groupID,jdbcType=BIGINT}, #{attributeCode,jdbcType=VARCHAR},
+		#{attributeName,jdbcType=VARCHAR}, #{attributeStatus,jdbcType=BIGINT}, #{attributeDesc,jdbcType=VARCHAR},
+		#{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.P_CategoryAttributeInfoEntity">
+		insert into P_CategoryAttributeInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="attributeID != null">
+				AttributeID,
+			</if>
+			<if test="categoryID != null">
+				CategoryID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="orgID != null">
+				OrgID,
+			</if>
+			<if test="groupID != null">
+				GroupID,
+			</if>
+			<if test="attributeCode != null">
+				AttributeCode,
+			</if>
+			<if test="attributeName != null">
+				AttributeName,
+			</if>
+			<if test="attributeStatus != null">
+				AttributeStatus,
+			</if>
+			<if test="attributeDesc != null">
+				AttributeDesc,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="attributeID != null">
+				#{attributeID,jdbcType=BIGINT},
+			</if>
+			<if test="categoryID != null">
+				#{categoryID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				#{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="groupID != null">
+				#{groupID,jdbcType=BIGINT},
+			</if>
+			<if test="attributeCode != null">
+				#{attributeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeName != null">
+				#{attributeName,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeStatus != null">
+				#{attributeStatus,jdbcType=BIGINT},
+			</if>
+			<if test="attributeDesc != null">
+				#{attributeDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.P_CategoryAttributeInfoEntity">
+		update P_CategoryAttributeInfo
+		<set>
+			<if test="categoryID != null">
+				CategoryID = #{categoryID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				OrgID = #{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="groupID != null">
+				GroupID = #{groupID,jdbcType=BIGINT},
+			</if>
+			<if test="attributeCode != null">
+				AttributeCode = #{attributeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeName != null">
+				AttributeName = #{attributeName,jdbcType=VARCHAR},
+			</if>
+			<if test="attributeStatus != null">
+				AttributeStatus = #{attributeStatus,jdbcType=BIGINT},
+			</if>
+			<if test="attributeDesc != null">
+				AttributeDesc = #{attributeDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where AttributeID = #{attributeID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.P_CategoryAttributeInfoEntity">
+		update P_CategoryAttributeInfo
+		set CategoryID = #{categoryID,jdbcType=BIGINT},
+		ArchiveID = #{archiveID,jdbcType=BIGINT},
+		OrgID = #{orgID,jdbcType=BIGINT},
+		GroupID = #{groupID,jdbcType=BIGINT},
+		AttributeCode = #{attributeCode,jdbcType=VARCHAR},
+		AttributeName = #{attributeName,jdbcType=VARCHAR},
+		AttributeStatus = #{attributeStatus,jdbcType=BIGINT},
+		AttributeDesc = #{attributeDesc,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where AttributeID = #{attributeID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="P_CategoryAttributeInfoEntity" resultType="P_CategoryAttributeInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_CategoryAttributeInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="P_CategoryAttributeInfoEntity" resultType="P_CategoryAttributeInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetP_CategoryAttributeInfoEntity(#{attributeID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="P_CategoryAttributeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteP_CategoryAttributeInfoEntity(#{attributeID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="AttributeID" parameterType="P_CategoryAttributeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertP_CategoryAttributeInfoEntity(#{archiveID},#{attributeCode},#{attributeDesc},#{attributeID,jdbcType=INTEGER,mode=OUT},#{attributeName},#{attributeStatus},#{categoryID},#{createTime},#{creatorID},#{groupID},#{isSync},#{memo},#{orgID},#{sortNo})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="P_CategoryAttributeInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateP_CategoryAttributeInfoEntity(#{archiveID},#{attributeCode},#{attributeDesc},#{attributeID},#{attributeName},#{attributeStatus},#{categoryID},#{createTime},#{creatorID},#{groupID},#{isSync},#{memo},#{orgID},#{sortNo})} 
+		]]>  
+  	</update>
+
+	<!-- 根据口味做法ids和分组id查询记录 -->
+	<select id="getAttributeByValuesAndGroupID" parameterType="map" resultType="cc.toprank.byd.web.vo.product.ProductAttributeVo">
+		SELECT cav.valueID,pai.attributeID,pai.attributeName as categoryName,cav.attributeName,cav.attributeValue,cav.addedPrice
+			from P_CategoryAttributeInfo pai
+			LEFT JOIN P_CategoryAttributeValueInfo cav ON cav.AttributeID = pai.AttributeID
+			WHERE  FIND_IN_SET(cav.ValueID, #{valueIDs}) AND pai.GroupID = #{groupID}
+	</select>
+
+	<!-- 查询单品分类属性 -->
+	<select id="getProductAttributeByVariantID" parameterType="java.lang.Long" resultType="cc.toprank.byd.web.vo.product.ProductAttributeVo">
+		SELECT pav.variantID,cav.valueID,pai.attributeID,pai.attributeName as categoryName,cav.attributeName,cav.attributeValue,cav.addedPrice
+		FROM P_CategoryAttributeInfo pai
+		LEFT JOIN P_CategoryAttributeValueInfo cav ON cav.AttributeID = pai.AttributeID
+		LEFT JOIN P_VariantAttributeValueMapping pav ON pav.ValueID = cav.ValueID AND pav.MappingStatus=9
+		WHERE pav.VariantID = #{variantID}
+	</select>
+	<!-- 查询套餐分类属性 -->
+	<select id="getProductAttributeByProductID" parameterType="java.lang.Long" resultType="cc.toprank.byd.web.vo.product.ProductAttributeVo">
+		SELECT pav.productID,cav.valueID,pai.attributeID,pai.attributeName as categoryName,cav.attributeName,cav.attributeValue,cav.addedPrice
+		FROM P_CategoryAttributeInfo pai
+		LEFT JOIN P_CategoryAttributeValueInfo cav ON cav.AttributeID = pai.AttributeID
+		LEFT JOIN P_ProductAttributeValueMapping pav ON pav.ValueID = cav.ValueID AND pav.MappingStatus=9
+		WHERE pav.ProductID=#{productID}
+	</select>
+  </mapper>

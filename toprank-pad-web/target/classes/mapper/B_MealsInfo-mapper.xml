@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.B_MealsInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_MealsInfoEntity">
+		<id column="MealsID" jdbcType="BIGINT" property="mealsID" />
+		<result column="ParentID" jdbcType="BIGINT" property="parentID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="OrgID" jdbcType="BIGINT" property="orgID" />
+		<result column="AreaID" jdbcType="BIGINT" property="areaID" />
+		<result column="MealCode" jdbcType="VARCHAR" property="mealCode" />
+		<result column="MealName" jdbcType="VARCHAR" property="mealName" />
+		<result column="IsDefault" jdbcType="BIGINT" property="isDefault" />
+		<result column="StartTime" jdbcType="TIMESTAMP" property="startTime" />
+		<result column="EndTime" jdbcType="TIMESTAMP" property="endTime" />
+		<result column="MealStatus" jdbcType="BIGINT" property="mealStatus" />
+		<result column="SegmentLength" jdbcType="INTEGER" property="segmentLength" />
+		<result column="MinLength" jdbcType="INTEGER" property="minLength" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		MealsID, ParentID, ArchiveID, OrgID, AreaID, MealCode, MealName, IsDefault, StartTime,
+		EndTime, MealStatus, SegmentLength, MinLength, SortNo, CreatorID, CreateTime, Memo,
+		IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from B_MealsInfo
+		where MealsID = #{mealsID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_MealsInfo
+		where MealsID = #{mealsID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.B_MealsInfoEntity">
+		insert into B_MealsInfo (MealsID, ParentID, ArchiveID,
+		OrgID, AreaID, MealCode,
+		MealName, IsDefault, StartTime,
+		EndTime, MealStatus, SegmentLength,
+		MinLength, SortNo, CreatorID,
+		CreateTime, Memo, IsSync
+		)
+		values (#{mealsID,jdbcType=BIGINT}, #{parentID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT},
+		#{orgID,jdbcType=BIGINT}, #{areaID,jdbcType=BIGINT}, #{mealCode,jdbcType=VARCHAR},
+		#{mealName,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIGINT}, #{startTime,jdbcType=TIMESTAMP},
+		#{endTime,jdbcType=TIMESTAMP}, #{mealStatus,jdbcType=BIGINT}, #{segmentLength,jdbcType=INTEGER},
+		#{minLength,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_MealsInfoEntity">
+		insert into B_MealsInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mealsID != null">
+				MealsID,
+			</if>
+			<if test="parentID != null">
+				ParentID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="orgID != null">
+				OrgID,
+			</if>
+			<if test="areaID != null">
+				AreaID,
+			</if>
+			<if test="mealCode != null">
+				MealCode,
+			</if>
+			<if test="mealName != null">
+				MealName,
+			</if>
+			<if test="isDefault != null">
+				IsDefault,
+			</if>
+			<if test="startTime != null">
+				StartTime,
+			</if>
+			<if test="endTime != null">
+				EndTime,
+			</if>
+			<if test="mealStatus != null">
+				MealStatus,
+			</if>
+			<if test="segmentLength != null">
+				SegmentLength,
+			</if>
+			<if test="minLength != null">
+				MinLength,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="mealsID != null">
+				#{mealsID,jdbcType=BIGINT},
+			</if>
+			<if test="parentID != null">
+				#{parentID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				#{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="areaID != null">
+				#{areaID,jdbcType=BIGINT},
+			</if>
+			<if test="mealCode != null">
+				#{mealCode,jdbcType=VARCHAR},
+			</if>
+			<if test="mealName != null">
+				#{mealName,jdbcType=VARCHAR},
+			</if>
+			<if test="isDefault != null">
+				#{isDefault,jdbcType=BIGINT},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mealStatus != null">
+				#{mealStatus,jdbcType=BIGINT},
+			</if>
+			<if test="segmentLength != null">
+				#{segmentLength,jdbcType=INTEGER},
+			</if>
+			<if test="minLength != null">
+				#{minLength,jdbcType=INTEGER},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_MealsInfoEntity">
+		update B_MealsInfo
+		<set>
+			<if test="parentID != null">
+				ParentID = #{parentID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				OrgID = #{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="areaID != null">
+				AreaID = #{areaID,jdbcType=BIGINT},
+			</if>
+			<if test="mealCode != null">
+				MealCode = #{mealCode,jdbcType=VARCHAR},
+			</if>
+			<if test="mealName != null">
+				MealName = #{mealName,jdbcType=VARCHAR},
+			</if>
+			<if test="isDefault != null">
+				IsDefault = #{isDefault,jdbcType=BIGINT},
+			</if>
+			<if test="startTime != null">
+				StartTime = #{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				EndTime = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mealStatus != null">
+				MealStatus = #{mealStatus,jdbcType=BIGINT},
+			</if>
+			<if test="segmentLength != null">
+				SegmentLength = #{segmentLength,jdbcType=INTEGER},
+			</if>
+			<if test="minLength != null">
+				MinLength = #{minLength,jdbcType=INTEGER},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where MealsID = #{mealsID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_MealsInfoEntity">
+		update B_MealsInfo
+		set ParentID = #{parentID,jdbcType=BIGINT},
+		ArchiveID = #{archiveID,jdbcType=BIGINT},
+		OrgID = #{orgID,jdbcType=BIGINT},
+		AreaID = #{areaID,jdbcType=BIGINT},
+		MealCode = #{mealCode,jdbcType=VARCHAR},
+		MealName = #{mealName,jdbcType=VARCHAR},
+		IsDefault = #{isDefault,jdbcType=BIGINT},
+		StartTime = #{startTime,jdbcType=TIMESTAMP},
+		EndTime = #{endTime,jdbcType=TIMESTAMP},
+		MealStatus = #{mealStatus,jdbcType=BIGINT},
+		SegmentLength = #{segmentLength,jdbcType=INTEGER},
+		MinLength = #{minLength,jdbcType=INTEGER},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where MealsID = #{mealsID,jdbcType=BIGINT}
+	</update>
+	<select id="getAll" parameterType="B_MealsInfoEntity" resultType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MealsInfoCollection()}
+		]]>
+	</select>
+	<select id="get" parameterType="B_MealsInfoEntity" resultType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MealsInfoEntity(#{mealsID})}
+		]]>
+	</select>
+	<delete id="delete" parameterType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call DeleteB_MealsInfoEntity(#{mealsID})}
+		]]>
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="MealsID" parameterType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call InsertB_MealsInfoEntity(#{archiveID},#{areaID},#{createTime},#{creatorID},#{endTime},#{isDefault},#{isSync},#{mealCode},#{mealName},#{mealsID,jdbcType=INTEGER,mode=OUT},#{mealStatus},#{memo},#{minLength},#{orgID},#{segmentLength},#{sortNo},#{startTime},"admin")}
+		]]>
+	</insert>
+
+	<update id="update" parameterType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateB_MealsInfoEntity(#{archiveID},#{areaID},#{createTime},#{creatorID},#{endTime},#{isDefault},#{isSync},#{mealCode},#{mealName},#{mealsID},#{mealStatus},#{memo},#{minLength},#{orgID},#{segmentLength},#{sortNo},#{startTime})}
+		]]>
+	</update>
+
+	<!-- 根据archiveID获取餐次和对应的时间 -->
+	<select id="get_ReceptionB_MealsInfoByOrgId" parameterType="Long" resultType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_MealsInfoByOrgId(#{archiveID})}
+		]]>
+	</select>
+
+	<!-- 根据  档案编号  获取餐次
+  		@author lwh
+  	-->
+	<select id="GetB_MealsInfoCollectionByArchiveID" parameterType="B_MealsInfoEntity" resultType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MealsInfoCollectionByAreaIDAndArchiveID(#{archiveID},#{areaID})}
+		]]>
+	</select>
+
+	<!-- 根据orgID,areaID,mealName获取mealID @author zhangbo -->
+	<select id="getB_MealsInfoByMultiCondition" parameterType="hashmap" resultType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_MealsInfoByMultiCondition(#{archiveID},#{areaID},#{mealName})}
+		]]>
+	</select>
+
+	<!-- 根据ArchiveID,时间 获取餐次信息  -->
+	<select id="get_ReceptionB_MealsInfoByTimeAndArchiveID" parameterType="hashmap" resultType="B_MealsInfoEntity">
+		Select `ArchiveID`, `AreaID`, `CreateTime`, `CreatorID`, `EndTime`, `IsDefault`, `IsSync`,
+		`MealCode`, `MealName`, `MealsID`, `MealStatus`, `Memo`, `MinLength`, `OrgID`,
+		`SegmentLength`, `SortNo`, `StartTime`
+		from B_MealsInfo
+		WHERE	ArchiveID = #{archiveID} AND MealStatus = 596
+			AND (DATE_FORMAT(#{time}, '%H:%i:%s') BETWEEN DATE_FORMAT(StartTime,'%H:%i:%s') AND DATE_FORMAT(EndTime,'%H:%i:%s'))
+		<if test="areaID != null">
+			AND AreaID=#{areaID}
+		</if>
+		limit 0,1
+	</select>
+
+	<!--获取可预定的餐次信息-->
+	<select id="getMealsInfoEntityListByBooking" parameterType="Map" resultType="B_MealsInfoEntity">
+		select *  FROM B_MealsInfo m
+		WHERE  m.ArchiveID = #{archiveID}
+		AND m.MealStatus=596
+		<choose>
+			<when test="areaID != null">
+				AND m.AreaID = #{areaID}
+			</when>
+			<otherwise>
+				AND m.AreaID is null
+			</otherwise>
+		</choose>
+		order by m.StartTime
+	</select>
+
+	<!--获得指定时间餐次数据-->
+	<select id="getCurrentMeals" parameterType="map" resultType="B_MealsInfoEntity">
+		select
+		<include refid="Base_Column_List" />
+		from B_MealsInfo
+		where
+		archiveID = #{archiveID}
+		<choose>
+			<when test="areaID == null">
+				and areaID is null
+			</when>
+			<when test="areaID != null">
+				and areaID = #{areaID}
+			</when>
+		</choose>
+		and
+		TIME_TO_SEC(#{now}) - TIME_TO_SEC(startTime) &gt;=0
+		and
+		TIME_TO_SEC(#{now}) - TIME_TO_SEC(endTime) &lt;0
+		limit 1
+	</select>
+
+	<!--  根据区域编号获取有效餐次信息 LiuXJ -->
+	<select id="getMealsInfoByAreaID" parameterType="map" resultType="B_MealsInfoEntity">
+		SELECT * FROM B_MealsInfo
+		WHERE ArchiveID = #{archiveID}
+		<choose>
+			<when test="areaID == null">
+				and AreaID IS NULL
+			</when>
+			<when test="areaID != null">
+				and AreaID = #{areaID}
+			</when>
+		</choose>
+		AND MealStatus = 596
+	</select>
+
+	<!--  按档案ID和状态查询当前餐厅所有的餐次信息 lzy -->
+	<select id="getMealsInfoListByArchiveIDAndStatus" parameterType="B_MealsInfoEntity" resultType="B_MealsInfoEntity">
+		SELECT `ArchiveID`, `AreaID`, `CreateTime`, `CreatorID`, `EndTime`, `IsDefault`, `IsSync`,
+				`MealCode`, `MealName`, `MealsID`, `MealStatus`, `Memo`, `MinLength`, `OrgID`,
+				`ParentID`, `SegmentLength`, `SortNo`, `StartTime`
+		 FROM B_MealsInfo
+		 WHERE
+		 	ArchiveID = #{archiveID}
+		 	AND MealStatus = #{mealStatus}
+		 	AND AreaID = #{areaID}
+	</select>
+
+	<!--  查询当前的餐次信息 lzy -->
+	<select id="getCurrentMealsInfo" parameterType="B_MealsInfoEntity" resultType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GETB_MealsInfoByCondition(#{areaID},#{archiveID},#{startTime})}
+		]]>
+	</select>
+
+
+
+	<!--  根据档案ID和区域ID查询当前时间区间的餐次列表 lzy -->
+	<select id="getMealsBetween" parameterType="B_MealsInfoEntity" resultType="B_MealsInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetB_MealsBetween(#{archiveID},#{areaID})}
+		]]>
+	</select>
+</mapper>

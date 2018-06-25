@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.U_OrgRoleInfoDao">
+  <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.U_OrgRoleInfoEntity">
+    <id column="MappingID" jdbcType="BIGINT" property="mappingID" />
+    <result column="RoleID" jdbcType="BIGINT" property="roleID" />
+    <result column="OrgID" jdbcType="BIGINT" property="orgID" />
+    <result column="MappingCode" jdbcType="VARCHAR" property="mappingCode" />
+    <result column="EffectiveTime" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="ExpireTime" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+    <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="Memo" jdbcType="VARCHAR" property="memo" />
+    <result column="IsSync" jdbcType="BIT" property="isSync" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MappingID, RoleID, OrgID, MappingCode, EffectiveTime, ExpireTime, SortNo, CreatorID, 
+    CreateTime, Memo, IsSync
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from U_OrgRoleInfo
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from U_OrgRoleInfo
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cc.toprank.byd.entity.U_OrgRoleInfoEntity">
+    insert into U_OrgRoleInfo (MappingID, RoleID, OrgID, 
+      MappingCode, EffectiveTime, ExpireTime, 
+      SortNo, CreatorID, CreateTime, 
+      Memo, IsSync)
+    values (#{mappingID,jdbcType=BIGINT}, #{roleID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT}, 
+      #{mappingCode,jdbcType=VARCHAR}, #{effectiveTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{sortNo,jdbcType=INTEGER}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.toprank.byd.entity.U_OrgRoleInfoEntity">
+    insert into U_OrgRoleInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        MappingID,
+      </if>
+      <if test="roleID != null">
+        RoleID,
+      </if>
+      <if test="orgID != null">
+        OrgID,
+      </if>
+      <if test="mappingCode != null">
+        MappingCode,
+      </if>
+      <if test="effectiveTime != null">
+        EffectiveTime,
+      </if>
+      <if test="expireTime != null">
+        ExpireTime,
+      </if>
+      <if test="sortNo != null">
+        SortNo,
+      </if>
+      <if test="creatorID != null">
+        CreatorID,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="isSync != null">
+        IsSync,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mappingID != null">
+        #{mappingID,jdbcType=BIGINT},
+      </if>
+      <if test="roleID != null">
+        #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="mappingCode != null">
+        #{mappingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        #{isSync,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.U_OrgRoleInfoEntity">
+    update U_OrgRoleInfo
+    <set>
+      <if test="roleID != null">
+        RoleID = #{roleID,jdbcType=BIGINT},
+      </if>
+      <if test="orgID != null">
+        OrgID = #{orgID,jdbcType=BIGINT},
+      </if>
+      <if test="mappingCode != null">
+        MappingCode = #{mappingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveTime != null">
+        EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNo != null">
+        SortNo = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorID != null">
+        CreatorID = #{creatorID,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isSync != null">
+        IsSync = #{isSync,jdbcType=BIT},
+      </if>
+    </set>
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.U_OrgRoleInfoEntity">
+    update U_OrgRoleInfo
+    set RoleID = #{roleID,jdbcType=BIGINT},
+      OrgID = #{orgID,jdbcType=BIGINT},
+      MappingCode = #{mappingCode,jdbcType=VARCHAR},
+      EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+      ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+      SortNo = #{sortNo,jdbcType=INTEGER},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      IsSync = #{isSync,jdbcType=BIT}
+    where MappingID = #{mappingID,jdbcType=BIGINT}
+  </update>
+
+  <!-- 查询商户角色信息 -->
+  <select id="queryRoleInfo" parameterType="map" resultType="cc.toprank.byd.web.vo.tablevo.OrgRoleVO" statementType="CALLABLE">
+    <![CDATA[
+			{call GetU_OrgRoleInfoCollectionForMapping(#{orgID})}
+		]]>
+  </select>
+
+</mapper>

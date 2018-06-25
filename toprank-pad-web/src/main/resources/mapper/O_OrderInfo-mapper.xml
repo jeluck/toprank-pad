@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.O_OrderInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.O_OrderInfoEntity">
+		<id column="OrderID" jdbcType="BIGINT" property="orderID" />
+		<result column="LoginID" jdbcType="BIGINT" property="loginID" />
+		<result column="CustomerID" jdbcType="BIGINT" property="customerID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="OrderCode" jdbcType="VARCHAR" property="orderCode" />
+		<result column="NickName" jdbcType="VARCHAR" property="nickName" />
+		<result column="OrderChannel" jdbcType="BIGINT" property="orderChannel" />
+		<result column="Phone" jdbcType="VARCHAR" property="phone" />
+		<result column="PeopleNum" jdbcType="INTEGER" property="peopleNum" />
+		<result column="Commission" jdbcType="DECIMAL" property="commission" />
+		<result column="CurrencyID" jdbcType="BIGINT" property="currencyID" />
+		<result column="TotalAmount" jdbcType="DECIMAL" property="totalAmount" />
+		<result column="DiscountAmount" jdbcType="DECIMAL" property="discountAmount" />
+		<result column="ActualAmount" jdbcType="DECIMAL" property="actualAmount" />
+		<result column="PendingAmount" jdbcType="DECIMAL" property="pendingAmount" />
+		<result column="OrderStatus" jdbcType="BIGINT" property="orderStatus" />
+		<result column="OrderDesc" jdbcType="VARCHAR" property="orderDesc" />
+		<result column="PaymentMethodID" jdbcType="BIGINT" property="paymentMethodID" />
+		<result column="PayStatus" jdbcType="BIGINT" property="payStatus" />
+		<result column="Quantity" jdbcType="INTEGER" property="quantity" />
+		<result column="PaidTime" jdbcType="TIMESTAMP" property="paidTime" />
+		<result column="ShippingType" jdbcType="BIGINT" property="shippingType" />
+		<result column="ShippingCorpID" jdbcType="BIGINT" property="shippingCorpID" />
+		<result column="ShippingCode" jdbcType="VARCHAR" property="shippingCode" />
+		<result column="VendorID" jdbcType="BIGINT" property="vendorID" />
+		<result column="WeightID" jdbcType="BIGINT" property="weightID" />
+		<result column="OrderWeight" jdbcType="REAL" property="orderWeight" />
+		<result column="AddressID" jdbcType="BIGINT" property="addressID" />
+		<result column="ValidationCode" jdbcType="VARCHAR" property="validationCode" />
+		<result column="CustomerServiceStatus" jdbcType="BIGINT" property="customerServiceStatus" />
+		<result column="PrintBarCode" jdbcType="VARCHAR" property="printBarCode" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreatorType" jdbcType="BIGINT" property="creatorType" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		OrderID, LoginID, CustomerID, ArchiveID, OrderCode, NickName, OrderChannel, Phone,
+		PeopleNum, Commission, CurrencyID, TotalAmount, DiscountAmount, ActualAmount, PendingAmount,
+		OrderStatus, OrderDesc, PaymentMethodID, PayStatus, Quantity, PaidTime, ShippingType,
+		ShippingCorpID, ShippingCode, VendorID, WeightID, OrderWeight, AddressID, ValidationCode,
+		CustomerServiceStatus, PrintBarCode, IsSync, CreatorID, CreatorType, CreateTime,
+		Memo
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from O_OrderInfo
+		where OrderID = #{orderID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from O_OrderInfo
+		where OrderID = #{orderID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.O_OrderInfoEntity">
+		insert into O_OrderInfo (OrderID, LoginID, CustomerID,
+		ArchiveID, OrderCode, NickName,
+		OrderChannel, Phone, PeopleNum,
+		Commission, CurrencyID, TotalAmount,
+		DiscountAmount, ActualAmount, PendingAmount,
+		OrderStatus, OrderDesc, PaymentMethodID,
+		PayStatus, Quantity, PaidTime,
+		ShippingType, ShippingCorpID, ShippingCode,
+		VendorID, WeightID, OrderWeight,
+		AddressID, ValidationCode, CustomerServiceStatus,
+		PrintBarCode, IsSync, CreatorID,
+		CreatorType, CreateTime, Memo
+		)
+		values (#{orderID,jdbcType=BIGINT}, #{loginID,jdbcType=BIGINT}, #{customerID,jdbcType=BIGINT},
+		#{archiveID,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+		#{orderChannel,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, #{peopleNum,jdbcType=INTEGER},
+		#{commission,jdbcType=DECIMAL}, #{currencyID,jdbcType=BIGINT}, #{totalAmount,jdbcType=DECIMAL},
+		#{discountAmount,jdbcType=DECIMAL}, #{actualAmount,jdbcType=DECIMAL}, #{pendingAmount,jdbcType=DECIMAL},
+		#{orderStatus,jdbcType=BIGINT}, #{orderDesc,jdbcType=VARCHAR}, #{paymentMethodID,jdbcType=BIGINT},
+		#{payStatus,jdbcType=BIGINT}, #{quantity,jdbcType=INTEGER}, #{paidTime,jdbcType=TIMESTAMP},
+		#{shippingType,jdbcType=BIGINT}, #{shippingCorpID,jdbcType=BIGINT}, #{shippingCode,jdbcType=VARCHAR},
+		#{vendorID,jdbcType=BIGINT}, #{weightID,jdbcType=BIGINT}, #{orderWeight,jdbcType=REAL},
+		#{addressID,jdbcType=BIGINT}, #{validationCode,jdbcType=VARCHAR}, #{customerServiceStatus,jdbcType=BIGINT},
+		#{printBarCode,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}, #{creatorID,jdbcType=BIGINT},
+		#{creatorType,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.O_OrderInfoEntity">
+		insert into O_OrderInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderID != null">
+				OrderID,
+			</if>
+			<if test="loginID != null">
+				LoginID,
+			</if>
+			<if test="customerID != null">
+				CustomerID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="orderCode != null">
+				OrderCode,
+			</if>
+			<if test="nickName != null">
+				NickName,
+			</if>
+			<if test="orderChannel != null">
+				OrderChannel,
+			</if>
+			<if test="phone != null">
+				Phone,
+			</if>
+			<if test="peopleNum != null">
+				PeopleNum,
+			</if>
+			<if test="commission != null">
+				Commission,
+			</if>
+			<if test="currencyID != null">
+				CurrencyID,
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount,
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount,
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount,
+			</if>
+			<if test="pendingAmount != null">
+				PendingAmount,
+			</if>
+			<if test="orderStatus != null">
+				OrderStatus,
+			</if>
+			<if test="orderDesc != null">
+				OrderDesc,
+			</if>
+			<if test="paymentMethodID != null">
+				PaymentMethodID,
+			</if>
+			<if test="payStatus != null">
+				PayStatus,
+			</if>
+			<if test="quantity != null">
+				Quantity,
+			</if>
+			<if test="paidTime != null">
+				PaidTime,
+			</if>
+			<if test="shippingType != null">
+				ShippingType,
+			</if>
+			<if test="shippingCorpID != null">
+				ShippingCorpID,
+			</if>
+			<if test="shippingCode != null">
+				ShippingCode,
+			</if>
+			<if test="vendorID != null">
+				VendorID,
+			</if>
+			<if test="weightID != null">
+				WeightID,
+			</if>
+			<if test="orderWeight != null">
+				OrderWeight,
+			</if>
+			<if test="addressID != null">
+				AddressID,
+			</if>
+			<if test="validationCode != null">
+				ValidationCode,
+			</if>
+			<if test="customerServiceStatus != null">
+				CustomerServiceStatus,
+			</if>
+			<if test="printBarCode != null">
+				PrintBarCode,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="creatorType != null">
+				CreatorType,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderID != null">
+				#{orderID,jdbcType=BIGINT},
+			</if>
+			<if test="loginID != null">
+				#{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="customerID != null">
+				#{customerID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orderCode != null">
+				#{orderCode,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="orderChannel != null">
+				#{orderChannel,jdbcType=BIGINT},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="peopleNum != null">
+				#{peopleNum,jdbcType=INTEGER},
+			</if>
+			<if test="commission != null">
+				#{commission,jdbcType=DECIMAL},
+			</if>
+			<if test="currencyID != null">
+				#{currencyID,jdbcType=BIGINT},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="discountAmount != null">
+				#{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actualAmount != null">
+				#{actualAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="pendingAmount != null">
+				#{pendingAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderStatus != null">
+				#{orderStatus,jdbcType=BIGINT},
+			</if>
+			<if test="orderDesc != null">
+				#{orderDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentMethodID != null">
+				#{paymentMethodID,jdbcType=BIGINT},
+			</if>
+			<if test="payStatus != null">
+				#{payStatus,jdbcType=BIGINT},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="paidTime != null">
+				#{paidTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shippingType != null">
+				#{shippingType,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCorpID != null">
+				#{shippingCorpID,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCode != null">
+				#{shippingCode,jdbcType=VARCHAR},
+			</if>
+			<if test="vendorID != null">
+				#{vendorID,jdbcType=BIGINT},
+			</if>
+			<if test="weightID != null">
+				#{weightID,jdbcType=BIGINT},
+			</if>
+			<if test="orderWeight != null">
+				#{orderWeight,jdbcType=REAL},
+			</if>
+			<if test="addressID != null">
+				#{addressID,jdbcType=BIGINT},
+			</if>
+			<if test="validationCode != null">
+				#{validationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="customerServiceStatus != null">
+				#{customerServiceStatus,jdbcType=BIGINT},
+			</if>
+			<if test="printBarCode != null">
+				#{printBarCode,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				#{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.O_OrderInfoEntity">
+		update O_OrderInfo
+		<set>
+			<if test="loginID != null">
+				LoginID = #{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="customerID != null">
+				CustomerID = #{customerID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orderCode != null">
+				OrderCode = #{orderCode,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				NickName = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="orderChannel != null">
+				OrderChannel = #{orderChannel,jdbcType=BIGINT},
+			</if>
+			<if test="phone != null">
+				Phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="peopleNum != null">
+				PeopleNum = #{peopleNum,jdbcType=INTEGER},
+			</if>
+			<if test="commission != null">
+				Commission = #{commission,jdbcType=DECIMAL},
+			</if>
+			<if test="currencyID != null">
+				CurrencyID = #{currencyID,jdbcType=BIGINT},
+			</if>
+			<if test="totalAmount != null">
+				TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="discountAmount != null">
+				DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount = #{actualAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="pendingAmount != null">
+				PendingAmount = #{pendingAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderStatus != null">
+				OrderStatus = #{orderStatus,jdbcType=BIGINT},
+			</if>
+			<if test="orderDesc != null">
+				OrderDesc = #{orderDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentMethodID != null">
+				PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+			</if>
+			<if test="payStatus != null">
+				PayStatus = #{payStatus,jdbcType=BIGINT},
+			</if>
+			<if test="quantity != null">
+				Quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="paidTime != null">
+				PaidTime = #{paidTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shippingType != null">
+				ShippingType = #{shippingType,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCorpID != null">
+				ShippingCorpID = #{shippingCorpID,jdbcType=BIGINT},
+			</if>
+			<if test="shippingCode != null">
+				ShippingCode = #{shippingCode,jdbcType=VARCHAR},
+			</if>
+			<if test="vendorID != null">
+				VendorID = #{vendorID,jdbcType=BIGINT},
+			</if>
+			<if test="weightID != null">
+				WeightID = #{weightID,jdbcType=BIGINT},
+			</if>
+			<if test="orderWeight != null">
+				OrderWeight = #{orderWeight,jdbcType=REAL},
+			</if>
+			<if test="addressID != null">
+				AddressID = #{addressID,jdbcType=BIGINT},
+			</if>
+			<if test="validationCode != null">
+				ValidationCode = #{validationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="customerServiceStatus != null">
+				CustomerServiceStatus = #{customerServiceStatus,jdbcType=BIGINT},
+			</if>
+			<if test="printBarCode != null">
+				PrintBarCode = #{printBarCode,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="creatorType != null">
+				CreatorType = #{creatorType,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where OrderID = #{orderID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.O_OrderInfoEntity">
+		update O_OrderInfo
+		set LoginID = #{loginID,jdbcType=BIGINT},
+		CustomerID = #{customerID,jdbcType=BIGINT},
+		ArchiveID = #{archiveID,jdbcType=BIGINT},
+		OrderCode = #{orderCode,jdbcType=VARCHAR},
+		NickName = #{nickName,jdbcType=VARCHAR},
+		OrderChannel = #{orderChannel,jdbcType=BIGINT},
+		Phone = #{phone,jdbcType=VARCHAR},
+		PeopleNum = #{peopleNum,jdbcType=INTEGER},
+		Commission = #{commission,jdbcType=DECIMAL},
+		CurrencyID = #{currencyID,jdbcType=BIGINT},
+		TotalAmount = #{totalAmount,jdbcType=DECIMAL},
+		DiscountAmount = #{discountAmount,jdbcType=DECIMAL},
+		ActualAmount = #{actualAmount,jdbcType=DECIMAL},
+		PendingAmount = #{pendingAmount,jdbcType=DECIMAL},
+		OrderStatus = #{orderStatus,jdbcType=BIGINT},
+		OrderDesc = #{orderDesc,jdbcType=VARCHAR},
+		PaymentMethodID = #{paymentMethodID,jdbcType=BIGINT},
+		PayStatus = #{payStatus,jdbcType=BIGINT},
+		Quantity = #{quantity,jdbcType=INTEGER},
+		PaidTime = #{paidTime,jdbcType=TIMESTAMP},
+		ShippingType = #{shippingType,jdbcType=BIGINT},
+		ShippingCorpID = #{shippingCorpID,jdbcType=BIGINT},
+		ShippingCode = #{shippingCode,jdbcType=VARCHAR},
+		VendorID = #{vendorID,jdbcType=BIGINT},
+		WeightID = #{weightID,jdbcType=BIGINT},
+		OrderWeight = #{orderWeight,jdbcType=REAL},
+		AddressID = #{addressID,jdbcType=BIGINT},
+		ValidationCode = #{validationCode,jdbcType=VARCHAR},
+		CustomerServiceStatus = #{customerServiceStatus,jdbcType=BIGINT},
+		PrintBarCode = #{printBarCode,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreatorType = #{creatorType,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR}
+		where OrderID = #{orderID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="O_OrderInfoEntity" resultType="O_OrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_OrderInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="O_OrderInfoEntity" resultType="O_OrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetO_OrderInfoEntity(#{orderID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="O_OrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteO_OrderInfoEntity(#{orderID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="OrderID" parameterType="O_OrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertO_OrderInfoEntity(#{actualAmount},#{addressID},#{archiveID},#{commission},#{createTime},#{creatorID},#{creatorType},#{currencyID},#{customerID},#{customerServiceStatus},#{discountAmount},#{isSync},#{loginID},#{memo},#{nickName},#{orderChannel},#{orderCode},#{orderDesc},#{orderID,jdbcType=INTEGER,mode=OUT},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{phone},#{printBarCode},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{totalAmount},#{validationCode},#{vendorID},#{weightID})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="O_OrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateO_OrderInfoEntity(#{actualAmount},#{addressID},#{archiveID},#{commission},#{createTime},#{creatorID},#{creatorType},#{currencyID},#{customerID},#{customerServiceStatus},#{discountAmount},#{isSync},#{loginID},#{memo},#{nickName},#{orderChannel},#{orderCode},#{orderDesc},#{orderID},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{phone},#{printBarCode},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{totalAmount},#{validationCode},#{vendorID},#{weightID})} 
+		]]>  
+  	</update>
+  	<!--<select id="list" parameterType="O_OrderInfo" resultType="O_OrderInfo" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetO_OrderInfo_query_by_condition(#{actualAmount},#{addressID},#{archiveID},#{commission},#{createTime},#{creatorID},#{creatorType},#{currencyID},#{customerID},#{customerServiceStatus},#{discountAmount},#{isSync},#{loginID},#{memo},#{nickName},#{orderChannel},#{orderCode},#{orderDesc},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{phone},#{printBarCode},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{totalAmount},#{validationCode},#{vendorID},#{weightID})} 
+		]]>  
+  	</select>
+  	-->
+  	
+  	<!--   	
+		根据订单编号修改订单总额,实际金额,数量
+	  	lanziyao 
+	-->	
+	<update id="updateOrderInfoByOrderID" parameterType="O_OrderInfoEntity" >
+		UPDATE O_OrderInfo
+		<set>
+			<if test="totalAmount != null">
+				TotalAmount = #{totalAmount},
+			</if>
+			<if test="actualAmount != null">
+				ActualAmount = #{actualAmount},
+			</if>
+			<if test="pendingAmount != null">
+				PendingAmount = #{pendingAmount},
+			</if>
+			<if test="quantity != null">
+				Quantity =  #{quantity},
+			</if>
+		</set>
+		WHERE
+				OrderID = #{orderID};
+  	</update>
+  	
+	<insert id="saveOrderInfoEntity" useGeneratedKeys="true" keyProperty="OrderID" parameterType="O_OrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call Insert_ReceptionO_OrderInfoEntity(#{actualAmount},#{addressID},#{archiveID},#{commission},#{createTime},#{currencyID},#{customerID},#{customerServiceStatus},#{discountAmount},#{loginID},#{memo},#{nickName},#{orderChannel},#{orderCode},#{orderDesc},#{orderID,jdbcType=INTEGER,mode=OUT},#{orderStatus},#{orderWeight},#{paidTime},#{paymentMethodID},#{payStatus},#{pendingAmount},#{peopleNum},#{phone},#{printBarCode},#{quantity},#{shippingCode},#{shippingCorpID},#{shippingType},#{totalAmount},#{validationCode},#{vendorID},#{weightID},"admin")} 
+		]]>  
+  	</insert>
+  	
+  	<!-- 根据订单编号改变订单状态		hcy -->
+  	<update id="updateOrderInfoStatus" parameterType="O_OrderInfoEntity">
+		 Update 
+		 	O_OrderInfo
+    	Set
+        	OrderStatus = #{orderStatus},
+        	PayStatus = #{payStatus},
+        	PaidTime = #{paidTime},
+        	PendingAmount = PendingAmount - #{pendingAmount}
+    	where
+        	OrderID = #{orderID}
+  	</update>
+  	
+  	<select id="getOrderCenterInfoList" parameterType="hashmap" resultType="O_OrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[ 
+			{call GET_ReceptionO_OrderCenterInfoList(#{startTime},#{endTime},#{orderCode},#{orderStatus},#{archiveID})} 
+		]]>  
+	</select>
+  	
+  	<!-- 根据订单编号改变订单折扣金额和实际金额	 hcy -->
+  	<update id="updateAmountByOrderID" parameterType="O_OrderInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call Update_ReceptionO_OrderInfoEntityByOrderID3(#{orderID},#{discountAmount},#{actualAmount})} 
+		]]>  
+  	</update>
+  	<!-- 根据桌台id、餐次id、 档案id 查询进行中的订单。-->
+  	<select id="getOrderInfoEntityByTableIDAndOrderStatus" parameterType="hashmap" resultType="O_OrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[ 
+			{call Get_ReceptionO_OrderInfoEntityByTableIDAndOrderStatus(#{tableId},#{mealsId},#{archiveId})} 
+		]]>  
+	</select>
+
+	<!-- 根据主键查询订单信息 hcy -->
+	<select id="queryOrderInfoByOrderID" parameterType="long" resultType="O_OrderInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call GetO_OrderInfoEntity(#{orderID})}
+		]]>
+	</select>
+
+	<!-- 根据tableID获得使用中的订单 -->
+	<select id="getUsingOrderList" parameterType="map" resultType="map">
+		select
+		o.orderID as orderID,
+		sub.subOrderID as subOrderID,
+		sub.orderStatus as orderStatus,
+		sub.tableName as subTableName,
+		o.orderCode as orderCode,
+		o.createTime as createTime,
+		o.PeopleNum as peopleNum,
+		o.OrderChannel as orderChannel,
+		dic.dictionaryName as orderChannelDesc,
+		CONCAT(ifnull(duser.isBooking,0),"") as isBooking,
+		d.tableName as tableName,
+		o.nickName as nickName,
+		o.phone as phone
+		from B_DinningTableInfo d
+		inner join B_DinningTableUseInfo duser on duser.tableid=d.tableid and duser.EndTime is null
+		inner join O_SubOrderInfo sub on d.tableID = sub.tableID and duser.MealsID = sub.MealsID
+		right join O_OrderInfo o on sub.orderID = o.orderID
+		left join C_DictionaryInfo dic on o.orderChannel = dic.dictionaryID
+		where d.tableID = #{tableID} and (sub.orderStatus =654 or sub.orderStatus=60 or sub.orderStatus=875)
+		group by o.orderID
+		order by sub.createTime desc
+	</select>
+
+	<!-- 根据tableID和mealsID获得预订单列表-->
+	<select id="getBookingOrderListByTableIDAndMealsID"  resultType="cc.toprank.byd.entity.O_BookingInfoEntity">
+		select
+		<include refid="cc.toprank.byd.dao.O_BookingInfoDao.Base_Column_List"/>
+		from O_BookingInfo
+		where tableID = #{tableID} and mealsID = #{mealsID} and DATE_FORMAT(bookingTime,'%Y-%m-%d') = #{now} and
+		arrivaltime is null
+	</select>
+
+	 <!--查询消费记录-->
+	<select id="getConsumeRecordInfo" parameterType="map" resultType="map">
+		SELECT o.orderCode,o.totalAmount,o.discountAmount,o.actualAmount,o.peopleNum,b.TableCodes tableName,b.bookingTime
+			from O_OrderInfo o INNER JOIN O_BookingInfo b on o.OrderID = b.OrderID where o.CustomerID = #{customerID}
+	</select>
+
+	<!--查询点菜偏好-->
+	<select id="getOrderDishesRecordInfo" parameterType="map" resultType="map">
+		select * from (
+			select od.productName,COUNT(1) detailCount,MAX(od.ProductUnit) productUnit,MAX(od.CreateTime) createTime from O_OrderDetailInfo od
+			where od.SubOrderID in (
+				select SubOrderID from O_SubOrderInfo so where so.OrderID in (
+					select OrderID from O_OrderInfo o where o.CustomerID = #{customerID}
+			  )
+			) GROUP BY od.ProductName HAVING(createTime) > 2 ) t
+			ORDER BY detailCount desc limit 10
+	</select>
+	<!--查询口味偏好-->
+	<select id="getOrderTasteRecordInfo" parameterType="map" resultType="map">
+		select c.attributeName,COUNT(1) attributeCount from O_BookingInfo a LEFT JOIN O_OrderDetailInfo b on a.OrderID = b.OrderID
+			LEFT JOIN P_CategoryAttributeValueInfo c on c.ValueID in (b.ValueIDs)
+		where a.Phone = #{loginID} and c.AttributeID is not null GROUP BY c.AttributeID,c.AttributeName order by attributeCount desc limit 5;
+	</select>
+	<!-- 根据订单ID修改折扣金额	hcy -->
+	<update id="updateDiscountAmountByOrderID" parameterType="O_OrderInfoEntity">
+		Update
+			O_OrderInfo
+		Set
+			DiscountAmount = #{discountAmount}
+		where
+			OrderID = #{orderID}
+	</update>
+
+  </mapper>

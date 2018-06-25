@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.U_LoginInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.U_LoginInfoEntity">
+		<id column="LoginID" jdbcType="BIGINT" property="loginID" />
+		<result column="UserID" jdbcType="BIGINT" property="userID" />
+		<result column="LoginName" jdbcType="VARCHAR" property="loginName" />
+		<result column="NickName" jdbcType="VARCHAR" property="nickName" />
+		<result column="OrgCode" jdbcType="VARCHAR" property="orgCode" />
+		<result column="EmployeeCode" jdbcType="VARCHAR" property="employeeCode" />
+		<result column="LoginPassword" jdbcType="VARCHAR" property="loginPassword" />
+		<result column="PasswordFormat" jdbcType="BIGINT" property="passwordFormat" />
+		<result column="CertificateCode" jdbcType="VARCHAR" property="certificateCode" />
+		<result column="LoginStatus" jdbcType="BIGINT" property="loginStatus" />
+		<result column="IsForceChange" jdbcType="BIT" property="isForceChange" />
+		<result column="PasswordQuestion" jdbcType="VARCHAR" property="passwordQuestion" />
+		<result column="PasswordAnswer" jdbcType="VARCHAR" property="passwordAnswer" />
+		<result column="EffectiveTime" jdbcType="TIMESTAMP" property="effectiveTime" />
+		<result column="ExpireTime" jdbcType="TIMESTAMP" property="expireTime" />
+		<result column="FailedPasswordAttemptCount" jdbcType="INTEGER" property="failedPasswordAttemptCount" />
+		<result column="IsValid" jdbcType="BIT" property="isValid" />
+		<result column="Signature" jdbcType="VARCHAR" property="signature" />
+		<result column="SortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="LatestLoginTime" jdbcType="TIMESTAMP" property="latestLoginTime" />
+		<result column="LatestLoginArea" jdbcType="VARCHAR" property="latestLoginArea" />
+		<result column="LatestLoginIP" jdbcType="VARCHAR" property="latestLoginIP" />
+		<result column="LatestPasswordChangeTime" jdbcType="TIMESTAMP" property="latestPasswordChangeTime" />
+		<result column="LatestFailedLoginTime" jdbcType="TIMESTAMP" property="latestFailedLoginTime" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+		<result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+		<result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		LoginID, UserID, LoginName, NickName, OrgCode, EmployeeCode, LoginPassword, PasswordFormat,
+		CertificateCode, LoginStatus, IsForceChange, PasswordQuestion, PasswordAnswer, EffectiveTime,
+		ExpireTime, FailedPasswordAttemptCount, IsValid, Signature, SortNo, LatestLoginTime,
+		LatestLoginArea, LatestLoginIP, LatestPasswordChangeTime, LatestFailedLoginTime,
+		CreatorID, CreateTime, Memo, IsSync, SyncTime, SyncTimeResult
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from U_LoginInfo
+		where LoginID = #{loginID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from U_LoginInfo
+		where LoginID = #{loginID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.U_LoginInfoEntity">
+		insert into U_LoginInfo (LoginID, UserID, LoginName,
+		NickName, OrgCode, EmployeeCode,
+		LoginPassword, PasswordFormat, CertificateCode,
+		LoginStatus, IsForceChange, PasswordQuestion,
+		PasswordAnswer, EffectiveTime, ExpireTime,
+		FailedPasswordAttemptCount, IsValid, Signature,
+		SortNo, LatestLoginTime, LatestLoginArea,
+		LatestLoginIP, LatestPasswordChangeTime,
+		LatestFailedLoginTime, CreatorID, CreateTime,
+		Memo, IsSync, SyncTime,
+		SyncTimeResult)
+		values (#{loginID,jdbcType=BIGINT}, #{userID,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR},
+		#{nickName,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{employeeCode,jdbcType=VARCHAR},
+		#{loginPassword,jdbcType=VARCHAR}, #{passwordFormat,jdbcType=BIGINT}, #{certificateCode,jdbcType=VARCHAR},
+		#{loginStatus,jdbcType=BIGINT}, #{isForceChange,jdbcType=BIT}, #{passwordQuestion,jdbcType=VARCHAR},
+		#{passwordAnswer,jdbcType=VARCHAR}, #{effectiveTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP},
+		#{failedPasswordAttemptCount,jdbcType=INTEGER}, #{isValid,jdbcType=BIT}, #{signature,jdbcType=VARCHAR},
+		#{sortNo,jdbcType=INTEGER}, #{latestLoginTime,jdbcType=TIMESTAMP}, #{latestLoginArea,jdbcType=VARCHAR},
+		#{latestLoginIP,jdbcType=VARCHAR}, #{latestPasswordChangeTime,jdbcType=TIMESTAMP},
+		#{latestFailedLoginTime,jdbcType=TIMESTAMP}, #{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR}, #{isSync,jdbcType=BIT}, #{syncTime,jdbcType=TIMESTAMP},
+		#{syncTimeResult,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.U_LoginInfoEntity">
+		insert into U_LoginInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="loginID != null">
+				LoginID,
+			</if>
+			<if test="userID != null">
+				UserID,
+			</if>
+			<if test="loginName != null">
+				LoginName,
+			</if>
+			<if test="nickName != null">
+				NickName,
+			</if>
+			<if test="orgCode != null">
+				OrgCode,
+			</if>
+			<if test="employeeCode != null">
+				EmployeeCode,
+			</if>
+			<if test="loginPassword != null">
+				LoginPassword,
+			</if>
+			<if test="passwordFormat != null">
+				PasswordFormat,
+			</if>
+			<if test="certificateCode != null">
+				CertificateCode,
+			</if>
+			<if test="loginStatus != null">
+				LoginStatus,
+			</if>
+			<if test="isForceChange != null">
+				IsForceChange,
+			</if>
+			<if test="passwordQuestion != null">
+				PasswordQuestion,
+			</if>
+			<if test="passwordAnswer != null">
+				PasswordAnswer,
+			</if>
+			<if test="effectiveTime != null">
+				EffectiveTime,
+			</if>
+			<if test="expireTime != null">
+				ExpireTime,
+			</if>
+			<if test="failedPasswordAttemptCount != null">
+				FailedPasswordAttemptCount,
+			</if>
+			<if test="isValid != null">
+				IsValid,
+			</if>
+			<if test="signature != null">
+				Signature,
+			</if>
+			<if test="sortNo != null">
+				SortNo,
+			</if>
+			<if test="latestLoginTime != null">
+				LatestLoginTime,
+			</if>
+			<if test="latestLoginArea != null">
+				LatestLoginArea,
+			</if>
+			<if test="latestLoginIP != null">
+				LatestLoginIP,
+			</if>
+			<if test="latestPasswordChangeTime != null">
+				LatestPasswordChangeTime,
+			</if>
+			<if test="latestFailedLoginTime != null">
+				LatestFailedLoginTime,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+			<if test="syncTime != null">
+				SyncTime,
+			</if>
+			<if test="syncTimeResult != null">
+				SyncTimeResult,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="loginID != null">
+				#{loginID,jdbcType=BIGINT},
+			</if>
+			<if test="userID != null">
+				#{userID,jdbcType=BIGINT},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgCode != null">
+				#{orgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeCode != null">
+				#{employeeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPassword != null">
+				#{loginPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="passwordFormat != null">
+				#{passwordFormat,jdbcType=BIGINT},
+			</if>
+			<if test="certificateCode != null">
+				#{certificateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="loginStatus != null">
+				#{loginStatus,jdbcType=BIGINT},
+			</if>
+			<if test="isForceChange != null">
+				#{isForceChange,jdbcType=BIT},
+			</if>
+			<if test="passwordQuestion != null">
+				#{passwordQuestion,jdbcType=VARCHAR},
+			</if>
+			<if test="passwordAnswer != null">
+				#{passwordAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="effectiveTime != null">
+				#{effectiveTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireTime != null">
+				#{expireTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="failedPasswordAttemptCount != null">
+				#{failedPasswordAttemptCount,jdbcType=INTEGER},
+			</if>
+			<if test="isValid != null">
+				#{isValid,jdbcType=BIT},
+			</if>
+			<if test="signature != null">
+				#{signature,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="latestLoginTime != null">
+				#{latestLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="latestLoginArea != null">
+				#{latestLoginArea,jdbcType=VARCHAR},
+			</if>
+			<if test="latestLoginIP != null">
+				#{latestLoginIP,jdbcType=VARCHAR},
+			</if>
+			<if test="latestPasswordChangeTime != null">
+				#{latestPasswordChangeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="latestFailedLoginTime != null">
+				#{latestFailedLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+			<if test="syncTime != null">
+				#{syncTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimeResult != null">
+				#{syncTimeResult,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.U_LoginInfoEntity">
+		update U_LoginInfo
+		<set>
+			<if test="userID != null">
+				UserID = #{userID,jdbcType=BIGINT},
+			</if>
+			<if test="loginName != null">
+				LoginName = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				NickName = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgCode != null">
+				OrgCode = #{orgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeCode != null">
+				EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPassword != null">
+				LoginPassword = #{loginPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="passwordFormat != null">
+				PasswordFormat = #{passwordFormat,jdbcType=BIGINT},
+			</if>
+			<if test="certificateCode != null">
+				CertificateCode = #{certificateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="loginStatus != null">
+				LoginStatus = #{loginStatus,jdbcType=BIGINT},
+			</if>
+			<if test="isForceChange != null">
+				IsForceChange = #{isForceChange,jdbcType=BIT},
+			</if>
+			<if test="passwordQuestion != null">
+				PasswordQuestion = #{passwordQuestion,jdbcType=VARCHAR},
+			</if>
+			<if test="passwordAnswer != null">
+				PasswordAnswer = #{passwordAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="effectiveTime != null">
+				EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireTime != null">
+				ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="failedPasswordAttemptCount != null">
+				FailedPasswordAttemptCount = #{failedPasswordAttemptCount,jdbcType=INTEGER},
+			</if>
+			<if test="isValid != null">
+				IsValid = #{isValid,jdbcType=BIT},
+			</if>
+			<if test="signature != null">
+				Signature = #{signature,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="latestLoginTime != null">
+				LatestLoginTime = #{latestLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="latestLoginArea != null">
+				LatestLoginArea = #{latestLoginArea,jdbcType=VARCHAR},
+			</if>
+			<if test="latestLoginIP != null">
+				LatestLoginIP = #{latestLoginIP,jdbcType=VARCHAR},
+			</if>
+			<if test="latestPasswordChangeTime != null">
+				LatestPasswordChangeTime = #{latestPasswordChangeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="latestFailedLoginTime != null">
+				LatestFailedLoginTime = #{latestFailedLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+			<if test="syncTime != null">
+				SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimeResult != null">
+				SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where LoginID = #{loginID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.U_LoginInfoEntity">
+		update U_LoginInfo
+		set UserID = #{userID,jdbcType=BIGINT},
+		LoginName = #{loginName,jdbcType=VARCHAR},
+		NickName = #{nickName,jdbcType=VARCHAR},
+		OrgCode = #{orgCode,jdbcType=VARCHAR},
+		EmployeeCode = #{employeeCode,jdbcType=VARCHAR},
+		LoginPassword = #{loginPassword,jdbcType=VARCHAR},
+		PasswordFormat = #{passwordFormat,jdbcType=BIGINT},
+		CertificateCode = #{certificateCode,jdbcType=VARCHAR},
+		LoginStatus = #{loginStatus,jdbcType=BIGINT},
+		IsForceChange = #{isForceChange,jdbcType=BIT},
+		PasswordQuestion = #{passwordQuestion,jdbcType=VARCHAR},
+		PasswordAnswer = #{passwordAnswer,jdbcType=VARCHAR},
+		EffectiveTime = #{effectiveTime,jdbcType=TIMESTAMP},
+		ExpireTime = #{expireTime,jdbcType=TIMESTAMP},
+		FailedPasswordAttemptCount = #{failedPasswordAttemptCount,jdbcType=INTEGER},
+		IsValid = #{isValid,jdbcType=BIT},
+		Signature = #{signature,jdbcType=VARCHAR},
+		SortNo = #{sortNo,jdbcType=INTEGER},
+		LatestLoginTime = #{latestLoginTime,jdbcType=TIMESTAMP},
+		LatestLoginArea = #{latestLoginArea,jdbcType=VARCHAR},
+		LatestLoginIP = #{latestLoginIP,jdbcType=VARCHAR},
+		LatestPasswordChangeTime = #{latestPasswordChangeTime,jdbcType=TIMESTAMP},
+		LatestFailedLoginTime = #{latestFailedLoginTime,jdbcType=TIMESTAMP},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT},
+		SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+		SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+		where LoginID = #{loginID,jdbcType=BIGINT}
+	</update>
+  	<select id="getAll" parameterType="U_LoginInfoEntity" resultType="U_LoginInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetU_LoginInfoCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="U_LoginInfoEntity" resultType="U_LoginInfoEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetU_LoginInfoEntity(#{loginID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="U_LoginInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteU_LoginInfoEntity(#{loginID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="LoginID" parameterType="U_LoginInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertU_LoginInfoEntity(#{certificateCode},#{createTime},#{creatorID},#{effectiveTime},#{expireTime},#{failedPasswordAttemptCount},#{isForceChange},#{isValid},#{latestFailedLoginTime},#{latestLoginArea},#{latestLoginIP},#{latestLoginTime},#{latestPasswordChangeTime},#{loginID,jdbcType=INTEGER,mode=OUT},#{loginName},#{loginPassword},#{loginStatus},#{memo},#{nickName},#{passwordAnswer},#{passwordFormat},#{passwordQuestion},#{sortNo},#{userID})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="U_LoginInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateU_LoginInfoEntity(#{certificateCode},#{createTime},#{creatorID},#{effectiveTime},#{expireTime},#{failedPasswordAttemptCount},#{isForceChange},#{isValid},#{latestFailedLoginTime},#{latestLoginArea},#{latestLoginIP},#{latestLoginTime},#{latestPasswordChangeTime},#{loginID},#{loginName},#{loginPassword},#{loginStatus},#{memo},#{nickName},#{passwordAnswer},#{passwordFormat},#{passwordQuestion},#{sortNo},#{userID})} 
+		]]>  
+  	</update>
+  	
+  	<!-- 操作员登陆信息，根据用户名和密码 -->
+  	
+  	<select id="login" parameterType="U_LoginInfoEntity" resultType="U_LoginInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetU_LoginInfoEntityByNameAndPasswd(#{loginName},#{loginPassword})} 
+		]]>  
+  	</select>
+  	
+  	<!-- 操作员注册，根据注册名判断是否存在 -->
+  	<select id="register" parameterType="U_LoginInfoEntity" resultType="U_LoginInfoEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call GetU_LoginInfoEntityByName(#{loginName})} 
+		]]>  
+  	</select>
+
+	<select id="getByID" resultType="cc.toprank.byd.entity.U_LoginInfoEntity">
+		SELECT * FROM U_LoginInfo WHERE LoginID=#{loginID}
+	</select>
+
+	<!-- 根据名称或编号和岗位查询开台人列表 lzy -->
+	<select id="getOriginalList" parameterType="map" resultType="map" >
+		SELECT ug.loginName,uu.userID,uo.orgName,ug.loginID
+			FROM U_OrganizationInfo uo
+			INNER JOIN U_UserInfo uu ON uu.orgID = uo.orgID
+			INNER JOIN U_LoginInfo ug ON uu.UserID = ug.UserID
+			WHERE	(uo.OrgID = #{orgId} OR uo.ParentID = #{orgId})
+				<if test="nameOrId != null">
+					AND ug.loginName LIKE concat('%',#{nameOrId},'%') OR  uu.userID = #{nameOrId}
+				</if>
+	</select>
+
+	<!-- 根据名称或编号和岗位查询开台人列表 lzy -->
+	<select id="getServerNameList" parameterType="map" resultType="map" >
+		SELECT b.userName as loginName,b.userID,a.orgName,c.loginID, b.Title
+		FROM U_OrganizationInfo a
+		INNER JOIN U_UserInfo b ON b.orgID = a.orgID
+		INNER JOIN U_LoginInfo c ON b.UserID = c.UserID
+		WHERE  ( a.OrgID = #{orgID} OR a.ParentID = #{orgID} )
+		  <if test="nameOrId != null">
+			 AND (c.loginName LIKE concat('%',#{nameOrId},'%') OR  b.userID LIKE concat('%',#{nameOrId},'%') )
+		 </if>
+	</select>
+
+
+	<select id="getLoginInfoByLoginName" parameterType="string" resultType="U_LoginInfoEntity" statementType="CALLABLE">
+         select * from U_LoginInfo where LoginName=#{loginName}
+	</select>
+
+	<!-- 修改最后登入时间 -->
+	<update id="updateLastLoginTime" parameterType="java.lang.String">
+		update U_LoginInfo set LatestLoginTime=UTC_TIMESTAMP()  where loginName =#{loginName};
+	</update>
+
+	<select id="getUserInfoByLoginName" parameterType="map" resultType="cc.toprank.byd.web.dto.UserInfoVo">
+		select  b.loginID,b.loginName,b.loginpassword as "password",a.userID,a.userName,a.orgID,c.archiveID,c.merchantName,c.creatorId
+		FROM  U_UserInfo a
+		INNER JOIN  U_LoginInfo b on a.UserID=b.UserID
+		INNER JOIN  B_MerchantInfo c on a.orgID=c.OrgID
+		where b.LoginName = #{loginName} and b.loginpassword=#{passWord}
+	</select>
+
+	<select id="checkByLoginNameAndPasswor" parameterType="U_LoginInfoEntity" resultType="U_LoginInfoEntity" statementType="CALLABLE">
+        select * from U_LoginInfo where LoginName=#{loginName} and LoginPassword=#{password}
+	</select>
+
+	<select id="checkByLoginNameAndModelCode" parameterType="map" resultType="map" statementType="CALLABLE">
+          select CONCAT(e.ModuleCode,":",f.PrivilegeCode) as Privilege,e.ModuleName,f.PrivilegeName  from U_RoleLoginInfo a INNER JOIN U_RoleInfo b on a.RoleID=b.RoleID
+                                INNER JOIN U_RolePrivilegeInfo c on a.RoleID=c.RoleID
+                                INNER JOIN U_PrivilegeInfo f on  c.PrivilegeID=f.PrivilegeID
+                                INNER JOIN U_ModuleInfo e on   e.ModuleID=f.ModuleID
+          where a.LoginID=#{loginID} and e.ModuleCode=#{moduleCode} and f.PrivilegeCode='Modify'
+	</select>
+	<select id="selectByLogin" resultType="cc.toprank.byd.entity.U_LoginInfoEntity">
+		select * from U_LoginInfo WHERE EmployeeCode = #{employeeCode} and LoginPassword = #{loginPassword}
+	</select>
+
+	<!-- 根据登录名查询权限 -->
+	<select id="getPermissionsByLoginName" parameterType="java.lang.String" resultType="string" statementType="CALLABLE">
+		<![CDATA[
+			{call GetU_PrivilegeByLoginName(#{loginName})}
+		]]>
+	</select>
+
+	<!--  根据登录名查询角色 -->
+	<select id="getRolesByLoginName" parameterType="java.lang.String" resultType="java.lang.String" statementType="CALLABLE">
+		<![CDATA[
+			{call GetU_RolesByLoginName(#{loginName})}
+		]]>
+	</select>
+
+	<select id="getPrivilegeCodeByLoginID" resultType="java.lang.String" parameterType="java.lang.Long">
+		select CONCAT(m.moduleCode,':',p.PrivilegeCode)
+		from U_RoleLoginInfo r
+		inner join U_RolePrivilegeInfo rpm on r.roleID=rpm.roleID
+		inner join U_PrivilegeInfo p on rpm.privilegeID = p.privilegeID
+		inner join U_ModuleInfo m on p.moduleID = m.moduleID
+		where r.loginid=#{loginID}
+		group by CONCAT(m.moduleCode,':',p.PrivilegeCode)
+	</select>
+	<select id="getPrivilegeIDByLoginID" resultType="java.lang.Long" parameterType="java.lang.Long">
+		select p.privilegeID from U_RoleLoginInfo r
+		left join U_RolePrivilegeInfo rpm on r.roleID=rpm.roleID
+		left join U_PrivilegeInfo p on rpm.privilegeID = p.privilegeID
+		where r.loginid=#{loginID} and p.privilegeID is not null
+		group by p.privilegeID
+	</select>
+
+	<!--
+	根据登录名取用户登录信息
+	chenkangyi
+	2017-5-26 15:30
+	-->
+	<select id="selectLoginInfoByLoginName" parameterType="java.lang.String" resultType="U_LoginInfoEntity">
+		SELECT * FROM U_LoginInfo WHERE LoginName = #{loginName} LIMIT 1
+	</select>
+
+	<!--
+	根据登录名和登录密码取用户登录信息
+	chenkangyi
+	2017-5-26 15:36
+	-->
+	<select id="selectLoginInfoByLoginNameAndLoginPassWord" parameterType="map" resultType="U_LoginInfoEntity">
+		SELECT * FROM U_LoginInfo WHERE LoginName = #{loginName} AND LoginPassword = #{loginPassword} LIMIT 1
+	</select>
+	<!-- 根据工号查询登录信息是否存在 -->
+	<select id = "getLoginInfoByEmployCode" parameterType="String" resultType="U_LoginInfoEntity">
+		SELECT * FROM U_LoginInfo WHERE EmployeeCode = #{employeeCode}
+	</select>
+	<!-- 工号签到签退 -->
+	<update id="signInAndOut" parameterType="U_LoginInfoEntity">
+		UPDATE U_LoginInfo SET LoginStatus = #{loginStatus},LatestLoginTime = #{latestLoginTime} WHERE LoginID = #{loginID} AND EmployeeCode = #{employeeCode}
+	</update>
+	<!--服务员APP登陆 根据用户名和密码-->
+	<select id="loginWaiterApp" resultType="cc.toprank.byd.waiterApp.dto.WaiterLoginDTO">
+		SELECT
+		l.loginID,
+		l.userID,
+		l.loginName,
+		l.nickName,
+		l.employeeCode,
+		b.archiveID
+		FROM U_LoginInfo l
+		left join U_UserInfo u on l.userID = u.userID
+		left join B_MerchantInfo b on u.orgID = b.orgID
+		WHERE LoginName = #{loginName}
+		and loginPassword = #{loginPassword}
+	</select>
+
+</mapper>
+    

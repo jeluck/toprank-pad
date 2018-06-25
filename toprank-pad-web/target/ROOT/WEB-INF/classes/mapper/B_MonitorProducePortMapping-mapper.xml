@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.B_MonitorProducePortMappingDao">
+  	<select id="getAll" parameterType="B_MonitorProducePortMappingEntity" resultType="B_MonitorProducePortMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_MonitorProducePortMappingCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="B_MonitorProducePortMappingEntity" resultType="B_MonitorProducePortMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_MonitorProducePortMappingEntity()} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="B_MonitorProducePortMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteB_MonitorProducePortMappingEntity()} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="" parameterType="B_MonitorProducePortMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertB_MonitorProducePortMappingEntity(#{categoryID},#{createTime},#{creatorID},#{isSync},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{monitorID},#{portID})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="B_MonitorProducePortMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateB_MonitorProducePortMappingEntity(#{categoryID},#{createTime},#{creatorID},#{isSync},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{monitorID},#{portID})} 
+		]]>  
+  	</update>
+
+	<!-- 根据TreeID查询看板出品口显示信息 lzy -->
+	<select id="getMonitorProducePortByTreeID" parameterType="String" resultType="B_MonitorProducePortMappingEntity">
+		SELECT `CategoryID`, `CreateTime`, `CreatorID`, `IsSync`, `MappingDesc`, `MappingID`, `MappingStatus`,
+				`Memo`, `MonitorID`, `PortID`
+		FROM B_MonitorProducePortMapping
+		WHERE
+			  CategoryID in(SELECT CategoryID FROM P_ProductCategoryInfo WHERE TreeID LIKE CONCAT(LEFT(treeID,3),"%"))
+	</select>
+
+  </mapper>

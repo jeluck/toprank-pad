@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.toprank.byd.dao.B_WorkingInfoDao">
+    <resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_WorkingInfoEntity">
+        <id column="WorkingID" jdbcType="BIGINT" property="workingID" />
+        <result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+        <result column="SettlementType" jdbcType="BIGINT" property="settlementType" />
+        <result column="SettlementMethod" jdbcType="BIGINT" property="settlementMethod" />
+        <result column="BeforeID" jdbcType="BIGINT" property="beforeID" />
+        <result column="WorkingType" jdbcType="BIGINT" property="workingType" />
+        <result column="IsMappingDeivce" jdbcType="BIT" property="isMappingDeivce" />
+        <result column="DeviceType" jdbcType="BIGINT" property="deviceType" />
+        <result column="DeviceID" jdbcType="BIGINT" property="deviceID" />
+        <result column="DeviceCode" jdbcType="VARCHAR" property="deviceCode" />
+        <result column="NeedMoney" jdbcType="BIT" property="needMoney" />
+        <result column="MoneyAmount" jdbcType="DECIMAL" property="moneyAmount" />
+        <result column="IsNormalWorking" jdbcType="BIT" property="isNormalWorking" />
+        <result column="WorkingStatus" jdbcType="BIGINT" property="workingStatus" />
+        <result column="WorkingDesc" jdbcType="VARCHAR" property="workingDesc" />
+        <result column="WorkOffTime" jdbcType="TIMESTAMP" property="workOffTime" />
+        <result column="OrderNum" jdbcType="INTEGER" property="orderNum" />
+        <result column="OrderTotalAmount" jdbcType="DECIMAL" property="orderTotalAmount" />
+        <result column="OrderCashAmount" jdbcType="DECIMAL" property="orderCashAmount" />
+        <result column="RechargeNum" jdbcType="INTEGER" property="rechargeNum" />
+        <result column="RechargeTotalAmount" jdbcType="DECIMAL" property="rechargeTotalAmount" />
+        <result column="RechargeCashAmount" jdbcType="DECIMAL" property="rechargeCashAmount" />
+        <result column="BookingNum" jdbcType="INTEGER" property="bookingNum" />
+        <result column="BookingTotalAmount" jdbcType="DECIMAL" property="bookingTotalAmount" />
+        <result column="BookingCashAmount" jdbcType="DECIMAL" property="bookingCashAmount" />
+        <result column="RefundNum" jdbcType="INTEGER" property="refundNum" />
+        <result column="RefundTotalAmount" jdbcType="DECIMAL" property="refundTotalAmount" />
+        <result column="RefundCashAmount" jdbcType="DECIMAL" property="refundCashAmount" />
+        <result column="RepaymentNum" jdbcType="INTEGER" property="repaymentNum" />
+        <result column="RepaymentTotalAmount" jdbcType="DECIMAL" property="repaymentTotalAmount" />
+        <result column="RepaymentCashAmount" jdbcType="DECIMAL" property="repaymentCashAmount" />
+        <result column="IncomeTotalAmount" jdbcType="DECIMAL" property="incomeTotalAmount" />
+        <result column="IncomeCashAmount" jdbcType="DECIMAL" property="incomeCashAmount" />
+        <result column="CashTotalAmount" jdbcType="DECIMAL" property="cashTotalAmount" />
+        <result column="IsSync" jdbcType="BIT" property="isSync" />
+        <result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+        <result column="CreatorName" jdbcType="VARCHAR" property="creatorName" />
+        <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="Memo" jdbcType="VARCHAR" property="memo" />
+        <result column="SyncTime" jdbcType="TIMESTAMP" property="syncTime" />
+        <result column="SyncTimeResult" jdbcType="TIMESTAMP" property="syncTimeResult" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        WorkingID, ArchiveID, SettlementType, SettlementMethod, BeforeID, WorkingType, IsMappingDeivce,
+        DeviceType, DeviceID, DeviceCode, NeedMoney, MoneyAmount, IsNormalWorking, WorkingStatus,
+        WorkingDesc, WorkOffTime, OrderNum, OrderTotalAmount, OrderCashAmount, RechargeNum,
+        RechargeTotalAmount, RechargeCashAmount, BookingNum, BookingTotalAmount, BookingCashAmount,
+        RefundNum, RefundTotalAmount, RefundCashAmount, RepaymentNum, RepaymentTotalAmount,
+        RepaymentCashAmount, IncomeTotalAmount, IncomeCashAmount, CashTotalAmount, IsSync,
+        CreatorID, CreatorName, CreateTime, Memo, SyncTime, SyncTimeResult
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from B_WorkingInfo
+        where WorkingID = #{workingID,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from B_WorkingInfo
+        where WorkingID = #{workingID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cc.toprank.byd.entity.B_WorkingInfoEntity">
+        insert into B_WorkingInfo (WorkingID, ArchiveID, SettlementType,
+        SettlementMethod, BeforeID, WorkingType,
+        IsMappingDeivce, DeviceType, DeviceID,
+        DeviceCode, NeedMoney, MoneyAmount,
+        IsNormalWorking, WorkingStatus, WorkingDesc,
+        WorkOffTime, OrderNum, OrderTotalAmount,
+        OrderCashAmount, RechargeNum, RechargeTotalAmount,
+        RechargeCashAmount, BookingNum, BookingTotalAmount,
+        BookingCashAmount, RefundNum, RefundTotalAmount,
+        RefundCashAmount, RepaymentNum, RepaymentTotalAmount,
+        RepaymentCashAmount, IncomeTotalAmount,
+        IncomeCashAmount, CashTotalAmount, IsSync,
+        CreatorID, CreatorName, CreateTime,
+        Memo, SyncTime, SyncTimeResult
+        )
+        values (#{workingID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{settlementType,jdbcType=BIGINT},
+        #{settlementMethod,jdbcType=BIGINT}, #{beforeID,jdbcType=BIGINT}, #{workingType,jdbcType=BIGINT},
+        #{isMappingDeivce,jdbcType=BIT}, #{deviceType,jdbcType=BIGINT}, #{deviceID,jdbcType=BIGINT},
+        #{deviceCode,jdbcType=VARCHAR}, #{needMoney,jdbcType=BIT}, #{moneyAmount,jdbcType=DECIMAL},
+        #{isNormalWorking,jdbcType=BIT}, #{workingStatus,jdbcType=BIGINT}, #{workingDesc,jdbcType=VARCHAR},
+        #{workOffTime,jdbcType=TIMESTAMP}, #{orderNum,jdbcType=INTEGER}, #{orderTotalAmount,jdbcType=DECIMAL},
+        #{orderCashAmount,jdbcType=DECIMAL}, #{rechargeNum,jdbcType=INTEGER}, #{rechargeTotalAmount,jdbcType=DECIMAL},
+        #{rechargeCashAmount,jdbcType=DECIMAL}, #{bookingNum,jdbcType=INTEGER}, #{bookingTotalAmount,jdbcType=DECIMAL},
+        #{bookingCashAmount,jdbcType=DECIMAL}, #{refundNum,jdbcType=INTEGER}, #{refundTotalAmount,jdbcType=DECIMAL},
+        #{refundCashAmount,jdbcType=DECIMAL}, #{repaymentNum,jdbcType=INTEGER}, #{repaymentTotalAmount,jdbcType=DECIMAL},
+        #{repaymentCashAmount,jdbcType=DECIMAL}, #{incomeTotalAmount,jdbcType=DECIMAL},
+        #{incomeCashAmount,jdbcType=DECIMAL}, #{cashTotalAmount,jdbcType=DECIMAL}, #{isSync,jdbcType=BIT},
+        #{creatorID,jdbcType=BIGINT}, #{creatorName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{memo,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, #{syncTimeResult,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_WorkingInfoEntity">
+        insert into B_WorkingInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="workingID != null">
+                WorkingID,
+            </if>
+            <if test="archiveID != null">
+                ArchiveID,
+            </if>
+            <if test="settlementType != null">
+                SettlementType,
+            </if>
+            <if test="settlementMethod != null">
+                SettlementMethod,
+            </if>
+            <if test="beforeID != null">
+                BeforeID,
+            </if>
+            <if test="workingType != null">
+                WorkingType,
+            </if>
+            <if test="isMappingDeivce != null">
+                IsMappingDeivce,
+            </if>
+            <if test="deviceType != null">
+                DeviceType,
+            </if>
+            <if test="deviceID != null">
+                DeviceID,
+            </if>
+            <if test="deviceCode != null">
+                DeviceCode,
+            </if>
+            <if test="needMoney != null">
+                NeedMoney,
+            </if>
+            <if test="moneyAmount != null">
+                MoneyAmount,
+            </if>
+            <if test="isNormalWorking != null">
+                IsNormalWorking,
+            </if>
+            <if test="workingStatus != null">
+                WorkingStatus,
+            </if>
+            <if test="workingDesc != null">
+                WorkingDesc,
+            </if>
+            <if test="workOffTime != null">
+                WorkOffTime,
+            </if>
+            <if test="orderNum != null">
+                OrderNum,
+            </if>
+            <if test="orderTotalAmount != null">
+                OrderTotalAmount,
+            </if>
+            <if test="orderCashAmount != null">
+                OrderCashAmount,
+            </if>
+            <if test="rechargeNum != null">
+                RechargeNum,
+            </if>
+            <if test="rechargeTotalAmount != null">
+                RechargeTotalAmount,
+            </if>
+            <if test="rechargeCashAmount != null">
+                RechargeCashAmount,
+            </if>
+            <if test="bookingNum != null">
+                BookingNum,
+            </if>
+            <if test="bookingTotalAmount != null">
+                BookingTotalAmount,
+            </if>
+            <if test="bookingCashAmount != null">
+                BookingCashAmount,
+            </if>
+            <if test="refundNum != null">
+                RefundNum,
+            </if>
+            <if test="refundTotalAmount != null">
+                RefundTotalAmount,
+            </if>
+            <if test="refundCashAmount != null">
+                RefundCashAmount,
+            </if>
+            <if test="repaymentNum != null">
+                RepaymentNum,
+            </if>
+            <if test="repaymentTotalAmount != null">
+                RepaymentTotalAmount,
+            </if>
+            <if test="repaymentCashAmount != null">
+                RepaymentCashAmount,
+            </if>
+            <if test="incomeTotalAmount != null">
+                IncomeTotalAmount,
+            </if>
+            <if test="incomeCashAmount != null">
+                IncomeCashAmount,
+            </if>
+            <if test="cashTotalAmount != null">
+                CashTotalAmount,
+            </if>
+            <if test="isSync != null">
+                IsSync,
+            </if>
+            <if test="creatorID != null">
+                CreatorID,
+            </if>
+            <if test="creatorName != null">
+                CreatorName,
+            </if>
+            <if test="createTime != null">
+                CreateTime,
+            </if>
+            <if test="memo != null">
+                Memo,
+            </if>
+            <if test="syncTime != null">
+                SyncTime,
+            </if>
+            <if test="syncTimeResult != null">
+                SyncTimeResult,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="workingID != null">
+                #{workingID,jdbcType=BIGINT},
+            </if>
+            <if test="archiveID != null">
+                #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="settlementType != null">
+                #{settlementType,jdbcType=BIGINT},
+            </if>
+            <if test="settlementMethod != null">
+                #{settlementMethod,jdbcType=BIGINT},
+            </if>
+            <if test="beforeID != null">
+                #{beforeID,jdbcType=BIGINT},
+            </if>
+            <if test="workingType != null">
+                #{workingType,jdbcType=BIGINT},
+            </if>
+            <if test="isMappingDeivce != null">
+                #{isMappingDeivce,jdbcType=BIT},
+            </if>
+            <if test="deviceType != null">
+                #{deviceType,jdbcType=BIGINT},
+            </if>
+            <if test="deviceID != null">
+                #{deviceID,jdbcType=BIGINT},
+            </if>
+            <if test="deviceCode != null">
+                #{deviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="needMoney != null">
+                #{needMoney,jdbcType=BIT},
+            </if>
+            <if test="moneyAmount != null">
+                #{moneyAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="isNormalWorking != null">
+                #{isNormalWorking,jdbcType=BIT},
+            </if>
+            <if test="workingStatus != null">
+                #{workingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="workingDesc != null">
+                #{workingDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="workOffTime != null">
+                #{workOffTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderNum != null">
+                #{orderNum,jdbcType=INTEGER},
+            </if>
+            <if test="orderTotalAmount != null">
+                #{orderTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="orderCashAmount != null">
+                #{orderCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="rechargeNum != null">
+                #{rechargeNum,jdbcType=INTEGER},
+            </if>
+            <if test="rechargeTotalAmount != null">
+                #{rechargeTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="rechargeCashAmount != null">
+                #{rechargeCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="bookingNum != null">
+                #{bookingNum,jdbcType=INTEGER},
+            </if>
+            <if test="bookingTotalAmount != null">
+                #{bookingTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="bookingCashAmount != null">
+                #{bookingCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="refundNum != null">
+                #{refundNum,jdbcType=INTEGER},
+            </if>
+            <if test="refundTotalAmount != null">
+                #{refundTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="refundCashAmount != null">
+                #{refundCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="repaymentNum != null">
+                #{repaymentNum,jdbcType=INTEGER},
+            </if>
+            <if test="repaymentTotalAmount != null">
+                #{repaymentTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="repaymentCashAmount != null">
+                #{repaymentCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="incomeTotalAmount != null">
+                #{incomeTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="incomeCashAmount != null">
+                #{incomeCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="cashTotalAmount != null">
+                #{cashTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="isSync != null">
+                #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="creatorName != null">
+                #{creatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="syncTime != null">
+                #{syncTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="syncTimeResult != null">
+                #{syncTimeResult,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_WorkingInfoEntity">
+        update B_WorkingInfo
+        <set>
+            <if test="archiveID != null">
+                ArchiveID = #{archiveID,jdbcType=BIGINT},
+            </if>
+            <if test="settlementType != null">
+                SettlementType = #{settlementType,jdbcType=BIGINT},
+            </if>
+            <if test="settlementMethod != null">
+                SettlementMethod = #{settlementMethod,jdbcType=BIGINT},
+            </if>
+            <if test="beforeID != null">
+                BeforeID = #{beforeID,jdbcType=BIGINT},
+            </if>
+            <if test="workingType != null">
+                WorkingType = #{workingType,jdbcType=BIGINT},
+            </if>
+            <if test="isMappingDeivce != null">
+                IsMappingDeivce = #{isMappingDeivce,jdbcType=BIT},
+            </if>
+            <if test="deviceType != null">
+                DeviceType = #{deviceType,jdbcType=BIGINT},
+            </if>
+            <if test="deviceID != null">
+                DeviceID = #{deviceID,jdbcType=BIGINT},
+            </if>
+            <if test="deviceCode != null">
+                DeviceCode = #{deviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="needMoney != null">
+                NeedMoney = #{needMoney,jdbcType=BIT},
+            </if>
+            <if test="moneyAmount != null">
+                MoneyAmount = #{moneyAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="isNormalWorking != null">
+                IsNormalWorking = #{isNormalWorking,jdbcType=BIT},
+            </if>
+            <if test="workingStatus != null">
+                WorkingStatus = #{workingStatus,jdbcType=BIGINT},
+            </if>
+            <if test="workingDesc != null">
+                WorkingDesc = #{workingDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="workOffTime != null">
+                WorkOffTime = #{workOffTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderNum != null">
+                OrderNum = #{orderNum,jdbcType=INTEGER},
+            </if>
+            <if test="orderTotalAmount != null">
+                OrderTotalAmount = #{orderTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="orderCashAmount != null">
+                OrderCashAmount = #{orderCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="rechargeNum != null">
+                RechargeNum = #{rechargeNum,jdbcType=INTEGER},
+            </if>
+            <if test="rechargeTotalAmount != null">
+                RechargeTotalAmount = #{rechargeTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="rechargeCashAmount != null">
+                RechargeCashAmount = #{rechargeCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="bookingNum != null">
+                BookingNum = #{bookingNum,jdbcType=INTEGER},
+            </if>
+            <if test="bookingTotalAmount != null">
+                BookingTotalAmount = #{bookingTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="bookingCashAmount != null">
+                BookingCashAmount = #{bookingCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="refundNum != null">
+                RefundNum = #{refundNum,jdbcType=INTEGER},
+            </if>
+            <if test="refundTotalAmount != null">
+                RefundTotalAmount = #{refundTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="refundCashAmount != null">
+                RefundCashAmount = #{refundCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="repaymentNum != null">
+                RepaymentNum = #{repaymentNum,jdbcType=INTEGER},
+            </if>
+            <if test="repaymentTotalAmount != null">
+                RepaymentTotalAmount = #{repaymentTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="repaymentCashAmount != null">
+                RepaymentCashAmount = #{repaymentCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="incomeTotalAmount != null">
+                IncomeTotalAmount = #{incomeTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="incomeCashAmount != null">
+                IncomeCashAmount = #{incomeCashAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="cashTotalAmount != null">
+                CashTotalAmount = #{cashTotalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="isSync != null">
+                IsSync = #{isSync,jdbcType=BIT},
+            </if>
+            <if test="creatorID != null">
+                CreatorID = #{creatorID,jdbcType=BIGINT},
+            </if>
+            <if test="creatorName != null">
+                CreatorName = #{creatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CreateTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memo != null">
+                Memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="syncTime != null">
+                SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="syncTimeResult != null">
+                SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where WorkingID = #{workingID,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_WorkingInfoEntity">
+    update B_WorkingInfo
+    set ArchiveID = #{archiveID,jdbcType=BIGINT},
+      SettlementType = #{settlementType,jdbcType=BIGINT},
+      SettlementMethod = #{settlementMethod,jdbcType=BIGINT},
+      BeforeID = #{beforeID,jdbcType=BIGINT},
+      WorkingType = #{workingType,jdbcType=BIGINT},
+      IsMappingDeivce = #{isMappingDeivce,jdbcType=BIT},
+      DeviceType = #{deviceType,jdbcType=BIGINT},
+      DeviceID = #{deviceID,jdbcType=BIGINT},
+      DeviceCode = #{deviceCode,jdbcType=VARCHAR},
+      NeedMoney = #{needMoney,jdbcType=BIT},
+      MoneyAmount = #{moneyAmount,jdbcType=DECIMAL},
+      IsNormalWorking = #{isNormalWorking,jdbcType=BIT},
+      WorkingStatus = #{workingStatus,jdbcType=BIGINT},
+      WorkingDesc = #{workingDesc,jdbcType=VARCHAR},
+      WorkOffTime = #{workOffTime,jdbcType=TIMESTAMP},
+      OrderNum = #{orderNum,jdbcType=INTEGER},
+      OrderTotalAmount = #{orderTotalAmount,jdbcType=DECIMAL},
+      OrderCashAmount = #{orderCashAmount,jdbcType=DECIMAL},
+      RechargeNum = #{rechargeNum,jdbcType=INTEGER},
+      RechargeTotalAmount = #{rechargeTotalAmount,jdbcType=DECIMAL},
+      RechargeCashAmount = #{rechargeCashAmount,jdbcType=DECIMAL},
+      BookingNum = #{bookingNum,jdbcType=INTEGER},
+      BookingTotalAmount = #{bookingTotalAmount,jdbcType=DECIMAL},
+      BookingCashAmount = #{bookingCashAmount,jdbcType=DECIMAL},
+      RefundNum = #{refundNum,jdbcType=INTEGER},
+      RefundTotalAmount = #{refundTotalAmount,jdbcType=DECIMAL},
+      RefundCashAmount = #{refundCashAmount,jdbcType=DECIMAL},
+      RepaymentNum = #{repaymentNum,jdbcType=INTEGER},
+      RepaymentTotalAmount = #{repaymentTotalAmount,jdbcType=DECIMAL},
+      RepaymentCashAmount = #{repaymentCashAmount,jdbcType=DECIMAL},
+      IncomeTotalAmount = #{incomeTotalAmount,jdbcType=DECIMAL},
+      IncomeCashAmount = #{incomeCashAmount,jdbcType=DECIMAL},
+      CashTotalAmount = #{cashTotalAmount,jdbcType=DECIMAL},
+      IsSync = #{isSync,jdbcType=BIT},
+      CreatorID = #{creatorID,jdbcType=BIGINT},
+      CreatorName = #{creatorName,jdbcType=VARCHAR},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Memo = #{memo,jdbcType=VARCHAR},
+      SyncTime = #{syncTime,jdbcType=TIMESTAMP},
+      SyncTimeResult = #{syncTimeResult,jdbcType=TIMESTAMP}
+    where WorkingID = #{workingID,jdbcType=BIGINT}
+  </update>
+
+
+    <!--营业额收入统计-->
+    <select id="getWorkingMoney" resultType="map">
+        select
+        count(1) 'orderNum',
+        IFNULL(sum(o.totalAmount),0) 'xiaofeiAmount',
+        IFNULL(sum(o.ActualAmount),0) 'yingshouAmount' ,
+        IFNULL(sum(o.peopleNum),0) 'peopleNum',
+        IFNULL(sum(f.changeAmount),0) 'shoukuanAmount',
+        0 'fuwuAmount',
+        0 'kaipiaoAmount',
+        IFNULL(sum(case when odm.discountType = 795 then odm.discountAmount else 0 end),0) 'zhekouAmount',
+        IFNULL(sum(case when odm.discountType = 796 then odm.discountAmount else 0 end),0) 'miandanAount',
+        IFNULL(sum(case when odm.discountType = 797 then odm.discountAmount else 0 end),0) 'zhijianAmount',
+        IFNULL(sum(case when odm.discountType = 798 then odm.discountAmount else 0 end),0) 'molingAmount',
+        IFNULL(sum(case when odm.discountType = 931 then odm.discountAmount else 0 end),0) 'zengsongAmount',
+        IFNULL(sum(case when odm.discountType = 959 then odm.discountAmount else 0 end),0) 'mianfuwuAmount'
+        from O_SubOrderInfo o
+        left join F_FundChangeInfo f on o.SubOrderID=f.BusinessID
+        left join O_OrderDiscountMapping odm on odm.suborderID = o.suborderID
+        where
+        o.OrderStatus = #{orderStatus}
+        and o.createTime > #{startTime}
+        and o.createTime &lt;= #{endTime}
+    </select>
+
+
+    <!--根据workingID获得班次信息-->
+    <select id="getWorkingInfoByWorkingID" resultType="map">
+        select
+        workingID,
+        createTime,
+        creatorName,
+        deviceCode,
+        workOffTime,
+        moneyAmount backUpAmount,
+        archiveID
+        from B_WorkingInfo
+        where
+       workingID = #{workingID}
+    </select>
+
+
+    <!--根据当前人和收银机获得当前班次-->
+    <select id="getWorkingInfo" resultType="map">
+    select
+       workingID,
+       createTime,
+       creatorName,
+       deviceCode,
+       workOffTime,
+       archiveID
+    from B_WorkingInfo
+    where
+    workofftime is null
+    and creatorID = #{loginID}
+    and deviceID = #{casherID}
+    and archiveID = #{archiveID}
+    and SettlementType = 1115
+    order by createTime desc
+    limit 0,1
+    </select>
+    <!--根据收银机获得上一班次数据-->
+    <select id="getBeforeWorkingInfo" resultType="map">
+        select
+       workingID,
+       createTime,
+       creatorName,
+       deviceCode,
+       workOffTime,
+       archiveID
+    from B_WorkingInfo
+    where
+    workofftime is null and SettlementType = 1115
+    and archiveID = #{archiveID}
+    and deviceID = #{casherID}
+    and SettlementType = 1115
+    order by createTime desc
+    limit 0,1
+    </select>
+    <!--订单收款统计-->
+    <select id="getOrderMoney" resultType="map">
+        select
+        fd.PaymentMethodID payMethodID,
+        ifnull(sum(fd.ChangeAmount),0) amount,
+        count(1) num
+        from O_SubOrderInfo sub
+        left join F_FundChangeInfo f on sub.suborderid = f.BusinessID
+        left join F_FundChangeDetailInfo fd on f.changeID = fd.changeID
+        where
+        sub.orderStatus= #{orderStatus}
+        and fd.changeAmount > 0
+        and sub.createTime > #{startTime}
+        and sub.createTime &lt;= #{endTime}
+        group by fd.PaymentMethodID
+    </select>
+
+    <select id="getMemberMoney" resultType="map">
+        SELECT
+        IFNULL(ffd.PaymentMethodID,'total') as payMethodID,
+        SUM(ifnull(fd.RealAmount,0)) AS amount,
+        SUM(ifnull(fd.PresentMoney,0)) AS presentMoney,
+        COUNT(fd.AccountID) num,
+        sum(if(ifnull(fd.PresentMoney,0) > 0,1,0)) presentNum
+        FROM F_DepositInfo fd, F_FundChangeInfo ff, F_FundChangeDetailInfo ffd
+        WHERE fd.DepositID = ff.BusinessID
+        AND ff.ChangeID = ffd.ChangeID
+        AND fd.RealAmount > 0
+        AND ff.BusinessType = 160
+        AND fd.DepositStatus = 418
+        AND ffd.AccountType = 700
+        AND fd.CreateTime > #{startTime}
+        AND fd.CreateTime &lt;= #{endTime}
+        GROUP BY ffd.PaymentMethodID
+    </select>
+
+    <select id="getBookingMoney" resultType="map">
+        SELECT
+          ob.PaymentMethodID payMethodID,
+          SUM(IFNULL(ob.`BookingAmount`,0)) AS amount,
+          count(ob.BookingID) num
+         FROM O_BookingInfo ob
+        WHERE ob.BookingStatus = 618
+          AND ob.BookingAmount > 0
+          AND ob.PayStatus = 190
+          and ob.CreateTime > #{startTime}
+          and ob.CreateTime &lt;= #{endTime}
+    GROUP BY ob.PaymentMethodID
+    </select>
+
+
+    <select id="getUnsubscribeMoney" resultType="map">
+      SELECT
+       ob.RefundMethod payMethodID,
+       SUM(IFNULL(ob.RefundAmount,0)) AS amount,
+       COUNT(ob.BookingID) num
+       FROM O_BookingInfo ob
+       WHERE ob.RefundStatus = 987
+          AND ob.RefundAmount > 0
+          AND ob.CreateTime > #{startTime}
+          AND ob.CreateTime &lt;= #{endTime}
+    GROUP BY ob.RefundMethod
+    </select>
+
+    <select id="getPayMethod" resultType="map">
+        select a.PaymentMethodID payMethodID,
+            a.paymentName payMethodName,
+            0 num,
+            0 amount
+        from C_PaymentMethodInfo a
+        where a.MethodStatus = 9
+    </select>
+
+
+    <select id="getWorkingList" resultType="map">
+        select
+        workingID,
+        createTime,
+        workOffTime,
+        creatorName,
+        orderNum orderNum,
+        moneyAmount moneyAmount,
+        orderTotalAmount,
+        rechargeTotalAmount,
+        bookingTotalAmount,
+        refundTotalAmount,
+        repaymentTotalAmount,
+        incomeTotalAmount
+        from B_WorkingInfo
+        <where>
+            AND workOffTime is not null
+            <if test="searchContent != null and searchContent!=''">
+                AND creatorName like '%${searchContent}%'
+            </if>
+            <if test="startTime !=null and endTime !=null">
+                AND createTime > #{startTime} and createTime &lt;= #{endTime}
+            </if>
+            <if test="settlementType != null">
+                AND SettlementType = #{settlementType}
+            </if>
+        </where>
+        order by createTime desc
+    </select>
+
+
+    <select id="getMealsInfo" resultType="map">
+        select GROUP_CONCAT(mealName) mealsName from B_MealsInfo
+        where
+        archiveID = #{archiveID} and areaID is null
+        and
+        (
+        DATE_FORMAT(startTime,'%H:%i') > DATE_FORMAT(#{startTime},'%H:%i') and DATE_FORMAT(startTime,'%H:%i') &lt;= DATE_FORMAT(#{endTime},'%H:%i')
+        or
+        DATE_FORMAT(endTime,'%H:%i') > DATE_FORMAT(#{startTime},'%H:%i') and DATE_FORMAT(endTime,'%H:%i') &lt;=  DATE_FORMAT(#{endTime},'%H:%i')
+        or
+        DATE_FORMAT(startTime,'%H:%i') &lt;= DATE_FORMAT(#{startTime},'%H:%i') and DATE_FORMAT(endTime,'%H:%i') >  DATE_FORMAT(#{endTime},'%H:%i')
+        )
+    </select>
+
+
+    <!--获得日结列表信息-->
+    <select id="getDailyWorkingList" resultType="map">
+        select
+        workingID,
+        settlementType,
+        settlementMethod,
+        createTime,
+        workOffTime,
+        creatorName,
+        orderNum orderNum,
+        moneyAmount moneyAmount,
+        orderTotalAmount,
+        rechargeTotalAmount,
+        bookingTotalAmount,
+        refundTotalAmount,
+        repaymentTotalAmount,
+        incomeTotalAmount
+        from B_WorkingInfo
+        <where>
+            AND SettlementType = 1116
+            <if test="startTime !=null and endTime !=null">
+                AND (CreateTime > #{startTime} and createTime &lt;= #{endTime})
+            </if>
+            <if test="searchContent != null and searchContent!=''">
+                AND creatorName like '%${searchContent}%'
+            </if>
+        </where>
+        order by createTime desc
+    </select>
+
+
+    <select id="testDate" resultType="map">
+        select now() bookTime from dual;
+    </select>
+
+    <select id="testDate2" resultType="cc.toprank.byd.web.vo.TableBookVO">
+        select now() bookTime from dual;
+    </select>
+
+    <select id="getPayMethodNameByPayMethodID" resultType="string">
+        select paymentName from C_PaymentMethodInfo where PaymentMethodID = #{payMethodID}
+    </select>
+
+    <select id="getDailyCloseOrderCount" resultType="map">
+        select
+        ifnull(sum(case when s.orderStatus = 68 then 1 else 0 end),0) payCount, -- 已结账子订单总数
+        count(1) noPayCount -- 子订单总数
+         from O_SubOrderInfo s
+        left join O_OrderInfo o on s.orderID = o.orderID
+        where s.createTime BETWEEN #{startTime} AND #{endTime};
+    </select>
+
+    <!--查询时间段中所有子订单总数,消费总人数,桌台标准人数 -->
+    <select id="getTurnoverRate" resultType="map">
+        SELECT
+            count(1) subOrderNum,
+            IFNULL(sum(IFNULL(so.PeopleNum, 0)),0) peopleNum,
+            IFNULL(sum(IFNULL(d.DefaultPerson,0)),0) tablePeopleNum
+        FROM
+            O_SubOrderInfo so
+        inner join B_DinningTableInfo d on so.tableID = d.tableID
+        WHERE so.createTime BETWEEN #{startTime} AND #{endTime};
+    </select>
+
+    <!--查询时间段中有效桌子数-->
+    <select id="getTableRate" resultType="map">
+        select count(1) tableNum  from (
+        select so.tableID tableNum
+        from O_SubOrderInfo so
+        inner join B_DinningTableInfo d on so.tableID = d.tableID
+        WHERE so.createTime BETWEEN #{startTime} AND #{endTime}
+        group by so.tableID
+        )t
+    </select>
+
+    <select id="getSubOrderIDList" resultType="long">
+        select subOrderID from O_SubOrderInfo
+        where paidTime BETWEEN #{startTime} AND #{endTime}
+    </select>
+
+</mapper>

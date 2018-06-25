@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.T_LoginUserStatInfoDao">
+    <!-- 判断是否可以签到 -->
+    <select id="getCurrentDaySignInMsg" parameterType="hashmap" resultType="cc.toprank.byd.entity.T_LoginUserStatInfoEntity">
+      SELECT * from T_LoginUserStatInfo WHERE LoginID = #{loginID} AND UserID = #{userID} AND LogoutTime IS NULL AND LoginTime BETWEEN CAST(CAST(SYSDATE()AS DATE)AS DATETIME) AND now()
+    </select>
+
+    <!-- 判断是否可以签退 -->
+    <select id="getCurrentDaySignOutMsg" parameterType="hashmap" resultType="cc.toprank.byd.entity.T_LoginUserStatInfoEntity">
+        SELECT * from T_LoginUserStatInfo WHERE LoginID = #{loginID} AND UserID = #{userID} AND LogoutTime IS NULL AND LoginTime BETWEEN DATE_SUB(NOW(),INTERVAL +1 DAY) AND now()
+    </select>
+
+    <insert id="insertLoginUserStatInfo" parameterType="cc.toprank.byd.entity.T_LoginUserStatInfoEntity">
+        INSERT INTO T_LoginUserStatInfo(LogID,UserID,LoginID,LoginName,UserName,LoginChannel,IMEI,MacAddress,Token,AppVer,LoginTime,LogoutTime,IPAddress,HostName,Memo)
+        VALUES (#{logID},#{userID},#{loginID},#{loginName},#{userName},#{loginChannel},#{iMEI},#{macAddress},#{token},#{appVer},#{loginTime},#{logoutTime},#{iPAddress},#{hostName},#{memo})
+    </insert>
+
+    <update id="updateLoginUserStatInfo" parameterType="cc.toprank.byd.entity.T_LoginUserStatInfoEntity">
+        UPDATE T_LoginUserStatInfo SET LogoutTime = now() WHERE LogID =#{logID}
+    </update>
+</mapper>

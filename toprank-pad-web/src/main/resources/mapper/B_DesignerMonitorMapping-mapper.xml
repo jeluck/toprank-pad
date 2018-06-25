@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cc.toprank.byd.dao.B_DesignerMonitorMappingDao">
+  	<select id="getAll" parameterType="B_DesignerMonitorMappingEntity" resultType="B_DesignerMonitorMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_DesignerMonitorMappingCollection()} 
+		]]>  
+	</select>
+  	<select id="get" parameterType="B_DesignerMonitorMappingEntity" resultType="B_DesignerMonitorMappingEntity" statementType="CALLABLE">
+		<![CDATA[  
+			{call GetB_DesignerMonitorMappingEntity(#{mappingID})} 
+		]]>  
+	</select>
+  	<delete id="delete" parameterType="B_DesignerMonitorMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call DeleteB_DesignerMonitorMappingEntity(#{mappingID})} 
+		]]> 
+  	</delete>
+  	
+  	<insert id="save" useGeneratedKeys="true" keyProperty="MappingID" parameterType="B_DesignerMonitorMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call InsertB_DesignerMonitorMappingEntity(#{createTime},#{creatorID},#{designerID},#{isSync},#{mappingDesc},#{mappingID,jdbcType=INTEGER,mode=OUT},#{mappingStatus},#{memo},#{monitorID})} 
+		]]>  
+  	</insert>
+  		
+  	<update id="update" parameterType="B_DesignerMonitorMappingEntity" statementType="CALLABLE">
+  		<![CDATA[  
+			{call UpdateB_DesignerMonitorMappingEntity(#{createTime},#{creatorID},#{designerID},#{isSync},#{mappingDesc},#{mappingID},#{mappingStatus},#{memo},#{monitorID})} 
+		]]>  
+  	</update>
+
+	<!-- 根据厨师编号查询看板信息 lzy -->
+	<select id="getDesignerMonitorMappingByDesignerID" parameterType="B_DesignerMonitorMappingEntity" resultType="B_DesignerMonitorMappingEntity" statementType="CALLABLE">
+		SELECT MappingDesc,MappingID,MappingStatus,DesignerID,MonitorID,IsSync,CreateTime,CreatorID,Memo
+		FROM B_DesignerMonitorMapping
+		WHERE DesignerID = #{designerID}
+	</select>
+  </mapper>

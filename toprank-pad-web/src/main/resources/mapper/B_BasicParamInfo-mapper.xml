@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cc.toprank.byd.dao.B_BasicParamInfoDao">
+	<resultMap id="BaseResultMap" type="cc.toprank.byd.entity.B_BasicParamInfoEntity">
+		<id column="ParamID" jdbcType="BIGINT" property="paramID" />
+		<result column="ArchiveID" jdbcType="BIGINT" property="archiveID" />
+		<result column="OrgID" jdbcType="BIGINT" property="orgID" />
+		<result column="ReservationType" jdbcType="BIGINT" property="reservationType" />
+		<result column="ReservationFee" jdbcType="INTEGER" property="reservationFee" />
+		<result column="IsServiceFee" jdbcType="BIT" property="isServiceFee" />
+		<result column="LateMinute" jdbcType="INTEGER" property="lateMinute" />
+		<result column="DayType" jdbcType="BIGINT" property="dayType" />
+		<result column="IsGregorian" jdbcType="BIT" property="isGregorian" />
+		<result column="WeekDay" jdbcType="VARCHAR" property="weekDay" />
+		<result column="MonthDay" jdbcType="VARCHAR" property="monthDay" />
+		<result column="YearDay" jdbcType="TIMESTAMP" property="yearDay" />
+		<result column="SpecificDay" jdbcType="TIMESTAMP" property="specificDay" />
+		<result column="AheadMinute" jdbcType="INTEGER" property="aheadMinute" />
+		<result column="CanBookingDay" jdbcType="INTEGER" property="canBookingDay" />
+		<result column="OpenTime" jdbcType="TIMESTAMP" property="openTime" />
+		<result column="CloseTime" jdbcType="TIMESTAMP" property="closeTime" />
+		<result column="AlertAmount" jdbcType="DECIMAL" property="alertAmount" />
+		<result column="EnablePending" jdbcType="BIT" property="enablePending" />
+		<result column="PrePayPending" jdbcType="BIT" property="prePayPending" />
+		<result column="DroptailMethod" jdbcType="BIGINT" property="droptailMethod" />
+		<result column="CreatorID" jdbcType="BIGINT" property="creatorID" />
+		<result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="Memo" jdbcType="VARCHAR" property="memo" />
+		<result column="IsSync" jdbcType="BIT" property="isSync" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ParamID, ArchiveID, OrgID, ReservationType, ReservationFee, IsServiceFee, LateMinute,
+		DayType, IsGregorian, WeekDay, MonthDay, YearDay, SpecificDay, AheadMinute, CanBookingDay,
+		OpenTime, CloseTime, AlertAmount, EnablePending, PrePayPending, DroptailMethod, CreatorID,
+		CreateTime, Memo, IsSync
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from B_BasicParamInfo
+		where ParamID = #{paramID,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from B_BasicParamInfo
+		where ParamID = #{paramID,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cc.toprank.byd.entity.B_BasicParamInfoEntity">
+		insert into B_BasicParamInfo (ParamID, ArchiveID, OrgID,
+		ReservationType, ReservationFee, IsServiceFee,
+		LateMinute, DayType, IsGregorian,
+		WeekDay, MonthDay, YearDay,
+		SpecificDay, AheadMinute, CanBookingDay,
+		OpenTime, CloseTime, AlertAmount,
+		EnablePending, PrePayPending, DroptailMethod,
+		CreatorID, CreateTime, Memo,
+		IsSync)
+		values (#{paramID,jdbcType=BIGINT}, #{archiveID,jdbcType=BIGINT}, #{orgID,jdbcType=BIGINT},
+		#{reservationType,jdbcType=BIGINT}, #{reservationFee,jdbcType=INTEGER}, #{isServiceFee,jdbcType=BIT},
+		#{lateMinute,jdbcType=INTEGER}, #{dayType,jdbcType=BIGINT}, #{isGregorian,jdbcType=BIT},
+		#{weekDay,jdbcType=VARCHAR}, #{monthDay,jdbcType=VARCHAR}, #{yearDay,jdbcType=TIMESTAMP},
+		#{specificDay,jdbcType=TIMESTAMP}, #{aheadMinute,jdbcType=INTEGER}, #{canBookingDay,jdbcType=INTEGER},
+		#{openTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, #{alertAmount,jdbcType=DECIMAL},
+		#{enablePending,jdbcType=BIT}, #{prePayPending,jdbcType=BIT}, #{droptailMethod,jdbcType=BIGINT},
+		#{creatorID,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR},
+		#{isSync,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="cc.toprank.byd.entity.B_BasicParamInfoEntity">
+		insert into B_BasicParamInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="paramID != null">
+				ParamID,
+			</if>
+			<if test="archiveID != null">
+				ArchiveID,
+			</if>
+			<if test="orgID != null">
+				OrgID,
+			</if>
+			<if test="reservationType != null">
+				ReservationType,
+			</if>
+			<if test="reservationFee != null">
+				ReservationFee,
+			</if>
+			<if test="isServiceFee != null">
+				IsServiceFee,
+			</if>
+			<if test="lateMinute != null">
+				LateMinute,
+			</if>
+			<if test="dayType != null">
+				DayType,
+			</if>
+			<if test="isGregorian != null">
+				IsGregorian,
+			</if>
+			<if test="weekDay != null">
+				WeekDay,
+			</if>
+			<if test="monthDay != null">
+				MonthDay,
+			</if>
+			<if test="yearDay != null">
+				YearDay,
+			</if>
+			<if test="specificDay != null">
+				SpecificDay,
+			</if>
+			<if test="aheadMinute != null">
+				AheadMinute,
+			</if>
+			<if test="canBookingDay != null">
+				CanBookingDay,
+			</if>
+			<if test="openTime != null">
+				OpenTime,
+			</if>
+			<if test="closeTime != null">
+				CloseTime,
+			</if>
+			<if test="alertAmount != null">
+				AlertAmount,
+			</if>
+			<if test="enablePending != null">
+				EnablePending,
+			</if>
+			<if test="prePayPending != null">
+				PrePayPending,
+			</if>
+			<if test="droptailMethod != null">
+				DroptailMethod,
+			</if>
+			<if test="creatorID != null">
+				CreatorID,
+			</if>
+			<if test="createTime != null">
+				CreateTime,
+			</if>
+			<if test="memo != null">
+				Memo,
+			</if>
+			<if test="isSync != null">
+				IsSync,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="paramID != null">
+				#{paramID,jdbcType=BIGINT},
+			</if>
+			<if test="archiveID != null">
+				#{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				#{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="reservationType != null">
+				#{reservationType,jdbcType=BIGINT},
+			</if>
+			<if test="reservationFee != null">
+				#{reservationFee,jdbcType=INTEGER},
+			</if>
+			<if test="isServiceFee != null">
+				#{isServiceFee,jdbcType=BIT},
+			</if>
+			<if test="lateMinute != null">
+				#{lateMinute,jdbcType=INTEGER},
+			</if>
+			<if test="dayType != null">
+				#{dayType,jdbcType=BIGINT},
+			</if>
+			<if test="isGregorian != null">
+				#{isGregorian,jdbcType=BIT},
+			</if>
+			<if test="weekDay != null">
+				#{weekDay,jdbcType=VARCHAR},
+			</if>
+			<if test="monthDay != null">
+				#{monthDay,jdbcType=VARCHAR},
+			</if>
+			<if test="yearDay != null">
+				#{yearDay,jdbcType=TIMESTAMP},
+			</if>
+			<if test="specificDay != null">
+				#{specificDay,jdbcType=TIMESTAMP},
+			</if>
+			<if test="aheadMinute != null">
+				#{aheadMinute,jdbcType=INTEGER},
+			</if>
+			<if test="canBookingDay != null">
+				#{canBookingDay,jdbcType=INTEGER},
+			</if>
+			<if test="openTime != null">
+				#{openTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="closeTime != null">
+				#{closeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="alertAmount != null">
+				#{alertAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="enablePending != null">
+				#{enablePending,jdbcType=BIT},
+			</if>
+			<if test="prePayPending != null">
+				#{prePayPending,jdbcType=BIT},
+			</if>
+			<if test="droptailMethod != null">
+				#{droptailMethod,jdbcType=BIGINT},
+			</if>
+			<if test="creatorID != null">
+				#{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				#{isSync,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cc.toprank.byd.entity.B_BasicParamInfoEntity">
+		update B_BasicParamInfo
+		<set>
+			<if test="archiveID != null">
+				ArchiveID = #{archiveID,jdbcType=BIGINT},
+			</if>
+			<if test="orgID != null">
+				OrgID = #{orgID,jdbcType=BIGINT},
+			</if>
+			<if test="reservationType != null">
+				ReservationType = #{reservationType,jdbcType=BIGINT},
+			</if>
+			<if test="reservationFee != null">
+				ReservationFee = #{reservationFee,jdbcType=INTEGER},
+			</if>
+			<if test="isServiceFee != null">
+				IsServiceFee = #{isServiceFee,jdbcType=BIT},
+			</if>
+			<if test="lateMinute != null">
+				LateMinute = #{lateMinute,jdbcType=INTEGER},
+			</if>
+			<if test="dayType != null">
+				DayType = #{dayType,jdbcType=BIGINT},
+			</if>
+			<if test="isGregorian != null">
+				IsGregorian = #{isGregorian,jdbcType=BIT},
+			</if>
+			<if test="weekDay != null">
+				WeekDay = #{weekDay,jdbcType=VARCHAR},
+			</if>
+			<if test="monthDay != null">
+				MonthDay = #{monthDay,jdbcType=VARCHAR},
+			</if>
+			<if test="yearDay != null">
+				YearDay = #{yearDay,jdbcType=TIMESTAMP},
+			</if>
+			<if test="specificDay != null">
+				SpecificDay = #{specificDay,jdbcType=TIMESTAMP},
+			</if>
+			<if test="aheadMinute != null">
+				AheadMinute = #{aheadMinute,jdbcType=INTEGER},
+			</if>
+			<if test="canBookingDay != null">
+				CanBookingDay = #{canBookingDay,jdbcType=INTEGER},
+			</if>
+			<if test="openTime != null">
+				OpenTime = #{openTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="closeTime != null">
+				CloseTime = #{closeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="alertAmount != null">
+				AlertAmount = #{alertAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="enablePending != null">
+				EnablePending = #{enablePending,jdbcType=BIT},
+			</if>
+			<if test="prePayPending != null">
+				PrePayPending = #{prePayPending,jdbcType=BIT},
+			</if>
+			<if test="droptailMethod != null">
+				DroptailMethod = #{droptailMethod,jdbcType=BIGINT},
+			</if>
+			<if test="creatorID != null">
+				CreatorID = #{creatorID,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CreateTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				Memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="isSync != null">
+				IsSync = #{isSync,jdbcType=BIT},
+			</if>
+		</set>
+		where ParamID = #{paramID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cc.toprank.byd.entity.B_BasicParamInfoEntity">
+		update B_BasicParamInfo
+		set ArchiveID = #{archiveID,jdbcType=BIGINT},
+		OrgID = #{orgID,jdbcType=BIGINT},
+		ReservationType = #{reservationType,jdbcType=BIGINT},
+		ReservationFee = #{reservationFee,jdbcType=INTEGER},
+		IsServiceFee = #{isServiceFee,jdbcType=BIT},
+		LateMinute = #{lateMinute,jdbcType=INTEGER},
+		DayType = #{dayType,jdbcType=BIGINT},
+		IsGregorian = #{isGregorian,jdbcType=BIT},
+		WeekDay = #{weekDay,jdbcType=VARCHAR},
+		MonthDay = #{monthDay,jdbcType=VARCHAR},
+		YearDay = #{yearDay,jdbcType=TIMESTAMP},
+		SpecificDay = #{specificDay,jdbcType=TIMESTAMP},
+		AheadMinute = #{aheadMinute,jdbcType=INTEGER},
+		CanBookingDay = #{canBookingDay,jdbcType=INTEGER},
+		OpenTime = #{openTime,jdbcType=TIMESTAMP},
+		CloseTime = #{closeTime,jdbcType=TIMESTAMP},
+		AlertAmount = #{alertAmount,jdbcType=DECIMAL},
+		EnablePending = #{enablePending,jdbcType=BIT},
+		PrePayPending = #{prePayPending,jdbcType=BIT},
+		DroptailMethod = #{droptailMethod,jdbcType=BIGINT},
+		CreatorID = #{creatorID,jdbcType=BIGINT},
+		CreateTime = #{createTime,jdbcType=TIMESTAMP},
+		Memo = #{memo,jdbcType=VARCHAR},
+		IsSync = #{isSync,jdbcType=BIT}
+		where ParamID = #{paramID,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByArchiveid" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" />
+		FROM B_BasicParamInfo WHERE ArchiveID = #{archiveID,jdbcType=BIGINT}
+	</select>
+
+	<!-- 根据档案编号查询商户基本参数信息	hcy -->
+	<select id="queryBasicParamByArchiveID" parameterType="long" resultType="B_BasicParamInfoEntity" statementType="CALLABLE">
+		<![CDATA[
+			{call Get_ReceptionB_BasicParamInfoEntityByArchiveID(#{archiveID})}
+		]]>
+	</select>
+
+	<!-- 根据orgid修改对应的抹零方式  zhangbo -->
+	<update id="updateBasicParamByOrgId" parameterType="hashmap" statementType="CALLABLE">
+		<![CDATA[
+			{call UpdateB_BasicParamInfoByOrgIID(#{droptailMethod},#{orgID})}
+		]]>
+	</update>
+
+	<!-- 根据档案编号查询商户基本参数信息 chenkangyi -->
+	<select id="selectInfoByArchiveid" parameterType="long" resultType="cc.toprank.byd.entity.B_BasicParamInfoEntity">
+		SELECT * FROM B_BasicParamInfo WHERE ArchiveID = #{rrchiveID}
+	</select>
+</mapper>

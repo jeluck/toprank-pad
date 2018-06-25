@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.toprank.byd.dao.P_ProductVariantInfoDao">
+    <select id="getAll" parameterType="P_ProductVariantInfoEntity" resultType="P_ProductVariantInfoEntity"
+            statementType="CALLABLE">
+		<![CDATA[
+			{call GetP_ProductVariantInfoCollection()}
+        ]]>
+	</select>
+    <select id="get" parameterType="P_ProductVariantInfoEntity" resultType="P_ProductVariantInfoEntity"
+            statementType="CALLABLE">
+		<![CDATA[
+			{call GetP_ProductVariantInfoEntity(#{variantID})}
+        ]]>
+	</select>
+    <delete id="delete" parameterType="P_ProductVariantInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call DeleteP_ProductVariantInfoEntity(#{variantID})}
+        ]]>
+  	</delete>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="VariantID" parameterType="P_ProductVariantInfoEntity"
+            statementType="CALLABLE">
+  		<![CDATA[
+			{call InsertP_ProductVariantInfoEntity(#{adminComment},#{allowBackInStockSubscription},#{attachmentNum},#{availableForPreOrder},#{barCode},#{createTime},#{creatorID},#{currencyID},#{displayStockAvailability},#{displayStockQuantity},#{effectiveTime},#{expireTime},#{firstLetter},#{gtin},#{hasTierPrices},#{height},#{keyword},#{length},#{marketPrice},#{memo},#{orderMaximumQuantity},#{orderMinimumQuantity},#{originalPrice},#{price},#{produceMinute},#{productID},#{shortName},#{sortNo},#{starLevel},#{stockQuantity},#{updateTime},#{variantDesc},#{variantID,jdbcType=INTEGER,mode=OUT},#{variantName},#{variantStatus},#{weight},#{weightID},#{width})}
+        ]]>
+  	</insert>
+
+    <update id="update" parameterType="P_ProductVariantInfoEntity" statementType="CALLABLE">
+  		<![CDATA[
+			{call UpdateP_ProductVariantInfoEntity(#{adminComment},#{allowBackInStockSubscription},#{attachmentNum},#{availableForPreOrder},#{barCode},#{createTime},#{creatorID},#{currencyID},#{displayStockAvailability},#{displayStockQuantity},#{effectiveTime},#{expireTime},#{firstLetter},#{gtin},#{hasTierPrices},#{height},#{keyword},#{length},#{marketPrice},#{memo},#{orderMaximumQuantity},#{orderMinimumQuantity},#{originalPrice},#{price},#{produceMinute},#{productID},#{shortName},#{sortNo},#{starLevel},#{stockQuantity},#{updateTime},#{variantDesc},#{variantID},#{variantName},#{variantStatus},#{weight},#{weightID},#{width})}
+        ]]>
+  	</update>
+    <!--
+        按变体编号查询信息 lzy
+    -->
+    <select id="getVariantInfo" parameterType="Long" resultType="P_ProductVariantInfoEntity">
+          SELECT pv.*,c.DictionaryName AS unitName,p.CategoryID,pc.CategoryName
+            FROM P_ProductVariantInfo pv
+            LEFT JOIN C_DictionaryInfo c ON pv.Weight = c.DictionaryID
+            LEFT JOIN P_ProductInfo p ON p.ProductID = pv.ProductID
+            LEFT JOIN P_ProductCategoryInfo pc ON p.CategoryID = pc.CategoryID
+            WHERE pv.VariantID = #{variantID}
+    </select>
+    <!--
+        按商品编号查询套餐变体信息
+        lanziyao
+    -->
+    <select id="getProductComboListByProductID" parameterType="int" resultType="P_ProductVariantInfoEntity">
+		 SELECT	p.AdminComment, p.AllowBackInStockSubscription, p.AttachmentNum, p.AvailableForPreOrder, p.BarCode, p.CreateTime, p.CreatorID,
+				p.CurrencyID, p.DisplayStockAvailability, p.DisplayStockQuantity, p.EffectiveTime, p.ExpireTime, p.Gtin, p.HasTierPrices,
+				p.Height,  p.Length, p.MarketPrice, p.Memo, p.OrderMaximumQuantity, p.OrderMinimumQuantity,
+				p.OriginalPrice, p.Price, p.ProduceMinute, p.ProductID, p.ShortName, p.SortNo, p.StarLevel,
+				p.StockQuantity, p.UpdateTime, p.VariantDesc, p.VariantID, p.VariantName, p.VariantStatus, p.Weight,
+				p.WeightID, p.Width,ps.Quantity
+			  FROM P_ProductVariantInfo p
+				LEFT JOIN P_ComboSettingInfo ps ON ps.VariantID = p.VariantID
+				LEFT JOIN P_ProductInfo pp ON pp.ProductID = ps.ProductID
+				WHERE pp.ProductID = #{productID}
+	</select>
+
+    <!-- 根据map查询变体信息 -->
+    <select id="getVariantListByParam" parameterType="map" resultType="P_ProductVariantInfoEntity">
+        SELECT
+        pvi.productID productID,
+        pvi.variantID variantID,
+        pvi.VariantName variantName,
+        pvi.price price,
+        pvi.barCode barCode
+        FROM P_ProductVariantInfo pvi
+        <if test="searchType != null and searchType == 1">
+            left join W_ProductMapping wpm on pvi.variantID = wpm.VariantID
+        </if>
+        WHERE pvi.ProductID = #{productID}
+        <if test="searchType != null and searchType == 1">
+            and wpm.mappingID is null
+        </if>
+    </select>
+
+	<!-- 根据变体编号查询变体信息 LinYN -->
+	<select id="getProductVariantInfoByID" parameterType="long" resultType="cc.toprank.byd.web.vo.product.ProductVariantVo">
+        SELECT
+            pv.ProductID as productID,
+            pv.variantID as variantID,
+            pv.VariantName as variantName,
+            pv.UnitID as unitID,
+            dic.DictionaryName as unitName,
+            pv.Weight as weight,
+            pv.WeightID as weightID,
+            cmw.weightName 	as weightName
+		FROM P_ProductVariantInfo pv
+        left join C_DictionaryInfo dic on pv.UnitID = dic.DictionaryID
+		left join C_MeasureWeightInfo cmw on pv.WeightID = cmw.WeightID
+		where pv.VariantID=#{variantID}
+	</select>
+
+</mapper>
